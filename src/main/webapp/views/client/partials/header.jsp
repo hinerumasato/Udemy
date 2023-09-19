@@ -1,9 +1,10 @@
 <%-- 
-    Document   : header
-    Created on : Sep 19, 2023, 12:09:34 AM
+    Document   : header-new
+    Created on : Sep 19, 2023, 2:12:23 PM
     Author     : Masato
 --%>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <header>
     <h1>This is Header</h1>
     <nav>
