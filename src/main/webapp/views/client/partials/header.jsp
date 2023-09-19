@@ -4,8 +4,6 @@
     Author     : Masato
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <header>
     <h1>This is Header</h1>
     <nav>

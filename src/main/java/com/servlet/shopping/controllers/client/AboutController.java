@@ -4,6 +4,7 @@
  */
 package com.servlet.shopping.controllers.client;
 
+import com.servlet.shopping.page.Page;
 import com.servlet.shopping.utils.PathUtil;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -23,9 +24,8 @@ public class AboutController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("contentPage", PathUtil.getClientPagePath("about.jsp"));
-        RequestDispatcher rd = req.getRequestDispatcher(PathUtil.getClientLayoutPath("master.jsp"));
-        rd.forward(req, resp);
+        Page page = new Page(req, resp, "about.jsp", "master.jsp");
+        page.render();
     }
     
 }

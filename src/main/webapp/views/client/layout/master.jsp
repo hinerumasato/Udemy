@@ -10,8 +10,10 @@
 <!DOCTYPE html>
 <html lang="vi">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="<c:url value='/static/css/app.css' />"/>
+        <title>Test</title>
     </head>
     <body>
         <%@include file="/views/client/partials/header.jsp" %>
