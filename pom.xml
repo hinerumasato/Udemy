@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.servlet</groupId>
-    <artifactId>Shopping</artifactId>
+    <artifactId>Udemy</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
 
-    <name>Shopping</name>
+    <name>Udemy</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>

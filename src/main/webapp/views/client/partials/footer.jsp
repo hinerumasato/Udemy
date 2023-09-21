@@ -5,4 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<h1>This is footer</h1>
+<footer>
+    <h1>This is footer</h1>
+</footer>
