@@ -1,6 +1,6 @@
-package com.servlet.shopping.page;
+package com.servlet.Udemy.page;
 
-import com.servlet.shopping.utils.PathUtil;
+import com.servlet.Udemy.utils.PathUtil;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

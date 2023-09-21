@@ -30,25 +30,33 @@
                 <div class="col-2 header-main-left">
                     <img class="header-logo-img" src="<c:url value='/static/imgs/logo/logo.png' />">
                 </div>
-                <div class="col-7">
-                    <div class="row align-items-center">
-                        <div class="header-navigation col-2 d-flex align-items-center">
-                            <i class="fa-solid fa-bars me-3"></i>
-                            <div>Danh mục</div>
-                        </div>
+                <div class="col-8">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-9">
+                            <div class="row align-items-center">
+                                <div class="header-navigation col-3 d-flex align-items-center">
+                                <i class="fa-solid fa-bars me-3"></i>
+                                <div>Danh mục</div>
+                            </div>
 
-                        <div class="header-search-group col-7">
-                            <input class="input-header w-100" type="text" placeholder="Tìm kiếm..." />
+                                <div class="header-search-group col-9 d-flex align-items-center">
+                                    <input class="input-header" type="text" placeholder="Tìm kiếm..." />
+                                    <i class="las la-search text-main d-block h-100 search-icon"></i>
+                                </div>
+                            </div>    
                         </div>
 
                         <div class="header-cart col-3">
-                            <a href="/">Tất cả khoá học</a>
-                            <i class="fa-solid fa-cart-shopping"></i>
+                            <a href="/" class="text-decoration-none text-secondary">Tất cả khoá học</a>
+                            <i class="las la-shopping-cart fs-4 text-main"></i>
                         </div>
                     </div>
 
                 </div>
-                <div class="col-3"></div>
+                <div class="col-2 d-flex">
+                    <a class="text-secondary auth-btn">Đăng ký</a>
+                    <a class="auth-btn btn-main">Đăng nhập</a>
+                </div>
             </div>
         </div>
     </div>

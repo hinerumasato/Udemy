@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.servlet.shopping.utils;
+package com.servlet.Udemy.utils;
 
-import com.servlet.shopping.constants.Constants;
+import com.servlet.Udemy.constants.Constants;
 
 /**
  *

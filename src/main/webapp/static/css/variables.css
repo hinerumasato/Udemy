@@ -11,3 +11,29 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     --header-info-color: #F76758;
     --main-color: #00BC86;
 }
+
+.text-main {
+    color: var(--main-color) !important;
+}
+
+.btn-main {
+    color: var(--main-color) !important;
+    background: #C7F0E4;
+    
+    
+}
+
+.auth-btn {
+    font-size: 16px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 8px;
+    transition: all .3s;
+}
+
+.auth-btn:hover {
+    opacity: .7;
+    cursor: pointer;
+}
