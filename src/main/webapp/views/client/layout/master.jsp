@@ -21,6 +21,7 @@
         <!-- Icons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css"/>
+        <link rel="shortcut icon" href="<c:url value='/static/favicon.ico' />" type="image/x-icon">
         
         <!-- Font -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,14 +33,14 @@
         <link rel="stylesheet" href="<c:url value='/static/css/app.css' />"/>
         <link rel="stylesheet" href="<c:url value='/static/css/base.css' />"/>
         <link rel="stylesheet" href="<c:url value='/static/css/variables.css' />"/>
-        <title>Test</title>
+        <title>Trang chủ</title>
     </head>
     <body>
         <%@include file="/views/client/partials/header.jsp" %>
         
-        <div class="container">
-            <jsp:include page="${contentPage}" />
-        </div>
+        <%@include file="/views/client/partials/slider.jsp" %>
+        
+        <jsp:include page="${contentPage}" />
         
         <%@include file="/views/client/partials/footer.jsp" %>
         

@@ -10,6 +10,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 :root {
     --header-info-color: #F76758;
     --main-color: #00BC86;
+    --price-color: #f76758;
+    --home-group-color: #FBB72C;
+
+    --regular-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
 }
 
 .text-main {

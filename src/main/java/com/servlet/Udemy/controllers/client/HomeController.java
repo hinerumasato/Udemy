@@ -4,15 +4,15 @@
  */
 package com.servlet.Udemy.controllers.client;
 
-import com.servlet.Udemy.page.Page;
-import com.servlet.Udemy.utils.PathUtil;
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.servlet.Udemy.page.Page;
 
 /**
  *

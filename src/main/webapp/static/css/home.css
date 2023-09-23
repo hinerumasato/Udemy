@@ -1,0 +1,82 @@
+.home_container_group::before {
+    content: "";
+    display: block;
+    width: 10%;
+    height: 6px;
+    border-radius: 8px;
+    background-color: var(--home-group-color);
+}
+
+.home_container_group {
+    margin-top: 50px;
+}
+
+.home_container_title {
+    padding: 16px 0;
+}
+
+.home_container_course_list .col {
+    background: #FAFAFA;
+    padding: 16px;
+    cursor: pointer;
+    margin: 8px;
+    width: calc(100% / 4 - 20px);
+    transition: all .3s;
+}
+
+.home_container_course_list .col:hover {
+    background-color: var(--main-color);
+    color: #FFF;
+}
+
+.home_container_group .nav-pills .nav-item .nav-link.active {
+    color: var(--main-color) !important;
+    background-color: #FFF !important;
+    box-shadow: var(--regular-shadow);
+}
+
+.home_container_group .nav-pills .nav-item .nav-link {
+    color: #000 !important;
+}
+
+.home_container_group .nav-pills .nav-item:hover .nav-link {
+    color: var(--main-color) !important;
+    background-color: #FFF !important;
+    box-shadow: var(--regular-shadow);
+}
+
+.course-item {
+    border-radius: 8px;
+    padding: 16px 16px 20px;
+    box-shadow: var(--regular-shadow);
+}
+
+.course-item-level.basic {
+    margin-top: 8px;
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: rgba(179, 152, 255, 0.4);
+    color: #5968F2;
+    border-radius: 8px;
+}
+
+
+.course-item-info-title {
+    font-weight: bold;
+}
+
+.course-item-info-category {
+    color: var(--main-color);
+}
+
+
+.course-item-info-prices-old-price {
+    text-decoration: line-through;
+    color: #929292;
+}
+
+.course-item-info-prices-new-price {
+    font-weight: bold;
+    color: var(--price-color);
+    font-size: 24px;
+}
