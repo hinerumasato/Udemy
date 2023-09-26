@@ -7,7 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <head>
-    <link rel = "stylesheet" href="<c:url value= '/static/css/footer.css' />" /> 
+    <link rel = "stylesheet" href="<c:url value= '/static/css/footer.css?v=${randomNumber}'/>" />
 </head>
 
 <footer>

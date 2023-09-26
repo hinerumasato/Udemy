@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.servlet.Udemy.page.Page;
+import com.servlet.Udemy.utils.NumberUtil;
 
 /**
  *
@@ -25,6 +26,7 @@ public class HomeController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Page page = new Page(req, resp, "home.jsp", "master.jsp");
+        page.setObject("randomNumber", NumberUtil.random());
         page.render();
     }
 }

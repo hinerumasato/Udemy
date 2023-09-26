@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <head>
-    <link rel="stylesheet" href="<c:url value='/static/css/header.css'/>"/>
+    <link rel="stylesheet" href="<c:url value='/static/css/header.css?v=${randomNumber}'/>"/>
 </head>
 
 <header>
