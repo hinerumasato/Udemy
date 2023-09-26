@@ -7,6 +7,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/common/includes.jsp" %>
 
+<% 
+    String p = "123";
+%>
+
 <head>
     <link rel="stylesheet" href="<c:url value='/static/css/home.css'/>">
 </head>
