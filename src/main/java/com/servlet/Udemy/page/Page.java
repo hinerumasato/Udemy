@@ -56,6 +56,10 @@ public class Page {
     public void setLayout(String layout) {
         this.layout = layout;
     }
+    
+    public void setObject(String key, Object value) {
+        this.req.setAttribute(key, value);
+    }
 
     public void render() throws ServletException, IOException {
         req.setAttribute("contentPage", PathUtil.getClientPagePath(page));

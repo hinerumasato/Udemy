@@ -12,7 +12,7 @@
 %>
 
 <head>
-    <link rel="stylesheet" href="<c:url value='/static/css/home.css'/>">
+    <link rel="stylesheet" href="<c:url value='/static/css/home.css?v=${randomNumber}'/>">
 </head>
 
 <div class="container">

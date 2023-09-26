@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <head>
-    <link rel="stylesheet" href="<c:url value='/static/css/slider.css'/>">
+    <link rel="stylesheet" href="<c:url value='/static/css/slider.css?v=${randomNumber}'/>">
 </head>
 
 <div class="slider">
