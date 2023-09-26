@@ -25,7 +25,7 @@
             <div>
                 <p>ĐĂNG KÍ ĐỂ NHẬN TIN</p>
                 <div class="email-form">
-                    <input class="input-text" type="text" placeholder="Nhập email của bạn">
+                    <input  type="text" class="input-text" name = "email" placeholder="Nhập email của bạn">
                     <button class = "send-button" >Gửi</button>
                 </div>
                 <div class = "contact" >
@@ -43,7 +43,33 @@
             </div>
         </div>
         <div class="footer-right">
-            
+                <div class ="about-footer-udemy-list">
+                    <p class ="title-about">VỀ UDEMY</p>
+                    <p>Trang chủ</p>
+                    <p>Danh sách khóa học</p>
+                    <p>Khóa học tiêu biểu</p>
+                    <p>Tin tức</p>
+                    <p>Liên hệ</p>
+                    <p>Giới thiệu</p>
+                </div>
+                <div class ="about-footer-udemy-list">
+                    <p class ="title-about">TRỢ GIÚP</p>
+                    <p>Trang chủ</p>
+                    <p>Danh sách khóa học</p>
+                    <p>Khóa học tiêu biểu</p>
+                    <p>Tin tức</p>
+                    <p>Liên hệ</p>
+                    <p>Giới thiệu</p>
+                </div>
+                <div class ="about-footer-udemy-list">
+                    <p class ="title-about">HỢP TÁC LIÊN KẾT</p>
+                    <p>Trang chủ</p>
+                    <p>Danh sách khóa học</p>
+                    <p>Khóa học tiêu biểu</p>
+                    <p>Tin tức</p>
+                    <p>Liên hệ</p>
+                    <p>Giới thiệu</p>
+                </div>
         </div>
     </div>
 </footer>
