@@ -1,0 +1,55 @@
+footer {
+    color: #fff;
+    background: #000000;
+}
+
+
+p{
+    font-size: 14px;
+    font-family: "Nunito",serif;
+}
+
+
+.logo-footer-img{
+    margin-bottom: 20px;
+}
+.icon-footer{
+    margin-bottom: 10px;
+    display: flex;
+}
+.icon{
+    width: 36px;
+    height: 36px;
+    display: flex;
+    background: #00bc86;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+.contact{
+    display: flex;
+}
+
+
+.input-text{
+    width: 410px;
+    height: 48px;
+    background-color: #ffffff ;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.send-button{
+    width: 120px;
+    height: 48px;
+    border-radius: 10px;
+    background-color: #00bc86;
+    font-weight: 2px;
+}
+
+.icon-contact{
+    padding-right: 4px;
+}
+
