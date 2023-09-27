@@ -9,6 +9,20 @@ p{
     font-family: "Nunito",serif;
 }
 
+.footer-container{
+    display: flex;
+    padding: 40px;
+    margin-top: 40px;
+}
+
+.footer-left{
+    margin-right: 20px;
+    flex: 1;
+}
+
+.footer-right{
+    flex: 2;
+}
 
 .logo-footer-img{
     margin-bottom: 20px;
@@ -28,21 +42,30 @@ p{
     margin: 5px;
 }
 
+.group-form{
+    display: flex;
+}
+
 .contact{
     display: flex;
 }
 
+.email-form{
+   
+}
 
 .input-text{
-    width: 410px;
+    width: 320px;
     height: 48px;
     background-color: #ffffff ;
     border-radius: 10px;
     margin-bottom: 10px;
+    padding-left: 10px;  
+  
 }
 
 .send-button{
-    width: 120px;
+    width: 80px;
     height: 48px;
     border-radius: 10px;
     background-color: #00bc86;
@@ -53,7 +76,13 @@ p{
     padding-right: 4px;
 }
 
+.top-about-footer-udemy-list{
+    display: flex;
+    margin-bottom: 40px;
+}
+
 .about-footer-udemy-list{
     font-size: 14px;
+    flex: 1;
 }
 
