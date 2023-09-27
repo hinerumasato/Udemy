@@ -23,17 +23,8 @@ public class DB {
         this.username = properties.getProperty("DB_USERNAME");
         this.password = properties.getProperty("DB_PASSWORD");
         this.driver = properties.getProperty("DB_DRIVER");
-
         this.url = properties.getProperty("DB_URL") + schema;
     }
-
-    // public DB() {
-    //     this.schema = "udemy";
-    //     this.username = "root";
-    //     this.password = "135792468jK";
-    //     this.driver = "com.mysql.cj.jdbc.Driver";
-    //     this.url = "jdbc:mysql://localhost:3306/" + schema;
-    // }
 
     public Connection createConnection() {
 

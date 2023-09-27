@@ -42,34 +42,53 @@ p{
     margin: 5px;
 }
 
-.group-form{
+.group-form {
     display: flex;
+    position: relative;
+    margin-bottom: 20px;
 }
 
-.contact{
+.contact {
     display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
 }
 
-.email-form{
-   
+.contact > p {
+    margin: 0;
 }
 
-.input-text{
-    width: 320px;
-    height: 48px;
-    background-color: #ffffff ;
+.footer-email-input {
     border-radius: 10px;
-    margin-bottom: 10px;
-    padding-left: 10px;  
-  
+    width: 320px;
+    padding: 14px 20px;
+    border: 0;
+    outline: none !important;
 }
 
-.send-button{
+.footer-email-input:focus {
+    border: 0;
+    outline: none !important;
+}
+
+.send-button {
+    position: absolute;
     width: 80px;
-    height: 48px;
+    padding: 14px 16px;
     border-radius: 10px;
     background-color: #00bc86;
-    font-weight: 2px;
+    font-weight: bold;
+    right: 0;
+    color: #FFF;
+    font-weight: bold;
+    border: none;
+    outline: none !important;
+    transition: all .3s;
+}
+
+.send-button:hover {
+    background-color: #fcc0b9;
 }
 
 .icon-contact{

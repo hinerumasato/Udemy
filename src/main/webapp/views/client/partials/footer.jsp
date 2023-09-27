@@ -23,20 +23,20 @@
                             <p>ĐĂNG KÍ ĐỂ NHẬN TIN</p>
                             <form id="email-form" action="">
                                 <div class="group-form">
-                                    <input type="text" class="input-text" name="email" placeholder="Nhập email của bạn">
-                                    <button class="send-button">Gửi</button>
+                                   <input type="text" class="footer-email-input" name="email" placeholder="Nhập email của bạn">
+                                   <button class="send-button">Gửi</button>
                                 </div>
                                 <div class="contact">
-                                    <i class="icon-contact fa-solid fa-location-dot"></i>
-                                    <p>266 Đội Cấn, Liễu Giai, Hà Nội,</p>
+                                   <i class="icon-contact fa-solid fa-location-dot"></i>
+                                   <p>266 Đội Cấn, Liễu Giai, Hà Nội,</p>
                                 </div>
                                 <div class="contact">
-                                    <i class="icon-contact fa-solid fa-phone"></i>
-                                    <p>1900 6750</p>
+                                   <i class="icon-contact fa-solid fa-phone"></i>
+                                   <p>1900 6750</p>
                                 </div>
                                 <div class="contact">
-                                    <i class="icon-contact fa-solid fa-envelope"></i>
-                                    <p>aventteam@gmail.com</p>
+                                   <i class="icon-contact fa-solid fa-envelope"></i>
+                                   <p>aventteam@gmail.com</p>
                                 </div>
                             </form>
                         </div>
