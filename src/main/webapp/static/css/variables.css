@@ -10,8 +10,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 :root {
     --header-info-color: #F76758;
     --main-color: #00BC86;
+    --secondary-color: #EDFAF1;
+    --third-color: #FFF8F6;
     --price-color: #f76758;
     --home-group-color: #FBB72C;
+    --container-line: #FBC046;
 
     --regular-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
 }
@@ -20,11 +23,23 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     color: var(--main-color) !important;
 }
 
+.bg-main {
+    background-color: var(--main-color) !important;
+}
+
+.no-border-outline {
+    border: 0;
+    outline: none !important;
+}
+
+.no-border-outline:focus {
+    border: 0;
+    outline: none !important;
+}
+
 .btn-main {
     color: var(--main-color) !important;
     background: #C7F0E4;
-    
-    
 }
 
 .auth-btn {

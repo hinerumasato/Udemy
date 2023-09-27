@@ -6,7 +6,11 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import com.servlet.Udemy.utils.FileUtil;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class DB {
 
     private String schema;
