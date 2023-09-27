@@ -7,15 +7,24 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/common/includes.jsp" %>
 
-<% 
-    String p = "123";
-%>
-
 <head>
     <link rel="stylesheet" href="<c:url value='/static/css/home.css?v=${randomNumber}'/>">
 </head>
 
 <div class="container">
+
+    <div class="home_container_group">
+        <div class="home_container_title fs-1 fw-bold text-uppercase">
+            ALL USER
+        </div>
+
+        <ul>
+            <c:forEach var="user" items="${users}">
+                <li>${user.username}</li>
+            </c:forEach>
+        </ul>
+    </div>
+
     <div class="home_container_group">
         <div class="home_container_title fs-1 fw-bold text-uppercase">
             DANH MỤC KHOÁ HỌC
