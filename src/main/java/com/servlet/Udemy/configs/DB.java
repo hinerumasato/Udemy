@@ -21,8 +21,7 @@ public class DB {
     private Connection conn;
 
     public DB() {
-        FileUtil fileUtil = new FileUtil();
-        Properties properties = fileUtil.getAppProperties();
+        Properties properties = FileUtil.getAppProperties();
         this.schema = properties.getProperty("DB_SCHEMA");
         this.username = properties.getProperty("DB_USERNAME");
         this.password = properties.getProperty("DB_PASSWORD");

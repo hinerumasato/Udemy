@@ -9,7 +9,7 @@ import com.servlet.Udemy.constants.Constants;
 import com.servlet.Udemy.context.AppContext;
 
 public class FileUtil {
-    public Properties getAppProperties() {
+    public static Properties getAppProperties() {
         AppContext context = AppContext.getInstance();
         try {
             Properties properties = new Properties();
