@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.servlet.Udemy.models.CategoryModel;
 import com.servlet.Udemy.models.CourseModel;
 import com.servlet.Udemy.models.LevelModel;
 import com.servlet.Udemy.page.Page;
@@ -39,13 +40,17 @@ public class HomeController extends HttpServlet{
         Page page = new Page(req, resp, "home.jsp", "master.jsp");
         List<CourseModel> courses = courseService.findAll();
         List<LevelModel> levels  = new ArrayList<LevelModel>();
-        for (CourseModel course : courses)
+        List<CategoryModel> courseCategories = new ArrayList<CategoryModel>();
+        for (CourseModel course : courses) {
             levels.add(levelService.findById(course.getLevelId()));
+            courseCategories.add(categoryService.findById(course.getCategoryId()));
+        }
 
         page.setObject("randomNumber", NumberUtil.random());
         page.setObject("categories", categoryService.findAll());
         page.setObject("courses", courses);
         page.setObject("levels", levels);
+        page.setObject("courseCategories", courseCategories);
         page.render();
     }
 }

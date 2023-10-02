@@ -6,7 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/common/includes.jsp" %>
-<% int index = 0; %>
 <head>
     <link rel="stylesheet" href="<c:url value='/static/css/home.css?v=${randomNumber}'/>">
 </head>
@@ -53,27 +52,25 @@
 
         <div class="home_container_content">
             <div class="row row-cols-3">
-                <% index = 0; %>
-                <c:forEach items="${courses}" var="course">
+                <c:forEach items="${courses}" var="course" varStatus="status">
                     <div class="col course-item">
                         <div class="course-item-thumbnail">
                             <img class="w-100 h-100" src="<c:url value='/static/imgs/courses/course_1.webp' />" alt="">
                         </div>
-                        <div class="course-item-level basic">${levels.get(index).getValue()}</div>
+                        <div class="course-item-level basic">${levels.get(status.index).getValue()}</div>
                         <div class="course-item-info">
                             <h4 class="course-item-info-title">
                                 ${course.getName()}
                             </h4>
                             <div class="course-item-info-category">
-                                Công nghệ thông tin
+                                ${courseCategories.get(status.index).getName()}
                             </div>
                             <div class="course-item-info-prices d-flex gap-2 align-items-center">
-                                <div class="course-item-info-prices-new-price">${course.getSalePrice()}</div>
-                                <div class="course-item-info-prices-old-price">${course.getPrice()}</div>
+                                <div class="format-price course-item-info-prices-new-price">${course.getSalePrice()}</div>
+                                <div class="format-price course-item-info-prices-old-price">${course.getPrice()}</div>
                             </div>
                         </div>
                     </div>
-                    <% index++; %>
                 </c:forEach>
 
             </div>
@@ -111,27 +108,25 @@
             </div>
 
             <div class="row row-cols-4 pt-5">
-                <% index = 0; %>
-                <c:forEach items="${courses}" var="course">
+                <c:forEach items="${courses}" var="course" varStatus="status">
                     <div class="col course-item">
                         <div class="course-item-thumbnail">
                             <img class="w-100 h-100" src="<c:url value='/static/imgs/courses/course_1.webp' />" alt="">
                         </div>
-                        <div class="course-item-level basic">${levels.get(index).getValue()}</div>
+                        <div class="course-item-level basic">${levels.get(status.index).getValue()}</div>
                         <div class="course-item-info">
                             <h4 class="course-item-info-title">
                                 ${course.getName()}
                             </h4>
                             <div class="course-item-info-category">
-                                Công nghệ thông tin
+                                ${courseCategories.get(status.index).getName()}
                             </div>
                             <div class="course-item-info-prices d-flex gap-2 align-items-center">
-                                <div class="course-item-info-prices-new-price">${course.getSalePrice()}</div>
-                                <div class="course-item-info-prices-old-price">${course.getPrice()}</div>
+                                <div class="format-price course-item-info-prices-new-price">${course.getSalePrice()}</div>
+                                <div class="format-price course-item-info-prices-old-price">${course.getPrice()}</div>
                             </div>
                         </div>
                     </div>
-                    <% index++; %>
                 </c:forEach>
             </div>
         </div>
