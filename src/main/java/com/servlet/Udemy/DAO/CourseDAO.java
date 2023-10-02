@@ -18,7 +18,7 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
         int id = rs.getInt("id");
         String name = rs.getString("name");
         boolean isNewCourse = rs.getBoolean("new_course");
-        boolean isPopularCourse = rs.getBoolean(" popular_course");
+        boolean isPopularCourse = rs.getBoolean("popular_course");
         double price = rs.getDouble("price");
         double salePrice = rs.getDouble("sale_price");
         int levelId = rs.getInt("level_id");

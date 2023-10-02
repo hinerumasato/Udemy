@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/common/includes.jsp" %>
-
+<% int index = 0; %>
 <head>
     <link rel="stylesheet" href="<c:url value='/static/css/home.css?v=${randomNumber}'/>">
 </head>
@@ -25,7 +25,7 @@
                         <span>${category.getName()}</span>
                     </div>
                 </c:forEach>
-                
+
             </div>
         </div>
 
@@ -42,7 +42,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Tất cả</a>
                 </li>
-                
+
                 <c:forEach items="${categories}" begin="0" end="2" var="category">
                     <li class="nav-item">
                         <a class="nav-link" href="#">${category.getName()}</a>
@@ -53,24 +53,29 @@
 
         <div class="home_container_content">
             <div class="row row-cols-3">
-                <div class="col course-item">
-                    <div class="course-item-thumbnail">
-                        <img class="w-100 h-100" src="<c:url value='/static/imgs/courses/course_1.webp' />" alt="">
-                    </div>
-                    <div class="course-item-level basic">Cơ bản</div>
-                    <div class="course-item-info">
-                        <h4 class="course-item-info-title">
-                            Hướng dẫn sử dụng Illutrator cho người mới bắt đầu
-                        </h4>
-                        <div class="course-item-info-category">
-                            Công nghệ thông tin
+                <% index = 0; %>
+                <c:forEach items="${courses}" var="course">
+                    <div class="col course-item">
+                        <div class="course-item-thumbnail">
+                            <img class="w-100 h-100" src="<c:url value='/static/imgs/courses/course_1.webp' />" alt="">
                         </div>
-                        <div class="course-item-info-prices d-flex gap-2 align-items-center">
-                            <div class="course-item-info-prices-new-price">700.000đ</div>
-                            <div class="course-item-info-prices-old-price">1.200.000đ</div>
+                        <div class="course-item-level basic">${levels.get(index).getValue()}</div>
+                        <div class="course-item-info">
+                            <h4 class="course-item-info-title">
+                                ${course.getName()}
+                            </h4>
+                            <div class="course-item-info-category">
+                                Công nghệ thông tin
+                            </div>
+                            <div class="course-item-info-prices d-flex gap-2 align-items-center">
+                                <div class="course-item-info-prices-new-price">${course.getSalePrice()}</div>
+                                <div class="course-item-info-prices-old-price">${course.getPrice()}</div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <% index++; %>
+                </c:forEach>
+
             </div>
         </div>
 
@@ -106,24 +111,28 @@
             </div>
 
             <div class="row row-cols-4 pt-5">
-                <div class="col course-item">
-                    <div class="course-item-thumbnail">
-                        <img class="w-100 h-100" src="<c:url value='/static/imgs/courses/course_1.webp' />" alt="">
-                    </div>
-                    <div class="course-item-level basic">Cơ bản</div>
-                    <div class="course-item-info">
-                        <h4 class="course-item-info-title">
-                            Hướng dẫn sử dụng Illutrator cho người mới bắt đầu
-                        </h4>
-                        <div class="course-item-info-category">
-                            Công nghệ thông tin
+                <% index = 0; %>
+                <c:forEach items="${courses}" var="course">
+                    <div class="col course-item">
+                        <div class="course-item-thumbnail">
+                            <img class="w-100 h-100" src="<c:url value='/static/imgs/courses/course_1.webp' />" alt="">
                         </div>
-                        <div class="course-item-info-prices d-flex gap-2 align-items-center">
-                            <div class="course-item-info-prices-new-price">700.000đ</div>
-                            <div class="course-item-info-prices-old-price">1.200.000đ</div>
+                        <div class="course-item-level basic">${levels.get(index).getValue()}</div>
+                        <div class="course-item-info">
+                            <h4 class="course-item-info-title">
+                                ${course.getName()}
+                            </h4>
+                            <div class="course-item-info-category">
+                                Công nghệ thông tin
+                            </div>
+                            <div class="course-item-info-prices d-flex gap-2 align-items-center">
+                                <div class="course-item-info-prices-new-price">${course.getSalePrice()}</div>
+                                <div class="course-item-info-prices-old-price">${course.getPrice()}</div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <% index++; %>
+                </c:forEach>
             </div>
         </div>
     </div>
@@ -239,7 +248,7 @@
 
                         <div class="d-flex gap-3 align-items-center">
                             <img class="review-avatar" src="<c:url value='/static/imgs/reviews/review_1.webp' />"
-                                alt="">
+                                 alt="">
                             <div class="review_wrapper">
                                 <h5 class="review-username">Mr. Trung Dung</h5>
                                 <div class="review-userclass">Học viên lớp UI Design</div>
@@ -256,7 +265,7 @@
 
                         <div class="d-flex gap-3 align-items-center">
                             <img class="review-avatar" src="<c:url value='/static/imgs/reviews/review_1.webp' />"
-                                alt="">
+                                 alt="">
                             <div class="review_wrapper">
                                 <h5 class="review-username">Mr. Trung Dung</h5>
                                 <div class="review-userclass">Học viên lớp UI Design</div>
@@ -273,7 +282,7 @@
 
                         <div class="d-flex gap-3 align-items-center">
                             <img class="review-avatar" src="<c:url value='/static/imgs/reviews/review_1.webp' />"
-                                alt="">
+                                 alt="">
                             <div class="review_wrapper">
                                 <h5 class="review-username">Mr. Trung Dung</h5>
                                 <div class="review-userclass">Học viên lớp UI Design</div>

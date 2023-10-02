@@ -48,6 +48,8 @@ public abstract class AbstractDAO<T> {
 
     public T findById(int id) {
         try {
+            Database db = new Database();
+            conn = db.createConnection();
             String sql = "SELECT * FROM " + getTable() + " WHERE ID = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id);
@@ -55,6 +57,12 @@ public abstract class AbstractDAO<T> {
             while(rs.next()) {
                 return mapResultSetToModel(rs);
             }
+
+            if(rs != null)
+                rs.close();
+            if(stmt != null)
+                stmt.close();
+            db.closeConnection();
         } catch(SQLException e) {
             e.printStackTrace();
         }
@@ -88,6 +96,9 @@ public abstract class AbstractDAO<T> {
             }
 
             stmt.executeUpdate();
+            if(stmt != null)
+                stmt.close();
+            db.closeConnection();
         } catch(SQLException e) {
             e.printStackTrace();
         }
