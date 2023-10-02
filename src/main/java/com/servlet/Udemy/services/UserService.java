@@ -7,11 +7,7 @@ import com.servlet.Udemy.models.UserModel;
 
 public class UserService {
 
-    private UserDAO userDAO;
-
-    public UserService() {
-        this.userDAO = new UserDAO();
-    }
+    private UserDAO userDAO = new UserDAO("users");
 
     public List<UserModel> findAll() {
         return userDAO.findAll();

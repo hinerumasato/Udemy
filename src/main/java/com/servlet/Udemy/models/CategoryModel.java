@@ -5,14 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-
-public class UserModel {
+public class CategoryModel {
     private int id;
-    private String username;
-    private String password;
-    
+    private String name;
+    private String icon;
 }

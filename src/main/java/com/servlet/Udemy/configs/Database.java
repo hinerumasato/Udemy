@@ -11,7 +11,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class DB {
+public class Database {
 
     private String schema;
     private String username;
@@ -20,7 +20,7 @@ public class DB {
     private String driver;
     private Connection conn;
 
-    public DB() {
+    public Database() {
         Properties properties = FileUtil.getAppProperties();
         this.schema = properties.getProperty("DB_SCHEMA");
         this.username = properties.getProperty("DB_USERNAME");
@@ -43,9 +43,10 @@ public class DB {
 
     public void closeConnection() {
         try {
-            this.conn.close();
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+    
 }

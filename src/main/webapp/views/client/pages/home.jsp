@@ -19,18 +19,13 @@
         </div>
         <div class="home_container_content home_container_course_list">
             <div class="row row-cols-4">
-                <div class="col">Kỹ năng ngoại ngữ</div>
-                <div class="col">Phát triển cá nhân</div>
-                <div class="col">Sales, bán hàng</div>
-                <div class="col">Phong cách sống</div>
-                <div class="col">Thiết kế đồ hoạ</div>
-                <div class="col">Tin học văn phòng</div>
-                <div class="col">Công nghệ thông tin</div>
-                <div class="col">Nhiếp ảnh, quay phim</div>
-                <div class="col">Marketing</div>
-                <div class="col">Kinh doanh, khởi nghiệp</div>
-                <div class="col">Sức khoẻ - Giới tính</div>
-                <div class="col">Gia đình</div>
+                <c:forEach items="${categories}" var="category">
+                    <div class="col">
+                        <img src="<c:url value="${category.getIcon()}" />" alt="">
+                        <span>${category.getName()}</span>
+                    </div>
+                </c:forEach>
+                
             </div>
         </div>
 
@@ -47,15 +42,12 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Tất cả</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Thiết kế đồ hoạ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Tin học văn phòng</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Sale, bán hàng</a>
-                </li>
+                
+                <c:forEach items="${categories}" begin="0" end="2" var="category">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">${category.getName()}</a>
+                    </li>
+                </c:forEach>
             </ul>
         </div>
 
@@ -95,15 +87,11 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Tất cả</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Thiết kế đồ hoạ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Tin học văn phòng</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Sale, bán hàng</a>
-                </li>
+                <c:forEach items="${categories}" begin="0" end="2" var="category">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">${category.getName()}</a>
+                    </li>
+                </c:forEach>
             </ul>
         </div>
 
