@@ -42,6 +42,7 @@ public class HomeController extends HttpServlet{
         List<LevelModel> levels  = new ArrayList<LevelModel>();
         List<CategoryModel> courseCategories = new ArrayList<CategoryModel>();
         for (CourseModel course : courses) {
+            System.out.println(course.getThumbnails());
             levels.add(levelService.findById(course.getLevelId()));
             courseCategories.add(categoryService.findById(course.getCategoryId()));
         }
@@ -51,6 +52,8 @@ public class HomeController extends HttpServlet{
         page.setObject("courses", courses);
         page.setObject("levels", levels);
         page.setObject("courseCategories", courseCategories);
+        page.setObject("title", "Trang chủ");
+        
         page.render();
     }
 }

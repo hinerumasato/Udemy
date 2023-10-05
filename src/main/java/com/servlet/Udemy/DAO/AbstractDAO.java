@@ -16,6 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public abstract class AbstractDAO<T> {
+    protected Database database;
     protected Connection conn;
     protected String table;
 
@@ -24,8 +25,8 @@ public abstract class AbstractDAO<T> {
     }
 
     public List<T> findAll() {
-        Database db = new Database();
-        conn = db.createConnection();
+        this.database = new Database();
+        conn = database.createConnection();
         List<T> result = new ArrayList<T>();
         try {
             String sql = "SELECT * FROM " + getTable();
@@ -35,11 +36,7 @@ public abstract class AbstractDAO<T> {
                 result.add(mapResultSetToModel(rs));
             }
 
-            if(rs != null)
-                rs.close();
-            if(stmt != null)
-                stmt.close();
-            db.closeConnection();
+            close(stmt, rs);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -48,60 +45,66 @@ public abstract class AbstractDAO<T> {
 
     public T findById(int id) {
         try {
-            Database db = new Database();
-            conn = db.createConnection();
+            createConnection();
             String sql = "SELECT * FROM " + getTable() + " WHERE ID = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 return mapResultSetToModel(rs);
             }
 
-            if(rs != null)
-                rs.close();
-            if(stmt != null)
-                stmt.close();
-            db.closeConnection();
-        } catch(SQLException e) {
+            close(stmt, rs);
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public void save(T model) {
-        Database db = new Database();
-        conn = db.createConnection();
-
+    public void insert(T model) {
+        this.database = new Database();
+        conn = database.createConnection();
         String sql = "INSERT INTO " + getTable() + " (";
         Map<String, Object> values = getValuesFromModel(model);
         List<String> columns = new ArrayList<String>();
 
-        for(String column : values.keySet()) {
-            sql += column + ", ";
-            columns.add(column);
+        for (String column : values.keySet()) {
+            if(!column.equals("id")) {
+                sql += column + ", ";
+                columns.add(column);
+            }
         }
 
         sql = sql.substring(0, sql.length() - 2) + ") values (";
 
-        for (int i = 0; i < values.size(); i++) {
+        for (int i = 0; i < values.size() - 1; i++) { //Minus by 1 because id is not a value to insert
             sql += "?, ";
         }
 
         sql = sql.substring(0, sql.length() - 2) + ")";
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
-            for (int i = 0; i < values.size(); i++) {
+            for (int i = 0; i < columns.size(); i++) {
                 stmt.setObject(i + 1, values.get(columns.get(i)));
             }
-
             stmt.executeUpdate();
-            if(stmt != null)
-                stmt.close();
-            db.closeConnection();
-        } catch(SQLException e) {
+            close(stmt, null);
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    protected void close(PreparedStatement stmt, ResultSet rs) throws SQLException {
+        if (rs != null)
+            rs.close();
+        if (stmt != null)
+            stmt.close();
+        database.closeConnection();
+    }
+
+    protected void createConnection() {
+        this.database = new Database();
+        this.conn = database.createConnection();
     }
 
     protected abstract T mapResultSetToModel(ResultSet rs) throws SQLException;

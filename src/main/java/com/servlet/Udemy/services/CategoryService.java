@@ -25,4 +25,9 @@ public class CategoryService implements IService<CategoryModel> {
     public CategoryModel findById(int id) {
         return categoryDAO.findById(id);
     }
+
+    @Override
+    public void insert(CategoryModel model) {
+        categoryDAO.insert(model);
+    }
 }

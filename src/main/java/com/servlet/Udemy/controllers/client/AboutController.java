@@ -25,6 +25,7 @@ public class AboutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Page page = new Page(req, resp, "about.jsp", "master.jsp");
+        page.setObject("title", "Về chúng tôi");
         page.render();
     }
     

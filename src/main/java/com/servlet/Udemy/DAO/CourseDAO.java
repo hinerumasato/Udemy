@@ -3,9 +3,11 @@ package com.servlet.Udemy.DAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.servlet.Udemy.models.CourseModel;
+import com.servlet.Udemy.models.ThumbnailModel;
 
 public class CourseDAO extends AbstractDAO<CourseModel> {
 
@@ -13,8 +15,14 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
         super(table);
     }
 
+    public List<ThumbnailModel> getThumbnails(int courseId) {
+        ThumbnailDAO thumbnailDAO = new ThumbnailDAO("thumbnails");
+        return thumbnailDAO.findByCourseId(courseId);
+    }
+
     @Override
     protected CourseModel mapResultSetToModel(ResultSet rs) throws SQLException {
+
         int id = rs.getInt("id");
         String name = rs.getString("name");
         boolean isNewCourse = rs.getBoolean("new_course");
@@ -23,7 +31,9 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
         double salePrice = rs.getDouble("sale_price");
         int levelId = rs.getInt("level_id");
         int categoryId = rs.getInt("category_id");
-        return new CourseModel(id, name, isNewCourse, isPopularCourse, price, salePrice, levelId, categoryId);
+
+        List<ThumbnailModel> thumbnails = this.getThumbnails(id);
+        return new CourseModel(id, name, isNewCourse, isPopularCourse, price, salePrice, levelId, categoryId, thumbnails);
     }
 
     @Override

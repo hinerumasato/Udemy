@@ -51,11 +51,11 @@
         </div>
 
         <div class="home_container_content">
-            <div class="row row-cols-3">
+            <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 justify-content-between">
                 <c:forEach items="${courses}" var="course" varStatus="status">
                     <div class="col course-item">
                         <div class="course-item-thumbnail">
-                            <img class="w-100 h-100" src="<c:url value='/static/imgs/courses/course_1.webp' />" alt="">
+                            <img class="w-100 h-100" src="<c:url value='${course.getThumbnails().get(0).getImg()}' />" alt="">
                         </div>
                         <div class="course-item-level basic">${levels.get(status.index).getValue()}</div>
                         <div class="course-item-info">
@@ -107,11 +107,11 @@
                 </div>
             </div>
 
-            <div class="row row-cols-4 pt-5">
+            <div class="row row-cols-4 pt-5 justify-content-between">
                 <c:forEach items="${courses}" var="course" varStatus="status">
                     <div class="col course-item">
                         <div class="course-item-thumbnail">
-                            <img class="w-100 h-100" src="<c:url value='/static/imgs/courses/course_1.webp' />" alt="">
+                            <img class="w-100 h-100" src="<c:url value='${course.getThumbnails().get(0).getImg()}' />" alt="">
                         </div>
                         <div class="course-item-level basic">${levels.get(status.index).getValue()}</div>
                         <div class="course-item-info">
@@ -313,3 +313,5 @@
 
     </div>
 </div>
+
+<script src="<c:url value='/static/js/pages/home.js' />"></script>

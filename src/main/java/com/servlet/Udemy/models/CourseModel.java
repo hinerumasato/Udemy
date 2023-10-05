@@ -4,6 +4,8 @@
  */
 package com.servlet.Udemy.models;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,4 +31,5 @@ public class CourseModel {
     private int levelId;
     private int categoryId;
 
+    private List<ThumbnailModel> thumbnails;
 }

@@ -18,4 +18,9 @@ public class LevelService implements IService<LevelModel> {
     public LevelModel findById(int id) {
         return levelDAO.findById(id);
     }
+
+    @Override
+    public void insert(LevelModel model) {
+        levelDAO.insert(model);
+    }
 }

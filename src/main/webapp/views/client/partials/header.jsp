@@ -28,7 +28,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-2 header-main-left">
-                    <img class="header-logo-img" src="<c:url value='/static/imgs/logo/logo.png' />">
+                    <a href="/home">
+                        <img class="header-logo-img" src="<c:url value='/static/imgs/logo/logo.png' />">
+                    </a>
                 </div>
                 <div class="col-8">
                     <div class="row align-items-center justify-content-between">
@@ -54,8 +56,8 @@
 
                 </div>
                 <div class="col-2 d-flex">
-                    <a class="text-secondary auth-btn">Đăng ký</a>
-                    <a class="auth-btn btn-main">Đăng nhập</a>
+                    <a href="/register" class="text-secondary auth-btn">Đăng ký</a>
+                    <a href="/login" class="auth-btn btn-main">Đăng nhập</a>
                 </div>
             </div>
         </div>

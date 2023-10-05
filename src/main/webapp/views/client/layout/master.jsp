@@ -33,7 +33,7 @@
         <link rel="stylesheet" href="<c:url value='/static/css/app.css?v=${randomNumber}' />"/>
         <link rel="stylesheet" href="<c:url value='/static/css/base.css?v=${randomNumber}' />"/>
         <link rel="stylesheet" href="<c:url value='/static/css/variables.css?v=${randomNumber}' />"/>
-        <title>Trang chủ</title>
+        <title>${title}</title>
     </head>
     <body>
         <%@include file="/views/client/partials/header.jsp" %>

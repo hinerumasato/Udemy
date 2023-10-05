@@ -4,7 +4,7 @@
         prices.forEach(price => {
             const textPrice = parseFloat(price.innerText).toString();
             const splitPrice = textPrice.split(".");
-            const integerPrice = splitPrice[0]
+            const integerPrice = splitPrice[0];
             let result = "";
             let count = 0;
             for(let i = integerPrice.length - 1; i >= 0; i--) {

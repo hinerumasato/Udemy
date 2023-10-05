@@ -23,6 +23,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     color: var(--main-color) !important;
 }
 
+.text-red {
+    color: red;
+}
+
 .bg-main {
     background-color: var(--main-color) !important;
 }
@@ -40,6 +44,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 .btn-main {
     color: var(--main-color) !important;
     background: #C7F0E4;
+}
+
+.btn-main-auth {
+    color: #FFF !important;
+    background-color: var(--main-color);
+    text-align: center;
+    border: none;
+    outline: none !important;
+    padding: 8px;
 }
 
 .auth-btn {

@@ -1,0 +1,18 @@
+.auth-container {
+    width: 410px;
+    margin: 0 auto;
+    display: block;
+}
+
+.form-group label {
+    display: block;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px 16px;
+}
+
+.form-group input:focus {
+    outline: none !important;
+}

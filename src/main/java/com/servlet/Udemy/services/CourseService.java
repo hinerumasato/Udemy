@@ -17,4 +17,9 @@ public class CourseService implements IService<CourseModel> {
     public CourseModel findById(int id) {
         return courseDAO.findById(id);
     }
+
+    @Override
+    public void insert(CourseModel model) {
+        courseDAO.insert(model);
+    }
 }
