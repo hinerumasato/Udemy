@@ -14,7 +14,7 @@
         } else passwordAlert.classList.add('d-none');
     }
 
-    toggleAlert(true);
+    if(document.querySelector('#registerForm')) toggleAlert(true);
 
     const validate = () => {
         const form = document.querySelector('#registerForm');
@@ -38,5 +38,28 @@
         }
     }
 
-    validate();
+    if(document.querySelector('#registerForm')) validate();
+
+    const FBLogin = () => {
+        const fbAuthBtn = document.querySelector('.facebook-auth');
+        fbAuthBtn.onclick = () => {
+            FB.getLoginStatus(function(response) {
+                const loginStatus = response.status;
+                if(loginStatus === 'unknown') {
+                    FB.login(function(loginResponse) {
+                        if(loginResponse.authResponse) {
+                            FB.api('/me', {fields: 'name, email, first_name, last_name, picture'}, function(apiResponse) {
+                                let link = "/auth/facebook";
+                                link+=`?id=${apiResponse.id}&name=${apiResponse.name}&email=${apiResponse.email}&first_name=${apiResponse.first_name}&last_name=${apiResponse.last_name}&picture=${apiResponse.picture.data.url}`
+                                window.location.replace(link);
+                            })
+                        }
+                    }, {scope: 'public_profile,email'})
+                }
+            });
+
+        }
+    }
+
+    FBLogin();
 })();

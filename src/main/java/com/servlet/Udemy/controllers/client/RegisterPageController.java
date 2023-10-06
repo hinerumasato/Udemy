@@ -11,17 +11,21 @@ import javax.servlet.http.HttpSession;
 
 import com.servlet.Udemy.page.Page;
 import com.servlet.Udemy.utils.NumberUtil;
+import com.servlet.Udemy.utils.StringUtil;
 
 @WebServlet("/register")
 public class RegisterPageController extends HttpServlet {
+    
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {        
         HttpSession session = req.getSession();        
         String error = (String) session.getAttribute("registerError");
         Page page = new Page(req, resp, "register.jsp", "master.jsp");
         page.setObject("randomNumber", NumberUtil.random());
         page.setObject("title", "Đăng ký");
         page.setObject("error", error);
+        
+        page.setObject("googleAuthLink", StringUtil.getGoogleAuthLink());
         page.render();
         session.removeAttribute("registerError");
     }

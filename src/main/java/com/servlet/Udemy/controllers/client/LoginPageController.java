@@ -2,6 +2,7 @@ package com.servlet.Udemy.controllers.client;
 
 import com.servlet.Udemy.page.Page;
 import com.servlet.Udemy.utils.NumberUtil;
+import com.servlet.Udemy.utils.StringUtil;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -18,6 +19,7 @@ public class LoginPageController extends HttpServlet {
         Page page = new Page(req, resp, "login.jsp", "master.jsp");
         page.setObject("title", "Đăng nhập");
         page.setObject("randomNumber", NumberUtil.random());
+        page.setObject("googleAuthLink", StringUtil.getGoogleAuthLink());
         page.render();
     }
     

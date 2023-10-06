@@ -1,14 +1,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/common/includes.jsp" %>
 <head>
-    <link rel="stylesheet" href="<c:url value='/static/css/login.css?v=${randomNumber}'/>">
+    <link rel="stylesheet" href="<c:url value='/static/css/auth.css?v=${randomNumber}'/>">
 </head>
 
 <div class="auth-container mt-5">
     <h2 class="text-uppercase">Đăng nhập</h2>
     <p>Nếu bạn có một tài khoản, xin vui lòng đăng nhập</p>
 
-    <form action="/auth/login" method="POST">
+    <form action="/auth/login" method="POST" id="loginForm">
         <div class="form-group mt-3">
             <label for="loginEmail" class="fw-bold">Email *</label>
             <input type="email" name="email" id="loginEmail" placeholder="example@gmail.com" required>
@@ -23,6 +23,21 @@
 
         <p>Bạn chưa có tài khoản? <a href="/register" class="text-danger">Đăng ký tại đây</a></p>
         <p>Bạn quên mật khẩu? <a href="" class="text-danger text-decoration-none">Lấy lại tại đây</a></p>
+
+        <div class="mt-5 auth-services">
+            <div class="mb-3">Hoặc đăng nhập với</div>
+            <div class="d-flex gap-2 justify-content-center">
+                <a href="${googleAuthLink}" class="google-auth">
+                    <i class="fa-brands fa-google"></i>
+                    Google
+                </a>
+                <button type="button" class="facebook-auth">
+                    <i class="fa-brands fa-facebook"></i>
+                    Facebook
+                </button>
+            </div>
+        </div>
     </form>
 </div>
 
+<script src="<c:url value='/static/js/auth/form.js' />"></script>

@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.servlet.Udemy.models.UserModel;
 import com.servlet.Udemy.services.UserService;
 
 @WebServlet("/auth/login")
