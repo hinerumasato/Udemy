@@ -37,9 +37,9 @@
                         <div class="col-9">
                             <div class="row align-items-center">
                                 <div class="header-navigation col-3 d-flex align-items-center">
-                                <i class="fa-solid fa-bars me-3"></i>
-                                <div>Danh mục</div>
-                            </div>
+                                    <i class="fa-solid fa-bars me-3"></i>
+                                    <div>Danh mục</div>
+                                </div>
 
                                 <div class="header-search-group col-9 d-flex align-items-center">
                                     <input class="input-header" type="text" placeholder="Tìm kiếm..." />
@@ -53,12 +53,25 @@
                             <i class="las la-shopping-cart fs-4 text-main"></i>
                         </div>
                     </div>
-
                 </div>
-                <div class="col-2 d-flex">
-                    <a href="/register" class="text-secondary auth-btn">Đăng ký</a>
-                    <a href="/login" class="auth-btn btn-main">Đăng nhập</a>
-                </div>
+                <c:choose>
+                    <c:when test="${not empty loginUser}">
+                        <div class="col-2 d-flex">
+                            <form action="/auth/logout" method="POST">
+                                <div class="text-center">
+                                    <div>Xin chào ${loginUser.getLastName()}</div>
+                                    <button class="logout-btn" type="submit">Đăng xuất</button>
+                                </div>    
+                            </form>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="col-2 d-flex">
+                            <a href="/register" class="text-secondary auth-btn">Đăng ký</a>
+                            <a href="/login" class="auth-btn btn-main">Đăng nhập</a>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </div>

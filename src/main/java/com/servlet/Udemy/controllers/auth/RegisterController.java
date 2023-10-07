@@ -1,11 +1,6 @@
 package com.servlet.Udemy.controllers.auth;
 
-import com.servlet.Udemy.models.UserModel;
-import com.servlet.Udemy.services.UserService;
-import com.servlet.Udemy.utils.StringUtil;
-
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.servlet.Udemy.constants.LoginType;
+import com.servlet.Udemy.models.UserModel;
+import com.servlet.Udemy.services.UserService;
+import com.servlet.Udemy.utils.StringUtil;
 
 @WebServlet("/auth/register")
 public class RegisterController extends HttpServlet {
@@ -31,13 +31,12 @@ public class RegisterController extends HttpServlet {
         //Hash password
         String hashedPassword = StringUtil.bcrypt(password);
 
-        UserModel userModel = new UserModel(email, hashedPassword, firstName, lastName, phone);
+        UserModel userModel = new UserModel(email, hashedPassword, firstName, lastName, phone, null, false, LoginType.NORMAL);
 
         if (userService.isValidUser(userModel)) {
-            PrintWriter out = resp.getWriter();
-            out.println("HỌ = " + firstName);
-            out.println("TÊN = " + lastName);
             userService.insert(userModel);
+            req.getSession().setAttribute("registerSuccessfully", "Đăng ký thành công, vui lòng đăng nhập tại đây");
+            resp.sendRedirect("/login");
         } else {
             HttpSession session = req.getSession();
             session.setAttribute("registerError", "Tên đăng nhập đã tồn tại");

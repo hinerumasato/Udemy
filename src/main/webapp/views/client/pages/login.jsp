@@ -9,6 +9,21 @@
     <p>Nếu bạn có một tài khoản, xin vui lòng đăng nhập</p>
 
     <form action="/auth/login" method="POST" id="loginForm">
+
+        <c:if test="${not empty error}">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>${error}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </c:if>
+
+        <c:if test="${not empty message}">
+            <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                <strong>${message}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </c:if>
+
         <div class="form-group mt-3">
             <label for="loginEmail" class="fw-bold">Email *</label>
             <input type="email" name="email" id="loginEmail" placeholder="example@gmail.com" required>

@@ -7,7 +7,7 @@ import com.servlet.Udemy.constants.Constants;
 
 public class StringUtil {
     public static String bcrypt(String str) {
-        return BCrypt.hashpw(str, BCrypt.gensalt());
+        return BCrypt.hashpw(str, BCrypt.gensalt(12));
     }
 
     public static String getGoogleAuthLink() {
@@ -20,5 +20,9 @@ public class StringUtil {
 
         String finalLink = googleAuthLink + "?client_id=" + clientId + "&redirect_uri=" + redirectUri + "&scope=" + scope + "&response_type=" + responseType;
         return finalLink;
+    }
+
+    public static boolean isBcryptEquals(String str, String hashed) {
+        return BCrypt.checkpw(str, hashed);
     }
 }

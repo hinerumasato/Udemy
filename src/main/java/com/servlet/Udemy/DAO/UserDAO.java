@@ -21,7 +21,10 @@ public class UserDAO extends AbstractDAO<UserModel> {
         String firstName = rs.getString("first_name");
         String lastName = rs.getString("last_name");
         String phone = rs.getString("phone");
-        UserModel userModel = new UserModel(id, username, password, firstName, lastName, phone);
+        String loginType = rs.getString("login_type");
+        boolean emailVerified = rs.getBoolean("email_verified");
+        String avatar = rs.getString("avatar");
+        UserModel userModel = new UserModel(id, username, password, firstName, lastName, phone, avatar, emailVerified, loginType);
         return userModel;
     }
 
@@ -34,6 +37,9 @@ public class UserDAO extends AbstractDAO<UserModel> {
         map.put("first_name", model.getFirstName());
         map.put("last_name", model.getLastName());
         map.put("phone", model.getPhone());
+        map.put("avatar", model.getAvatar());
+        map.put("email_verified", model.isEmailVerified());
+        map.put("login_type", model.getLoginType());
         return map;
     }
 

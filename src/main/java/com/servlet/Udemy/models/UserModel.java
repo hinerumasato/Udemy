@@ -17,13 +17,19 @@ public class UserModel {
     private String firstName;
     private String lastName;
     private String phone;
+    private String avatar;
+    private boolean emailVerified;
+    private String loginType;
 
-    public UserModel(String username, String password, String firstName, String lastName, String phone) {
+    public UserModel(String username, String password, String firstName, String lastName, String phone, String avatar, boolean emailVerified, String loginType) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
+        this.avatar = avatar;
+        this.emailVerified = emailVerified;
+        this.loginType = loginType;
     }
     
 }

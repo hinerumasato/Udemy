@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Form;
@@ -20,6 +21,9 @@ import org.apache.http.client.fluent.Request;
 import com.google.gson.Gson;
 import com.servlet.Udemy.constants.Constants;
 import com.servlet.Udemy.models.GoogleTokenResponseModel;
+import com.servlet.Udemy.models.GoogleUserModel;
+import com.servlet.Udemy.models.UserModel;
+import com.servlet.Udemy.services.UserService;
 import com.servlet.Udemy.utils.FileUtil;
 
 /**
@@ -29,6 +33,8 @@ import com.servlet.Udemy.utils.FileUtil;
 
 @WebServlet("/auth/google")
 public class GoogleAuthController extends HttpServlet {
+
+    private UserService userService = new UserService();
 
     private String getToken(String code) throws ClientProtocolException, IOException {
         Properties props = FileUtil.getAppProperties();
@@ -52,12 +58,26 @@ public class GoogleAuthController extends HttpServlet {
         return response;
     }
 
+    private GoogleUserModel getGoogleUserModel(String json) {
+        GoogleUserModel model = new Gson().fromJson(json, GoogleUserModel.class);
+        return model;
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String code = req.getParameter("code");
         String accessToken = getToken(code);
-        resp.getWriter().write(getUserInfo(accessToken));
+        String userInfo = getUserInfo(accessToken);
+        GoogleUserModel googleUserModel = getGoogleUserModel(userInfo);
+        UserModel userModel = googleUserModel.mapToUserModel();
+        if(!userService.exists(userModel)) {
+            userService.insert(userModel);
+        }
+
+        HttpSession session = req.getSession();
+        session.setAttribute("loginUser", userModel);
+        resp.sendRedirect("/home");
     }
 
 }

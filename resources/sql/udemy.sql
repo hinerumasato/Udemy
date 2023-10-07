@@ -135,14 +135,17 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
-  `password` varchar(60) NOT NULL,
+  `password` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) DEFAULT NULL,
   `phone` char(12) DEFAULT NULL,
+  `login_type` varchar(10) DEFAULT 'normal',
+  `avatar` varchar(255) DEFAULT NULL,
+  `email_verified` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +154,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (10,'thangloitran406@gmail.com','$2a$10$tFt1FKZfpCmGAA0Wp4eDHeGi5y1YFB4OqoAeGXG8KBFuknn42DJJm',NULL,NULL,'TRẦN THẮNG','LỢI','0879603547'),(11,'hoanghaivan456@gmail.com','$2a$10$k80KxvqRfevp.9SupSWk8OkCUaD9zusRKgxHDsScaPOOrGW6h90re',NULL,NULL,'Hoàng','Hải Vân','0772973324'),(14,'test@gmail.com','$2a$10$OjzyHdR/CKsb0VSaHtkE/OavEWiNNn73yaW.QiaQgzga9B4D.gjbC',NULL,NULL,'Trần','Thị B','0347892347');
+INSERT INTO `users` VALUES (27,'thangloitran406@gmail.com','$2a$12$j89iqreIGeopfe.K6vITeu1.gUv6Q518/x5pxV2gdJKY3JhcmUmG.',NULL,NULL,'Trần','Thắng Lợi','0879603547','normal',NULL,0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -164,4 +167,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-06  1:29:16
+-- Dump completed on 2023-10-07 13:27:52

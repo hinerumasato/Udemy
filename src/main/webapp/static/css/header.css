@@ -33,3 +33,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     font-weight: bold;
     font-size: 14px;
 }
+
+.logout-btn {
+    background-color: transparent;
+    border: none;
+    outline: none !important;
+    transition: all .3s;
+}
+
+.logout-btn:hover {
+    color: var(--main-color);
+}
