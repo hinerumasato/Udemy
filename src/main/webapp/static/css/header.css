@@ -7,6 +7,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Author     : Masato
 */
 
+header {
+    position: sticky;
+    left: 0;
+    top: -56px;
+}
+
 .header-info {
     background: var(--header-info-color);
 }
