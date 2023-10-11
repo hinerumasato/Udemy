@@ -50,20 +50,44 @@
     border-radius: 8px;
     padding: 16px 16px 20px;
     box-shadow: var(--regular-shadow);
+    margin-top: 16px;
 }
 
-.course-item-level.basic {
+.course-item a {
+    text-decoration: none;
+    color: #000;
+}
+
+.course-item img {
+    height: 260px;
+}
+
+.course-item-level {
     margin-top: 8px;
     display: inline-block;
     padding: 8px 16px;
-    background-color: rgba(179, 152, 255, 0.4);
-    color: #5968F2;
     border-radius: 8px;
+}
+
+.course-item-level.ez {
+    background-color: var(--ez-bg-color);
+    color: var(--ez-color);
+}
+
+.course-item-level.hard {
+    background-color: var(--hard-bg-color);
+    color: var(--hard-color);
+}
+
+.course-item-level.every {
+    background-color: var(--every-bg-color);
+    color: var(--every-color);
 }
 
 
 .course-item-info-title {
     font-weight: bold;
+    margin-top: 8px;
 }
 
 .course-item-info-category {

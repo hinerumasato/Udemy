@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.servlet.Udemy.models.CategoryModel;
 import com.servlet.Udemy.models.CourseModel;
 import com.servlet.Udemy.models.ThumbnailModel;
 
@@ -18,6 +19,18 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
     public List<ThumbnailModel> getThumbnails(int courseId) {
         ThumbnailDAO thumbnailDAO = new ThumbnailDAO("thumbnails");
         return thumbnailDAO.findByCourseId(courseId);
+    }
+
+    public List<CourseModel> findByCategoryId(int categoryId) {
+        return findBy("category_id", categoryId);
+    }
+
+    public List<CourseModel> findByCategoryCode(String code) {
+        CategoryDAO categoryDAO = new CategoryDAO("categories");
+        CategoryModel categoryModel = categoryDAO.findByCode(code);
+        if(categoryModel != null)
+            return categoryModel.getCourses();
+        return null;
     }
 
     @Override
@@ -33,7 +46,8 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
         int categoryId = rs.getInt("category_id");
 
         List<ThumbnailModel> thumbnails = this.getThumbnails(id);
-        return new CourseModel(id, name, isNewCourse, isPopularCourse, price, salePrice, levelId, categoryId, thumbnails);
+        return new CourseModel(id, name, isNewCourse, isPopularCourse, price, salePrice, levelId, categoryId,
+                thumbnails);
     }
 
     @Override
@@ -49,7 +63,5 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
         map.put("category_id", model.getCategoryId());
         return map;
     }
-
-    
 
 }

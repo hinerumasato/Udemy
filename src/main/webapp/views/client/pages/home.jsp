@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/common/includes.jsp" %>
+
 <head>
     <link rel="stylesheet" href="<c:url value='/static/css/home.css?v=${randomNumber}'/>">
 </head>
@@ -20,7 +21,7 @@
             <div class="row row-cols-4">
                 <c:forEach items="${categories}" var="category">
                     <div class="col">
-                        <img src="<c:url value="${category.getIcon()}" />" alt="">
+                        <img src="<c:url value=" ${category.getIcon()}" />" alt="">
                         <span>${category.getName()}</span>
                     </div>
                 </c:forEach>
@@ -37,44 +38,62 @@
         <div class="home_container_title d-flex justify-content-between align-items-center">
             <div class="fs-1 fw-bold text-uppercase">KHOÁ HỌC MỚI NHẤT</div>
 
-            <ul class="nav nav-pills gap-3">
+            <ul class="nav nav-pills gap-3" id="news_course_pills" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Tất cả</a>
+                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-all" type="button" role="tab" aria-controls="pills-all"
+                            aria-selected="true">Tất cả</button></li>
                 </li>
 
                 <c:forEach items="${categories}" begin="0" end="2" var="category">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">${category.getName()}</a>
+                    <li class="nav-item" code="${category.getCode()}">
+                        <button class="nav-link" id="pills-${category.getCode()}-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-${category.getCode()}" type="button" role="tab" aria-controls="pills-${category.getCode()}"
+                                aria-selected="true">${category.getName()}</button></li>
                     </li>
                 </c:forEach>
             </ul>
         </div>
 
-        <div class="home_container_content">
-            <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 justify-content-between">
-                <c:forEach items="${courses}" var="course" varStatus="status">
-                    <div class="col course-item">
-                        <div class="course-item-thumbnail">
-                            <img class="w-100 h-100" src="<c:url value='${course.getThumbnails().get(0).getImg()}' />" alt="">
+        <div class="home_container_content tab-content">
+            <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab" tabindex="0">
+                <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1">
+                    <c:forEach items="${courses}" var="course" varStatus="status">
+                        <div class="col course-item">
+                            <a href="">
+                                <div class="course-item-thumbnail">
+                                    <img class="w-100"
+                                         src="<c:url value='${course.getThumbnails().get(0).getImg()}' />" alt="">
+                                </div>
+                                <div class="course-item-level ${levels.get(status.index).getCode()}">${levels.get(status.index).getValue()}</div>
+                                <div class="course-item-info">
+                                    <h4 class="course-item-info-title">
+                                        ${course.getName()}
+                                    </h4>
+                                    <div class="course-item-info-category">
+                                        ${courseCategories.get(status.index).getName()}
+                                    </div>
+                                    <div class="course-item-info-prices d-flex gap-2 align-items-center">
+                                        <div class="format-price course-item-info-prices-new-price">
+                                            ${course.getSalePrice()}</div>
+                                        <div class="format-price course-item-info-prices-old-price">${course.getPrice()}
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                        <div class="course-item-level basic">${levels.get(status.index).getValue()}</div>
-                        <div class="course-item-info">
-                            <h4 class="course-item-info-title">
-                                ${course.getName()}
-                            </h4>
-                            <div class="course-item-info-category">
-                                ${courseCategories.get(status.index).getName()}
-                            </div>
-                            <div class="course-item-info-prices d-flex gap-2 align-items-center">
-                                <div class="format-price course-item-info-prices-new-price">${course.getSalePrice()}</div>
-                                <div class="format-price course-item-info-prices-old-price">${course.getPrice()}</div>
-                            </div>
-                        </div>
-                    </div>
-                </c:forEach>
-
+                    </c:forEach>
+                </div>
             </div>
+            <c:forEach items="${categories}" begin="0" end="2" var="category">
+                <div code="${category.getCode()}" class="tab-pane fade" id="pills-${category.getCode()}" role="tabpanel" aria-labelledby="pills-${category.getCode()}-tab" tabindex="0">
+                    <div class="spinner-border" role="status" style="display: block; margin: 0 auto;">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </c:forEach>
         </div>
+
 
     </div>
 </div>
@@ -107,25 +126,30 @@
                 </div>
             </div>
 
-            <div class="row row-cols-4 pt-5 justify-content-between">
+            <div class="row row-cols-4 pt-5">
                 <c:forEach items="${courses}" var="course" varStatus="status">
                     <div class="col course-item">
-                        <div class="course-item-thumbnail">
-                            <img class="w-100 h-100" src="<c:url value='${course.getThumbnails().get(0).getImg()}' />" alt="">
-                        </div>
-                        <div class="course-item-level basic">${levels.get(status.index).getValue()}</div>
-                        <div class="course-item-info">
-                            <h4 class="course-item-info-title">
-                                ${course.getName()}
-                            </h4>
-                            <div class="course-item-info-category">
-                                ${courseCategories.get(status.index).getName()}
+                        <a href="">
+                            <div class="course-item-thumbnail">
+                                <img class="w-100"
+                                     src="<c:url value='${course.getThumbnails().get(0).getImg()}' />" alt="">
                             </div>
-                            <div class="course-item-info-prices d-flex gap-2 align-items-center">
-                                <div class="format-price course-item-info-prices-new-price">${course.getSalePrice()}</div>
-                                <div class="format-price course-item-info-prices-old-price">${course.getPrice()}</div>
+                            <div class="course-item-level ${levels.get(status.index).getCode()}">${levels.get(status.index).getValue()}</div>
+                            <div class="course-item-info">
+                                <h4 class="course-item-info-title">
+                                    ${course.getName()}
+                                </h4>
+                                <div class="course-item-info-category">
+                                    ${courseCategories.get(status.index).getName()}
+                                </div>
+                                <div class="course-item-info-prices d-flex gap-2 align-items-center">
+                                    <div class="format-price course-item-info-prices-new-price">${course.getSalePrice()}
+                                    </div>
+                                    <div class="format-price course-item-info-prices-old-price">${course.getPrice()}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </c:forEach>
             </div>
@@ -307,11 +331,12 @@
                 </div>
             </div>
 
-            <button class="text-white bg-main px-4 py-2 no-border-outline view-all-btn target-view-all-btn">Xem tất cả</button>
+            <button class="text-white bg-main px-4 py-2 no-border-outline view-all-btn target-view-all-btn">Xem tất
+                cả</button>
 
         </div>
 
     </div>
 </div>
 
-<script src="<c:url value='/static/js/pages/home.js' />"></script>
+<script type="module" src="<c:url value='/static/js/pages/home.js' />"></script>

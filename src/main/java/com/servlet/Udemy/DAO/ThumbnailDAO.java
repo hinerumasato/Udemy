@@ -1,9 +1,7 @@
 package com.servlet.Udemy.DAO;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,19 +15,7 @@ public class ThumbnailDAO extends AbstractDAO<ThumbnailModel> {
     }
 
     public List<ThumbnailModel> findByCourseId(int courseId) {
-        createConnection();
-        List<ThumbnailModel> models = new ArrayList<ThumbnailModel>();
-        try {
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM " + getTable() + " WHERE course_id = ?");
-            stmt.setObject(1, courseId);
-            ResultSet rs = stmt.executeQuery();
-            while(rs.next()) models.add(mapResultSetToModel(rs));
-            close(stmt, rs);
-        } catch(SQLException e) {
-            e.printStackTrace();
-        }
-
-        return models.size() > 0 ? models : null;
+        return findBy("course_id", courseId);
     }
 
     @Override

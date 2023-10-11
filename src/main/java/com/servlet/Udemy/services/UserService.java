@@ -54,4 +54,16 @@ public class UserService implements IService<UserModel> {
     public void insert(UserModel model) {
         userDAO.insert(model);
     }
+
+    @Override
+    public void update(UserModel model) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    }
+
+    @Override
+    public void delete(int id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
 }

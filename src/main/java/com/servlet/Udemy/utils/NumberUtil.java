@@ -16,4 +16,12 @@ public class NumberUtil {
         int result = rand.nextInt();
         return result;
     }
+
+    public static boolean canParse(String str) {
+        for (char character : str.toCharArray()) {
+            if(character < '0' || character > '9')
+                return false;
+        }
+        return true;
+    }
 }

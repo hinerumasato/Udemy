@@ -22,4 +22,20 @@ public class CourseService implements IService<CourseModel> {
     public void insert(CourseModel model) {
         courseDAO.insert(model);
     }
+
+    public List<CourseModel> findByCategoryCode(String code) {
+        return courseDAO.findByCategoryCode(code);
+    }
+
+    @Override
+    public void update(CourseModel model) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    }
+
+    @Override
+    public void delete(int id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
 }

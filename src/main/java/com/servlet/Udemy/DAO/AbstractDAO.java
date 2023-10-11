@@ -107,6 +107,22 @@ public abstract class AbstractDAO<T> {
         this.conn = database.createConnection();
     }
 
+    protected List<T> findBy(String field, Object value) {
+        List<T> models = new ArrayList<>();
+        createConnection();
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM " + getTable() + " WHERE " + field + "= ?");
+            stmt.setObject(1, value);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()) models.add(mapResultSetToModel(rs));
+            close(stmt, rs);
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return models.size() > 0 ? models : null;
+    }
+
     protected abstract T mapResultSetToModel(ResultSet rs) throws SQLException;
     protected abstract Map<String, Object> getValuesFromModel(T model);
 }

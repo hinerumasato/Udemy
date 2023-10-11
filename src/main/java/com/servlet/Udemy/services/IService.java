@@ -6,4 +6,6 @@ public interface IService<T> {
     public List<T> findAll();
     public T findById(int id);
     public void insert(T model);
+    public void update(T model);
+    public void delete(int id);
 }

@@ -12,4 +12,5 @@ import lombok.Setter;
 public class LevelModel {
     private int id;
     private String value;
+    private String code;
 }

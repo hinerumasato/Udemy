@@ -17,7 +17,8 @@ public class LevelDAO extends AbstractDAO<LevelModel> {
     protected LevelModel mapResultSetToModel(ResultSet rs) throws SQLException {
         int id = rs.getInt("id");
         String value = rs.getString("value");
-        return new LevelModel(id, value);
+        String code = rs.getString("code");
+        return new LevelModel(id, value, code);
     }
 
     @Override
@@ -25,6 +26,7 @@ public class LevelDAO extends AbstractDAO<LevelModel> {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("id", model.getId());
         map.put("value", model.getValue());
+        map.put("code", model.getCode());
         return map;
     }
     
