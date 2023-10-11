@@ -15,6 +15,7 @@ This project is an online multi-platform course selling platform. It utilizes fr
 - **Maven:** Project and dependency management.
 
 ## Directory Structure
+- **I have placed an SQL file inside the resources directory. Please import it into MySQL.**
 - Inside the `webapp` directory, you will find the `application.properties` file.
 - In `application.properties`, you need to change the information about the database username and password to connect to your database.
 
