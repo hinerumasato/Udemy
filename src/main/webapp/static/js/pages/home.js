@@ -22,48 +22,53 @@ import { get } from "../services/courseService.js";
                 const code = item.getAttribute('code');
                 const tabPane = document.querySelector(`${selector} .tab-pane[code="${code}"]`)
                 const obj = await get(code);
-                if (obj.statusCode == 200) {
-                    let htmls = '';
+                if(obj.statusCode == 200)  {
                     const courses = obj.data;
-                    courses.forEach(async course => {
-                        const categoryObj = await getById(course.categoryId);
-                        const levelObj = await getByIdLevel(course.levelId);
-                        const category = categoryObj.data;
-                        const level = levelObj.data;
-                        htmls += `
-                        <div class="col">
-                            <div class="course-item">
+                    const promises = courses.map(async course => {
+                        return new Promise(async resolve => {
 
-                                <a href="">
-                                    <div class="course-item-thumbnail">
-                                        <img class="w-100"
-                                            src="${course.thumbnails[0].img}" alt="">
-                                    </div>
-                                    <div class="course-item-level ${level.code}">
-                                        ${level.value}
-                                    </div>
-                                    <div class="course-item-info">
-                                        <h4 class="course-item-info-title">
-                                            ${course.name}
-                                        </h4>
-                                        <div class="course-item-info-category">
-                                            ${category.name}
+                            const categoryObj = await getById(course.categoryId);
+                            const levelObj = await getByIdLevel(course.levelId);
+                            const category = categoryObj.data;
+                            const level = levelObj.data;
+                            const courseHTML = `
+                            <div class="col">
+                                <div class="course-item">
+                                    <a href="">
+                                        <div class="course-item-thumbnail">
+                                            <img class="w-100"
+                                                src="${course.thumbnails[0].img}" alt="">
                                         </div>
-                                        <div class="course-item-info-prices d-flex gap-2 align-items-center">
-                                            <div class="format-price course-item-info-prices-new-price">
-                                                ${course.salePrice}</div>
-                                            <div class="format-price course-item-info-prices-old-price">${course.price}
+                                        <div class="course-item-level ${level.code}">
+                                            ${level.value}
+                                        </div>
+                                        <div class="course-item-info">
+                                            <h4 class="course-item-info-title">
+                                                ${course.name}
+                                            </h4>
+                                            <div class="course-item-info-category">
+                                                ${category.name}
+                                            </div>
+                                            <div class="course-item-info-prices d-flex gap-2 align-items-center">
+                                                <div class="format-price course-item-info-prices-new-price">
+                                                    ${course.salePrice}</div>
+                                                <div class="format-price course-item-info-prices-old-price">${course.price}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        `;
+                            `;
+                            resolve(courseHTML);
+                        })
 
-                        tabPane.innerHTML = `<div class="${classRender}">${htmls}</div>`;
-                        price();
                     });
+
+                    const htmls = (await Promise.all(promises)).join('');
+
+                    tabPane.innerHTML = `<div class="${classRender}">${htmls}</div>`;
+                    price();
 
                 } else {
                     tabPane.innerHTML = `
@@ -74,7 +79,7 @@ import { get } from "../services/courseService.js";
                 }
             }
         })
-
+        
     }
     renderCourseItem('.home_container_group', 'row row-cols-lg-3 row-cols-md-2 row-cols-1 g-3 newest-course-list');
     renderCourseItem('.popular_container_group', 'row row-cols-lg-4 row-cols-md-2 row-cols-1 g-3 popular-course-list')
