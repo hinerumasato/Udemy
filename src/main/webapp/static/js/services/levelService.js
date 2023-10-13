@@ -1,5 +1,5 @@
 import { API_URL } from "../constants/api.js";
-const FIELD = 'categories';
+const FIELD = 'levels';
 
 export const getById = async (id) => {
     let url = API_URL + `/${FIELD}`;

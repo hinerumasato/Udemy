@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.servlet.Udemy.page.Page;
-import com.servlet.Udemy.utils.NumberUtil;
 import com.servlet.Udemy.utils.StringUtil;
 
 @WebServlet("/register")
@@ -21,7 +20,6 @@ public class RegisterPageController extends HttpServlet {
         HttpSession session = req.getSession();        
         String error = (String) session.getAttribute("registerError");
         Page page = new Page(req, resp, "register.jsp", "master.jsp");
-        page.setObject("randomNumber", NumberUtil.random());
         page.setObject("title", "Đăng ký");
         page.setObject("error", error);
         

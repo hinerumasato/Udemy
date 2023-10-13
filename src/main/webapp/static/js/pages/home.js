@@ -15,14 +15,14 @@ import { get } from "../services/courseService.js";
     //     setWidthCourseItem();
     // }
 
-    function renderCourseItem() {
-        const navItems = document.querySelectorAll('.nav-item[code]');
+    function renderCourseItem(selector, classRender) {
+        const navItems = document.querySelectorAll(`${selector} .nav-item[code]`);
         navItems.forEach(item => {
             item.onclick = async () => {
                 const code = item.getAttribute('code');
-                const tabPane = document.querySelector(`.tab-pane[code="${code}"]`)
+                const tabPane = document.querySelector(`${selector} .tab-pane[code="${code}"]`)
                 const obj = await get(code);
-                if(obj.statusCode == 200)  {
+                if (obj.statusCode == 200) {
                     let htmls = '';
                     const courses = obj.data;
                     courses.forEach(async course => {
@@ -31,34 +31,37 @@ import { get } from "../services/courseService.js";
                         const category = categoryObj.data;
                         const level = levelObj.data;
                         htmls += `
-                        <div class="col course-item">
-                            <a href="">
-                                <div class="course-item-thumbnail">
-                                    <img class="w-100"
-                                        src="${course.thumbnails[0].img}" alt="">
-                                </div>
-                                <div class="course-item-level basic">
-                                    ${level.name}
-                                </div>
-                                <div class="course-item-info">
-                                    <h4 class="course-item-info-title">
-                                        ${course.name}
-                                    </h4>
-                                    <div class="course-item-info-category">
-                                        ${category.name}
+                        <div class="col">
+                            <div class="course-item">
+
+                                <a href="">
+                                    <div class="course-item-thumbnail">
+                                        <img class="w-100"
+                                            src="${course.thumbnails[0].img}" alt="">
                                     </div>
-                                    <div class="course-item-info-prices d-flex gap-2 align-items-center">
-                                        <div class="format-price course-item-info-prices-new-price">
-                                            ${course.salePrice}</div>
-                                        <div class="format-price course-item-info-prices-old-price">${course.price}
+                                    <div class="course-item-level ${level.code}">
+                                        ${level.value}
+                                    </div>
+                                    <div class="course-item-info">
+                                        <h4 class="course-item-info-title">
+                                            ${course.name}
+                                        </h4>
+                                        <div class="course-item-info-category">
+                                            ${category.name}
+                                        </div>
+                                        <div class="course-item-info-prices d-flex gap-2 align-items-center">
+                                            <div class="format-price course-item-info-prices-new-price">
+                                                ${course.salePrice}</div>
+                                            <div class="format-price course-item-info-prices-old-price">${course.price}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            </div>
                         </div>
                         `;
 
-                        tabPane.innerHTML = `<div class="row row-cols-lg-3 row-cols-md-2 row-cols-1">${htmls}</div>`;
+                        tabPane.innerHTML = `<div class="${classRender}">${htmls}</div>`;
                         price();
                     });
 
@@ -71,7 +74,8 @@ import { get } from "../services/courseService.js";
                 }
             }
         })
-        
+
     }
-    renderCourseItem();
+    renderCourseItem('.home_container_group', 'row row-cols-lg-3 row-cols-md-2 row-cols-1 g-3 newest-course-list');
+    renderCourseItem('.popular_container_group', 'row row-cols-lg-4 row-cols-md-2 row-cols-1 g-3 popular-course-list')
 })();

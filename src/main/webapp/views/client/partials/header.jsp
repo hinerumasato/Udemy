@@ -49,7 +49,7 @@
                         </div>
 
                         <div class="header-cart col-3">
-                            <a href="/" class="text-decoration-none text-secondary">Tất cả khoá học</a>
+                            <a href="/courses" class="text-decoration-none text-secondary">Tất cả khoá học</a>
                             <i class="las la-shopping-cart fs-4 text-main"></i>
                         </div>
                     </div>

@@ -1,0 +1,22 @@
+aside ul {
+    list-style: none;
+    padding: 0;
+}
+
+aside ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid #ebebeb;
+    color: #898989;
+}
+
+aside ul li ul {
+    padding-left: 32px;
+}
+
+aside i.fa {
+    transition: all .3s;
+}
+
+aside i.fa.rotate90 {
+    transform: rotate(90deg);
+}

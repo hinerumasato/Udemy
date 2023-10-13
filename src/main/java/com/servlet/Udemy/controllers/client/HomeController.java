@@ -21,7 +21,6 @@ import com.servlet.Udemy.page.Page;
 import com.servlet.Udemy.services.CategoryService;
 import com.servlet.Udemy.services.CourseService;
 import com.servlet.Udemy.services.LevelService;
-import com.servlet.Udemy.utils.NumberUtil;
 
 /**
  *
@@ -47,7 +46,6 @@ public class HomeController extends HttpServlet{
             courseCategories.add(categoryService.findById(course.getCategoryId()));
         }
 
-        page.setObject("randomNumber", NumberUtil.random());
         page.setObject("categories", categoryService.findAll());
         page.setObject("courses", courses);
         page.setObject("levels", levels);

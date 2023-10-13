@@ -12,9 +12,19 @@
 </head>
 
 <div class="slider">
-    <div class="slider-img">
-        <img src="<c:url value='/static/imgs/sliders/home_slider.webp' />" alt="">
-    </div>
+    <c:choose>
+        <c:when test="${pageContext.request.getAttribute('javax.servlet.forward.request_uri') == '/home'}">
+            <div class="slider-img">
+                <img src="<c:url value='/static/imgs/sliders/home_slider.webp' />" alt="">
+            </div>
+        </c:when>
+        <c:otherwise>
+            <div class="slider-img">
+                <img src="<c:url value='/static/imgs/sliders/other_slider.webp' />" alt="">
+            </div>
+        </c:otherwise>
+    </c:choose>
+
     <div class="slider-services">
         <div class="container">
             <div class="row text-white">

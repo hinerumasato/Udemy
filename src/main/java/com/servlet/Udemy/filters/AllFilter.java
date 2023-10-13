@@ -11,6 +11,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
 import com.servlet.Udemy.context.AppContext;
+import com.servlet.Udemy.utils.NumberUtil;
 
 @WebFilter(urlPatterns = "*")
 public class AllFilter implements Filter {
@@ -21,10 +22,11 @@ public class AllFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain arg2) throws IOException, ServletException {
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
         AppContext appContext = AppContext.getInstance();
-        appContext.setAppRealPath(arg0.getServletContext().getRealPath("/"));
-        arg2.doFilter(arg0, arg1);
+        appContext.setAppRealPath(req.getServletContext().getRealPath("/"));
+        req.setAttribute("randomNumber", NumberUtil.random());
+        chain.doFilter(req, resp);
     }
 
     @Override

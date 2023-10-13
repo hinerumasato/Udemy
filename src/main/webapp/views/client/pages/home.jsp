@@ -18,11 +18,13 @@
             DANH MỤC KHOÁ HỌC
         </div>
         <div class="home_container_content home_container_course_list">
-            <div class="row row-cols-4">
+            <div class="row row-cols-4 g-3">
                 <c:forEach items="${categories}" var="category">
                     <div class="col">
-                        <img src="<c:url value=" ${category.getIcon()}" />" alt="">
-                        <span>${category.getName()}</span>
+                        <div class="inner">
+                            <img src="<c:url value=" ${category.getIcon()}" />" alt="">
+                            <span>${category.getName()}</span>
+                        </div>
                     </div>
                 </c:forEach>
 
@@ -40,53 +42,60 @@
 
             <ul class="nav nav-pills gap-3" id="news_course_pills" role="tablist">
                 <li class="nav-item">
-                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-all" type="button" role="tab" aria-controls="pills-all"
-                            aria-selected="true">Tất cả</button></li>
+                    <button class="nav-link active" id="pills-new-home-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-new-all" type="button" role="tab" aria-controls="pills-new-all"
+                        aria-selected="true">Tất cả</button></li>
                 </li>
 
                 <c:forEach items="${categories}" begin="0" end="2" var="category">
                     <li class="nav-item" code="${category.getCode()}">
-                        <button class="nav-link" id="pills-${category.getCode()}-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-${category.getCode()}" type="button" role="tab" aria-controls="pills-${category.getCode()}"
-                                aria-selected="true">${category.getName()}</button></li>
+                        <button class="nav-link" id="pills-new-${category.getCode()}-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-new-${category.getCode()}" type="button" role="tab"
+                            aria-controls="pills-new-${category.getCode()}"
+                            aria-selected="true">${category.getName()}</button></li>
                     </li>
                 </c:forEach>
             </ul>
         </div>
 
         <div class="home_container_content tab-content">
-            <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab" tabindex="0">
-                <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1">
+            <div class="tab-pane fade show active" id="pills-new-all" role="tabpanel"
+                aria-labelledby="pills-new-all-tab" tabindex="0">
+                <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 newest-course-list g-3">
                     <c:forEach items="${courses}" var="course" varStatus="status">
-                        <div class="col course-item">
-                            <a href="">
-                                <div class="course-item-thumbnail">
-                                    <img class="w-100"
-                                         src="<c:url value='${course.getThumbnails().get(0).getImg()}' />" alt="">
-                                </div>
-                                <div class="course-item-level ${levels.get(status.index).getCode()}">${levels.get(status.index).getValue()}</div>
-                                <div class="course-item-info">
-                                    <h4 class="course-item-info-title">
-                                        ${course.getName()}
-                                    </h4>
-                                    <div class="course-item-info-category">
-                                        ${courseCategories.get(status.index).getName()}
+                        <div class="col h-100">
+                            <div class="course-item">
+                                <a href="">
+                                    <div class="course-item-thumbnail">
+                                        <img class="w-100"
+                                            src="<c:url value='${course.getThumbnails().get(0).getImg()}' />" alt="">
                                     </div>
-                                    <div class="course-item-info-prices d-flex gap-2 align-items-center">
-                                        <div class="format-price course-item-info-prices-new-price">
-                                            ${course.getSalePrice()}</div>
-                                        <div class="format-price course-item-info-prices-old-price">${course.getPrice()}
+                                    <div class="course-item-level ${levels.get(status.index).getCode()}">
+                                        ${levels.get(status.index).getValue()}</div>
+                                    <div class="course-item-info">
+                                        <h4 class="course-item-info-title">
+                                            ${course.getName()}
+                                        </h4>
+                                        <div class="course-item-info-category">
+                                            ${courseCategories.get(status.index).getName()}
+                                        </div>
+                                        <div class="course-item-info-prices d-flex gap-2 align-items-center">
+                                            <div class="format-price course-item-info-prices-new-price">
+                                                ${course.getSalePrice()}</div>
+                                            <div class="format-price course-item-info-prices-old-price">
+                                                ${course.getPrice()}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            </div>
                         </div>
                     </c:forEach>
                 </div>
             </div>
             <c:forEach items="${categories}" begin="0" end="2" var="category">
-                <div code="${category.getCode()}" class="tab-pane fade" id="pills-${category.getCode()}" role="tabpanel" aria-labelledby="pills-${category.getCode()}-tab" tabindex="0">
+                <div code="${category.getCode()}" class="tab-pane fade" id="pills-new-${category.getCode()}"
+                    role="tabpanel" aria-labelledby="pills-new-${category.getCode()}-tab" tabindex="0">
                     <div class="spinner-border" role="status" style="display: block; margin: 0 auto;">
                         <span class="visually-hidden">Loading...</span>
                     </div>
@@ -104,52 +113,81 @@
         <div class="home_container_title d-flex justify-content-between align-items-center">
             <div class="fs-1 fw-bold text-uppercase">KHOÁ HỌC NỔI BẬT</div>
 
-            <ul class="nav nav-pills gap-3">
+            <ul class="nav nav-pills gap-3" id="popular_course_pills" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Tất cả</a>
+                    <button class="nav-link active" id="pills-popular-home-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-popular-all" type="button" role="tab" aria-controls="pills-popular-all"
+                        aria-selected="true">Tất cả</button></li>
                 </li>
+
                 <c:forEach items="${categories}" begin="0" end="2" var="category">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">${category.getName()}</a>
+                    <li class="nav-item" code="${category.getCode()}">
+                        <button class="nav-link" id="pills-popular-${category.getCode()}-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-popular-${category.getCode()}" type="button" role="tab"
+                            aria-controls="pills-popular-${category.getCode()}"
+                            aria-selected="true">${category.getName()}</button></li>
                     </li>
                 </c:forEach>
             </ul>
         </div>
 
         <div class="home_container_content">
-            <div class="row">
-                <div class="col-6">
-                    <img src="<c:url value='/static/imgs/banners/banner_1.webp' />" alt="">
+            <div class="row row-cols-1 row-cols-md-2">
+                <div class="col">
+                    <div class="inner">
+                        <img class="w-100" src="<c:url value='/static/imgs/banners/banner_1.webp' />" alt="">
+                    </div>
                 </div>
-                <div class="col-6">
-                    <img src="<c:url value='/static/imgs/banners/banner_2.webp' />" alt="">
+                <div class="col">
+                    <div class="inner">
+                        <img class="w-100" src="<c:url value='/static/imgs/banners/banner_2.webp' />" alt="">
+                    </div>
                 </div>
             </div>
 
-            <div class="row row-cols-4 pt-5">
-                <c:forEach items="${courses}" var="course" varStatus="status">
-                    <div class="col course-item">
-                        <a href="">
-                            <div class="course-item-thumbnail">
-                                <img class="w-100"
-                                     src="<c:url value='${course.getThumbnails().get(0).getImg()}' />" alt="">
-                            </div>
-                            <div class="course-item-level ${levels.get(status.index).getCode()}">${levels.get(status.index).getValue()}</div>
-                            <div class="course-item-info">
-                                <h4 class="course-item-info-title">
-                                    ${course.getName()}
-                                </h4>
-                                <div class="course-item-info-category">
-                                    ${courseCategories.get(status.index).getName()}
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="pills-popular-all" role="tabpanel"
+                    aria-labelledby="pills-popular-all-tab" tabindex="0">
+                    <div class="row row-cols-lg-4 row-cols-md-2 row-cols-1 pt-5 popular-course-list g-3">
+                        <c:forEach items="${courses}" var="course" varStatus="status">
+                            <div class="col">
+                                <div class="course-item">
+                                    <a href="">
+                                        <div class="course-item-thumbnail">
+                                            <img class="w-100"
+                                                src="<c:url value='${course.getThumbnails().get(0).getImg()}' />"
+                                                alt="">
+                                        </div>
+                                        <div class="course-item-level ${levels.get(status.index).getCode()}">
+                                            ${levels.get(status.index).getValue()}</div>
+                                        <div class="course-item-info">
+                                            <h4 class="course-item-info-title">
+                                                ${course.getName()}
+                                            </h4>
+                                            <div class="course-item-info-category">
+                                                ${courseCategories.get(status.index).getName()}
+                                            </div>
+                                            <div class="course-item-info-prices d-flex gap-2 align-items-center">
+                                                <div class="format-price course-item-info-prices-new-price">
+                                                    ${course.getSalePrice()}
+                                                </div>
+                                                <div class="format-price course-item-info-prices-old-price">
+                                                    ${course.getPrice()}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
                                 </div>
-                                <div class="course-item-info-prices d-flex gap-2 align-items-center">
-                                    <div class="format-price course-item-info-prices-new-price">${course.getSalePrice()}
-                                    </div>
-                                    <div class="format-price course-item-info-prices-old-price">${course.getPrice()}
-                                    </div>
-                                </div>
                             </div>
-                        </a>
+                        </c:forEach>
+                    </div>
+                </div>
+                <c:forEach items="${categories}" begin="0" end="2" var="category">
+                    <div code="${category.getCode()}" class="tab-pane fade" id="pills-popular-${category.getCode()}"
+                        role="tabpanel" aria-labelledby="pills-popular-${category.getCode()}-tab" tabindex="0">
+                        <div class="mt-5 spinner-border" role="status" style="display: block; margin: 0 auto;">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
                     </div>
                 </c:forEach>
             </div>
@@ -203,7 +241,7 @@
     </div>
 </div>
 
-<div class="home_container_group about_container_group popular_container_group py-5">
+<div class="home_container_group about_container_group py-5">
     <div class="container">
         <div class="home_container_content">
             <div class="row">
@@ -267,7 +305,7 @@
 
                         <div class="d-flex gap-3 align-items-center">
                             <img class="review-avatar" src="<c:url value='/static/imgs/reviews/review_1.webp' />"
-                                 alt="">
+                                alt="">
                             <div class="review_wrapper">
                                 <h5 class="review-username">Mr. Trung Dung</h5>
                                 <div class="review-userclass">Học viên lớp UI Design</div>
@@ -284,7 +322,7 @@
 
                         <div class="d-flex gap-3 align-items-center">
                             <img class="review-avatar" src="<c:url value='/static/imgs/reviews/review_1.webp' />"
-                                 alt="">
+                                alt="">
                             <div class="review_wrapper">
                                 <h5 class="review-username">Mr. Trung Dung</h5>
                                 <div class="review-userclass">Học viên lớp UI Design</div>
@@ -301,7 +339,7 @@
 
                         <div class="d-flex gap-3 align-items-center">
                             <img class="review-avatar" src="<c:url value='/static/imgs/reviews/review_1.webp' />"
-                                 alt="">
+                                alt="">
                             <div class="review_wrapper">
                                 <h5 class="review-username">Mr. Trung Dung</h5>
                                 <div class="review-userclass">Học viên lớp UI Design</div>
@@ -321,13 +359,19 @@
             CHINH PHỤC MỤC TIÊU CỦA BẠN
         </div>
         <div class="home_container_content">
-            <div class="row">
-                <div class="col-6">
-                    <img src="<c:url value='/static/imgs/banners/banner_target_1.webp' />" alt="">
-                    <img class="mt-3" src="<c:url value='/static/imgs/banners/banner_target_2.webp' />" alt="">
+            <div class="row row-cols-1 row-cols-md-2">
+                <div class="col">
+                    <div class="inner">
+                        <img class="w-100" src="<c:url value='/static/imgs/banners/banner_target_1.webp' />" alt="">
+                        <img class="w-100 mt-3" src="<c:url value='/static/imgs/banners/banner_target_2.webp' />"
+                            alt="">
+                    </div>
                 </div>
-                <div class="col-6">
-                    <img class="h-100 w-100" src="<c:url value='/static/imgs/banners/banner_target_3.webp' />" alt="">
+                <div class="col">
+                    <div class="inner">
+                        <img class="h-100 w-100" src="<c:url value='/static/imgs/banners/banner_target_3.webp' />"
+                            alt="">
+                    </div>
                 </div>
             </div>
 
