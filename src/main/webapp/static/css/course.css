@@ -5,3 +5,11 @@
 .course_container .course-item img {
     height: 200px;
 }
+
+.course_container .course-item-info-prices-new-price {
+    font-size: 20px;
+}
+
+.course_container .course-item-info-prices-old-price {
+    font-size: 16px;
+}

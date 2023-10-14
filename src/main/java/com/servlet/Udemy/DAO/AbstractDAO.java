@@ -123,6 +123,27 @@ public abstract class AbstractDAO<T> {
         return models.size() > 0 ? models : null;
     }
 
+    public List<T> findByMap(Map<String, String> conditionMap) {
+        List<T> models = new ArrayList<>();
+        createConnection();
+        try {
+            String sql = "SELECT * FROM " + getTable() + " WHERE ";
+            for (String key : conditionMap.keySet()) {
+                sql += conditionMap.get(key) + " AND ";
+            }
+            
+            sql = sql.substring(0, sql.length() - 4);
+
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()) models.add(mapResultSetToModel(rs));
+            close(stmt, rs);
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return models.size() > 0 ? models : null;
+    }
+
     protected abstract T mapResultSetToModel(ResultSet rs) throws SQLException;
     protected abstract Map<String, Object> getValuesFromModel(T model);
 }

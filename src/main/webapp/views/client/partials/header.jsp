@@ -27,10 +27,12 @@
     <div class="header-main shadow bg-body-tertiary py-3">
         <div class="container">
             <div class="row">
-                <div class="col-2 header-main-left">
-                    <a href="/home">
-                        <img class="header-logo-img" src="<c:url value='/static/imgs/logo/logo.png' />">
-                    </a>
+                <div class="col-2">
+                    <div class="header-main-left">
+                        <a href="/home">
+                            <img class="header-logo-img" src="<c:url value='/static/imgs/logo/logo.png' />">
+                        </a>
+                    </div>
                 </div>
                 <div class="col-8">
                     <div class="row align-items-center justify-content-between">
@@ -48,27 +50,33 @@
                             </div>    
                         </div>
 
-                        <div class="header-cart col-3">
-                            <a href="/courses" class="text-decoration-none text-secondary">Tất cả khoá học</a>
-                            <i class="las la-shopping-cart fs-4 text-main"></i>
+                        <div class="col-3">
+                            <div class="header-cart">
+                                <a href="/courses" class="text-decoration-none text-secondary">Tất cả khoá học</a>
+                                <i class="las la-shopping-cart fs-4 text-main"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <c:choose>
                     <c:when test="${not empty loginUser}">
-                        <div class="col-2 d-flex">
-                            <form action="/auth/logout" method="POST">
-                                <div class="text-center">
-                                    <div>Xin chào ${loginUser.getLastName()}</div>
-                                    <button class="logout-btn" type="submit">Đăng xuất</button>
-                                </div>    
-                            </form>
+                        <div class="col-2">
+                            <div class="d-flex">
+                                <form action="/auth/logout" method="POST">
+                                    <div class="text-center">
+                                        <div>Xin chào ${loginUser.getLastName()}</div>
+                                        <button class="logout-btn" type="submit">Đăng xuất</button>
+                                    </div>    
+                                </form>
+                            </div>
                         </div>
                     </c:when>
                     <c:otherwise>
-                        <div class="col-2 d-flex">
-                            <a href="/register" class="text-secondary auth-btn">Đăng ký</a>
-                            <a href="/login" class="auth-btn btn-main">Đăng nhập</a>
+                        <div class="col-2">
+                            <div class="d-flex">
+                                <a href="/register" class="text-secondary auth-btn">Đăng ký</a>
+                                <a href="/login" class="auth-btn btn-main">Đăng nhập</a>
+                            </div>
                         </div>
                     </c:otherwise>
                 </c:choose>

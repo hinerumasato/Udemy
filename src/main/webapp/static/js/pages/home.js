@@ -1,27 +1,16 @@
 import { getById } from "../services/categoryService.js";
 import { getById as getByIdLevel } from "../services/levelService.js";
-import { get } from "../services/courseService.js";
+import { getCourses } from "../services/courseService.js";
 
 (function () {
-    // function setWidthCourseItem() {
-    //     const courseItems = document.querySelectorAll('.course-item');
-    //     courseItems.forEach(item => {
-    //         item.style.width = window.screen.width < 1200 ? `${1200 / 3 - 20}px` : `${window.screen.width / 3 - 20}px`;
-    //     })
-    // }
-    // setWidthCourseItem();
-
-    // window.onresize = () => {
-    //     setWidthCourseItem();
-    // }
-
+    
     function renderCourseItem(selector, classRender) {
         const navItems = document.querySelectorAll(`${selector} .nav-item[code]`);
         navItems.forEach(item => {
             item.onclick = async () => {
                 const code = item.getAttribute('code');
                 const tabPane = document.querySelector(`${selector} .tab-pane[code="${code}"]`)
-                const obj = await get(code);
+                const obj = await getCourses(code);
                 if(obj.statusCode == 200)  {
                     const courses = obj.data;
                     const promises = courses.map(async course => {

@@ -40,12 +40,32 @@ public class CourseController extends HttpServlet {
         for (CategoryModel categoryModel : categories)
             categoryIDToModelMap.put(categoryModel.getId(), categoryModel);
 
+        HashMap<Integer, String> priceMap = new HashMap<Integer, String>();
+        HashMap<Integer, String> priceValueMap = new HashMap<Integer, String>();
+
+        priceMap.put(0, "Giá dưới 100.000đ");
+        priceMap.put(1, "100.000đ - 200.000đ");
+        priceMap.put(2, "200.000đ - 300.000đ");
+        priceMap.put(3, "300.000đ - 500.000đ");
+        priceMap.put(4, "500.000đ - 1.000.000đ");
+        priceMap.put(5, "Giá trên 1.000.000đ");
+
+        priceValueMap.put(0, "<=100000");
+        priceValueMap.put(1, "BETWEEN 100000 AND 200000");
+        priceValueMap.put(2, "BETWEEN 200000 AND 300000");
+        priceValueMap.put(3, "BETWEEN 300000 AND 500000");
+        priceValueMap.put(4, "BETWEEN 500000 AND 1000000");
+        priceValueMap.put(5, ">=1000000");
+
         page.setObject("title", "Khoá học");
-        page.setObject("categories", categoryService.findAll());
+        page.setObject("categories", categories);
+        page.setObject("levels", levels);
         page.setObject("courses", courseService.findAll());
         page.setObject("levelMap", levelIDToModelMap);
         page.setObject("categoryMap", categoryIDToModelMap);
+        page.setObject("priceMap", priceMap);
+        page.setObject("priceValueMap", priceValueMap);
         page.render();
     }
-    
+
 }
