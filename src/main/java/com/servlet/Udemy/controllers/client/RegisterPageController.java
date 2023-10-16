@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.servlet.Udemy.page.ClientPage;
 import com.servlet.Udemy.page.Page;
 import com.servlet.Udemy.utils.StringUtil;
 
@@ -19,7 +20,7 @@ public class RegisterPageController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {        
         HttpSession session = req.getSession();        
         String error = (String) session.getAttribute("registerError");
-        Page page = new Page(req, resp, "register.jsp", "master.jsp");
+        Page page = new ClientPage(req, resp, "register.jsp", "master.jsp");
         page.setObject("title", "Đăng ký");
         page.setObject("error", error);
         

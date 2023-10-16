@@ -24,6 +24,10 @@ public class CourseService implements IService<CourseModel> {
         courseDAO.insert(model);
     }
 
+    public CourseModel findLast() {
+        return courseDAO.findLast();
+    }
+
     public List<CourseModel> findByCategoryCode(String code) {
         return courseDAO.findByCategoryCode(code);
     }
@@ -42,5 +46,11 @@ public class CourseService implements IService<CourseModel> {
     public void delete(int id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+
+    @Override
+    public CourseModel findFirst() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findFirst'");
     }
 }

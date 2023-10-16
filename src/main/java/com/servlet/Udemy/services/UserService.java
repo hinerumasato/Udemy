@@ -66,4 +66,15 @@ public class UserService implements IService<UserModel> {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
+
+    @Override
+    public UserModel findLast() {
+        return userDAO.findLast();
+    }
+
+    @Override
+    public UserModel findFirst() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findFirst'");
+    }
 }

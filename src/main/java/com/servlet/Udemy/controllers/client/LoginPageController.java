@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.servlet.Udemy.page.ClientPage;
 import com.servlet.Udemy.page.Page;
 import com.servlet.Udemy.utils.StringUtil;
 
@@ -18,7 +19,7 @@ public class LoginPageController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        Page page = new Page(req, resp, "login.jsp", "master.jsp");
+        Page page = new ClientPage(req, resp, "login.jsp", "master.jsp");
         page.setObject("title", "Đăng nhập");
         page.setObject("googleAuthLink", StringUtil.getGoogleAuthLink());
         page.setObject("error", session.getAttribute("loginError"));

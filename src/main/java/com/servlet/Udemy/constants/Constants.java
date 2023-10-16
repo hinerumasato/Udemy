@@ -10,7 +10,11 @@ package com.servlet.Udemy.constants;
  */
 public class Constants {
     public static final String CLIENT_PAGE_PATH = "/views/client/pages/";
-    public static final String CLIENT_LAYOUT_PATH = "views/client/layout/";
+    public static final String CLIENT_LAYOUT_PATH = "/views/client/layout/";
+
+    public static final String ADMIN_PAGE_PATH = "/views/admin/pages/";
+    public static final String ADMIN_LAYOUT_PATH = "/views/admin/layout/";
+
     public static final String ENV_FILE = "application.properties";
 
     // Google OAuth Services Constants

@@ -38,6 +38,7 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
 
         int id = rs.getInt("id");
         String name = rs.getString("name");
+        String description = rs.getString("description");
         boolean isNewCourse = rs.getBoolean("new_course");
         boolean isPopularCourse = rs.getBoolean("popular_course");
         double price = rs.getDouble("price");
@@ -46,7 +47,7 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
         int categoryId = rs.getInt("category_id");
 
         List<ThumbnailModel> thumbnails = this.getThumbnails(id);
-        return new CourseModel(id, name, isNewCourse, isPopularCourse, price, salePrice, levelId, categoryId,
+        return new CourseModel(id, name, description, isNewCourse, isPopularCourse, price, salePrice, levelId, categoryId,
                 thumbnails);
     }
 
@@ -55,6 +56,7 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("id", model.getId());
         map.put("name", model.getName());
+        map.put("description", model.getDescription());
         map.put("new_course", model.isNewCourse());
         map.put("popular_course", model.isPopularCourse());
         map.put("price", model.getPrice());

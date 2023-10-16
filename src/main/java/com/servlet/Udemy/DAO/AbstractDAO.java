@@ -107,6 +107,18 @@ public abstract class AbstractDAO<T> {
         this.conn = database.createConnection();
     }
 
+    public T findLast() {
+        createConnection();
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM " + getTable() + " ORDER BY ID DESC LIMIT 1");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) return mapResultSetToModel(rs);
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     protected List<T> findBy(String field, Object value) {
         List<T> models = new ArrayList<>();
         createConnection();

@@ -24,6 +24,7 @@ import lombok.Setter;
 public class CourseModel {
     private int id;
     private String name;
+    private String description;
     private boolean isNewCourse;
     private boolean isPopularCourse;
     private double price;

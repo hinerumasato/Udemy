@@ -1,20 +1,18 @@
 package com.servlet.Udemy.page;
 
-import com.servlet.Udemy.utils.PathUtil;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-public class Page {
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-    private HttpServletRequest req;
-    private HttpServletResponse res;
-    private String page;
-    private String layout;
+public abstract class Page {
+
+    protected HttpServletRequest req;
+    protected HttpServletResponse res;
+    protected String page;
+    protected String layout;
 
     public Page(HttpServletRequest req, HttpServletResponse res, String page, String layout) throws UnsupportedEncodingException {
         this.req = req;
@@ -61,9 +59,5 @@ public class Page {
         this.req.setAttribute(key, value);
     }
 
-    public void render() throws ServletException, IOException {
-        req.setAttribute("contentPage", PathUtil.getClientPagePath(page));
-        RequestDispatcher rd = req.getRequestDispatcher(PathUtil.getClientLayoutPath(layout));
-        rd.forward(req, res);
-    }
+    public abstract void render() throws ServletException, IOException;
 }

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.servlet.Udemy.models.CategoryModel;
 import com.servlet.Udemy.models.LevelModel;
+import com.servlet.Udemy.page.ClientPage;
 import com.servlet.Udemy.page.Page;
 import com.servlet.Udemy.services.CategoryService;
 import com.servlet.Udemy.services.CourseService;
@@ -27,7 +28,7 @@ public class CourseController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Page page = new Page(req, resp, "course.jsp", "master.jsp");
+        Page page = new ClientPage(req, resp, "course.jsp", "master.jsp");
 
         List<LevelModel> levels = levelService.findAll();
         List<CategoryModel> categories = categoryService.findAll();

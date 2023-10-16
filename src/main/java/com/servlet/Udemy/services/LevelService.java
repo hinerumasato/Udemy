@@ -35,4 +35,15 @@ public class LevelService implements IService<LevelModel> {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
+
+    @Override
+    public LevelModel findLast() {
+        return levelDAO.findLast();
+    }
+
+    @Override
+    public LevelModel findFirst() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findFirst'");
+    }
 }

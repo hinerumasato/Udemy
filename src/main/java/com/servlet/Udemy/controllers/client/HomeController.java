@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.servlet.Udemy.models.CategoryModel;
 import com.servlet.Udemy.models.CourseModel;
 import com.servlet.Udemy.models.LevelModel;
+import com.servlet.Udemy.page.ClientPage;
 import com.servlet.Udemy.page.Page;
 import com.servlet.Udemy.services.CategoryService;
 import com.servlet.Udemy.services.CourseService;
@@ -36,12 +37,11 @@ public class HomeController extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Page page = new Page(req, resp, "home.jsp", "master.jsp");
+        Page page = new ClientPage(req, resp, "home.jsp", "master.jsp");
         List<CourseModel> courses = courseService.findAll();
         List<LevelModel> levels  = new ArrayList<LevelModel>();
         List<CategoryModel> courseCategories = new ArrayList<CategoryModel>();
         for (CourseModel course : courses) {
-            System.out.println(course.getThumbnails());
             levels.add(levelService.findById(course.getLevelId()));
             courseCategories.add(categoryService.findById(course.getCategoryId()));
         }

@@ -3,6 +3,8 @@ import { getById as getByIdLevel } from "../services/levelService.js";
 import { COURSE_API_URL } from "../services/courseService.js";
 
 (function () {
+    const coursePageList = document.querySelector('#coursePageList');
+
     const toggleCollapseIcon = function () {
         const collapseButtons = document.querySelectorAll(`button[data-bs-toggle="collapse"]`);
         collapseButtons.forEach(btn => {
@@ -20,8 +22,7 @@ import { COURSE_API_URL } from "../services/courseService.js";
     const renderCourseItem = async function (url) {
         const response = await fetch(url);
         const obj = await response.json();
-        const coursePageList = document.querySelector('#coursePageList');
-        if(obj.statusCode === 200) {
+        if (obj.statusCode === 200) {
             const courses = obj.data;
             const htmlPromises = courses.map(async course => {
                 const categoryObj = await getById(course.categoryId);
@@ -61,7 +62,7 @@ import { COURSE_API_URL } from "../services/courseService.js";
             const htmls = await Promise.all(htmlPromises);
             coursePageList.innerHTML = htmls.join('');
             price();
-        } else if(obj.statusCode === 404) {
+        } else if (obj.statusCode === 404) {
             coursePageList.innerHTML = `
             <div class="alert alert-warning w-100 text-center" role="alert">
                 <strong>Không tìm thấy kết quả!</strong>
@@ -70,12 +71,19 @@ import { COURSE_API_URL } from "../services/courseService.js";
         }
     }
 
-    const renderSearchQuery = async function () {
+    const filterHandler = async function () {
         const checkboxs = document.querySelectorAll(`input[type="checkbox"]`);
         const checkboxsArray = Array.from(checkboxs);
         let [level, price, time] = ['', '', ''];
         checkboxsArray.forEach(checkbox => {
             checkbox.onclick = async () => {
+                coursePageList.innerHTML = `
+                    <div class="d-flex justify-content-center w-100">
+                        <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                `;
                 switch (checkbox.getAttribute('field')) {
                     case 'level':
                         level = '? IN(';
@@ -130,5 +138,5 @@ import { COURSE_API_URL } from "../services/courseService.js";
         })
 
     }
-    renderSearchQuery();
+    filterHandler();
 })();

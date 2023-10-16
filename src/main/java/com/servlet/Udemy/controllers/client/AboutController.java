@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.servlet.Udemy.page.ClientPage;
 import com.servlet.Udemy.page.Page;
 
 /**
@@ -24,7 +25,7 @@ public class AboutController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Page page = new Page(req, resp, "about.jsp", "master.jsp");
+        Page page = new ClientPage(req, resp, "about.jsp", "master.jsp");
         page.setObject("title", "Về chúng tôi");
         page.render();
     }

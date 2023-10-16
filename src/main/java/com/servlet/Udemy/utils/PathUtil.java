@@ -18,4 +18,12 @@ public class PathUtil {
     public static String getClientLayoutPath(String layoutName) {
         return Constants.CLIENT_LAYOUT_PATH + layoutName;
     }
+
+    public static String getAdminPagePath(String pageName) {
+        return Constants.ADMIN_PAGE_PATH + pageName;
+    }
+
+    public static String getAdminLayoutPath(String layoutName) {
+        return Constants.ADMIN_LAYOUT_PATH + layoutName;
+    }
 }

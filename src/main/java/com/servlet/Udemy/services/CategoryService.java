@@ -42,4 +42,15 @@ public class CategoryService implements IService<CategoryModel> {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
+
+    @Override
+    public CategoryModel findLast() {
+        return categoryDAO.findLast();
+    }
+
+    @Override
+    public CategoryModel findFirst() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findFirst'");
+    }
 }
