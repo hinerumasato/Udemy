@@ -33,14 +33,12 @@ public class CategoryService implements IService<CategoryModel> {
 
     @Override
     public void update(CategoryModel model) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        categoryDAO.update(model);
     }
 
     @Override
     public void delete(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        categoryDAO.delete(id);
     }
 
     @Override

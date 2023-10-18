@@ -23,7 +23,6 @@ public class LoginPageController extends HttpServlet {
         page.setObject("title", "Đăng nhập");
         page.setObject("googleAuthLink", StringUtil.getGoogleAuthLink());
         page.setObject("error", session.getAttribute("loginError"));
-        page.setObject("message", session.getAttribute("registerSuccessfully"));
         page.render();
         session.removeAttribute("loginError");
         session.removeAttribute("registerSuccessfully");

@@ -115,11 +115,11 @@
                     </select>
 
                     <div class="d-md-flex d-block justify-content-between mt-3">
-                        <div class="is-new-course">
+                        <div class="is-new-course d-flex align-items-center gap-1">
                             <label for="">Khoá học mới</label>
                             <input type="checkbox" name="is_new_course" id="">
                         </div>
-                        <div class="is-popular-course">
+                        <div class="is-popular-course d-flex align-items-center gap-1">
                             <label for="">Khoá học nổi bật</label>
                             <input type="checkbox" name="is_popular_course" id="">
                         </div>

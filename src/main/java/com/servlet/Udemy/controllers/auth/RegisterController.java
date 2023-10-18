@@ -22,6 +22,7 @@ public class RegisterController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
+        HttpSession session = req.getSession();
         String email = req.getParameter("email").trim();
         String password = req.getParameter("password").trim();
         String firstName = req.getParameter("firstName").trim();
@@ -35,10 +36,10 @@ public class RegisterController extends HttpServlet {
 
         if (userService.isValidUser(userModel)) {
             userService.insert(userModel);
-            req.getSession().setAttribute("registerSuccessfully", "Đăng ký thành công, vui lòng đăng nhập tại đây");
+            UserModel loginUser = userService.findLast();
+            session.setAttribute("loginUser", loginUser);
             resp.sendRedirect("/login");
         } else {
-            HttpSession session = req.getSession();
             session.setAttribute("registerError", "Tên đăng nhập đã tồn tại");
             resp.sendRedirect("/register");
         }

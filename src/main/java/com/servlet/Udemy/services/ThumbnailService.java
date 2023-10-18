@@ -37,14 +37,12 @@ public class ThumbnailService implements IService<ThumbnailModel> {
 
     @Override
     public void update(ThumbnailModel model) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        thumbnailDAO.update(model);
     }
 
     @Override
     public void delete(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        thumbnailDAO.delete(id);
     }
     
 }

@@ -26,14 +26,12 @@ public class LevelService implements IService<LevelModel> {
 
     @Override
     public void update(LevelModel model) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        levelDAO.update(model);
     }
 
     @Override
     public void delete(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        levelDAO.delete(id);
     }
 
     @Override

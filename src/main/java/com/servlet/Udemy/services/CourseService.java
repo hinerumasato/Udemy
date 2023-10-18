@@ -38,14 +38,12 @@ public class CourseService implements IService<CourseModel> {
 
     @Override
     public void update(CourseModel model) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        courseDAO.update(model);
     }
 
     @Override
     public void delete(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        courseDAO.delete(id);
     }
 
     @Override

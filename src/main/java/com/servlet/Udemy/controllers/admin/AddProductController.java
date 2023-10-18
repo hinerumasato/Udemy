@@ -21,10 +21,12 @@ import com.servlet.Udemy.services.CategoryService;
 import com.servlet.Udemy.services.CourseService;
 import com.servlet.Udemy.services.LevelService;
 import com.servlet.Udemy.services.ThumbnailService;
+import com.servlet.Udemy.utils.StringUtil;
+
 import javax.servlet.http.HttpSession;
 
 @WebServlet("/admin/product/add-product")
-@MultipartConfig(maxFileSize = 1024 * 1024 * 10, maxRequestSize = 1024 * 1024 * 20)
+@MultipartConfig(maxFileSize = 1024 * 1024 * 1024, maxRequestSize = 1024 * 1024 * 1024)
 
 public class AddProductController extends HttpServlet {
 
@@ -52,8 +54,8 @@ public class AddProductController extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
-        String name = req.getParameter("name");
-        String description = req.getParameter("description");
+        String name = StringUtil.htmlEscape(req.getParameter("name"));
+        String description = StringUtil.htmlEscape(req.getParameter("description"));
         double oldPrice = Double.parseDouble(req.getParameter("old_price"));
         double salePrice = Double.parseDouble(req.getParameter("sale_price"));
         int categoryId = Integer.parseInt(req.getParameter("category_id"));

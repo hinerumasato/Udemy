@@ -57,14 +57,12 @@ public class UserService implements IService<UserModel> {
 
     @Override
     public void update(UserModel model) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        userDAO.update(model);
     }
 
     @Override
     public void delete(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        userDAO.delete(id);
     }
 
     @Override

@@ -62,8 +62,7 @@ public abstract class AbstractDAO<T> {
     }
 
     public void insert(T model) {
-        this.database = new Database();
-        conn = database.createConnection();
+        createConnection();
         String sql = "INSERT INTO " + getTable() + " (";
         Map<String, Object> values = getValuesFromModel(model);
         List<String> columns = new ArrayList<String>();
@@ -90,6 +89,47 @@ public abstract class AbstractDAO<T> {
             stmt.executeUpdate();
             close(stmt, null);
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void update(T model) {
+        createConnection();
+        Map<String, Object> values = getValuesFromModel(model);
+        List<String> columns = new ArrayList<String>();
+        String sql = "UPDATE " + getTable() + " SET ";
+        for (String column : values.keySet()) {
+            if(!column.equals("id")) {
+                sql += column + "= ?, ";
+                columns.add(column);
+            }
+        }
+
+        sql = sql.substring(0, sql.length() - 2) + " WHERE ID = ?";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            for (int i = 0; i < columns.size(); i++) {
+                stmt.setObject(i + 1, values.get(columns.get(i)));
+            }
+
+            stmt.setObject(values.size(), values.get("id"));
+            stmt.executeUpdate();
+            close(stmt, null);
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        
+    }
+
+    public void delete(int id) {
+        createConnection();
+        String sql = "DELETE FROM " + getTable() + " WHERE ID = ?";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setObject(1, id);
+            stmt.executeUpdate();
+            close(stmt, null);
+        } catch(SQLException e) {
             e.printStackTrace();
         }
     }
