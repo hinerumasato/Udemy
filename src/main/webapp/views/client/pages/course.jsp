@@ -4,8 +4,8 @@
     Author     : Masato
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="/common/includes.jsp" %>
 
 <head>
     <link rel="stylesheet" href="<c:url value='/static/css/course.css?v=${randomNumber}' />">
