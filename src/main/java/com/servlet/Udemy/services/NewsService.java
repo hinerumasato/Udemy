@@ -2,26 +2,26 @@ package com.servlet.Udemy.services;
 
 import java.util.List;
 
+import com.servlet.Udemy.DAO.NewsDAO;
 import com.servlet.Udemy.models.NewsModel;
 
-public class NewsService implements INews<NewsModel>{
+public class NewsService implements IService<NewsModel> {
+
+    private NewsDAO newsDAO = new NewsDAO("news");
 
     @Override
     public List<NewsModel> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+        return newsDAO.findAll();
     }
 
     @Override
     public NewsModel findById(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        return newsDAO.findById(id);
     }
 
     @Override
     public NewsModel findLast() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findLast'");
+        return newsDAO.findLast();
     }
 
     @Override
@@ -32,20 +32,17 @@ public class NewsService implements INews<NewsModel>{
 
     @Override
     public void insert(NewsModel model) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insert'");
+        newsDAO.insert(model);
     }
 
     @Override
     public void update(NewsModel model) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        newsDAO.update(model);
     }
 
     @Override
     public void delete(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        newsDAO.delete(id);
     }
-    
+
 }

@@ -16,7 +16,8 @@ public class NewsModel {
     private int id;
     private String title;
     private String author;
-    private Date date;
+    private Date createdDate;
     private boolean isSpecialNews;
-    private List<NewsImages> newImages;
+    private String content;
+    private String imgURL;
 }
