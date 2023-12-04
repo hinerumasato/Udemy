@@ -1,5 +1,6 @@
 package com.servlet.Udemy.utils;
 
+import java.text.Normalizer;
 import java.util.Map;
 import java.util.Properties;
 
@@ -30,6 +31,7 @@ public class StringUtil {
     }
 
     public static String htmlEscape(String input) {
+
         input = input.replaceAll("<", "&lt;");
         input = input.replaceAll(">", "&gt;");
 
@@ -51,6 +53,20 @@ public class StringUtil {
             htmlContent = htmlContent.replace(key, value);
         }
         return htmlContent;
+    }
+
+    public static String removeAccents(String str) {
+        str = Normalizer.normalize(str, Normalizer.Form.NFD);
+        str = str.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+        return str;
+    }
+
+    public static String generateSlug(String str) {
+        str = str.toLowerCase();
+        str = str.trim();
+        str = removeAccents(str);
+        str = str.replaceAll(" ", "-");
+        return str;
     }
 
 }

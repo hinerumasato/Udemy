@@ -31,6 +31,7 @@ public class CourseModel {
     private double salePrice;
     private int levelId;
     private int categoryId;
+    private int teacherId;
 
     private List<ThumbnailModel> thumbnails;
 }

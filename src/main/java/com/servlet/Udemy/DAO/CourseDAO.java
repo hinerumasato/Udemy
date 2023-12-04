@@ -28,7 +28,7 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
     public List<CourseModel> findByCategoryCode(String code) {
         CategoryDAO categoryDAO = new CategoryDAO("categories");
         CategoryModel categoryModel = categoryDAO.findByCode(code);
-        if(categoryModel != null)
+        if (categoryModel != null)
             return categoryModel.getCourses();
         return null;
     }
@@ -45,9 +45,11 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
         double salePrice = rs.getDouble("sale_price");
         int levelId = rs.getInt("level_id");
         int categoryId = rs.getInt("category_id");
+        int teacherId = rs.getInt("teacher_id");
 
         List<ThumbnailModel> thumbnails = this.getThumbnails(id);
-        return new CourseModel(id, name, description, isNewCourse, isPopularCourse, price, salePrice, levelId, categoryId,
+        return new CourseModel(id, name, description, isNewCourse, isPopularCourse, price, salePrice, levelId,
+                categoryId, teacherId,
                 thumbnails);
     }
 
@@ -63,6 +65,8 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
         map.put("sale_price", model.getSalePrice());
         map.put("level_id", model.getLevelId());
         map.put("category_id", model.getCategoryId());
+        map.put("teacher_id", model.getTeacherId());
+
         return map;
     }
 

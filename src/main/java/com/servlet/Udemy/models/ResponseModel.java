@@ -12,6 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ResponseModel {
+    
     private int statusCode;
     private String message;
     private Object data;

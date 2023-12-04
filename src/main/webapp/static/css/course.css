@@ -13,3 +13,28 @@
 .course_container .course-item-info-prices-old-price {
     font-size: 16px;
 }
+
+.course_container .course-backside h4 {
+    font-weight: bold;
+    margin-top: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+.course_container .course-backside p {
+    margin-top: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+.course_container .course-backside .course-backside-description {
+    height: 63px;
+}

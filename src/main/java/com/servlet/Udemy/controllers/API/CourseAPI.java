@@ -33,11 +33,11 @@ public class CourseAPI extends HttpServlet {
 
             Map<String, String> findMap = new HashMap<String, String>();
 
-            if(!levelIdStr.equals("")) {
+            if(levelIdStr != null && !levelIdStr.equals("")) {
                 levelIdStr = levelIdStr.replaceAll("\\?", "level_id");
                 findMap.put("level_id", levelIdStr);
             }
-            if(!priceStr.equals("")) {
+            if(priceStr != null && !priceStr.equals("")) {
                 priceStr = priceStr.replaceAll("\\?", "sale_price");
                 findMap.put("sale_price", priceStr);
             }

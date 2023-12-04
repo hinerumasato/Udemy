@@ -20,13 +20,14 @@ import com.servlet.Udemy.page.Page;
 import com.servlet.Udemy.services.CategoryService;
 import com.servlet.Udemy.services.CourseService;
 import com.servlet.Udemy.services.LevelService;
+import com.servlet.Udemy.services.TeacherService;
 import com.servlet.Udemy.services.ThumbnailService;
 import com.servlet.Udemy.utils.StringUtil;
 
 import javax.servlet.http.HttpSession;
 
 @WebServlet("/admin/product/add-product")
-@MultipartConfig(maxFileSize = 1024 * 1024 * 1024, maxRequestSize = 1024 * 1024 * 1024)
+@MultipartConfig(maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 10)
 
 public class AddProductController extends HttpServlet {
 
@@ -34,6 +35,7 @@ public class AddProductController extends HttpServlet {
     private LevelService levelService = new LevelService();
     private CourseService courseService = new CourseService();
     private ThumbnailService thumbnailService = new ThumbnailService();
+    private TeacherService teacherService = new TeacherService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -42,6 +44,7 @@ public class AddProductController extends HttpServlet {
         page.setObject("title", "Thêm khoá học mới");
         page.setObject("categories", categoryService.findAll());
         page.setObject("levels", levelService.findAll());
+        page.setObject("teachers", teacherService.findAll());
         page.render();
 
         if (session.getAttribute("addProductMessage") != null) {
@@ -55,11 +58,12 @@ public class AddProductController extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
 
         String name = StringUtil.htmlEscape(req.getParameter("name"));
-        String description = StringUtil.htmlEscape(req.getParameter("description"));
+        String description = req.getParameter("description");
         double oldPrice = Double.parseDouble(req.getParameter("old_price"));
         double salePrice = Double.parseDouble(req.getParameter("sale_price"));
         int categoryId = Integer.parseInt(req.getParameter("category_id"));
         int levelId = Integer.parseInt(req.getParameter("level_id"));
+        int teacherId = Integer.parseInt(req.getParameter("teacher_id"));
         boolean isNewCourse = req.getParameter("is_new_course") == null ? false : true;
         boolean isPopularCourse = req.getParameter("is_popular_course") == null ? false : true;
 
@@ -72,6 +76,7 @@ public class AddProductController extends HttpServlet {
         courseModel.setPopularCourse(isPopularCourse);
         courseModel.setCategoryId(categoryId);
         courseModel.setLevelId(levelId);
+        courseModel.setTeacherId(teacherId);
 
         courseService.insert(courseModel);
         CourseModel course = courseService.findLast();
@@ -90,7 +95,7 @@ public class AddProductController extends HttpServlet {
         }
 
         req.getSession().setAttribute("addProductMessage",
-                SuccessMessage.ADD_NEW_COURSE_SUCCESS_MESSAGE);
+                SuccessMessage.ADD_NEW_COURSE_SUCCESS);
         resp.sendRedirect("/admin/product/add-product");
     }
 }
