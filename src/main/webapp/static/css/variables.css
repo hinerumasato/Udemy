@@ -64,6 +64,25 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     padding: 8px;
 }
 
+.btn-main-course {
+    color: #FFF;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    outline: none !important;
+    background-color: var(--main-color);
+    border-radius: 8px;
+    padding: 8px 16px;
+    transition: all .3s;
+    font-weight: bold;
+}
+
+.btn-main-course:hover {
+    border: solid 1px var(--hard-color);
+    color: var(--hard-color);
+    background: #FFF;
+}
+
 .auth-btn {
     font-size: 16px;
     border-radius: 8px;
@@ -86,9 +105,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     padding: 16px 16px 20px;
     box-shadow: var(--regular-shadow);
     margin-top: 16px;
+    z-index: 1;
 }
 
-.course-item a {
+.course-item > a {
     text-decoration: none;
     color: #000;
 }
@@ -151,4 +171,85 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     font-weight: bold;
     color: var(--price-color);
     font-size: 24px;
+}
+
+.course-item > a {
+    position: relative;
+}
+
+.course-item .course-backside {
+    opacity: 0;
+    position: absolute;
+    top: 30%;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background: #FFF;
+}
+
+
+.course-item:hover .course-backside {
+    animation: show .3s linear forwards;
+}
+
+.course-item:not(:hover) .course-backside {
+    animation: hide .3s linear forwards;
+}
+
+.course-item .teacher-name:hover {
+    color: var(--main-color);
+}
+
+.backside-data i {
+    color: #888;
+}
+
+.course-backside-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    margin-bottom: 8px;
+}
+
+.form-group:first-child {
+    margin-top: 0;
+}
+
+.form-group {
+    margin-top: 20px;
+}
+
+.form-group h4 {
+    font-weight: bold;
+}
+
+.thumbnail-group div.border {
+    padding: 48px 0;
+    cursor: pointer;
+    border-style: dashed !important;
+}
+
+.thumbnail-group i.fa-regular {
+    font-size: 40px;
+    color: #6E7891;
+}
+
+@keyframes show {
+    to {
+        top: 0;
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes hide {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
 }

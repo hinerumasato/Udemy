@@ -13,11 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.servlet.Udemy.models.CategoryModel;
 import com.servlet.Udemy.models.LevelModel;
+import com.servlet.Udemy.models.TeacherModel;
 import com.servlet.Udemy.page.ClientPage;
 import com.servlet.Udemy.page.Page;
 import com.servlet.Udemy.services.CategoryService;
 import com.servlet.Udemy.services.CourseService;
 import com.servlet.Udemy.services.LevelService;
+import com.servlet.Udemy.services.TeacherService;
 
 @WebServlet("/courses")
 public class CourseController extends HttpServlet {
@@ -25,6 +27,7 @@ public class CourseController extends HttpServlet {
     private CourseService courseService = new CourseService();
     private CategoryService categoryService = new CategoryService();
     private LevelService levelService = new LevelService();
+    private TeacherService teacherService = new TeacherService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,14 +35,19 @@ public class CourseController extends HttpServlet {
 
         List<LevelModel> levels = levelService.findAll();
         List<CategoryModel> categories = categoryService.findAll();
+        List<TeacherModel> teachers = teacherService.findAll();
         Map<Integer, LevelModel> levelIDToModelMap = new HashMap<Integer, LevelModel>();
         Map<Integer, CategoryModel> categoryIDToModelMap = new HashMap<Integer, CategoryModel>();
+        Map<Integer, TeacherModel> teacherIDToModelMap = new HashMap<Integer, TeacherModel>();
 
         for (LevelModel levelModel : levels)
             levelIDToModelMap.put(levelModel.getId(), levelModel);
 
         for (CategoryModel categoryModel : categories)
             categoryIDToModelMap.put(categoryModel.getId(), categoryModel);
+
+        for (TeacherModel teacherModel : teachers)
+            teacherIDToModelMap.put(teacherModel.getId(), teacherModel);
 
         HashMap<Integer, String> priceMap = new HashMap<Integer, String>();
         HashMap<Integer, String> priceValueMap = new HashMap<Integer, String>();
@@ -64,6 +72,7 @@ public class CourseController extends HttpServlet {
         page.setObject("courses", courseService.findAll());
         page.setObject("levelMap", levelIDToModelMap);
         page.setObject("categoryMap", categoryIDToModelMap);
+        page.setObject("teacherMap", teacherIDToModelMap);
         page.setObject("priceMap", priceMap);
         page.setObject("priceValueMap", priceValueMap);
         page.render();

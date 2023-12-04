@@ -11,31 +11,19 @@
     <link rel="stylesheet" href="<c:url value='/static/css/add-product.css?v=${randomNumber}' />">
 </head>
 
-<div class="container py-5">
-    
-    ${sessionScope.addProductMessage}
-    
+<div class="container py-5 pe-3">
+
     <form action="" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
         <h2 class="fw-bold">Thêm khoá học mới</h2>
-        <div class="row row-cols-1 row-cols-md-2">
-            <div class="col">
-                <p class="text-secondary-emphasis">Đơn đặt hàng được đặt trên cửa hàng của bạn</p>
-            </div>
-            <div class="col">
-                <div class="button-group d-flex justify-content-end gap-2">
-                    <button class="btn btn-outline-secondary" type="button">Huỷ</button>
-                    <button class="btn btn-primary" type="submit">Đăng khoá học</button>
-                </div>
-            </div>
-        </div>
-        
+        <p class="text-secondary-emphasis">Khoá học bạn đăng sẽ được đưa lên trang giao diện người dùng</p>
+
         <c:if test="${not empty sessionScope.addProductMessage}">
             <div class="alert alert-success alert-dismissible fade show mt-3">
                 <strong>${sessionScope.addProductMessage}</strong>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         </c:if>
-        
+
         <div class="row g-4 mt-3">
             <div class="col-12 col-md-8">
                 <div class="form-group">
@@ -80,6 +68,16 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="shadow p-4 bg-white my-3">
+                    <div class="d-md-flex d-block justify-content-between align-items-center">
+                        <h4 class="fw-bold">Bạn đã hoàn thành?</h4>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline-secondary">Huỷ</button>
+                            <button type="submit" class="btn btn-primary">Đăng khoá học</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="col-12 col-md-4">
@@ -87,7 +85,7 @@
                     <h4>Lựa chọn</h4>
                     <div class="d-flex justify-content-between align-items-center">
                         <h6 class="fw-bold">Khoá học</h6>
-                        <a href="#" class="text-decoration-none">Thêm khoá học</a>
+                        <a href="/admin/category/add-category" class="text-decoration-none">Thêm khoá học</a>
                     </div>
                     <select name="category_id" id="" class="form-select">
                         <c:forEach items="${categories}" var="category">
@@ -109,9 +107,11 @@
                         <h6 class="fw-bold">Giáo viên</h6>
                         <a href="#" class="text-decoration-none">Thêm giáo viên</a>
                     </div>
-                    <select name="teacher" id="" class="form-select">
-                        <option value="">Nguyễn Văn A</option>
-                        <option value="">Trần Thị B</option>
+
+                    <select name="teacher_id" id="" class="form-select">
+                        <c:forEach items="${teachers}" var="teacher">
+                            <option value="${teacher.getId()}">${teacher.getName()}</option>
+                        </c:forEach>
                     </select>
 
                     <div class="d-md-flex d-block justify-content-between mt-3">
@@ -127,17 +127,8 @@
                 </div>
             </div>
         </div>
-
-        <div class="shadow p-4 bg-white mt-3">
-            <div class="d-md-flex d-block justify-content-between align-items-center">
-                <h4 class="fw-bold">Bạn đã hoàn thành?</h4>
-                <div class="d-flex gap-2">
-                    <button class="btn btn-outline-secondary">Huỷ</button>
-                    <button type="submit" class="btn btn-primary">Đăng khoá học</button>
-                </div>
-            </div>
-        </div>
     </form>
 </div>
+
 
 <script src="<c:url value='/static/js/pages/add-product.js?v=${randomNumber}' />"></script>

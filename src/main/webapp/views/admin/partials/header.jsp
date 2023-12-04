@@ -6,8 +6,9 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/common/includes.jsp" %>
+
 <header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary shadow">
         <div class="container-fluid container-md">
             <a class="navbar-brand" href="/admin">
                 <img width="50" height="50" src="<c:url value="/static/imgs/logo/udemy.1024x1024.png" />" alt="alt"/>
@@ -22,11 +23,30 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Chức năng
+                            Khoá học
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/admin/product/add-product">Thêm sản phẩm</a></li>
-                            <li><a class="dropdown-item" href="#">Xem sản phẩm đã xoá</a></li>
+                            <li><a class="dropdown-item" href="/admin/product/add-product">Thêm khoá học</a></li>
+                            <li><a class="dropdown-item" href="/admin/product/">Xem khoá học</a></li>
+                            <li><a class="dropdown-item" href="#">Xem khoá học đã xoá</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Thể loại
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/admin/category/add-category">Thêm mới thể loại</a></li>
+                            <li><a class="dropdown-item" href="/admin/category">Danh sách thể loại</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Giáo viên
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/admin/teacher/add-teacher">Thêm mới giáo viên</a></li>
+                            <li><a class="dropdown-item" href="/admin/teacher">Danh sách giáo viên</a></li>
                         </ul>
                     </li>
                 </ul>

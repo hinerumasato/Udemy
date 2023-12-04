@@ -58,9 +58,9 @@ public class Mail {
         
 
         try {
+            AppContext context = AppContext.getInstance();
             Message message = new MimeMessage(session);
             Multipart multipart = new MimeMultipart();
-            AppContext context = AppContext.getInstance();
             File file = new File(context.getAppRealPath() + File.separator + Constants.CLIENT_PAGE_PATH + "send-mail.jsp");
             BodyPart bodyPart = new MimeBodyPart();
             String htmlContent = FileUtil.readFileToString(file);

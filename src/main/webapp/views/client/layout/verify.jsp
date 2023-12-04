@@ -37,7 +37,7 @@
         <link rel="stylesheet" href="<c:url value='/static/css/base.css?v=${randomNumber}' />" />
         <link rel="stylesheet" href="<c:url value='/static/css/variables.css?v=${randomNumber}' />" />
 
-        <title>Verify</title>
+        <title>Xác thực Email</title>
     </head>
     <body>
         <jsp:include page="${contentPage}" />

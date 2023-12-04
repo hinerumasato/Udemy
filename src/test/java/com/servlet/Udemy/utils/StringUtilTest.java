@@ -4,15 +4,16 @@
  */
 package com.servlet.Udemy.utils;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  *
@@ -66,6 +67,20 @@ public class StringUtilTest {
         Map<String, String> map = Map.of("rememberToken", "123", "APP_URL", "app");
         String expResult = "<a href='/verify/email?remember_token=123'>app/verify/email?remember_token=123</a>";
         String result = StringUtil.replaceHTMLKeys(html, map);
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testRemoveAccents() {
+        String expResult = "Xin chao cac ban";
+        String result = StringUtil.removeAccents("Xin chào các bạn");
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testGenerateSlug() {
+        String expResult = "xin-chao-cac-ban";
+        String result = StringUtil.generateSlug("Xin chào các Bạn");
         assertEquals(expResult, result);
     }
     
