@@ -6,13 +6,7 @@ package com.servlet.Udemy.controllers.client;
 
 import java.io.IOException;
 import java.util.ArrayList;
-<<<<<<< HEAD
 import java.util.List;
-=======
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
->>>>>>> 742f9f4dd8f19d92a982784b3e7b58e40db2b677
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
