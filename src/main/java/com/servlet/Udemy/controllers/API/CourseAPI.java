@@ -11,11 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.servlet.Udemy.constants.Constants;
 import com.servlet.Udemy.models.CourseModel;
 import com.servlet.Udemy.models.ResponseModel;
 import com.servlet.Udemy.services.CourseService;
+import com.servlet.Udemy.utils.NumberUtil;
 
-@WebServlet(urlPatterns = {"/api/v1/courses/*", "/api/v1/courses"})
+@WebServlet(urlPatterns = { "/api/v1/courses/*", "/api/v1/courses" })
 public class CourseAPI extends HttpServlet {
 
     private CourseService courseService = new CourseService();
@@ -26,40 +28,69 @@ public class CourseAPI extends HttpServlet {
         ResponseModel responseModel = new ResponseModel();
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json");
-        if(pathInfo == null || pathInfo.equals("/")) {
+        if (pathInfo == null || pathInfo.equals("/")) {
             String levelIdStr = req.getParameter("level");
             String priceStr = req.getParameter("price");
-            String timeStr = req.getParameter("time");
+            // String timeStr = req.getParameter("time");
+            String pageStr = req.getParameter("page");
 
             Map<String, String> findMap = new HashMap<String, String>();
 
-            if(levelIdStr != null && !levelIdStr.equals("")) {
+            if (levelIdStr != null && !levelIdStr.equals("")) {
                 levelIdStr = levelIdStr.replaceAll("\\?", "level_id");
                 findMap.put("level_id", levelIdStr);
             }
-            if(priceStr != null && !priceStr.equals("")) {
+            if (priceStr != null && !priceStr.equals("")) {
                 priceStr = priceStr.replaceAll("\\?", "sale_price");
                 findMap.put("sale_price", priceStr);
             }
             // if(!timeStr.equals("")) {
-            //     timeStr = timeStr.replaceAll("\\?", "time");
-            //     findMap.put("time", timeStr);
+            // timeStr = timeStr.replaceAll("\\?", "time");
+            // findMap.put("time", timeStr);
             // }
 
-            if(findMap.size() == 0)
-                resp.getWriter().write(responseModel.response(200, "Find user successfully", courseService.findAll()));
-            else {
-                List<CourseModel> courses = courseService.findByMap(findMap);
-                if(courses == null)
-                    resp.getWriter().write(responseModel.response(404, "No user found !!!", null));
-                else resp.getWriter().write(responseModel.response(200, "Find user successfully", courses));
+            if (findMap.size() == 0) {
+                if (pageStr == null)
+                    resp.getWriter()
+                            .write(responseModel.response(200, "Find courses successfully", courseService.findAll()));
+                else {
+                    boolean canParse = NumberUtil.canParse(pageStr);
+                    if (canParse) {
+                        int page = Integer.parseInt(pageStr);
+                        List<CourseModel> courses = courseService.paginate(page, Constants.PAGE_LIMIT).findAll();
+                        if(courses == null)
+                            resp.getWriter().write(responseModel.response(404, "No courses found !!!", null));
+                        else {
+                            if(courses.size() == 0)
+                                resp.getWriter().write(responseModel.response(404, "No courses found !!!", null));
+                            else resp.getWriter().write(responseModel.response(200, "Find courses successfully", courses));
+                        }
+
+                    } else {
+                        resp.getWriter().write(responseModel.response(500, "Page parameter is not valid", null));
+                    }
+                }
+            } else {
+                List<CourseModel> courses = null;
+                if(pageStr != null) {
+                    boolean canParse = NumberUtil.canParse(pageStr);
+                    if(canParse) {
+                        int page = Integer.parseInt(pageStr);
+                        courses = courseService.paginate(page, Constants.PAGE_LIMIT).findByMap(findMap);
+                    } else resp.getWriter().write(responseModel.response(500, "Page parameter is not valid", null));
+                } else courses = courseService.findByMap(findMap);
+                if (courses == null)
+                    resp.getWriter().write(responseModel.response(404, "No courses found !!!", null));
+                else
+                    resp.getWriter().write(responseModel.response(200, "Find courses successfully", courses));
             }
         } else {
             String code = pathInfo.substring(1);
             List<CourseModel> courses = courseService.findByCategoryCode(code);
-            if(courses != null)
+            if (courses != null)
                 resp.getWriter().write(responseModel.response(200, "Find user by " + code + " successfully", courses));
-            else resp.getWriter().write(responseModel.response(404, "No user found !!!", null));
+            else
+                resp.getWriter().write(responseModel.response(404, "No courses found !!!", null));
         }
     }
 }

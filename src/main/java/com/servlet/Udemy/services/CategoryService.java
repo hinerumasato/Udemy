@@ -7,6 +7,7 @@ package com.servlet.Udemy.services;
 import com.servlet.Udemy.DAO.CategoryDAO;
 import com.servlet.Udemy.models.CategoryModel;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -50,5 +51,15 @@ public class CategoryService implements IService<CategoryModel> {
     public CategoryModel findFirst() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findFirst'");
+    }
+
+    @Override
+    public IService<CategoryModel> paginate(int page, int limit) {
+        return categoryDAO.paginate(this, page, limit);
+    }
+
+    @Override
+    public List<CategoryModel> findByMap(Map<String, String> findMap) {
+        return categoryDAO.findByMap(findMap);
     }
 }

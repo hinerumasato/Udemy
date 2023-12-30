@@ -51,4 +51,9 @@ public class CourseService implements IService<CourseModel> {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findFirst'");
     }
+
+    @Override
+    public IService<CourseModel> paginate(int page, int limit) {
+        return courseDAO.paginate(this, page, limit);
+    }
 }

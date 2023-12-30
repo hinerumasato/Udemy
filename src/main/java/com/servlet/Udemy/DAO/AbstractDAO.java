@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.servlet.Udemy.configs.Database;
+import com.servlet.Udemy.services.IService;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,17 +20,18 @@ public abstract class AbstractDAO<T> {
     protected Database database;
     protected Connection conn;
     protected String table;
+    protected String sqlOffset;
 
     public AbstractDAO(String table) {
         this.table = table;
+        this.sqlOffset = "";
     }
 
     public List<T> findAll() {
-        this.database = new Database();
-        conn = database.createConnection();
+        createConnection();
         List<T> result = new ArrayList<T>();
         try {
-            String sql = "SELECT * FROM " + getTable();
+            String sql = "SELECT * FROM " + getTable() + " " + sqlOffset;
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -40,6 +42,8 @@ public abstract class AbstractDAO<T> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        sqlOffset = "";
         return result.size() > 0 ? result : null;
     }
 
@@ -163,7 +167,7 @@ public abstract class AbstractDAO<T> {
         List<T> models = new ArrayList<>();
         createConnection();
         try {
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM " + getTable() + " WHERE " + field + "= ?");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM " + getTable() + " WHERE " + field + "= ? " + sqlOffset);
             stmt.setObject(1, value);
             ResultSet rs = stmt.executeQuery();
             while(rs.next()) models.add(mapResultSetToModel(rs));
@@ -171,6 +175,8 @@ public abstract class AbstractDAO<T> {
         } catch(SQLException e) {
             e.printStackTrace();
         }
+
+        sqlOffset = "";
 
         return models.size() > 0 ? models : null;
     }
@@ -185,7 +191,7 @@ public abstract class AbstractDAO<T> {
             }
             
             sql = sql.substring(0, sql.length() - 4);
-
+            sql += " " + sqlOffset;
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while(rs.next()) models.add(mapResultSetToModel(rs));
@@ -193,7 +199,15 @@ public abstract class AbstractDAO<T> {
         } catch(SQLException e) {
             e.printStackTrace();
         }
+
+        sqlOffset = "";
         return models.size() > 0 ? models : null;
+    }
+
+    public IService<T> paginate(IService<T> service, int page, int limit) {
+        int offset = (page - 1) * limit;
+        setSqlOffset("LIMIT " + limit + " OFFSET " + offset);
+        return service;
     }
 
     protected abstract T mapResultSetToModel(ResultSet rs) throws SQLException;

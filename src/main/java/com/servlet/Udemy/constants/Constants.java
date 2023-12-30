@@ -23,4 +23,7 @@ public class Constants {
     public static final String GOOGLE_GET_TOKEN_URL = "https://accounts.google.com/o/oauth2/token";
     public static final String GOOGLE_GET_USER_INFO_LINK = "https://www.googleapis.com/oauth2/v3/userinfo?access_token=";
     public static final String GOOGLE_GRANT_TYPE = "authorization_code";
+
+    // Pagination Constants
+    public static final int PAGE_LIMIT = 6;
 }

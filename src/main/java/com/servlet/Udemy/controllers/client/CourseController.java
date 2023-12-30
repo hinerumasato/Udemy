@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.servlet.Udemy.constants.Constants;
 import com.servlet.Udemy.models.CategoryModel;
 import com.servlet.Udemy.models.LevelModel;
 import com.servlet.Udemy.models.TeacherModel;
@@ -69,7 +70,7 @@ public class CourseController extends HttpServlet {
         page.setObject("title", "Khoá học");
         page.setObject("categories", categories);
         page.setObject("levels", levels);
-        page.setObject("courses", courseService.findAll());
+        page.setObject("courses", courseService.paginate(1, Constants.PAGE_LIMIT).findAll());
         page.setObject("levelMap", levelIDToModelMap);
         page.setObject("categoryMap", categoryIDToModelMap);
         page.setObject("teacherMap", teacherIDToModelMap);

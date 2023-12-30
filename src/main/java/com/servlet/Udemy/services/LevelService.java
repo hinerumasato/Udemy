@@ -1,6 +1,7 @@
 package com.servlet.Udemy.services;
 
 import java.util.List;
+import java.util.Map;
 
 import com.servlet.Udemy.DAO.LevelDAO;
 import com.servlet.Udemy.models.LevelModel;
@@ -43,5 +44,15 @@ public class LevelService implements IService<LevelModel> {
     public LevelModel findFirst() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findFirst'");
+    }
+
+    @Override
+    public IService<LevelModel> paginate(int page, int limit) {
+        return levelDAO.paginate(this, page, limit);
+    }
+
+    @Override
+    public List<LevelModel> findByMap(Map<String, String> findMap) {
+        return levelDAO.findByMap(findMap);
     }
 }

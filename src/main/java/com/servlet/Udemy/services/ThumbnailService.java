@@ -1,6 +1,7 @@
 package com.servlet.Udemy.services;
 
 import java.util.List;
+import java.util.Map;
 
 import com.servlet.Udemy.DAO.ThumbnailDAO;
 import com.servlet.Udemy.models.ThumbnailModel;
@@ -43,6 +44,16 @@ public class ThumbnailService implements IService<ThumbnailModel> {
     @Override
     public void delete(int id) {
         thumbnailDAO.delete(id);
+    }
+
+    @Override
+    public IService<ThumbnailModel> paginate(int page, int limit) {
+        return thumbnailDAO.paginate(this, page, limit);
+    }
+
+    @Override
+    public List<ThumbnailModel> findByMap(Map<String, String> findMap) {
+        return thumbnailDAO.findByMap(findMap);
     }
     
 }
