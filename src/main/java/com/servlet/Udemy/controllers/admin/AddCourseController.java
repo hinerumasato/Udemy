@@ -26,10 +26,10 @@ import com.servlet.Udemy.utils.StringUtil;
 
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/admin/product/add-product")
+@WebServlet("/admin/courses/add-course")
 @MultipartConfig(maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 10)
 
-public class AddProductController extends HttpServlet {
+public class AddCourseController extends HttpServlet {
 
     private CategoryService categoryService = new CategoryService();
     private LevelService levelService = new LevelService();
