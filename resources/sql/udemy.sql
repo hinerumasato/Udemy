@@ -59,6 +59,7 @@ CREATE TABLE `courses` (
   `sale_price` double DEFAULT '0',
   `description` text,
   `teacher_id` int NOT NULL,
+  `is_delete` tinyint(1) unsigned zerofill NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `fk_courses_categories_idx` (`category_id`),
   KEY `fk_courses_levels1_idx` (`level_id`),
@@ -73,7 +74,7 @@ CREATE TABLE `courses` (
 
 LOCK TABLES `courses` WRITE;
 /*!40000 ALTER TABLE `courses` DISABLE KEYS */;
-INSERT INTO `courses` VALUES (1,'Hướng dẫn sử dụng Illutrator cho người mới bắt đầu',7,1,1,0,1200000,700000,NULL,1),(2,'Học Adobe Illustrator từ cơ bản đến nâng cao',8,2,1,0,1200000,600000,NULL,1),(3,'Khóa học Digital Paiting cơ bản cho người mới bắt đầu',4,3,1,0,2000000,1200000,NULL,1),(4,'Tiếng Nhật cơ bản',1,3,1,1,3000000,2400000,NULL,1),(5,'Tiếng Nhật nâng cao',1,2,1,1,6000000,5500000,NULL,1),(6,'Khoá học TOEIC 450 điểm dành cho người mới bắt đầu',1,1,1,0,600000,300000,NULL,1),(47,'Khoá học lập trình web trên Udemy sử dụng Java Servlet',7,2,0,0,700000,400000,'<p>Đ&acirc;y l&agrave; m&ocirc; tả</p>',1),(48,'Khóa học nấu ăn Á Âu - Lớp dạy nấu ăn Cơ Bản',12,1,1,1,800000,400000,'<p>Đ&acirc;y l&agrave; m&ocirc; tả</p>',1),(49,'Khóa Học Đàn Piano - Dạy Chơi Piano Cho Người Mới Bắt Đầu',4,1,1,1,1300000,900000,'<p>Đ&acirc;y l&agrave; m&ocirc; tả</p>',1),(50,'Khoá học lập trình Laravel',7,2,1,1,1500000,1200000,'<p>Đ&acirc;y l&agrave; m&ocirc; tả</p>',1);
+INSERT INTO `courses` VALUES (1,'Hướng dẫn sử dụng Illutrator cho người mới bắt đầu',7,1,1,0,1200000,700000,NULL,1,0),(2,'Học Adobe Illustrator từ cơ bản đến nâng cao',8,2,1,0,1200000,600000,NULL,1,0),(3,'Khóa học Digital Paiting cơ bản cho người mới bắt đầu',4,3,1,0,2000000,1200000,NULL,1,0),(4,'Tiếng Nhật cơ bản',1,3,1,1,3000000,2400000,NULL,1,0),(5,'Tiếng Nhật nâng cao',1,2,1,1,6000000,5500000,NULL,1,0),(6,'Khoá học TOEIC 450 điểm dành cho người mới bắt đầu',1,1,1,0,600000,300000,NULL,1,0),(47,'Khoá học lập trình web trên Udemy sử dụng Java Servlet',7,2,0,0,700000,400000,'<p>Đ&acirc;y l&agrave; m&ocirc; tả</p>',1,0),(48,'Khóa học nấu ăn Á Âu - Lớp dạy nấu ăn Cơ Bản',12,1,1,1,800000,400000,'<p>Đ&acirc;y l&agrave; m&ocirc; tả</p>',1,0),(49,'Khóa Học Đàn Piano - Dạy Chơi Piano Cho Người Mới Bắt Đầu',4,1,1,1,1300000,900000,'<p>Đ&acirc;y l&agrave; m&ocirc; tả</p>',1,0),(50,'Khoá học lập trình Laravel',7,2,1,1,1500000,1200000,'<p>Đ&acirc;y l&agrave; m&ocirc; tả</p>',1,0);
 /*!40000 ALTER TABLE `courses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -196,7 +197,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
-  `password` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `password` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `first_name` varchar(255) NOT NULL,
@@ -206,7 +207,7 @@ CREATE TABLE `users` (
   `avatar` varchar(255) DEFAULT NULL,
   `email_verified` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -215,7 +216,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (65,'thangloitran406@gmail.com',NULL,NULL,NULL,'Trần','Thắng Lợi',NULL,'google','https://lh3.googleusercontent.com/a/ACg8ocLm9Btb9ZOrs-Ol2B2ZUtH7JaTLlaNMPLbIGQhVJJNeqw=s96-c',1),(66,'thangloitran406@gmail.com','$2a$10$DFAHG4Ky0rMi6DVEgkm0.uvWkoepExmySBd39xkRBHWk./tfgxwey',NULL,NULL,'Trần','Thắng Lợi','0879603547','normal',NULL,1),(67,'thangloitran0908@gmail.com',NULL,NULL,NULL,'Thang Loi','Tran',NULL,'facebook','https://scontent-hkg4-1.xx.fbcdn.net/v/t1.30497-1/84628273_176159830277856_972693363922829312_n.jpg?stp=c15.0.50.50a_cp0_dst-jpg_p50x50',1);
+INSERT INTO `users` VALUES (71,'thangloitran406@gmail.com','21ef487d28f42cafb042c7238aeffdeda10097fc99af808d248ddd306b1066e6',NULL,NULL,'Trần','Thắng Lợi','0879603547','normal',NULL,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -234,7 +235,7 @@ CREATE TABLE `verify_emails` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `verify_emails_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -255,4 +256,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-12-30 21:59:21
+-- Dump completed on 2024-01-02 19:14:16

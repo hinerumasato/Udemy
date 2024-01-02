@@ -45,7 +45,7 @@ public class UserService implements IService<UserModel> {
         List<UserModel> users = this.findAll();
         if(users == null) return null;
         for(UserModel user : users) {
-            if(user.getUsername().equals(username) && StringUtil.isBcryptEquals(password, user.getPassword()))
+            if(user.getUsername().equals(username) && StringUtil.isEncryptEquals(password, user.getPassword()))
                 return user;
         }
         return null;

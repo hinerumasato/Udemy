@@ -23,7 +23,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <a href="/admin/courses/add-course" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Thêm khoá học mới</span></a>
-                                <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Xoá</span></a>						
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Xoá</span></button>
                             </div>
                         </div>
                     </div>
@@ -58,15 +58,15 @@
                                     <td>${levelMap.get(course).getValue()}</td>
                                     <td style="text-align: right;" class="format-price">${course.getPrice()}</td>
                                     <td style="text-align: right;" class="format-price">${course.getSalePrice()}</td>
-                                    <td>
+                                    <td class="d-flex">
                                         <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                        <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                        <button course-id="${course.getId()}" type="button" data-bs-toggle="modal" data-bs-target="#deleteEmployeeModal" class="p-0 bg-transparent border-0"><i class="material-icons text-danger" data-toggle="tooltip" title="Delete">&#xE872;</i></button>
                                     </td>
                                 </tr>
                             </c:forEach> 
                         </tbody>
                     </table>
-                    <div class="clearfix">
+                    <!-- <div class="clearfix">
                         <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
                         <ul class="pagination">
                             <li class="page-item disabled"><a href="#">Previous</a></li>
@@ -77,7 +77,7 @@
                             <li class="page-item"><a href="#" class="page-link">5</a></li>
                             <li class="page-item"><a href="#" class="page-link">Next</a></li>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
             </div>        
         </div>
@@ -155,14 +155,15 @@
         <div id="deleteEmployeeModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form>
+                    <form id="softDeleteForm" method="POST" action="/admin/courses/soft-delete">
+                        <input type="hidden" name="_method" value="PUT">
                         <div class="modal-header">						
-                            <h4 class="modal-title">Delete Employee</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Xoá khoá học</h4>
+                            <button type="button" class="btn btn-sm btn-close" data-dismiss="modal" data-bs-target="#deleteEmployeeModal" aria-hidden="true"></button>
                         </div>
                         <div class="modal-body">					
-                            <p>Are you sure you want to delete these Records?</p>
-                            <p class="text-warning"><small>This action cannot be undone.</small></p>
+                            <p>Bạn có chắc chắn muốn xoá khoá học này</p>
+                            <p class="text-warning"><small>Hành động này không thể quay lại</small></p>
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">

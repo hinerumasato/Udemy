@@ -31,7 +31,7 @@ public class CourseController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Page page = new AdminPage(req, resp, "courses.jsp", "master.jsp");
 
-        List<CourseModel> courses = courseService.findAll();
+        List<CourseModel> courses = courseService.findAllActive();
         Map<CourseModel, CategoryModel> categoryMap = new HashMap<CourseModel, CategoryModel>();
         Map<CourseModel, LevelModel> levelMap = new HashMap<CourseModel, LevelModel>();
         for (CourseModel courseModel : courses) {

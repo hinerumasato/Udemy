@@ -19,6 +19,12 @@ public class RegisterController extends HttpServlet {
 
     private UserService userService = new UserService();
 
+    private UserModel createNewUser(String email, String password, String firstName, String lastName, String phone) {
+        //Hash password
+        String encryptPassword = StringUtil.encrypt(password);
+        return new UserModel(email, encryptPassword, firstName, lastName, phone, null, false, LoginType.NORMAL);
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
@@ -29,10 +35,7 @@ public class RegisterController extends HttpServlet {
         String lastName = req.getParameter("lastName").trim();
         String phone = req.getParameter("phone").trim();
 
-        //Hash password
-        String hashedPassword = StringUtil.bcrypt(password);
-
-        UserModel userModel = new UserModel(email, hashedPassword, firstName, lastName, phone, null, false, LoginType.NORMAL);
+        UserModel userModel = createNewUser(email, password, firstName, lastName, phone);
 
         if (userService.isValidUser(userModel)) {
             userService.insert(userModel);

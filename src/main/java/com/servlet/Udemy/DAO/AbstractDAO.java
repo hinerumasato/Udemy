@@ -27,6 +27,31 @@ public abstract class AbstractDAO<T> {
         this.sqlOffset = "";
     }
 
+    public List<T> query(String sql) {
+        createConnection();
+        List<T> result = new ArrayList<T>();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = conn.prepareStatement(sql + " " + sqlOffset);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                T model = mapResultSetToModel(rs);
+                result.add(model);
+            }
+            sqlOffset = "";
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                close(stmt, rs);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return result.size() > 0 ? result : null;
+    }
+
     public List<T> findAll() {
         createConnection();
         List<T> result = new ArrayList<T>();
@@ -151,16 +176,15 @@ public abstract class AbstractDAO<T> {
         this.conn = database.createConnection();
     }
 
+    public T findFirst() {
+        List<T> result = query("SELECT * FROM " + getTable() + " ORDER BY ID ASC LIMIT 1");
+        return result != null ? result.get(0) : null;
+
+    }
+
     public T findLast() {
-        createConnection();
-        try {
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM " + getTable() + " ORDER BY ID DESC LIMIT 1");
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) return mapResultSetToModel(rs);
-        } catch(SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
+        List<T> result = query("SELECT * FROM " + getTable() + " ORDER BY ID DESC LIMIT 1");
+        return result != null ? result.get(0) : null;
     }
 
     protected List<T> findBy(String field, Object value) {

@@ -14,6 +14,14 @@ public class CourseService implements IService<CourseModel> {
         return courseDAO.findAll();
     }
 
+    public List<CourseModel> findAllActive() {
+        return courseDAO.findAllActive();
+    }
+
+    public List<CourseModel> findAllDeleted() {
+        return courseDAO.findAllDeleted();
+    }
+
     @Override
     public CourseModel findById(int id) {
         return courseDAO.findById(id);
@@ -48,12 +56,19 @@ public class CourseService implements IService<CourseModel> {
 
     @Override
     public CourseModel findFirst() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findFirst'");
+        return courseDAO.findFirst();
     }
 
     @Override
     public IService<CourseModel> paginate(int page, int limit) {
         return courseDAO.paginate(this, page, limit);
+    }
+
+    public void softDelete(int id) {
+        courseDAO.softDelete(id);
+    }
+
+    public void restore(int id) {
+        courseDAO.restore(id);
     }
 }

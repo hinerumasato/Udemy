@@ -24,6 +24,10 @@ public class FileUtil {
         return null;
     }
 
+    public static String env(String key) {
+        return getAppProperties().getProperty(key);
+    }
+
     public static String readFileToString(File file) {
         try (FileInputStream fis = new FileInputStream(file)) {
             byte[] data = new byte[(int) file.length()];

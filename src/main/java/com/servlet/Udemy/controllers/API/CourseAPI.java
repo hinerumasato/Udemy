@@ -57,7 +57,8 @@ public class CourseAPI extends HttpServlet {
                     boolean canParse = NumberUtil.canParse(pageStr);
                     if (canParse) {
                         int page = Integer.parseInt(pageStr);
-                        List<CourseModel> courses = courseService.paginate(page, Constants.PAGE_LIMIT).findAll();
+                        CourseService courseServicePagination = (CourseService)courseService.paginate(page, Constants.PAGE_LIMIT);
+                        List<CourseModel> courses = courseServicePagination.findAllActive();
                         if(courses == null)
                             resp.getWriter().write(responseModel.response(404, "No courses found !!!", null));
                         else {
@@ -76,7 +77,8 @@ public class CourseAPI extends HttpServlet {
                     boolean canParse = NumberUtil.canParse(pageStr);
                     if(canParse) {
                         int page = Integer.parseInt(pageStr);
-                        courses = courseService.paginate(page, Constants.PAGE_LIMIT).findByMap(findMap);
+                        CourseService courseServicePagination = (CourseService)courseService.paginate(page, Constants.PAGE_LIMIT);
+                        courses = courseServicePagination.findByMap(findMap);
                     } else resp.getWriter().write(responseModel.response(500, "Page parameter is not valid", null));
                 } else courses = courseService.findByMap(findMap);
                 if (courses == null)

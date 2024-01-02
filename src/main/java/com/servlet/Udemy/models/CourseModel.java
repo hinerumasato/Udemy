@@ -32,6 +32,7 @@ public class CourseModel {
     private int levelId;
     private int categoryId;
     private int teacherId;
+    private boolean isDelete;
 
     private List<ThumbnailModel> thumbnails;
 }

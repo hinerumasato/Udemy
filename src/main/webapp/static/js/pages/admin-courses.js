@@ -20,4 +20,18 @@ $(document).ready(function(){
 			$("#selectAll").prop("checked", false);
 		}
 	});
+
+	$('button[data-bs-target="#deleteEmployeeModal"]').click(function() {
+		const id = this.getAttribute('course-id');
+		const softDeleteForm = document.getElementById('softDeleteForm');
+		let action = softDeleteForm.getAttribute('action');
+		const protocol = window.location.protocol;
+		const host = window.location.host;
+		const url = new URL(`${protocol}//${host}${action}`);
+		const params = new URLSearchParams(url.search);
+		params.set('id', id);
+		url.search = params.toString();
+		// softDeleteForm.method = 'PUT';
+		softDeleteForm.action = url.href;
+	});
 });
