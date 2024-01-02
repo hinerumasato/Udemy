@@ -1,6 +1,7 @@
 package com.servlet.Udemy.services;
 
 import java.util.List;
+import java.util.Map;
 
 import com.servlet.Udemy.DAO.VerifyEmailDAO;
 import com.servlet.Udemy.models.VerifyEmailModel;
@@ -51,6 +52,16 @@ public class VerifyEmailService implements IService<VerifyEmailModel> {
 
     public VerifyEmailModel findByRememberToken(String rememberToken) {
         return verifyEmailDAO.findByRememberToken(rememberToken);
+    }
+
+    @Override
+    public IService<VerifyEmailModel> paginate(int page, int limit) {
+        return verifyEmailDAO.paginate(this, page, limit);
+    }
+
+    @Override
+    public List<VerifyEmailModel> findByMap(Map<String, String> findMap) {
+        return verifyEmailDAO.findByMap(findMap);
     }
     
 }

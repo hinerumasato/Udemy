@@ -1,6 +1,7 @@
 package com.servlet.Udemy.services;
 
 import java.util.List;
+import java.util.Map;
 
 import com.servlet.Udemy.DAO.TeacherDAO;
 import com.servlet.Udemy.models.TeacherModel;
@@ -43,6 +44,16 @@ public class TeacherService implements IService<TeacherModel> {
     @Override
     public void delete(int id) {
         teacherDAO.delete(id);
+    }
+
+    @Override
+    public IService<TeacherModel> paginate(int page, int limit) {
+        return teacherDAO.paginate(this, page, limit);
+    }
+
+    @Override
+    public List<TeacherModel> findByMap(Map<String, String> findMap) {
+        return teacherDAO.findByMap(findMap);
     }
     
 }

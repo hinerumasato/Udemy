@@ -15,8 +15,7 @@ import com.servlet.Udemy.services.NewsService;
 
 @WebServlet("/news-item")
 public class NewItemController extends HttpServlet {
-    private NewsService newsService = new NewsService();
-
+    private NewsService newsService = new NewsService() ;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Page page = new ClientPage(req, resp, "news_item.jsp", "master.jsp");

@@ -180,7 +180,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 .course-item .course-backside {
     opacity: 0;
     position: absolute;
-    top: 30%;
+    top: 0;
     left: 0;
     display: block;
     width: 100%;
@@ -237,6 +237,38 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 .thumbnail-group i.fa-regular {
     font-size: 40px;
     color: #6E7891;
+}
+
+.custom-pagination {
+    margin-top: 60px;
+}
+
+.custom-pagination .custom-pagination-list {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 12px;
+}
+
+.custom-pagination .custom-pagination-item {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.custom-pagination .custom-pagination-item:hover {
+    background-color: var(--main-color);
+    color: white;
+}
+
+.custom-pagination .custom-pagination-item.active {
+    background-color: var(--main-color);
+    color: white;
 }
 
 @keyframes show {

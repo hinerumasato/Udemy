@@ -36,7 +36,7 @@ public class VerifyEmailController extends HttpServlet {
         page.render();
 
         VerifyEmailModel verifyEmailModel = new VerifyEmailModel();
-        verifyEmailModel.setRememberToken(StringUtil.bcrypt(Integer.toString(loginUser.getId())));
+        verifyEmailModel.setRememberToken(StringUtil.encrypt(Integer.toString(loginUser.getId())));
         verifyEmailModel.setUserId(loginUser.getId());
 
         if(verifyEmailService.findByUserId(loginUser.getId()) == null)

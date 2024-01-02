@@ -1,6 +1,7 @@
 package com.servlet.Udemy.services;
 
 import java.util.List;
+import java.util.Map;
 
 import com.servlet.Udemy.DAO.NewsDAO;
 import com.servlet.Udemy.models.NewsModel;
@@ -43,6 +44,16 @@ public class NewsService implements IService<NewsModel> {
     @Override
     public void delete(int id) {
         newsDAO.delete(id);
+    }
+
+    @Override
+    public List<NewsModel> findByMap(Map<String, String> findMap) {
+        return newsDAO.findByMap(findMap);
+    }
+
+    @Override
+    public IService<NewsModel> paginate(int page, int limit) {
+        return newsDAO.paginate(this, page, limit);
     }
 
 }

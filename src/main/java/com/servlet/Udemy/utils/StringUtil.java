@@ -1,16 +1,36 @@
 package com.servlet.Udemy.utils;
 
+import java.security.MessageDigest;
 import java.text.Normalizer;
 import java.util.Map;
 import java.util.Properties;
 
-import org.mindrot.jbcrypt.BCrypt;
-
 import com.servlet.Udemy.constants.Constants;
 
 public class StringUtil {
-    public static String bcrypt(String str) {
-        return BCrypt.hashpw(str, BCrypt.gensalt());
+    public static String encrypt(String str) {
+        String secret = FileUtil.env("AUTH_SECRET_KEY");
+        String needEncrypt = str + secret;
+        String result = "";
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] needEncryptBytes = needEncrypt.getBytes();
+            byte[] encryptedBytes = digest.digest(needEncryptBytes);
+
+            // Chuyển đổi mảng byte thành chuỗi Hex
+            StringBuilder hexString = new StringBuilder(2 * encryptedBytes.length);
+            for (byte b : encryptedBytes) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
+                hexString.append(hex);
+            }
+            result = hexString.toString();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     public static String getGoogleAuthLink() {
@@ -26,8 +46,9 @@ public class StringUtil {
         return finalLink;
     }
 
-    public static boolean isBcryptEquals(String str, String hashed) {
-        return BCrypt.checkpw(str, hashed);
+    public static boolean isEncryptEquals(String str, String hashed) {
+        String compare = encrypt(str);
+        return compare.equals(hashed);
     }
 
     public static String htmlEscape(String input) {

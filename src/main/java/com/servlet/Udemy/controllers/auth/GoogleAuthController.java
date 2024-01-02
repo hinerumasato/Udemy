@@ -51,6 +51,7 @@ public class GoogleAuthController extends HttpServlet {
         GoogleTokenResponseModel model = new Gson().fromJson(response, GoogleTokenResponseModel.class);
         return model.getAccessToken();
     }
+    
 
     private String getUserInfo(String accessToken) throws ClientProtocolException, IOException {
         String link = Constants.GOOGLE_GET_USER_INFO_LINK + accessToken;
@@ -63,6 +64,7 @@ public class GoogleAuthController extends HttpServlet {
         return model;
     }
 
+    
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

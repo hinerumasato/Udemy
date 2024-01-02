@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.servlet.Udemy.configs.Database;
+import com.servlet.Udemy.services.IService;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,17 +20,43 @@ public abstract class AbstractDAO<T> {
     protected Database database;
     protected Connection conn;
     protected String table;
+    protected String sqlOffset;
 
     public AbstractDAO(String table) {
         this.table = table;
+        this.sqlOffset = "";
+    }
+
+    public List<T> query(String sql) {
+        createConnection();
+        List<T> result = new ArrayList<T>();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = conn.prepareStatement(sql + " " + sqlOffset);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                T model = mapResultSetToModel(rs);
+                result.add(model);
+            }
+            sqlOffset = "";
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                close(stmt, rs);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return result.size() > 0 ? result : null;
     }
 
     public List<T> findAll() {
-        this.database = new Database();
-        conn = database.createConnection();
+        createConnection();
         List<T> result = new ArrayList<T>();
         try {
-            String sql = "SELECT * FROM " + getTable();
+            String sql = "SELECT * FROM " + getTable() + " " + sqlOffset;
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -40,6 +67,8 @@ public abstract class AbstractDAO<T> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        sqlOffset = "";
         return result.size() > 0 ? result : null;
     }
 
@@ -147,23 +176,22 @@ public abstract class AbstractDAO<T> {
         this.conn = database.createConnection();
     }
 
+    public T findFirst() {
+        List<T> result = query("SELECT * FROM " + getTable() + " ORDER BY ID ASC LIMIT 1");
+        return result != null ? result.get(0) : null;
+
+    }
+
     public T findLast() {
-        createConnection();
-        try {
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM " + getTable() + " ORDER BY ID DESC LIMIT 1");
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) return mapResultSetToModel(rs);
-        } catch(SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
+        List<T> result = query("SELECT * FROM " + getTable() + " ORDER BY ID DESC LIMIT 1");
+        return result != null ? result.get(0) : null;
     }
 
     protected List<T> findBy(String field, Object value) {
         List<T> models = new ArrayList<>();
         createConnection();
         try {
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM " + getTable() + " WHERE " + field + "= ?");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM " + getTable() + " WHERE " + field + "= ? " + sqlOffset);
             stmt.setObject(1, value);
             ResultSet rs = stmt.executeQuery();
             while(rs.next()) models.add(mapResultSetToModel(rs));
@@ -171,6 +199,8 @@ public abstract class AbstractDAO<T> {
         } catch(SQLException e) {
             e.printStackTrace();
         }
+
+        sqlOffset = "";
 
         return models.size() > 0 ? models : null;
     }
@@ -185,7 +215,7 @@ public abstract class AbstractDAO<T> {
             }
             
             sql = sql.substring(0, sql.length() - 4);
-
+            sql += " " + sqlOffset;
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while(rs.next()) models.add(mapResultSetToModel(rs));
@@ -193,7 +223,15 @@ public abstract class AbstractDAO<T> {
         } catch(SQLException e) {
             e.printStackTrace();
         }
+
+        sqlOffset = "";
         return models.size() > 0 ? models : null;
+    }
+
+    public IService<T> paginate(IService<T> service, int page, int limit) {
+        int offset = (page - 1) * limit;
+        setSqlOffset("LIMIT " + limit + " OFFSET " + offset);
+        return service;
     }
 
     protected abstract T mapResultSetToModel(ResultSet rs) throws SQLException;

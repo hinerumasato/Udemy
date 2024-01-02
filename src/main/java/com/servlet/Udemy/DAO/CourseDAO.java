@@ -1,5 +1,6 @@
 package com.servlet.Udemy.DAO;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -46,10 +47,11 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
         int levelId = rs.getInt("level_id");
         int categoryId = rs.getInt("category_id");
         int teacherId = rs.getInt("teacher_id");
+        boolean isDelete = rs.getBoolean("is_delete");
 
         List<ThumbnailModel> thumbnails = this.getThumbnails(id);
         return new CourseModel(id, name, description, isNewCourse, isPopularCourse, price, salePrice, levelId,
-                categoryId, teacherId,
+                categoryId, teacherId, isDelete,
                 thumbnails);
     }
 
@@ -66,8 +68,55 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
         map.put("level_id", model.getLevelId());
         map.put("category_id", model.getCategoryId());
         map.put("teacher_id", model.getTeacherId());
+        map.put("is_delete", model.isDelete());
 
         return map;
+    }
+
+    public void softDelete(int id) {
+        PreparedStatement stmt = null;
+        try {
+            createConnection();
+            String sql = "UPDATE " + getTable() + " SET is_delete = 1 WHERE ID = ?";
+            stmt = conn.prepareStatement(sql);
+            stmt.setObject(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                close(stmt, null);
+            } catch(SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void restore(int id) {
+        PreparedStatement stmt = null;
+        try {
+            createConnection();
+            String sql = "UPDATE " + getTable() + " SET is_delete = 0 WHERE ID = ?";
+            stmt = conn.prepareStatement(sql);
+            stmt.setObject(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                close(stmt, null);
+            } catch(SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public List<CourseModel> findAllActive() {
+        return query("SELECT * FROM " + getTable() + " WHERE is_delete = 0");
+    }
+
+    public List<CourseModel> findAllDeleted() {
+        return query("SELECT * FROM " + getTable() + " WHERE is_delete = 1");
     }
 
 }

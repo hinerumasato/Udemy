@@ -1,6 +1,7 @@
 package com.servlet.Udemy.services;
 
 import java.util.List;
+import java.util.Map;
 
 import com.servlet.Udemy.DAO.UserDAO;
 import com.servlet.Udemy.models.UserModel;
@@ -44,7 +45,7 @@ public class UserService implements IService<UserModel> {
         List<UserModel> users = this.findAll();
         if(users == null) return null;
         for(UserModel user : users) {
-            if(user.getUsername().equals(username) && StringUtil.isBcryptEquals(password, user.getPassword()))
+            if(user.getUsername().equals(username) && StringUtil.isEncryptEquals(password, user.getPassword()))
                 return user;
         }
         return null;
@@ -74,5 +75,15 @@ public class UserService implements IService<UserModel> {
     public UserModel findFirst() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findFirst'");
+    }
+
+    @Override
+    public IService<UserModel> paginate(int page, int limit) {
+        return userDAO.paginate(this, page, limit);
+    }
+
+    @Override
+    public List<UserModel> findByMap(Map<String, String> findMap) {
+        return userDAO.findByMap(findMap);
     }
 }

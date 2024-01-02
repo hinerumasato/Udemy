@@ -1,7 +1,7 @@
 import { getById } from "../services/categoryService.js";
 import { getById as getByIdLevel } from "../services/levelService.js";
 import { getByTeacherId } from "../services/teacherService.js";
-import { COURSE_API_URL } from "../services/courseService.js";
+import { COURSE_API_URL, getCourses } from "../services/courseService.js";
 
 
 (function () {
@@ -21,7 +21,16 @@ import { COURSE_API_URL } from "../services/courseService.js";
     }
     toggleCollapseIcon();
 
-    const renderCourseItem = async function (url) {
+    const getTotalCourses = async (url) => {
+        const response = await fetch(url);
+        const json = await response.json();
+        if (json.statusCode === 404)
+            return 0;
+        return json.data.length;
+    }
+
+    const renderCourseItem = async function (url, page) {
+        url += `&page=${page}`;
         const response = await fetch(url);
         const obj = await response.json();
         if (obj.statusCode === 200) {
@@ -30,7 +39,6 @@ import { COURSE_API_URL } from "../services/courseService.js";
                 const categoryObj = await getById(course.categoryId);
                 const levelObj = await getByIdLevel(course.levelId);
                 const teacherObj = await getByTeacherId(course.teacherId);
-                console.log(course.teacherId);
                 const category = categoryObj.data;
                 const level = levelObj.data;
                 const teacher = teacherObj.data;
@@ -125,6 +133,29 @@ import { COURSE_API_URL } from "../services/courseService.js";
         }
     }
 
+    const switchPageHandler = function (url, paginationObj) {
+        const pageItems = document.querySelectorAll('.custom-pagination-item');
+        pageItems.forEach(item => {
+            item.onclick = async () => {
+                const page = item.getAttribute('page');
+                const list = item.parentNode;
+                const oldActiveItem = list.querySelector('.active');
+                oldActiveItem.classList.remove('active');
+                item.classList.add('active');
+
+                paginationObj.activePage = page;
+                await renderCourseItem(url, page);
+
+                const elementScrollTo = document.querySelector('.course_container');
+                elementScrollTo.scrollIntoView({
+                    block: "start",
+                    behavior: "smooth",
+                });
+            }
+
+        });
+    }
+
     const filterHandler = async function () {
         const checkboxs = document.querySelectorAll(`input[type="checkbox"]`);
         const checkboxsArray = Array.from(checkboxs);
@@ -187,10 +218,34 @@ import { COURSE_API_URL } from "../services/courseService.js";
                         break;
                 }
                 const url = COURSE_API_URL + `/?level=${level}&price=${price}&time=${time}`;
-                await renderCourseItem(url);
+                const elements = await getTotalCourses(url);
+                const paginationObj = pagination({
+                    selector: '.custom-pagination',
+                    elements: elements,
+                    limit: 6
+                });
+
+                paginationObj.render();
+                const activePage = paginationObj.activePage;
+                await renderCourseItem(url, activePage);
+                switchPageHandler(url, paginationObj);
             }
         })
 
     }
     filterHandler();
+
+    const getFirstPagination = async function () {
+        const paginationObj = pagination({
+            selector: '.custom-pagination',
+            elements: await getTotalCourses(COURSE_API_URL),
+            limit: 6
+        });
+
+        paginationObj.render();
+        switchPageHandler(COURSE_API_URL + `?q=`, paginationObj);
+    }
+
+    getFirstPagination();
+
 })();

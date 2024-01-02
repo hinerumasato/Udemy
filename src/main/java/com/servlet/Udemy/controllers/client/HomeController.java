@@ -41,7 +41,7 @@ public class HomeController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Page page = new ClientPage(req, resp, "home.jsp", "master.jsp");
-        List<CourseModel> courses = courseService.findAll();
+        List<CourseModel> courses = courseService.findAllActive();
         List<TeacherModel> teachers = new ArrayList<TeacherModel>();
         List<LevelModel> levels  = new ArrayList<LevelModel>();
         List<CategoryModel> courseCategories = new ArrayList<CategoryModel>();

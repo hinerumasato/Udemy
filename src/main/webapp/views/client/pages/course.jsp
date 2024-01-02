@@ -111,6 +111,9 @@
                     </div>
                 </c:forEach>
             </div>
+
+            <div class="custom-pagination"></div>
+
         </div>
     </div>
 </div>
