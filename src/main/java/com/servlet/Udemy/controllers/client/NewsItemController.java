@@ -14,7 +14,7 @@ import com.servlet.Udemy.page.Page;
 import com.servlet.Udemy.services.NewsService;
 
 @WebServlet("/news-item")
-public class NewItemController extends HttpServlet {
+public class NewsItemController extends HttpServlet {
     private NewsService newsService = new NewsService() ;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
