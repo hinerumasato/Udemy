@@ -44,5 +44,7 @@ public class CourseController extends HttpServlet {
         page.setObject("categoryMap", categoryMap);
         page.setObject("levelMap", levelMap);
         page.render();
+
+        req.getSession().removeAttribute("updateProductMessage");
     }
 }

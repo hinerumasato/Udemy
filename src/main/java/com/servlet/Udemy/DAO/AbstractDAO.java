@@ -163,6 +163,17 @@ public abstract class AbstractDAO<T> {
         }
     }
 
+    public void delete(String sql) {
+        createConnection();
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.executeUpdate();
+            close(stmt, null);
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     protected void close(PreparedStatement stmt, ResultSet rs) throws SQLException {
         if (rs != null)
             rs.close();

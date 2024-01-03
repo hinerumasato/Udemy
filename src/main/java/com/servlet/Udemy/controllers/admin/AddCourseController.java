@@ -96,6 +96,6 @@ public class AddCourseController extends HttpServlet {
 
         req.getSession().setAttribute("addProductMessage",
                 SuccessMessage.ADD_NEW_COURSE_SUCCESS);
-        resp.sendRedirect("/admin/product/add-product");
+        resp.sendRedirect("/admin/courses/add-course");
     }
 }

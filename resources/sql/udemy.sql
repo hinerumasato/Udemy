@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
 -- Host: localhost    Database: udemy
 -- ------------------------------------------------------
--- Server version	8.0.35
+-- Server version	8.0.31
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -65,7 +65,7 @@ CREATE TABLE `courses` (
   KEY `fk_courses_levels1_idx` (`level_id`),
   CONSTRAINT `fk_courses_categories` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
   CONSTRAINT `fk_courses_levels1` FOREIGN KEY (`level_id`) REFERENCES `levels` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +74,7 @@ CREATE TABLE `courses` (
 
 LOCK TABLES `courses` WRITE;
 /*!40000 ALTER TABLE `courses` DISABLE KEYS */;
-INSERT INTO `courses` VALUES (1,'Hướng dẫn sử dụng Illutrator cho người mới bắt đầu',7,1,1,0,1200000,700000,NULL,1,0),(2,'Học Adobe Illustrator từ cơ bản đến nâng cao',8,2,1,0,1200000,600000,NULL,1,0),(3,'Khóa học Digital Paiting cơ bản cho người mới bắt đầu',4,3,1,0,2000000,1200000,NULL,1,0),(4,'Tiếng Nhật cơ bản',1,3,1,1,3000000,2400000,NULL,1,0),(5,'Tiếng Nhật nâng cao',1,2,1,1,6000000,5500000,NULL,1,0),(6,'Khoá học TOEIC 450 điểm dành cho người mới bắt đầu',1,1,1,0,600000,300000,NULL,1,0),(47,'Khoá học lập trình web trên Udemy sử dụng Java Servlet',7,2,0,0,700000,400000,'<p>Đ&acirc;y l&agrave; m&ocirc; tả</p>',1,0),(48,'Khóa học nấu ăn Á Âu - Lớp dạy nấu ăn Cơ Bản',12,1,1,1,800000,400000,'<p>Đ&acirc;y l&agrave; m&ocirc; tả</p>',1,0),(49,'Khóa Học Đàn Piano - Dạy Chơi Piano Cho Người Mới Bắt Đầu',4,1,1,1,1300000,900000,'<p>Đ&acirc;y l&agrave; m&ocirc; tả</p>',1,0),(50,'Khoá học lập trình Laravel',7,2,1,1,1500000,1200000,'<p>Đ&acirc;y l&agrave; m&ocirc; tả</p>',1,0);
+INSERT INTO `courses` VALUES (1,'Hướng dẫn sử dụng Illutrator cho người mới bắt đầu',7,1,1,0,1200000,700000,NULL,1,0),(2,'Học Adobe Illustrator từ cơ bản đến nâng cao',8,2,1,0,1200000,600000,NULL,1,0),(3,'Khóa học Digital Paiting cơ bản cho người mới bắt đầu',4,3,1,0,2000000,1200000,NULL,1,0),(4,'Tiếng Nhật cơ bản',1,3,1,1,3000000,2400000,NULL,1,0),(5,'Tiếng Nhật nâng cao',1,2,1,1,6000000,5500000,NULL,1,0),(6,'Khoá học TOEIC 450 điểm dành cho người mới bắt đầu',1,1,1,0,600000,300000,NULL,1,0),(47,'Khoá học lập trình web trên Udemy sử dụng Java Servlet',7,2,0,0,700000,400000,'<p>Đ&acirc;y l&agrave; m&ocirc; tả</p>',1,0),(48,'Khóa học nấu ăn Á Âu - Lớp dạy nấu ăn Cơ Bản',12,1,1,1,800000,400000,'<p>Đ&acirc;y l&agrave; m&ocirc; tả</p>',1,0),(49,'Khóa Học Đàn Piano - Dạy Chơi Piano Cho Người Mới Bắt Đầu',4,1,1,1,1300000,900000,'<p>Đ&acirc;y l&agrave; m&ocirc; tả</p>',1,0),(50,'Khoá học lập trình Laravel',7,2,1,1,1500000,1200000,'<p>Đ&acirc;y l&agrave; m&ocirc; tả</p>',1,0),(51,'Khoá học Marketing căn bản',9,1,1,1,200000,80000,'<p>Đ&acirc;y l&agrave; m&ocirc; tả</p>',2,0),(52,'Cách lên ý tưởng thiết kế logo chuyên nghiệp',5,2,1,1,500000,300000,'<p>Đ&acirc;y l&agrave; m&ocirc; tả</p>',3,0),(53,'Khoá học thiết kế đồ hoạ chuyên nghiệp',5,2,1,1,2000000,1800000,'<p>Đ&acirc;y l&agrave; m&ocirc; tả</p>',3,1);
 /*!40000 ALTER TABLE `courses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,14 +140,14 @@ DROP TABLE IF EXISTS `teachers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `teachers` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `avatar` varchar(255) DEFAULT NULL,
   `category_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`),
   CONSTRAINT `teachers_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -156,7 +156,7 @@ CREATE TABLE `teachers` (
 
 LOCK TABLES `teachers` WRITE;
 /*!40000 ALTER TABLE `teachers` DISABLE KEYS */;
-INSERT INTO `teachers` VALUES (1,'Lê Phi Hùng',NULL,10);
+INSERT INTO `teachers` VALUES (1,'Lê Phi Hùng',NULL,10),(2,'Huỳnh Ngọc Thanh','/static/imgs/teachers/teacher_1.webp',1),(3,'Nguyễn Quang Duy','/static/imgs/teachers/3.webp',5);
 /*!40000 ALTER TABLE `teachers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,7 +174,7 @@ CREATE TABLE `thumbnails` (
   PRIMARY KEY (`id`),
   KEY `fk_thumbnails_courses1_idx` (`course_id`),
   CONSTRAINT `fk_thumbnails_courses1` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=511 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=553 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -183,7 +183,7 @@ CREATE TABLE `thumbnails` (
 
 LOCK TABLES `thumbnails` WRITE;
 /*!40000 ALTER TABLE `thumbnails` DISABLE KEYS */;
-INSERT INTO `thumbnails` VALUES (1,'/static/imgs/courses/course_1.webp',1),(2,'/static/imgs/courses/course_2.webp',2),(3,'/static/imgs/courses/course_3.webp',3),(4,'/static/imgs/courses/course_5.png',4),(5,'/static/imgs/courses/course_6.jepg',5),(6,'/static/imgs/courses/course_7.png',6),(507,'/static/imgs/courses/R.jpg',47),(508,'/static/imgs/courses/R (1).jpg',48),(509,'/static/imgs/courses/OIP.jpg',49),(510,'/static/imgs/courses/OIP (1).jpg',50);
+INSERT INTO `thumbnails` VALUES (1,'/static/imgs/courses/course_1.webp',1),(2,'/static/imgs/courses/course_2.webp',2),(3,'/static/imgs/courses/course_3.webp',3),(4,'/static/imgs/courses/course_5.png',4),(5,'/static/imgs/courses/course_6.jepg',5),(6,'/static/imgs/courses/course_7.png',6),(507,'/static/imgs/courses/R.jpg',47),(508,'/static/imgs/courses/R (1).jpg',48),(509,'/static/imgs/courses/OIP.jpg',49),(510,'/static/imgs/courses/OIP (1).jpg',50),(511,'/static/imgs/courses/maxresdefault.jpg',51),(512,'/static/imgs/courses/2-82303690-dab8-4e62-9fac-dc368103d37d.webp',52),(552,'/static/imgs/courses/2-82303690-dab8-4e62-9fac-dc368103d37d.webp',53);
 /*!40000 ALTER TABLE `thumbnails` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -256,4 +256,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-02 19:14:16
+-- Dump completed on 2024-01-03 15:36:45

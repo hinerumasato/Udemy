@@ -13,6 +13,12 @@
         <link rel="stylesheet" href="<c:url value='/static/css/admin/courses.css' />">
     </head>
     <body>
+        <c:if test="${not empty sessionScope.addProductMessage}">
+            <div class="alert alert-success alert-dismissible fade show mt-3">
+                <strong>${sessionScope.addProductMessage}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </c:if>
         <div class="container-xl">
             <div class="table-responsive">
                 <div class="table-wrapper">
@@ -53,13 +59,13 @@
                                             <label for="checkbox1"></label>
                                         </span>
                                     </td>
-                                    <td>${course.getName()}</td>
+                                    <td><a href="/admin/courses/update?id=${course.getId()}">${course.getName()}</a></td>
                                     <td>${categoryMap.get(course).getName()}</td>
                                     <td>${levelMap.get(course).getValue()}</td>
                                     <td style="text-align: right;" class="format-price">${course.getPrice()}</td>
                                     <td style="text-align: right;" class="format-price">${course.getSalePrice()}</td>
                                     <td class="d-flex">
-                                        <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                        <a href="/admin/courses/update?id=${course.getId()}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                         <button course-id="${course.getId()}" type="button" data-bs-toggle="modal" data-bs-target="#deleteEmployeeModal" class="p-0 bg-transparent border-0"><i class="material-icons text-danger" data-toggle="tooltip" title="Delete">&#xE872;</i></button>
                                     </td>
                                 </tr>
