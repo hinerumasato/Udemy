@@ -1,5 +1,15 @@
+<%-- 
+    Document   : course-trash.jsp
+    Created on : Jan 6, 2024, 3:03:54 PM
+    Author     : thang
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/common/includes.jsp" %>
+
+<head>
+    <link rel="stylesheet" href="<c:url value='/static/css/admin/courses.css' />">
+</head>
 
 <div class="container-xl">
     <div class="table-responsive">
@@ -45,9 +55,9 @@
                             <td>${levelMap.get(course).getValue()}</td>
                             <td style="text-align: right;" class="format-price">${course.getPrice()}</td>
                             <td style="text-align: right;" class="format-price">${course.getSalePrice()}</td>
-                            <td class="d-flex">
-                                <a href="/admin/courses/update?id=${course.getId()}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                <button course-id="${course.getId()}" type="button" data-bs-toggle="modal" data-bs-target="#deleteEmployeeModal" class="p-0 bg-transparent border-0"><i class="material-icons text-danger" data-toggle="tooltip" title="Delete">&#xE872;</i></button>
+                            <td class="d-flex align-items-center">
+                                <button course-id="${course.getId()}" type="button" data-bs-toggle="modal" data-bs-target="#restoreCourseModal" class="p-0 bg-transparent border-0"><i class="material-icons text-info" data-toggle="tooltip" title="Delete"><i style="font-size: 14px;" class="fa-solid fa-window-restore"></i></i></button>
+                                <button course-id="${course.getId()}" type="button" data-bs-toggle="modal" data-bs-target="#deleteEmployeeModal" class="p-0 bg-transparent border-0"><i class="material-icons text-danger" data-toggle="tooltip" title="Delete"><i style="font-size: 14px;" class="fa-solid fa-trash"></i></i></button>
                             </td>
                         </tr>
                     </c:forEach> 
