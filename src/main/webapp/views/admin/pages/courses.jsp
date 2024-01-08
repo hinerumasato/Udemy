@@ -13,9 +13,9 @@
         <link rel="stylesheet" href="<c:url value='/static/css/admin/courses.css' />">
     </head>
     <body>
-        <c:if test="${not empty sessionScope.addProductMessage}">
+        <c:if test="${not empty sessionScope.updateProductMessage}">
             <div class="alert alert-success alert-dismissible fade show mt-3">
-                <strong>${sessionScope.addProductMessage}</strong>
+                <strong>${sessionScope.updateProductMessage}</strong>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         </c:if>
