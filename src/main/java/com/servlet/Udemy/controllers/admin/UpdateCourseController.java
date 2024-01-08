@@ -133,6 +133,7 @@ public class UpdateCourseController extends HttpServlet {
         course.setTeacherId(teacherId);
         course.setNewCourse(isNewCourse);
         course.setPopularCourse(isPopularCourse);
+        course.setSlug(StringUtil.generateSlug(course.getName()));
 
         courseService.update(course);
 

@@ -77,6 +77,7 @@ public class AddCourseController extends HttpServlet {
         courseModel.setCategoryId(categoryId);
         courseModel.setLevelId(levelId);
         courseModel.setTeacherId(teacherId);
+        courseModel.setSlug(courseModel.getName());
 
         courseService.insert(courseModel);
         CourseModel course = courseService.findLast();

@@ -83,7 +83,7 @@
                         <h4 class="fw-bold">Bạn đã hoàn thành?</h4>
                         <div class="d-flex gap-2">
                             <button class="btn btn-outline-secondary">Huỷ</button>
-                            <button type="submit" class="btn btn-primary">Đăng khoá học</button>
+                            <button type="submit" class="btn btn-primary">Cập nhật khoá học</button>
                         </div>
                     </div>
                 </div>

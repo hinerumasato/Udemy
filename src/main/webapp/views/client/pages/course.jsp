@@ -35,7 +35,7 @@
                 <c:forEach items="${courses}" var="course" varStatus="status">
                     <div class="col">
                         <div class="course-item">
-                            <a href="">
+                            <a href="/courses/details/${course.getSlug()}">
                                 <div class="course-item-thumbnail">
                                     <img class="w-100" src="<c:url value='${course.getThumbnails().get(0).getImg()}' />"
                                         alt="">

@@ -48,10 +48,11 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
         int categoryId = rs.getInt("category_id");
         int teacherId = rs.getInt("teacher_id");
         boolean isDelete = rs.getBoolean("is_delete");
+        String slug = rs.getString("slug");
 
         List<ThumbnailModel> thumbnails = this.getThumbnails(id);
         return new CourseModel(id, name, description, isNewCourse, isPopularCourse, price, salePrice, levelId,
-                categoryId, teacherId, isDelete,
+                categoryId, teacherId, isDelete, slug,
                 thumbnails);
     }
 
@@ -69,6 +70,7 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
         map.put("category_id", model.getCategoryId());
         map.put("teacher_id", model.getTeacherId());
         map.put("is_delete", model.isDelete());
+        map.put("slug", model.getSlug());
 
         return map;
     }
@@ -117,6 +119,13 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
 
     public List<CourseModel> findAllDeleted() {
         return query("SELECT * FROM " + getTable() + " WHERE is_delete = 1");
+    }
+
+    public CourseModel findBySlug(String slug) {
+        List<CourseModel> courses = findBy("slug", slug);
+        if(courses != null && courses.size() > 0) {
+            return courses.get(0);
+        } else return null;
     }
 
 }

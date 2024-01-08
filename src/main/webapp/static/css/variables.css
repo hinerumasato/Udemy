@@ -37,7 +37,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 .bg-main {
-    background-color: var(--main-color) !important;
+    color: white;
+    background-color: #00BC86;
+}
+
+.bg-main-light {
+    color: #00BC86;
+    background-color: #C5FAEB;
+}
+
+.fit {
+    width: fit-content;
 }
 
 .no-border-outline {
@@ -53,6 +63,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 .btn-main {
     color: var(--main-color) !important;
     background: #C7F0E4;
+}
+
+.btn-second {
+    color: #000;
+    background-color: #F3F4FD;
+    cursor: pointer;
+    transition: all .3s;
+    border: none;
+    outline: none;
+}
+
+.btn-second:hover {
+    background-color: #00BC86;
+    color: #FFF;
 }
 
 .btn-main-auth {

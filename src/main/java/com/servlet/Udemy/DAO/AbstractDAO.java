@@ -55,17 +55,24 @@ public abstract class AbstractDAO<T> {
     public List<T> findAll() {
         createConnection();
         List<T> result = new ArrayList<T>();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
         try {
             String sql = "SELECT * FROM " + getTable() + " " + sqlOffset;
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
+            stmt = conn.prepareStatement(sql);
+            rs = stmt.executeQuery();
             while (rs.next()) {
                 result.add(mapResultSetToModel(rs));
             }
 
-            close(stmt, rs);
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                close(stmt, rs);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         sqlOffset = "";
@@ -73,21 +80,30 @@ public abstract class AbstractDAO<T> {
     }
 
     public T findById(int id) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        T model = null;
         try {
             createConnection();
             String sql = "SELECT * FROM " + getTable() + " WHERE ID = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
+            rs = stmt.executeQuery();
             while (rs.next()) {
-                return mapResultSetToModel(rs);
+                model = mapResultSetToModel(rs);
             }
-
             close(stmt, rs);
+
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                close(stmt, rs);
+            } catch(SQLException e) {
+                e.printStackTrace();
+            }
         }
-        return null;
+        return model;
     }
 
     public void insert(T model) {
@@ -109,16 +125,22 @@ public abstract class AbstractDAO<T> {
             sql += "?, ";
         }
 
+        PreparedStatement stmt = null;
         sql = sql.substring(0, sql.length() - 2) + ")";
         try {
-            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt = conn.prepareStatement(sql);
             for (int i = 0; i < columns.size(); i++) {
                 stmt.setObject(i + 1, values.get(columns.get(i)));
             }
             stmt.executeUpdate();
-            close(stmt, null);
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                close(stmt, null);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 

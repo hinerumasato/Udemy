@@ -71,4 +71,8 @@ public class CourseService implements IService<CourseModel> {
     public void restore(int id) {
         courseDAO.restore(id);
     }
+
+    public CourseModel findBySlug(String slug) {
+        return courseDAO.findBySlug(slug);
+    }
 }

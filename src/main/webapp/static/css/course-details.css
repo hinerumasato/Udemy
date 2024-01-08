@@ -1,0 +1,105 @@
+#courseDetail .course-detail-info-list li {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    padding: 4px 0;
+}
+
+#courseDetail .course-detail-info-list i, #courseDetail .course-detail-info-list span {
+    display: block;
+    color: #5C5B5B;
+}
+
+#courseDetail .course-detail-info-list i {
+    height: 16px !important;
+    width: 16px !important;
+}
+
+#courseDetail .buy-btn-group {
+    text-align: center;
+}
+
+#courseDetail .course-info .value {
+    font-weight: bold;
+}
+
+#courseDetail .course-detail-amount {
+    display: flex;
+    align-items: center;
+    border: 1px solid #EBEBEB;
+    border-radius: 10px;
+    width: fit-content;
+}
+
+#courseDetail .course-detail-amount input {
+    text-align: center;
+    width: 80px;
+    border: none;
+    outline: none;
+}
+
+#courseDetail .course-detail-amount button {
+    background-color: #FFF;
+    border: none;
+    outline: none;
+    padding: 8px 16px;
+    transition: all .3s;
+}
+
+#courseDetail .course-detail-amount button:hover {
+    background-color: #ccc;
+}
+
+#courseDetail .btn-main {
+    color: white !important;
+    background-color: #00BC86;
+    cursor: pointer;
+    transition: all .3s;
+    border: none;
+    outline: none;
+}
+
+#courseDetail .btn-second {
+    color: #000;
+    background-color: #F3F4FD;
+    cursor: pointer;
+    transition: all .3s;
+    border: none;
+    outline: none;
+}
+
+#courseDetail .btn-second:hover {
+    background-color: #00BC86;
+    color: #FFF;
+}
+
+#courseDetail .btn-main:hover {
+    background-color: #333;
+}
+
+#courseDetail .btn-main-outline {
+    color: #00BC86;
+    border: solid 1px #00BC86;
+    background-color: #FFF;
+    transition: all .3s;
+    cursor: pointer;
+}
+
+#courseDetail .btn-main-outline:hover {
+    background-color: #333;
+}
+
+#courseDetail .small-thumbnails {
+    display: flex;
+    gap: 8px;
+}
+
+#courseDetail .small-thumbnails img {
+    width: 98px;
+    height: 73px;
+    cursor: pointer;
+}
+
+#courseDetail .small-thumbnails img:hover {
+    border: 1px solid var(--main-color);
+}
