@@ -157,19 +157,44 @@ public abstract class AbstractDAO<T> {
         }
 
         sql = sql.substring(0, sql.length() - 2) + " WHERE ID = ?";
+        PreparedStatement stmt = null;
         try {
-            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt = conn.prepareStatement(sql);
             for (int i = 0; i < columns.size(); i++) {
                 stmt.setObject(i + 1, values.get(columns.get(i)));
             }
 
             stmt.setObject(values.size(), values.get("id"));
             stmt.executeUpdate();
-            close(stmt, null);
         } catch(SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                close(stmt, null);
+            } catch(SQLException e) {
+                e.printStackTrace();
+            }
         }
-        
+    }
+
+    public void update(String sql, Object ... objects) {
+        createConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = conn.prepareStatement(sql);
+            for(int i = 0; i < objects.length; i++) {
+                stmt.setObject(i + 1, objects[i]);
+            }
+            stmt.executeUpdate();
+        } catch(SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                close(stmt, null);
+            } catch(SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void delete(int id) {

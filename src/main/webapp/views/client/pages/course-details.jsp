@@ -106,7 +106,7 @@
                     <div class="row">
                         <div class="col-2">
                             <div class="teacher-avatar">
-                                <img height="61px" width="61px" src="${teacherMap.get(course).getAvatar()}" alt="">                                
+                                <img class="rounded-circle" height="61px" width="61px" src="${teacherMap.get(course).getAvatar()}" alt="">
                             </div>
                         </div>
                         <div class="col-10">
@@ -119,7 +119,7 @@
                 </div>
             </div>
         </div>
-        <div class="course-description mt-5">
+        <div class="course-description mt-5 shadow p-5">
             <h2 class="text-main py-4 fw-bold">Thông tin sản phẩm</h2>
             <p>
                 ${course.getDescription()}

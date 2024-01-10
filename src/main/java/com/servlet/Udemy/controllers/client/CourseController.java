@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.servlet.Udemy.constants.Constants;
 import com.servlet.Udemy.models.CategoryModel;
+import com.servlet.Udemy.models.CourseModel;
 import com.servlet.Udemy.models.LevelModel;
 import com.servlet.Udemy.models.TeacherModel;
 import com.servlet.Udemy.page.ClientPage;
@@ -53,6 +54,9 @@ public class CourseController extends HttpServlet {
         HashMap<Integer, String> priceMap = new HashMap<Integer, String>();
         HashMap<Integer, String> priceValueMap = new HashMap<Integer, String>();
 
+        CourseService courseServicePagination = (CourseService) courseService.paginate(1, Constants.PAGE_LIMIT);
+        List<CourseModel> courses = courseServicePagination.findAllActive();
+
         priceMap.put(0, "Giá dưới 100.000đ");
         priceMap.put(1, "100.000đ - 200.000đ");
         priceMap.put(2, "200.000đ - 300.000đ");
@@ -70,7 +74,7 @@ public class CourseController extends HttpServlet {
         page.setObject("title", "Khoá học");
         page.setObject("categories", categories);
         page.setObject("levels", levels);
-        page.setObject("courses", courseService.paginate(1, Constants.PAGE_LIMIT).findAll());
+        page.setObject("courses", courses);
         page.setObject("levelMap", levelIDToModelMap);
         page.setObject("categoryMap", categoryIDToModelMap);
         page.setObject("teacherMap", teacherIDToModelMap);

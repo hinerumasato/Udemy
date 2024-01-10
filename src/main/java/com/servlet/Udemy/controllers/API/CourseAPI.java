@@ -52,7 +52,7 @@ public class CourseAPI extends HttpServlet {
             if (findMap.size() == 0) {
                 if (pageStr == null)
                     resp.getWriter()
-                            .write(responseModel.response(200, "Find courses successfully", courseService.findAll()));
+                            .write(responseModel.response(200, "Find courses successfully", courseService.findAllActive()));
                 else {
                     boolean canParse = NumberUtil.canParse(pageStr);
                     if (canParse) {

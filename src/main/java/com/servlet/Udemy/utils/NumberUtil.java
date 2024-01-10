@@ -4,6 +4,8 @@
  */
 package com.servlet.Udemy.utils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -23,5 +25,14 @@ public class NumberUtil {
                 return false;
         }
         return true;
+    }
+
+    public static List<Integer> mapToInt(String str, String pattern) {
+        List<Integer> result = new ArrayList<Integer>();
+        String[] strSplit = str.split(pattern);
+        for (String s : strSplit) {
+            if(canParse(s)) result.add(Integer.parseInt(s));
+        }
+        return result;
     }
 }

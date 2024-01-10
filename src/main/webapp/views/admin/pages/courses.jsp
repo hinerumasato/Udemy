@@ -29,7 +29,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <a href="/admin/courses/add-course" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Thêm khoá học mới</span></a>
-                                <button type="button" data-bs-toggle="modal" data-bs-target="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Xoá</span></button>
+                                <button id="softDeleteAllBtn" type="button" data-bs-toggle="modal" data-bs-target="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Xoá đã chọn</span></button>
                             </div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                                 <tr>
                                     <td>
                                         <span class="custom-checkbox">
-                                            <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                            <input type="checkbox" id="checkbox1" name="options[]" value="${course.getId()}">
                                             <label for="checkbox1"></label>
                                         </span>
                                     </td>
@@ -66,7 +66,7 @@
                                     <td style="text-align: right;" class="format-price">${course.getSalePrice()}</td>
                                     <td class="d-flex">
                                         <a href="/admin/courses/update?id=${course.getId()}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                        <button course-id="${course.getId()}" type="button" data-bs-toggle="modal" data-bs-target="#deleteEmployeeModal" class="p-0 bg-transparent border-0"><i class="material-icons text-danger" data-toggle="tooltip" title="Delete">&#xE872;</i></button>
+                                        <button course-id="${course.getId()}" type="button" data-bs-toggle="modal" data-bs-target="#deleteEmployeeModal" class="p-0 bg-transparent border-0 soft-delete-btn"><i class="material-icons text-danger" data-toggle="tooltip" title="Delete">&#xE872;</i></button>
                                     </td>
                                 </tr>
                             </c:forEach> 

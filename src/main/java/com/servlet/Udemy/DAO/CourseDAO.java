@@ -76,14 +76,33 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
     }
 
     public void softDelete(int id) {
+        update("UPDATE " + getTable() + " SET is_delete = 1 WHERE ID = ?", id);
+    }
+
+    public void restore(int id) {
+        update("UPDATE " + getTable() + " SET is_delete = 0 WHERE ID = ?", id);
+    }
+
+    public void softDeleteAll(List<Integer> ids) {
+        createConnection();
+        if (ids == null || ids.isEmpty()) {
+            return;
+        }
+        String sql = "UPDATE " + getTable() + " SET is_delete = 1 WHERE ID IN (";
         PreparedStatement stmt = null;
+
+        for (int i = 0; i < ids.size(); i++) {
+            sql += "?, ";
+        }
+        sql = sql.substring(0, sql.length() - 2);
+        sql += ")";
+
         try {
-            createConnection();
-            String sql = "UPDATE " + getTable() + " SET is_delete = 1 WHERE ID = ?";
             stmt = conn.prepareStatement(sql);
-            stmt.setObject(1, id);
+            for(int i = 0; i < ids.size(); i++)
+                stmt.setObject(i + 1, ids.get(i));
             stmt.executeUpdate();
-        } catch (SQLException e) {
+        } catch(SQLException e) {
             e.printStackTrace();
         } finally {
             try {
@@ -94,15 +113,26 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
         }
     }
 
-    public void restore(int id) {
+    public void restoreAll(List<Integer> ids) {
+        createConnection();
+        if (ids == null || ids.isEmpty()) {
+            return;
+        }
+        String sql = "UPDATE " + getTable() + " SET is_delete = 0 WHERE ID IN (";
         PreparedStatement stmt = null;
+
+        for (int i = 0; i < ids.size(); i++) {
+            sql += "?, ";
+        }
+        sql = sql.substring(0, sql.length() - 2);
+        sql += ")";
+
         try {
-            createConnection();
-            String sql = "UPDATE " + getTable() + " SET is_delete = 0 WHERE ID = ?";
             stmt = conn.prepareStatement(sql);
-            stmt.setObject(1, id);
+            for(int i = 0; i < ids.size(); i++)
+                stmt.setObject(i + 1, ids.get(i));
             stmt.executeUpdate();
-        } catch (SQLException e) {
+        } catch(SQLException e) {
             e.printStackTrace();
         } finally {
             try {
@@ -111,6 +141,7 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
                 e.printStackTrace();
             }
         }
+
     }
 
     public List<CourseModel> findAllActive() {
@@ -123,9 +154,10 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
 
     public CourseModel findBySlug(String slug) {
         List<CourseModel> courses = findBy("slug", slug);
-        if(courses != null && courses.size() > 0) {
+        if (courses != null && courses.size() > 0) {
             return courses.get(0);
-        } else return null;
+        } else
+            return null;
     }
 
 }
