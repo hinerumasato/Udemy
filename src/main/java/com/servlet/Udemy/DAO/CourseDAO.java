@@ -23,7 +23,10 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
     }
 
     public List<CourseModel> findByCategoryId(int categoryId) {
-        return findBy("category_id", categoryId);
+        Map<String, Object> findMap = new HashMap<String, Object>();
+        findMap.put("category_id", categoryId);
+        findMap.put("is_delete", 0);
+        return findBys(findMap);
     }
 
     public List<CourseModel> findByCategoryCode(String code) {

@@ -13,6 +13,7 @@ import lombok.Setter;
 @Setter
 public class Database {
 
+    private static Database instance;
     private String schema;
     private String username;
     private String password;
@@ -20,16 +21,24 @@ public class Database {
     private String driver;
     private Connection conn;
 
-    public Database() {
+    private Database() {
         Properties properties = FileUtil.getAppProperties();
         this.schema = properties.getProperty("DB_SCHEMA");
         this.username = properties.getProperty("DB_USERNAME");
         this.password = properties.getProperty("DB_PASSWORD");
         this.driver = properties.getProperty("DB_DRIVER");
         this.url = properties.getProperty("DB_URL") + schema;
+
+        this.conn = createConnection();
     }
 
-    public Connection createConnection() {
+    public static Database getInstance() {
+        if(instance == null)
+            instance = new Database();
+        return instance;
+    }
+
+    private Connection createConnection() {
 
         try {
             Class.forName(driver);
@@ -43,10 +52,15 @@ public class Database {
 
     public void closeConnection() {
         try {
-            conn.close();
+            if(conn != null)
+                conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Connection getConnection() {
+        return this.conn;
     }
     
 }
