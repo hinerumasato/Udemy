@@ -13,13 +13,13 @@
         <link rel="stylesheet" href="<c:url value='/static/css/admin/courses.css' />">
     </head>
     <body>
-        <c:if test="${not empty sessionScope.updateProductMessage}">
-            <div class="alert alert-success alert-dismissible fade show mt-3">
-                <strong>${sessionScope.updateProductMessage}</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        </c:if>
         <div class="container-xl">
+            <c:if test="${not empty sessionScope.updateProductMessage}">
+                <div class="alert alert-success alert-dismissible fade show mt-3">
+                    <strong>${sessionScope.updateProductMessage}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </c:if>
             <div class="table-responsive">
                 <div class="table-wrapper">
                     <div class="table-title">
@@ -178,6 +178,7 @@
                     </form>
                 </div>
             </div>
+            
         </div>
 
         <script src="<c:url value='/static/js/pages/admin-courses.js' />"></script>

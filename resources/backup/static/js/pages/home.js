@@ -28,7 +28,7 @@ import { getByTeacherId } from "../services/teacherService.js";
                             const courseHTML = `
                             <div class="col">
                                 <div class="course-item">
-                                    <a href="">
+                                    <a href="/courses/details/${course.slug}">
                                         <div class="course-item-thumbnail">
                                             <img class="w-100"
                                                 src="${course.thumbnails[0].img}" alt="">

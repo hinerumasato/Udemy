@@ -51,6 +51,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.6.1/toastify.js"></script>
+    <script src="<c:url value='/static/js/vendors/toast.js' />"></script>
     <script src="<c:url value='/static/js/utils/number.js?v=${randomNumber}' />"></script>
 
     <div id="fb-root"></div>

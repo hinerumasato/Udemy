@@ -28,6 +28,7 @@ import com.servlet.Udemy.services.CourseService;
 import com.servlet.Udemy.services.LevelService;
 import com.servlet.Udemy.services.TeacherService;
 import com.servlet.Udemy.services.ThumbnailService;
+import com.servlet.Udemy.utils.FileUtil;
 import com.servlet.Udemy.utils.StringUtil;
 
 @WebServlet("/admin/courses/update")
@@ -104,7 +105,8 @@ public class UpdateCourseController extends HttpServlet {
         Collection<Part> fileParts = req.getParts();
         for (Part part : fileParts) {
             if(part != null && part.getSize() > 0 && part.getSubmittedFileName() != null) {
-                String fileName = part.getSubmittedFileName();
+                String originalName = part.getSubmittedFileName();
+                String fileName = FileUtil.getUUIDFileName(originalName);
                 String location = realPath + "/static/imgs/courses/" + fileName;
                 part.write(location);
                 ThumbnailModel thumbnailModel = new ThumbnailModel();

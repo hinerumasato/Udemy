@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.StringTokenizer;
+import java.util.UUID;
 
 import com.servlet.Udemy.constants.Constants;
 import com.servlet.Udemy.context.AppContext;
@@ -38,4 +40,32 @@ public class FileUtil {
         }
         return null;
     }
+
+    public static String getFileExtension(String fileName) {
+        StringTokenizer tokenizer = new StringTokenizer(fileName, ".");
+        String extension = "";
+        while (tokenizer.countTokens() > 0) {
+            extension = tokenizer.nextToken();
+        }
+        return extension;
+    }
+
+    public static String getFileName(String fileName) {
+        StringTokenizer tokenizer = new StringTokenizer(fileName, ".");
+        String result = "";
+        while (tokenizer.countTokens() > 1) {
+            result += tokenizer.nextToken() + ".";
+        }
+
+        result = result.substring(0, result.length() - 1);
+        return result;
+    }
+
+    public static String getUUIDFileName(String origin) {
+        String extension = getFileExtension(origin);
+        String uuidName = UUID.randomUUID().toString();
+        String result = uuidName + "." + extension;
+        return result;
+    }
+
 }

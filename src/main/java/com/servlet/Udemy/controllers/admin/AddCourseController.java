@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.servlet.Udemy.constants.SuccessMessage;
@@ -22,9 +23,8 @@ import com.servlet.Udemy.services.CourseService;
 import com.servlet.Udemy.services.LevelService;
 import com.servlet.Udemy.services.TeacherService;
 import com.servlet.Udemy.services.ThumbnailService;
+import com.servlet.Udemy.utils.FileUtil;
 import com.servlet.Udemy.utils.StringUtil;
-
-import javax.servlet.http.HttpSession;
 
 @WebServlet("/admin/courses/add-course")
 @MultipartConfig(maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 10)
@@ -85,7 +85,8 @@ public class AddCourseController extends HttpServlet {
         for (Part filePart : fileParts) {
             if (filePart != null && filePart.getSize() > 0 && filePart.getSubmittedFileName() != null) {
                 String realPath = req.getServletContext().getRealPath("/static/imgs/courses");
-                String fileName = filePart.getSubmittedFileName();
+                String submittedFileName = filePart.getSubmittedFileName();
+                String fileName = FileUtil.getUUIDFileName(submittedFileName);
                 String location = realPath + File.separator + fileName;
                 filePart.write(location);
                 ThumbnailModel thumbnailModel = new ThumbnailModel();

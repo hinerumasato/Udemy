@@ -46,10 +46,10 @@ import { COURSE_API_URL, getCourses } from "../services/courseService.js";
                 const categoryByTeacherObj = await getById(teacher.categoryId);
                 const categoryByTeacher = categoryByTeacherObj.data;
 
-                return `
+                return /* html */`
                     <div class="col">
                         <div class="course-item">
-                            <a href="">
+                            <a href="/courses/details/${course.slug}">
                                 <div class="course-item-thumbnail">
                                     <img class="w-100"
                                         src="${course.thumbnails[0].img}" alt="${course.name}">
@@ -119,6 +119,7 @@ import { COURSE_API_URL, getCourses } from "../services/courseService.js";
                             </a>
                         </div>
                     </div>
+
                 `;
             });
             const htmls = await Promise.all(htmlPromises);
