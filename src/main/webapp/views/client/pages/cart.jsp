@@ -3,7 +3,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@include file="/common/includes.jsp" %>
 
-<div class="container mt-5">
+<head>
+    <link rel="stylesheet" href="<c:url value='/static/css/cart.css?v=${randomNumber}' />">
+</head>
+
+<div id="cart" class="container mt-5">
     <c:choose>
         <c:when test="${not empty notLoginMessage}">
             <div class="alert alert-danger" role="alert">
@@ -14,7 +18,7 @@
             <c:choose>
                 <c:when test="${not empty carts}">
                     <div class="table-responsive">
-                        <table class="table table-primary">
+                        <table class="table table-bordered center-cell">
                             <thead>
                                 <tr>
                                     <th scope="col">Hình ảnh</th>
@@ -30,15 +34,23 @@
                                     <tr class="">
                                         <td><img src="${courseMap.get(cart).getThumbnails().get(0).getImg()}" alt="${courseMap.get(cart).getName()}"></td>
                                         <td>${courseMap.get(cart).getName()}</td>
-                                        <td class="format-price">${courseMap.get(cart).getSalePrice()}</td>
-                                        <td class="format-price">${cart.getAmount()}</td>
-                                        <td class="format-price">${cart.getAmount() * courseMap.get(cart).getSalePrice()}</td>
-                                        <td class="format-price"><i class="fa-solid fa-trash"></i></td>
+                                        <td class="text-danger fw-bold format-price">${courseMap.get(cart).getSalePrice()}</td>
+                                        <td>${cart.getAmount()}</td>
+                                        <td class="text-danger fw-bold format-price format-price">${cart.getAmount() * courseMap.get(cart).getSalePrice()}</td>
+                                        <td><button><i class="fa-solid fa-trash"></i></button></td>
                                     </tr>
-                                </tbody>
-                            </table>
+                                </c:forEach>
+                            </tbody>
+                            <tr>
+                                <td class="right-cell" colspan="6"><span class="me-3">Tổng: <span class="fs-4 format-price text-danger fw-bold">${totalPrice}</span></span></td>
+                            </tr>
+                        </table>
+
+                        <div class="checkout-wrapper d-flex justify-content-end w-100 gap-2">
+                            <a href="/courses" class="text-decoration-none bg-black px-4 py-2 border-0 text-uppercase">Tiếp tục mua hàng </a>
+                            <button class="bg-main px-4 py-2 border-0 text-uppercase">Tiến hành thanh toán</button>
                         </div>
-                    </c:forEach>
+                    </div>
                 </c:when>  
                 <c:otherwise>
                     <div class="alert alert-primary" role="alert">
@@ -50,3 +62,5 @@
         </c:otherwise>
     </c:choose>
 </div>
+
+<script src="<c:url value='/static/js/pages.cart.js?v=${randomNumber}' />"></script>

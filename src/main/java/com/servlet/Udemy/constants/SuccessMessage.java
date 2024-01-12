@@ -10,4 +10,5 @@ public class SuccessMessage extends Message {
     //API
     public static final String FIND_TEACHER_SUCCESS = "Tìm kiếm giáo viên thành công";
     public static final String FIND_LOGIN_USER_SUCCESS = "Lấy thông tin đăng nhập thành công";
+    public static final String ADD_TO_CART_SUCCESS = "Thêm vào giỏ hàng thành công";
 }

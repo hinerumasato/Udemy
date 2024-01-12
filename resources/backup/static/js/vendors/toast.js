@@ -23,7 +23,7 @@ class Toast {
                 result = 'linear-gradient(to right, #FF8C00, #FFD700)';
                 break;
             default:
-                result = 'linear-gradient(to right, #3498db, #2ecc71)'
+                result = 'linear-gradient(to right, #3498db, #2ecc71)';
                 break;
         }
         return result;
@@ -33,8 +33,8 @@ class Toast {
         Toastify({
             text: this.message,
             duration: 3000,
-            // destination: "https://github.com/apvarun/toastify-js",
-            newWindow: true,
+            destination: "/login",
+            newWindow: false,
             close: true,
             gravity: "top", // `top` or `bottom`
             position: "center", // `left`, `center` or `right`

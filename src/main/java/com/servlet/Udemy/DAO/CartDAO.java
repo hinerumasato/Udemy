@@ -20,8 +20,8 @@ public class CartDAO extends AbstractDAO<CartModel> {
         int id = rs.getInt("id");
         int amount = rs.getInt("amount");
         Timestamp createdAt = rs.getTimestamp("created_at");
-        int userId = rs.getInt(":userId");
-        int courseId = rs.getInt("courseId");
+        int userId = rs.getInt("user_id");
+        int courseId = rs.getInt("course_id");
 
         CartModel cartModel = new CartModel(id, amount, createdAt, userId, courseId);
         return cartModel;
@@ -32,9 +32,8 @@ public class CartDAO extends AbstractDAO<CartModel> {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("id", model.getId());
         map.put("amount", model.getAmount());
-        map.put("createdAt", model.getCreatedAt());
-        map.put("userId", model.getUserId());
-        map.put("courseId", model.getCourseId());
+        map.put("user_id", model.getUserId());
+        map.put("course_id", model.getCourseId());
         return map;
     }
 

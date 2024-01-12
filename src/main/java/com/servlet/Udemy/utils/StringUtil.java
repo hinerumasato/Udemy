@@ -1,5 +1,10 @@
 package com.servlet.Udemy.utils;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.security.MessageDigest;
 import java.text.Normalizer;
 import java.util.Map;
@@ -88,6 +93,20 @@ public class StringUtil {
         str = removeAccents(str);
         str = str.replaceAll(" ", "-");
         return str;
+    }
+
+    public static String getDataFromInputStream(InputStream is) {
+        String result = "";
+        try {
+            BufferedInputStream reader = new BufferedInputStream(is);
+            byte[] buffer = new byte[1024];
+            int offset;
+            while((offset = reader.read(buffer)) != -1)
+                result += new String(buffer, 0, offset);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
 }
