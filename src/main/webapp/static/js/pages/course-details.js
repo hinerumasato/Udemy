@@ -3,7 +3,6 @@
     const smallThumbnails = document.querySelectorAll('.small-thumbnail');
     const indicatorBtns = document.querySelectorAll('.indicator-btn');
     const carouselItems = document.querySelectorAll('#carouselCourseThumbnail .carousel-item')
-    const redirectInput = document.querySelector('input[name="redirect"]');
     const addToCartBtn = document.getElementById('addToCartBtn');
 
     const setActiveClass = (elements, targetIndex) => {
@@ -33,8 +32,6 @@
         firstActive(carouselItems);
         firstActive(smallThumbnails);
         firstActive(indicatorBtns);
-
-        redirectInput.value = window.location.pathname;
     }
 
     const firstActive = elements => {

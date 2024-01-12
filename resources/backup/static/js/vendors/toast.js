@@ -31,7 +31,7 @@ class Toast {
 
     show() {
         Toastify({
-            text: "This is a toast",
+            text: this.message,
             duration: 3000,
             // destination: "https://github.com/apvarun/toastify-js",
             newWindow: true,
