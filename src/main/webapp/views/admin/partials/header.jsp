@@ -28,7 +28,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/admin/courses/add-course">Thêm khoá học</a></li>
                             <li><a class="dropdown-item" href="/admin/courses">Xem khoá học</a></li>
-                            <li><a class="dropdown-item" href="#">Xem khoá học đã xoá</a></li>
+                            <li><a class="dropdown-item" href="/admin/courses/trash">Xem khoá học đã xoá</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">

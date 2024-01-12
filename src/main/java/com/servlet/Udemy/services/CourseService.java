@@ -68,7 +68,19 @@ public class CourseService implements IService<CourseModel> {
         courseDAO.softDelete(id);
     }
 
+    public void softDeleteAll(List<Integer> ids) {
+        courseDAO.softDeleteAll(ids);
+    }
+
     public void restore(int id) {
         courseDAO.restore(id);
+    }
+
+    public void restoreAll(List<Integer> ids) {
+        courseDAO.restoreAll(ids);
+    }
+
+    public CourseModel findBySlug(String slug) {
+        return courseDAO.findBySlug(slug);
     }
 }

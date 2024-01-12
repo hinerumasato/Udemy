@@ -45,10 +45,12 @@ public class HomeController extends HttpServlet{
         List<TeacherModel> teachers = new ArrayList<TeacherModel>();
         List<LevelModel> levels  = new ArrayList<LevelModel>();
         List<CategoryModel> courseCategories = new ArrayList<CategoryModel>();
-        for (CourseModel course : courses) {
-            levels.add(levelService.findById(course.getLevelId()));
-            courseCategories.add(categoryService.findById(course.getCategoryId()));
-            teachers.add(teacherService.findById(course.getTeacherId()));
+        if(courses != null) {
+            for (CourseModel course : courses) {
+                levels.add(levelService.findById(course.getLevelId()));
+                courseCategories.add(categoryService.findById(course.getCategoryId()));
+                teachers.add(teacherService.findById(course.getTeacherId()));
+            }
         }
 
         page.setObject("categories", categoryService.findAll());

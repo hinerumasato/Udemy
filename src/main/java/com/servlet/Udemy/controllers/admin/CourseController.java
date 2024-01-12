@@ -34,9 +34,11 @@ public class CourseController extends HttpServlet {
         List<CourseModel> courses = courseService.findAllActive();
         Map<CourseModel, CategoryModel> categoryMap = new HashMap<CourseModel, CategoryModel>();
         Map<CourseModel, LevelModel> levelMap = new HashMap<CourseModel, LevelModel>();
-        for (CourseModel courseModel : courses) {
-            categoryMap.put(courseModel, categoryService.findById(courseModel.getCategoryId()));
-            levelMap.put(courseModel, levelService.findById(courseModel.getLevelId()));
+        if(courses != null) {
+            for (CourseModel courseModel : courses) {
+                categoryMap.put(courseModel, categoryService.findById(courseModel.getCategoryId()));
+                levelMap.put(courseModel, levelService.findById(courseModel.getLevelId()));
+            }
         }
 
         page.setObject("title", "Tất cả khoá học");
@@ -44,5 +46,7 @@ public class CourseController extends HttpServlet {
         page.setObject("categoryMap", categoryMap);
         page.setObject("levelMap", levelMap);
         page.render();
+
+        req.getSession().removeAttribute("updateProductMessage");
     }
 }

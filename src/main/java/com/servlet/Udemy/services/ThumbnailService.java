@@ -1,5 +1,6 @@
 package com.servlet.Udemy.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -27,8 +28,7 @@ public class ThumbnailService implements IService<ThumbnailModel> {
 
     @Override
     public ThumbnailModel findFirst() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findFirst'");
+        return thumbnailDAO.findFirst();
     }
 
     @Override
@@ -54,6 +54,26 @@ public class ThumbnailService implements IService<ThumbnailModel> {
     @Override
     public List<ThumbnailModel> findByMap(Map<String, String> findMap) {
         return thumbnailDAO.findByMap(findMap);
+    }
+
+    public void deleteByCourseId(int courseId) {
+        thumbnailDAO.deleteByCourseId(courseId);
+    }
+
+    public List<ThumbnailModel> findByCourseId(int courseId) {
+        return thumbnailDAO.findByCourseId(courseId);
+    }
+
+    public List<String> findAllLinksByCourseId(int courseId) {
+        List<String> result = new ArrayList<String>();
+        List<ThumbnailModel> thumbnails = findByCourseId(courseId);
+
+        if(thumbnails == null) return null;
+        
+        for (ThumbnailModel thumbnailModel : thumbnails) {
+            result.add(thumbnailModel.getImg());
+        }
+        return result;
     }
     
 }

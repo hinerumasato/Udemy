@@ -1,0 +1,8 @@
+.slider-img > img {
+    width: 100%;
+}
+
+.slider-services {
+    background: var(--main-color);
+    padding: 16px 0;
+}

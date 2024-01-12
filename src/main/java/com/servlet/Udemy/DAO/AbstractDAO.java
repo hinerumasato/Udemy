@@ -55,17 +55,24 @@ public abstract class AbstractDAO<T> {
     public List<T> findAll() {
         createConnection();
         List<T> result = new ArrayList<T>();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
         try {
             String sql = "SELECT * FROM " + getTable() + " " + sqlOffset;
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
+            stmt = conn.prepareStatement(sql);
+            rs = stmt.executeQuery();
             while (rs.next()) {
                 result.add(mapResultSetToModel(rs));
             }
 
-            close(stmt, rs);
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                close(stmt, rs);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         sqlOffset = "";
@@ -73,21 +80,30 @@ public abstract class AbstractDAO<T> {
     }
 
     public T findById(int id) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        T model = null;
         try {
             createConnection();
             String sql = "SELECT * FROM " + getTable() + " WHERE ID = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
+            rs = stmt.executeQuery();
             while (rs.next()) {
-                return mapResultSetToModel(rs);
+                model = mapResultSetToModel(rs);
             }
-
             close(stmt, rs);
+
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                close(stmt, rs);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        return null;
+        return model;
     }
 
     public void insert(T model) {
@@ -97,7 +113,7 @@ public abstract class AbstractDAO<T> {
         List<String> columns = new ArrayList<String>();
 
         for (String column : values.keySet()) {
-            if(!column.equals("id")) {
+            if (!column.equals("id")) {
                 sql += column + ", ";
                 columns.add(column);
             }
@@ -105,20 +121,26 @@ public abstract class AbstractDAO<T> {
 
         sql = sql.substring(0, sql.length() - 2) + ") values (";
 
-        for (int i = 0; i < values.size() - 1; i++) { //Minus by 1 because id is not a value to insert
+        for (int i = 0; i < values.size() - 1; i++) { // Minus by 1 because id is not a value to insert
             sql += "?, ";
         }
 
+        PreparedStatement stmt = null;
         sql = sql.substring(0, sql.length() - 2) + ")";
         try {
-            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt = conn.prepareStatement(sql);
             for (int i = 0; i < columns.size(); i++) {
                 stmt.setObject(i + 1, values.get(columns.get(i)));
             }
             stmt.executeUpdate();
-            close(stmt, null);
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                close(stmt, null);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -128,26 +150,51 @@ public abstract class AbstractDAO<T> {
         List<String> columns = new ArrayList<String>();
         String sql = "UPDATE " + getTable() + " SET ";
         for (String column : values.keySet()) {
-            if(!column.equals("id")) {
+            if (!column.equals("id")) {
                 sql += column + "= ?, ";
                 columns.add(column);
             }
         }
 
         sql = sql.substring(0, sql.length() - 2) + " WHERE ID = ?";
+        PreparedStatement stmt = null;
         try {
-            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt = conn.prepareStatement(sql);
             for (int i = 0; i < columns.size(); i++) {
                 stmt.setObject(i + 1, values.get(columns.get(i)));
             }
 
             stmt.setObject(values.size(), values.get("id"));
             stmt.executeUpdate();
-            close(stmt, null);
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                close(stmt, null);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        
+    }
+
+    public void update(String sql, Object... objects) {
+        createConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = conn.prepareStatement(sql);
+            for (int i = 0; i < objects.length; i++) {
+                stmt.setObject(i + 1, objects[i]);
+            }
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                close(stmt, null);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void delete(int id) {
@@ -158,7 +205,18 @@ public abstract class AbstractDAO<T> {
             stmt.setObject(1, id);
             stmt.executeUpdate();
             close(stmt, null);
-        } catch(SQLException e) {
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void delete(String sql) {
+        createConnection();
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.executeUpdate();
+            close(stmt, null);
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -168,12 +226,11 @@ public abstract class AbstractDAO<T> {
             rs.close();
         if (stmt != null)
             stmt.close();
-        database.closeConnection();
     }
 
     protected void createConnection() {
-        this.database = new Database();
-        this.conn = database.createConnection();
+        this.database = Database.getInstance();
+        this.conn = this.database.getConn();
     }
 
     public T findFirst() {
@@ -187,16 +244,59 @@ public abstract class AbstractDAO<T> {
         return result != null ? result.get(0) : null;
     }
 
+    protected List<T> findBys(Map<String, Object> findMap) {
+        List<T> models = new ArrayList<T>();
+        List<String> conditions = new ArrayList<>();
+        List<Object> values = new ArrayList<>();
+        createConnection();
+        String sql = "SELECT * FROM " + getTable() + " WHERE ";
+        for (String key : findMap.keySet()) {
+            Object value = findMap.get(key);
+
+            if (value != null) {
+                conditions.add(key + " = ?");
+                values.add(value);
+            } else {
+                conditions.add(key + " IS NULL");
+            }
+        }
+
+        // Kết hợp các điều kiện bằng AND
+        sql += String.join(" AND ", conditions);
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = conn.prepareStatement(sql);
+            for (int i = 0; i < values.size(); i++) {
+                stmt.setObject(i + 1, values.get(i));
+            }
+            rs = stmt.executeQuery();
+            while (rs.next())
+                models.add(mapResultSetToModel(rs));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                close(stmt, rs);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return models.size() > 0 ? models : null;
+    }
+
     protected List<T> findBy(String field, Object value) {
         List<T> models = new ArrayList<>();
         createConnection();
         try {
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM " + getTable() + " WHERE " + field + "= ? " + sqlOffset);
+            PreparedStatement stmt = conn
+                    .prepareStatement("SELECT * FROM " + getTable() + " WHERE " + field + "= ? " + sqlOffset);
             stmt.setObject(1, value);
             ResultSet rs = stmt.executeQuery();
-            while(rs.next()) models.add(mapResultSetToModel(rs));
+            while (rs.next())
+                models.add(mapResultSetToModel(rs));
             close(stmt, rs);
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -213,14 +313,15 @@ public abstract class AbstractDAO<T> {
             for (String key : conditionMap.keySet()) {
                 sql += conditionMap.get(key) + " AND ";
             }
-            
+
             sql = sql.substring(0, sql.length() - 4);
             sql += " " + sqlOffset;
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
-            while(rs.next()) models.add(mapResultSetToModel(rs));
+            while (rs.next())
+                models.add(mapResultSetToModel(rs));
             close(stmt, rs);
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -235,5 +336,6 @@ public abstract class AbstractDAO<T> {
     }
 
     protected abstract T mapResultSetToModel(ResultSet rs) throws SQLException;
+
     protected abstract Map<String, Object> getValuesFromModel(T model);
 }

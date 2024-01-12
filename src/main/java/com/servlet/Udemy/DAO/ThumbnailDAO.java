@@ -34,5 +34,9 @@ public class ThumbnailDAO extends AbstractDAO<ThumbnailModel> {
         map.put("course_id", model.getCourseId());
         return map;
     }
+
+    public void deleteByCourseId(int courseId) {
+        delete("DELETE FROM " + getTable() + " WHERE course_id = " + courseId);
+    }
     
 }

@@ -23,7 +23,10 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
     }
 
     public List<CourseModel> findByCategoryId(int categoryId) {
-        return findBy("category_id", categoryId);
+        Map<String, Object> findMap = new HashMap<String, Object>();
+        findMap.put("category_id", categoryId);
+        findMap.put("is_delete", 0);
+        return findBys(findMap);
     }
 
     public List<CourseModel> findByCategoryCode(String code) {
@@ -48,10 +51,11 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
         int categoryId = rs.getInt("category_id");
         int teacherId = rs.getInt("teacher_id");
         boolean isDelete = rs.getBoolean("is_delete");
+        String slug = rs.getString("slug");
 
         List<ThumbnailModel> thumbnails = this.getThumbnails(id);
         return new CourseModel(id, name, description, isNewCourse, isPopularCourse, price, salePrice, levelId,
-                categoryId, teacherId, isDelete,
+                categoryId, teacherId, isDelete, slug,
                 thumbnails);
     }
 
@@ -69,19 +73,39 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
         map.put("category_id", model.getCategoryId());
         map.put("teacher_id", model.getTeacherId());
         map.put("is_delete", model.isDelete());
+        map.put("slug", model.getSlug());
 
         return map;
     }
 
     public void softDelete(int id) {
+        update("UPDATE " + getTable() + " SET is_delete = 1 WHERE ID = ?", id);
+    }
+
+    public void restore(int id) {
+        update("UPDATE " + getTable() + " SET is_delete = 0 WHERE ID = ?", id);
+    }
+
+    public void softDeleteAll(List<Integer> ids) {
+        createConnection();
+        if (ids == null || ids.isEmpty()) {
+            return;
+        }
+        String sql = "UPDATE " + getTable() + " SET is_delete = 1 WHERE ID IN (";
         PreparedStatement stmt = null;
+
+        for (int i = 0; i < ids.size(); i++) {
+            sql += "?, ";
+        }
+        sql = sql.substring(0, sql.length() - 2);
+        sql += ")";
+
         try {
-            createConnection();
-            String sql = "UPDATE " + getTable() + " SET is_delete = 1 WHERE ID = ?";
             stmt = conn.prepareStatement(sql);
-            stmt.setObject(1, id);
+            for(int i = 0; i < ids.size(); i++)
+                stmt.setObject(i + 1, ids.get(i));
             stmt.executeUpdate();
-        } catch (SQLException e) {
+        } catch(SQLException e) {
             e.printStackTrace();
         } finally {
             try {
@@ -92,15 +116,26 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
         }
     }
 
-    public void restore(int id) {
+    public void restoreAll(List<Integer> ids) {
+        createConnection();
+        if (ids == null || ids.isEmpty()) {
+            return;
+        }
+        String sql = "UPDATE " + getTable() + " SET is_delete = 0 WHERE ID IN (";
         PreparedStatement stmt = null;
+
+        for (int i = 0; i < ids.size(); i++) {
+            sql += "?, ";
+        }
+        sql = sql.substring(0, sql.length() - 2);
+        sql += ")";
+
         try {
-            createConnection();
-            String sql = "UPDATE " + getTable() + " SET is_delete = 0 WHERE ID = ?";
             stmt = conn.prepareStatement(sql);
-            stmt.setObject(1, id);
+            for(int i = 0; i < ids.size(); i++)
+                stmt.setObject(i + 1, ids.get(i));
             stmt.executeUpdate();
-        } catch (SQLException e) {
+        } catch(SQLException e) {
             e.printStackTrace();
         } finally {
             try {
@@ -109,6 +144,7 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
                 e.printStackTrace();
             }
         }
+
     }
 
     public List<CourseModel> findAllActive() {
@@ -117,6 +153,14 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
 
     public List<CourseModel> findAllDeleted() {
         return query("SELECT * FROM " + getTable() + " WHERE is_delete = 1");
+    }
+
+    public CourseModel findBySlug(String slug) {
+        List<CourseModel> courses = findBy("slug", slug);
+        if (courses != null && courses.size() > 0) {
+            return courses.get(0);
+        } else
+            return null;
     }
 
 }
