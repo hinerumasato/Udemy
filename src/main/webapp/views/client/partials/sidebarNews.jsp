@@ -36,17 +36,17 @@
             <h5 class="fs-6 text-uppercase fw-bold">Tin tức nổi bật</h5>
                     <div class="special-news">
                         <c:forEach var="item" items="${special_news}" > 
-                            <div class="piece-special-news d-flex row custom-row">
-                                <div class="col-4 custom-col">
+                            <div class="piece-special-news d-flex row">
+                                <div class="col-4">
                                     <img class="img-news" src="<c:url value='${item.getImgURL()}' />" alt="">
                                 </div>
-                                <div class="col-8 custom-col">
+                                <div class="col-8">
                                     <a href="news-item?item-id=${item.getId()}">${item.getTitle()}</a>
                                 </div>
                             </div> 
-                            <div class="row  custom-row">
-                                <div class="col-4 custom-col"></div>
-                                <div class="col-8 custom-col"><p class="sidebar-date">${item.getCreatedDate()}</p></div> 
+                            <div class="row">
+                                <div class="col-4"></div>
+                                <div class="col-8"><p class="sidebar-date">${item.getCreatedDate()}</p></div> 
                             </div>
                         </c:forEach>
                     </div>
