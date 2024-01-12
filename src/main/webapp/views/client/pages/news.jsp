@@ -21,23 +21,28 @@
                 <div class="col col-12 col-md-9 py-5">
                     <div class="right-news">
                         <c:forEach var="item" items="${list_news}">
-                            <div class="news-item d-flex shadow pt-4 pb-4">
-                                <button>
-                                    <img class="img-news" src="<c:url value='${item.getImgURL()}'/>" alt="">
-                                </button>
-                                <div class="content-news">
-                                    <a href="news-item?item-id=${item.getId()}" class="content-text">${item.getTitle()}</a>
-                                    <div class=" d-flex pb-2 pt-3">
-                                        <div class="d-flex nav-item">
-                                            <i class="fa-regular fa-user" ></i>
-                                            <p>${item.getAuthor()}</p>
+                            <div class="news-item pb-2">
+                                <div class="newswp d-flex shadow">
+                                        <div class="thumbnail">
+                                            <a href="news-item?item-id=${item.getId()}">
+                                                <img class="img-news" src="<c:url value='${item.getImgURL()}'/>" alt="">
+                                            </a>
                                         </div>
-                                        <div class="d-flex nav-item">
-                                            <i class="fa-regular fa-calendar-days"></i>
-                                            <p> ${item.getCreatedDate()} </p>
-                                        </div>
-                                    </div>
-                                    <p class="news-item-info-title">${item.getContent()}</p>
+                                        <div class="content-news">
+                                            <a href="news-item?item-id=${item.getId()}" class="content-text">${item.getTitle()}</a>
+                                            <div class=" d-flex pb-1 pt-1 ">
+                                                <div class="d-flex nav-item">
+                                                    <i class="fa-regular fa-user" style="color: #11ee48;"></i>
+                                                    <p class="fw-bold ms-1">${item.getAuthor()}</p>
+                                                </div>
+                                                <div class="d-flex nav-item">
+                                                    <i class="fa-regular fa-calendar-days" style="color: #11ee48;"></i>
+                                                    
+                                                    <p class="fw-bold ms-1">${item.getCreatedDate()}</p>
+                                                </div>
+                                            </div>
+                                            <p class="news-item-info-title">${item.getContent()}</p>
+                                        </div>  
                                 </div>
                             </div>
                         </c:forEach>
