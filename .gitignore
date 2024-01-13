@@ -1,7 +1,6 @@
 /.idea/*
 /target
 /.vscode
-/src/main/webapp/application.properties
 # Compiled class file
 *.class
 
@@ -27,3 +26,5 @@
 hs_err_pid*
 replay_pid*
 /nbproject/
+
+/src/main/webapp/application.properties

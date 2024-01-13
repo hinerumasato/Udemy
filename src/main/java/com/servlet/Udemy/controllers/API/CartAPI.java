@@ -14,9 +14,11 @@ import javax.servlet.http.HttpSession;
 
 import com.servlet.Udemy.constants.ErrorMessage;
 import com.servlet.Udemy.constants.SuccessMessage;
+import com.servlet.Udemy.models.CartDetailModel;
 import com.servlet.Udemy.models.CartModel;
 import com.servlet.Udemy.models.ResponseModel;
 import com.servlet.Udemy.models.UserModel;
+import com.servlet.Udemy.services.CartDetailService;
 import com.servlet.Udemy.services.CartService;
 import com.servlet.Udemy.utils.StringUtil;
 
@@ -27,6 +29,7 @@ import com.servlet.Udemy.utils.StringUtil;
 public class CartAPI extends HttpServlet {
 
     private CartService cartService = new CartService();
+    private CartDetailService cartDetailService = new CartDetailService();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -48,10 +51,26 @@ public class CartAPI extends HttpServlet {
             int amount = Integer.parseInt(StringUtil.getDataFromInputStream(amountInputStream));
             int userId = loginUser.getId();
             CartModel cartModel = new CartModel();
-            cartModel.setCourseId(courseId);
-            cartModel.setAmount(amount);
             cartModel.setUserId(userId);
-            cartService.insert(cartModel);
+            cartService.insertOrUpdateByUserId(cartModel);
+
+            cartModel = cartService.findByUserId(userId);
+            
+            CartDetailModel cartDetailModel = cartDetailService.findByCartIdAndCourseId(cartModel.getId(), courseId);
+            if(cartDetailModel == null) {
+                cartDetailModel = new CartDetailModel();
+                cartDetailModel.setCartId(cartModel.getId());
+                cartDetailModel.setAmount(amount);
+                cartDetailModel.setCourseId(courseId);
+    
+                cartDetailService.insert(cartDetailModel);
+            } else {
+                int oldAmount = cartDetailModel.getAmount();
+                int newAmount = oldAmount + amount;
+                cartDetailModel.setAmount(newAmount);
+                
+                cartDetailService.update(cartDetailModel);
+            }
             
             out.println(responseModel.response(HttpServletResponse.SC_OK, SuccessMessage.ADD_TO_CART_SUCCESS, null));
         }

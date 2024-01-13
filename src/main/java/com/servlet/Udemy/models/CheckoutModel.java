@@ -11,8 +11,11 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class CartModel {
+public class CheckoutModel {
     private int id;
+    private double totalAmount;
+    private double discount;
+    private String paymentStatus;
     private Timestamp createdAt;
-    private int userId;
+    private int cartId;
 }

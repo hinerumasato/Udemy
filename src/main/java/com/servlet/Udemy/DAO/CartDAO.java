@@ -18,12 +18,10 @@ public class CartDAO extends AbstractDAO<CartModel> {
     @Override
     protected CartModel mapResultSetToModel(ResultSet rs) throws SQLException {
         int id = rs.getInt("id");
-        int amount = rs.getInt("amount");
         Timestamp createdAt = rs.getTimestamp("created_at");
         int userId = rs.getInt("user_id");
-        int courseId = rs.getInt("course_id");
 
-        CartModel cartModel = new CartModel(id, amount, createdAt, userId, courseId);
+        CartModel cartModel = new CartModel(id, createdAt, userId);
         return cartModel;
     }
 
@@ -31,13 +29,14 @@ public class CartDAO extends AbstractDAO<CartModel> {
     protected Map<String, Object> getValuesFromModel(CartModel model) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("id", model.getId());
-        map.put("amount", model.getAmount());
         map.put("user_id", model.getUserId());
-        map.put("course_id", model.getCourseId());
         return map;
     }
 
-    public List<CartModel> findByUserId(int userId) {
-        return findBy("user_id", userId);
+    public CartModel findByUserId(int userId) {
+        List<CartModel> result = findBy("user_id", userId);
+        if(result == null)
+            return null;
+        return result.get(0);
     }
 }

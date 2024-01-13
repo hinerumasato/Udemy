@@ -1,18 +1,43 @@
 package com.servlet.Udemy.utils;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.security.MessageDigest;
+import java.security.SecureRandom;
 import java.text.Normalizer;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+
 import com.servlet.Udemy.constants.Constants;
 
 public class StringUtil {
+
+    public static String hmacSHA512(String data, String key) {
+        String algorithm = "HmacSHA512";
+        try {
+            Mac mac = Mac.getInstance(algorithm);
+            SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes(), algorithm);
+            mac.init(secretKeySpec);
+
+            byte[] hmacBytes = mac.doFinal(data.getBytes());
+
+            // Convert byte array to hexadecimal string
+            StringBuilder result = new StringBuilder();
+            for (byte b : hmacBytes) {
+                result.append(String.format("%02x", b));
+            }
+
+            return result.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static String encrypt(String str) {
         String secret = FileUtil.env("AUTH_SECRET_KEY");
         String needEncrypt = str + secret;
@@ -32,7 +57,7 @@ public class StringUtil {
                 hexString.append(hex);
             }
             result = hexString.toString();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return result;
@@ -101,12 +126,31 @@ public class StringUtil {
             BufferedInputStream reader = new BufferedInputStream(is);
             byte[] buffer = new byte[1024];
             int offset;
-            while((offset = reader.read(buffer)) != -1)
+            while ((offset = reader.read(buffer)) != -1)
                 result += new String(buffer, 0, offset);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return result;
+    }
+
+    public static String generateRandomNumberString(int minLength, int maxLength) {
+        if (minLength < 1 || maxLength > 100 || minLength > maxLength) {
+            throw new IllegalArgumentException("Invalid input parameters");
+        }
+
+        SecureRandom secureRandom = new SecureRandom();
+        int length = minLength + secureRandom.nextInt(maxLength - minLength + 1);
+
+        StringBuilder randomString = new StringBuilder();
+        while (randomString.length() < length) {
+            int randomNumber = secureRandom.nextInt(10); // Generate a random digit (0-9)
+            if (randomString.indexOf(Integer.toString(randomNumber)) == -1) {
+                randomString.append(randomNumber);
+            }
+        }
+
+        return randomString.toString();
     }
 
 }
