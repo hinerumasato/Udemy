@@ -55,8 +55,14 @@ public class CartService implements IService<CartModel> {
         return cartDAO.paginate(this, page, limit);
     }
 
-    public List<CartModel> findByUserId(int userId) {
+    public CartModel findByUserId(int userId) {
         return cartDAO.findByUserId(userId);
+    }
+
+    public void insertOrUpdateByUserId(CartModel model) {
+        if(findByUserId(model.getUserId()) == null)
+            insert(model);
+        else update(model);
     }
     
 }

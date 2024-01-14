@@ -6,7 +6,7 @@
 <head>
     <link rel="stylesheet" href="<c:url value='/static/css/course-details.css?v=${randomNumber}' />">
 </head>
-<div id="courseDetail" class="mt-5">
+<div id="courseDetail" course-id="${course.getId()}" class="mt-5">
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-7">

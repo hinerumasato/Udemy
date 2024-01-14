@@ -52,8 +52,8 @@
 
                         <div class="col-3">
                             <div class="header-cart">
-                                <a href="/courses" class="text-decoration-none text-secondary">Tất cả khoá học</a>
-                                <a href="/cart"><i class="las la-shopping-cart fs-4 text-main"></i></a>
+                                <a href="/courses" title="Xem tất cả khoá học" class="text-decoration-none text-secondary">Tất cả khoá học</a>
+                                <a href="/cart" title="Xem giỏ hàng"><i class="las la-shopping-cart fs-4 text-main"></i></a>
                             </div>
                         </div>
                     </div>

@@ -7,4 +7,5 @@ public class ErrorMessage {
 
     //API
     public static final String FIND_TEACHER_ERROR = "Không tìm thấy giáo viên";
+    public static final String ADD_TO_CART_NOT_LOGIN_ERROR = "Không thể thêm giỏ hàng khi chưa đăng nhập";
 }
