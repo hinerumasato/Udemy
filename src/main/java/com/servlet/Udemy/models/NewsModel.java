@@ -19,4 +19,5 @@ public class NewsModel {
     private boolean isSpecialNews;
     private String content;
     private String imgURL;
+    private String slug;
 }

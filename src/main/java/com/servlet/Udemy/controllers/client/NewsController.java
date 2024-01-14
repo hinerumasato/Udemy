@@ -34,14 +34,19 @@ public class NewsController extends HttpServlet {
 
         List<NewsModel> news = newsService.findAll();
         List<NewsModel> specialNews = new ArrayList<NewsModel>();
-        for (NewsModel newsModel : news) {
-            if(newsModel.isSpecialNews()){
-                specialNews.add(newsModel);
+        
+        for (int i = news.size() - 1; i >= 0; i--) {
+            int count = 0;
+            if (news.get(i).isSpecialNews()) {
+                specialNews.add(news.get(i));
+                count++;
             }
+            if (count == 4)
+                break;
         }
         page.setObject("title", "Tin tức");
-        page.setObject("list_news", news);
-        page.setObject("special_news", specialNews);
+        page.setObject("listNews", news);
+        page.setObject("specialNews", specialNews);
         page.render();
     }
 }

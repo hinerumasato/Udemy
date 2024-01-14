@@ -56,4 +56,7 @@ public class NewsService implements IService<NewsModel> {
         return newsDAO.paginate(this, page, limit);
     }
 
+    public NewsModel findBySlug(String slug) {
+        return newsDAO.findBySlug(slug);
+    }
 }

@@ -4,8 +4,10 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.servlet.Udemy.models.CourseModel;
 import com.servlet.Udemy.models.NewsModel;
 
 public class NewsDAO extends AbstractDAO<NewsModel> {
@@ -23,8 +25,9 @@ public class NewsDAO extends AbstractDAO<NewsModel> {
         boolean isSpecialNews = rs.getBoolean("special_news");
         String content = rs.getString("content");
         String imgURL = rs.getString("img_url");
+        String slug = rs.getString("slug");
 
-        return new NewsModel(id, title, author, createdDate, isSpecialNews, content, imgURL);
+        return new NewsModel(id, title, author, createdDate, isSpecialNews, content, imgURL, slug);
     }
 
     @Override
@@ -36,9 +39,17 @@ public class NewsDAO extends AbstractDAO<NewsModel> {
         map.put("created_date", model.getCreatedDate());
         map.put("special_news", model.isSpecialNews());
         map.put("content", model.getContent());
-        map.put("img_ur;", model.getImgURL());
+        map.put("img_url", model.getImgURL());
+        map.put("slug", model.getSlug());
 
         return map;
     }
 
+    public NewsModel findBySlug(String slug) {
+        List<NewsModel> news = findBy("slug", slug);
+        if (news != null && news.size() > 0) {
+            return news.get(0);
+        } else
+            return null;
+    }
 }
