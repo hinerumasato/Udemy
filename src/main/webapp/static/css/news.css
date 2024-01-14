@@ -1,3 +1,6 @@
+.content{
+    width: 100%;
+}
 .content a{
     text-decoration: none;
     color: black;
@@ -15,9 +18,32 @@
     white-space: normal;
 }
 
+.left-news{
+    width: 25%;
+}
+.right-news{
+    width: 75%;
+}
+.left-news .thumbnail{
+    position: relative;
+    width: 80px;
+    display: block;
+    text-align: center;
+    float: left;    
+}
+
 .left-news .img-news{
     width: 80px;
     height: 68px;
+    display: block;
+    text-align: center;
+}
+.left-news .content{
+    float: left;
+    width: calc(100% - 80px);
+    padding-left: 24px;
+    box-sizing: border-box;
+    display: block;
 }
 
 .left-news .sidebar-date{
@@ -35,6 +61,7 @@
 }
 
 .right-news .newswp{
+    display: flex;
     overflow: hidden;
     border-radius: 15px;
     margin-bottom: 30px;
@@ -71,6 +98,17 @@
     box-sizing: border-box;
     display: block;
 }
-
-
+/* moblie */
+@media screen and (max-width: 931px){
+    
+}
+/* tablet */
+@media screen and (min-width: 932px) and (max-width: 1023px) {
+    .left-news{
+        display: none;
+    }
+    .right{
+        width: 100%;
+    }
+}
 

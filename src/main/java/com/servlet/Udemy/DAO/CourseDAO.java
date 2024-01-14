@@ -102,15 +102,15 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
 
         try {
             stmt = conn.prepareStatement(sql);
-            for(int i = 0; i < ids.size(); i++)
+            for (int i = 0; i < ids.size(); i++)
                 stmt.setObject(i + 1, ids.get(i));
             stmt.executeUpdate();
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
                 close(stmt, null);
-            } catch(SQLException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
@@ -132,15 +132,15 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
 
         try {
             stmt = conn.prepareStatement(sql);
-            for(int i = 0; i < ids.size(); i++)
+            for (int i = 0; i < ids.size(); i++)
                 stmt.setObject(i + 1, ids.get(i));
             stmt.executeUpdate();
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
                 close(stmt, null);
-            } catch(SQLException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }

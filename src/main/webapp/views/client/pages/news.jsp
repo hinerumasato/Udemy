@@ -13,23 +13,23 @@
     <div class="container">
         <div class="content">
             <div class="row">
-                <div class="col col-12 d-none d-md-block col-md-3">
-                    <div class="left-news">
+                <div class="col left-news col-12 d-none col-md-4 d-md-block">
+                    <div class="left">
                         <%@include file="/views/client/partials/sidebarNews.jsp" %>
                     </div>
                 </div> 
-                <div class="col col-12 col-md-9 py-5">
-                    <div class="right-news">
-                        <c:forEach var="item" items="${list_news}">
+                <div class="col right-news col-12 col-md-8 py-5">
+                    <div class="right col-12">
+                        <c:forEach var="item" items="${listNews}">
                             <div class="news-item pb-2">
-                                <div class="newswp d-flex shadow">
+                                <div class="newswp shadow">
                                         <div class="thumbnail">
-                                            <a href="news-item?item-id=${item.getId()}">
+                                            <a href="/news/details/${item.getSlug()}">
                                                 <img class="img-news" src="<c:url value='${item.getImgURL()}'/>" alt="">
                                             </a>
                                         </div>
                                         <div class="content-news">
-                                            <a href="news-item?item-id=${item.getId()}" class="content-text">${item.getTitle()}</a>
+                                            <a href="/news/details/${item.getSlug()}" class="content-text">${item.getTitle()}</a>
                                             <div class=" d-flex pb-1 pt-1 ">
                                                 <div class="d-flex nav-item">
                                                     <i class="fa-regular fa-user" style="color: #11ee48;"></i>
