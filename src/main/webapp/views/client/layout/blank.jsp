@@ -1,6 +1,6 @@
 <%-- 
     Document   : master
-    Created on : Sep 19, 2023, 12:13:40 AM
+    Created on : Jan 13, 2024, 12:13:40 AM
     Author     : Masato
 --%>
 
@@ -44,12 +44,8 @@
 </head>
 
 <body>
-    <%@include file="/views/client/partials/header.jsp" %>
-    <%@include file="/views/client/partials/slider.jsp" %>
 
     <jsp:include page="${contentPage}" />
-
-    <%@include file="/views/client/partials/footer.jsp" %>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
@@ -58,25 +54,7 @@
     <script src="<c:url value='/static/js/vendors/toast.js' />"></script>
     <script src="<c:url value='/static/js/utils/number.js?v=${randomNumber}' />"></script>
 
-    <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v18.0&appId=1687800611703638" nonce="0K9I7wQh"></script>
-
-    <script>
-        window.fbAsyncInit = function () {
-            FB.init({
-                appId: 1687800611703638,
-                cookie: true, // Enable cookies to allow the server to access the session.
-                xfbml: true, // Parse social plugins on this webpage.
-                version: 'v18.0', // Use this Graph API version for this call.
-            });
-
-
-            FB.getLoginStatus(function (response) { // Called after the JS SDK has been initialized.
-                return response.status;
-            });
-        };
-        
-    </script>
 
 
 </html>
