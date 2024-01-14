@@ -1,13 +1,11 @@
 package com.servlet.Udemy.DAO;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.servlet.Udemy.models.CourseModel;
 import com.servlet.Udemy.models.NewsModel;
 
 public class NewsDAO extends AbstractDAO<NewsModel> {
@@ -21,7 +19,7 @@ public class NewsDAO extends AbstractDAO<NewsModel> {
         int id = rs.getInt("id");
         String title = rs.getString("title");
         String author = rs.getString("author");
-        Date createdDate = rs.getDate("created_date");
+        Timestamp createdDate = rs.getTimestamp("created_date");
         boolean isSpecialNews = rs.getBoolean("special_news");
         String content = rs.getString("content");
         String imgURL = rs.getString("img_url");
@@ -51,5 +49,9 @@ public class NewsDAO extends AbstractDAO<NewsModel> {
             return news.get(0);
         } else
             return null;
+    }
+
+    public List<NewsModel> findAllActive() {
+        return query("SELECT * FROM " + getTable() + " WHERE is_delete = 0");
     }
 }

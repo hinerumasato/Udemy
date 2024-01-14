@@ -23,9 +23,9 @@
                             </div>
                             <div class="col right-news col-12 col-md-8 py-5">
                                 <div class="right col-12">
-                                    <h3>${item.getTitle()}</h3>
-                                    <p>${item.getAuthor()}</p>
-                                    <p>${item.getContent()}</p>
+                                    <h3>${newsItem.getTitle()}</h3>
+                                    <p>${newsItem.getAuthor()}</p>
+                                    <p>${newsItem.getContent()}</p>
                                 </div>
                             </div>
                         </div>

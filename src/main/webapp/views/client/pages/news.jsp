@@ -24,12 +24,12 @@
                             <div class="news-item pb-2">
                                 <div class="newswp shadow">
                                         <div class="thumbnail">
-                                            <a href="news-item?item-id=${item.getId()}">
+                                            <a href="/news/details/${item.getSlug()}">
                                                 <img class="img-news" src="<c:url value='${item.getImgURL()}'/>" alt="">
                                             </a>
                                         </div>
                                         <div class="content-news">
-                                            <a href="news-item?item-id=${item.getId()}" class="content-text">${item.getTitle()}</a>
+                                            <a href="/news/details/${item.getSlug()}" class="content-text">${item.getTitle()}</a>
                                             <div class=" d-flex pb-1 pt-1 ">
                                                 <div class="d-flex nav-item">
                                                     <i class="fa-regular fa-user" style="color: #11ee48;"></i>
