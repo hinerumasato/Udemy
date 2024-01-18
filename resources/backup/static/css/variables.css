@@ -19,10 +19,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     --ez-bg-color: rgba(179, 152, 255, 0.4);
     --ez-color: #5968F2;
 
-    --hard-bg-color: rgba(247, 103, 88, 0.26);
+    --hard-bg-color: rgba(247,103,88,0.26);
     --hard-color: #F76758;
 
-    --every-bg-color: rgba(109, 243, 205, 0.4);
+    --every-bg-color: rgba(109,243,205,0.4);
     --every-color: #00bc86;
 
     --regular-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
@@ -34,11 +34,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 .text-red {
     color: red;
-}
-
-.bg-black {
-    color: white;
-    background-color: #111;
 }
 
 .bg-main {
@@ -137,7 +132,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     z-index: 1;
 }
 
-.course-item>a {
+.course-item > a {
     text-decoration: none;
     color: #000;
 }
@@ -202,7 +197,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     font-size: 24px;
 }
 
-.course-item>a {
+.course-item > a {
     position: relative;
 }
 
@@ -298,16 +293,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 .custom-pagination .custom-pagination-item.active {
     background-color: var(--main-color);
     color: white;
-}
-
-.center-cell th, .center-cell td {
-    text-align: center;
-    vertical-align: middle;
-}
-
-.center-cell th.right-cell, .center-cell td.right-cell {
-    text-align: right !important;
-    vertical-align: middle;
 }
 
 @keyframes show {
