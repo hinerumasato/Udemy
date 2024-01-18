@@ -11,7 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.servlet.Udemy.configs.Vnpay;
 import com.servlet.Udemy.models.CartDetailModel;
 import com.servlet.Udemy.models.CartModel;
 import com.servlet.Udemy.models.CheckoutModel;
@@ -25,6 +27,8 @@ import com.servlet.Udemy.services.CartService;
 import com.servlet.Udemy.services.CheckoutService;
 import com.servlet.Udemy.services.CourseService;
 import com.servlet.Udemy.services.LevelService;
+import com.servlet.Udemy.utils.FileUtil;
+import com.servlet.Udemy.utils.NumberUtil;
 
 @WebServlet("/checkout")
 public class CheckoutController extends HttpServlet {
@@ -68,5 +72,30 @@ public class CheckoutController extends HttpServlet {
         page.setObject("thumbnailMap", thumbnailMap);
         page.setObject("totalPrice", totalPrice);
         page.render();
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+
+        double totalPrice = Double.parseDouble(req.getParameter("total-price"));
+        String ipAddress = req.getRemoteAddr();
+        String tmnCode = FileUtil.env("VNPAY_ID");
+        String hashSecret = FileUtil.env("VNPAY_SECRET");
+        int checkoutId = Integer.parseInt(req.getParameter("checkoutId"));
+        String orderInfo = "Thanh toan hoa don ma " + checkoutId;
+        int totalPriceInt = NumberUtil.round(totalPrice);
+
+        Vnpay vnpay = new Vnpay();
+        String paymentUrl = vnpay.amount(totalPriceInt * 100)
+                                .vnpHashSecret(hashSecret)
+                                .vnpTmnCode(tmnCode)
+                                .vnpIpAddr(ipAddress)
+                                .vnpOrderInfo(orderInfo)
+                                .buildUrl();
+        HttpSession session = req.getSession();
+        session.setAttribute("checkoutId", checkoutId);
+        resp.sendRedirect(paymentUrl);
     }
 }

@@ -61,7 +61,7 @@
         <div class="home_container_content tab-content">
             <div class="tab-pane fade show active" id="pills-new-all" role="tabpanel"
                 aria-labelledby="pills-new-all-tab" tabindex="0">
-                <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 newest-course-list g-3">
+                <div class="row row-cols-lg-3 row-cols-md-2 row-cols-2 newest-course-list g-3">
                     <c:forEach items="${courses}" var="course" varStatus="status">
                         <div class="col h-100">
                             <div class="course-item">
@@ -196,7 +196,7 @@
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="pills-popular-all" role="tabpanel"
                     aria-labelledby="pills-popular-all-tab" tabindex="0">
-                    <div class="row row-cols-lg-4 row-cols-md-2 row-cols-1 pt-5 popular-course-list g-3">
+                    <div class="row row-cols-lg-4 row-cols-md-2 row-cols-2 pt-5 popular-course-list g-3">
                         <c:forEach items="${courses}" var="course" varStatus="status">
                             <div class="col">
                                 <div class="course-item">
@@ -379,7 +379,7 @@
 <div class="home_container_group">
     <div class="container">
         <div class="container-line"></div>
-        <div class="wrapper d-flex gap-3">
+        <div class="wrapper d-md-flex d-block gap-3">
             <div class="home_container_title">
                 <div class="fs-3 fw-bold text-uppercase">REVIEW VỀ UDEMY</div>
                 <p class="fw-normal p-2 review-content">

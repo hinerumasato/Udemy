@@ -35,4 +35,12 @@ public class NumberUtil {
         }
         return result;
     }
+
+    public static int round(double doubleNum) {
+        int intNum = (int) doubleNum;
+        double minus = doubleNum - intNum;
+        if(minus >= 0.5)
+            intNum++;
+        return intNum;
+    }
 }

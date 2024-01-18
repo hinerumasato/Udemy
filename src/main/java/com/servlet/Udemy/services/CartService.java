@@ -59,6 +59,10 @@ public class CartService implements IService<CartModel> {
         return cartDAO.findByUserId(userId);
     }
 
+    public void deleteByUserId(int userId) {
+        cartDAO.deleteByUserId(userId);
+    }
+
     public void insertOrUpdateByUserId(CartModel model) {
         if(findByUserId(model.getUserId()) == null)
             insert(model);

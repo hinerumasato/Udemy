@@ -50,5 +50,9 @@ public class CartDetailDAO extends AbstractDAO<CartDetailModel> {
     public List<CartDetailModel> findByCartId(int cartId) {
         return findBy("cart_id", cartId);
     }
+
+    public void deleteByCartId(int cartId) {
+        delete("DELETE FROM " + getTable() + " WHERE cart_id = " + cartId);
+    }
     
 }

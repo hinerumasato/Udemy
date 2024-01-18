@@ -15,13 +15,11 @@ import java.util.TimeZone;
 
 import com.servlet.Udemy.utils.StringUtil;
 
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.ToString;
 
 @NoArgsConstructor
-@Getter
-@Setter
+@ToString
 public class Vnpay {
     // VNPAY Constants
     public static final String VNP_REDIRECT_URL = "http://localhost:8080/checkout/result";
@@ -33,7 +31,19 @@ public class Vnpay {
     private String orderType;
     private String vnpTxnRef;
     private String vnpIpAddr;
-    private int amount = 0;
+    private int amount;
+    private String vnpTmnCode;
+    private String vnpHashSecret;
+
+    public Vnpay vnpTmnCode(String str) {
+        this.vnpTmnCode = str;
+        return this;
+    }
+
+    public Vnpay vnpHashSecret(String str) {
+        this.vnpHashSecret = str;
+        return this;
+    }
 
     public Vnpay vnpOrderInfo(String str) {
         vnpOrderInfo = str;
@@ -62,22 +72,22 @@ public class Vnpay {
 
     public String buildUrl() {
         String result = VNP_CREATE_PAYMENT_URL;
-        String vnp_Version = "2.1.0";
-        String vnp_Command = "pay";
+        String vnp_Version = VNP_VERSION;
+        String vnp_Command = VNP_COMMAND;
         String vnp_OrderInfo = "Test";
         String orderType = "other";
-        String vnp_TxnRef = "10593";
-        String vnp_IpAddr = "192.168.2.4";
-        String vnp_TmnCode = "JIVS78CF";
+        String vnp_TxnRef = StringUtil.generateRandomNumberString(4, 6);
+        String vnp_IpAddr = this.vnpIpAddr;
+        String vnp_TmnCode = this.vnpTmnCode;
 
-        int amount = 20000 * 100;
+        int amount = this.amount;
         Map<String, Object> vnp_Params = new HashMap<String, Object>();
         vnp_Params.put("vnp_Version", vnp_Version);
         vnp_Params.put("vnp_Command", vnp_Command);
         vnp_Params.put("vnp_TmnCode", vnp_TmnCode);
         vnp_Params.put("vnp_Amount", String.valueOf(amount));
         vnp_Params.put("vnp_CurrCode", "VND");
-        String bank_code = "VNBANK";
+        String bank_code = "";
         if (bank_code != null && !bank_code.isEmpty()) {
             vnp_Params.put("vnp_BankCode", bank_code);
         }
@@ -94,7 +104,6 @@ public class Vnpay {
         vnp_Params.put("vnp_ReturnUrl", VNP_REDIRECT_URL);
         vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
         Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
-
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
         String vnp_CreateDate = formatter.format(cld.getTime());
 
@@ -158,7 +167,7 @@ public class Vnpay {
             }
         }
         String queryUrl = query.toString();
-        String vnp_SecureHash = StringUtil.hmacSHA512(hashData.toString(), "FVISRCWGWYMDGWNCCYMQHSAVDRXYWFWO");
+        String vnp_SecureHash = StringUtil.hmacSHA512(hashData.toString(), this.vnpHashSecret);
         queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
         result += "?" + queryUrl;
         return result;

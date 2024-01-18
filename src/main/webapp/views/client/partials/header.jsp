@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="<c:url value='/static/css/header.css?v=${randomNumber}'/>"/>
 </head>
 
-<header>
-    <div class=" py-3 header-info d-flex justify-content-center align-items-center text-white gap-3">
+<header class="d-xl-block d-none">
+    <div class="py-3 header-info d-flex justify-content-center align-items-center text-white gap-3">
         <div>
             <i class="fa-solid fa-clock"></i>
             <span>Thời gian làm việc: Từ <span class="fw-bold">8h00 đến 22h00</span> các ngày</span>
@@ -84,3 +84,64 @@
         </div>
     </div>
 </header>
+
+<header class="d-block d-xl-none">
+    <!-- Mobile header -->
+    <div class="py-3 header-info d-flex justify-content-center align-items-center text-white gap-3">
+        <div>
+            <i class="fa-solid fa-phone"></i>
+            <span>Hotline: <span class="fw-bold">1900 6750</span></span>
+        </div>
+    </div>
+
+    <div class="header-main shadow bg-body-tertiary py-3 px-3">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col">
+                    <button id="openHeaderAsideBtn" class="bars-btn text-main border-0 bg-white"><i class="fa-solid fa-bars"></i></button>
+                </div>
+                <div class="col">
+                    <div class="logo-center">
+                        <a href="/home">
+                            <img class="header-logo-img" src="<c:url value='/static/imgs/logo/logo.png' />">
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="header-cart-right">
+                        <a href="/cart" title="Xem giỏ hàng"><i class="las la-shopping-cart fs-4 text-main"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <aside class="side-menu">
+        <div class="close-btn"><i class="fa-solid fa-xmark"></i></div>
+        <ul>
+            <li><a href="/">Trang chủ</a></li>
+            <li><a href="/courses">Tất cả khoá học</a></li>
+            <li><a href="/news">Tin tức</a></li>
+            <li><a href="#">Giới thiệu</a></li>
+            <li><a href="/login">Đăng nhập</a></li>
+            <li><a href="/register">Đăng ký</a></li>
+        </ul>
+    </aside>
+</header>
+
+<script>
+    (function() {
+        const openHeaderAsideBtn = document.querySelector('#openHeaderAsideBtn');
+        const closeHeaderAsideBtn = document.querySelector('.close-btn');
+
+        openHeaderAsideBtn.onclick = () => {
+            const sideMenu = document.querySelector('.side-menu');
+            sideMenu.classList.add('active');
+        }
+
+        closeHeaderAsideBtn.onclick = () => {
+            const sideMenu = document.querySelector('.side-menu');
+            sideMenu.classList.remove('active');
+        }
+    })();
+</script>

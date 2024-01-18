@@ -61,4 +61,8 @@ public class CartDetailService implements IService<CartDetailModel> {
     public List<CartDetailModel> findByCartId(int cartId) {
         return cartDetailDAO.findByCartId(cartId);
     }
+
+    public void deleteByCartId(int cartId) {
+        cartDetailDAO.deleteByCartId(cartId);
+    }
 }

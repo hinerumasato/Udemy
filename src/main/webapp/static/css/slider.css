@@ -6,3 +6,7 @@
     background: var(--main-color);
     padding: 16px 0;
 }
+
+.service-row {
+    width: 1200px;
+}

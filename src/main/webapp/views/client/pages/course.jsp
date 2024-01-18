@@ -31,7 +31,7 @@
             <%@include file="/views/client/partials/sidebar.jsp" %>
         </div>
         <div class="col-12 col-md-9 course_container py-5">
-            <div id="coursePageList" class="row row-cols-xl-3 row-cols-sm-2 row-cols-1 g-3">
+            <div id="coursePageList" class="row row-cols-xl-3 row-cols-sm-2 row-cols-2 g-3">
                 <c:forEach items="${courses}" var="course" varStatus="status">
                     <div class="col">
                         <div class="course-item">

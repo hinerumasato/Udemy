@@ -39,4 +39,9 @@ public class CartDAO extends AbstractDAO<CartModel> {
             return null;
         return result.get(0);
     }
+
+    public void deleteByUserId(int userId) {
+        update("DELETE FROM " + getTable() + " WHERE user_id = " + userId);
+    }
+    
 }

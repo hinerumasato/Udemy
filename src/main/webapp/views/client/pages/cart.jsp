@@ -56,8 +56,8 @@
                     </form>
                 </c:when>  
                 <c:otherwise>
-                    <div class="alert alert-primary" role="alert">
-                        Chưa có gì trong giỏ hàng
+                    <div class="wrapper d-flex justify-content-center">
+                        <img src="<c:url value='/static/imgs/logo/cart-empty.png' />" alt="" style="max-width: 100%; width: 530px; height: 400px;">
                     </div>
                 </c:otherwise>
             </c:choose>

@@ -52,6 +52,23 @@ public abstract class AbstractDAO<T> {
         return result.size() > 0 ? result : null;
     }
 
+    public void update(String sql) {
+        createConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.executeUpdate();
+        } catch(SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                close(stmt, null);
+            } catch(SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public List<T> findAll() {
         createConnection();
         List<T> result = new ArrayList<T>();

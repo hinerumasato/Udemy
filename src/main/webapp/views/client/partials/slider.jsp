@@ -27,29 +27,29 @@
 
     <div class="slider-services">
         <div class="container">
-            <div class="row text-white">
-                <div class="col-3 d-flex gap-3">
+            <div class="service-row row text-white overflow-x-auto">
+                <div class="col-3 flex-grow-0 d-flex gap-3">
                     <img src="<c:url value='/static/imgs/services/service_1.webp' />" alt="" class="service-img">
                     <div class="slider-service-content">
                         <div class="services-title fw-bold text-uppercase">GIẢNG VIÊN UY TÍN</div>
                         <div class="services-description">Bài học chất lượng</div>
                     </div>
                 </div>
-                <div class="col-3 d-flex gap-3">
+                <div class="col-3 flex-grow-0 d-flex gap-3">
                     <img width="42" height="42" src="<c:url value='/static/imgs/services/service_2.webp' />" alt="" class="service-img">
                     <div class="slider-service-content">
                         <div class="services-title fw-bold text-uppercase">Thanh toán 1 lần</div>
                         <div class="services-description">Học mãi mãi</div>
                     </div>
                 </div>
-                <div class="col-3 d-flex gap-3">
+                <div class="col-3 flex-grow-0 d-flex gap-3">
                     <img width="44" height="38" src="<c:url value='/static/imgs/services/service_3.webp' />" alt="" class="service-img">
                     <div class="slider-service-content">
                         <div class="services-title fw-bold text-uppercase">Học trực tuyến</div>
                         <div class="services-description">Hỗ trợ trực tuyến</div>
                     </div>
                 </div>
-                <div class="col-3 d-flex gap-3">
+                <div class="col-3 flex-grow-0 d-flex gap-3">
                     <img width="37" height="49" src="<c:url value='/static/imgs/services/service_4.webp' />" alt="" class="service-img">
                     <div class="slider-service-content">
                         <div class="services-title fw-bold text-uppercase">Cam kết chất lượng</div>

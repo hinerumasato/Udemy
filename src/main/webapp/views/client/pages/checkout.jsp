@@ -80,13 +80,14 @@
                     <div class="d-flex justify-content-between">
                         <span>Tổng cộng</span>
                         <span  class="total-price format-price">${checkout.getTotalAmount() - totalPrice * checkout.getDiscount()}</span>
-                        <input type="hidden" name="${checkout.getTotalAmount() - totalPrice * checkout.getDiscount()}">
+                        <input type="hidden" name="total-price" value="${checkout.getTotalAmount() - totalPrice * checkout.getDiscount()}">
                     </div>
                 </div>
 
                 <div class="checkout-footer">
                     <div class="d-flex justify-content-between align-items-center">
-                        <a checkout-id="${checkout.getId()}" id="returnToCart" href="/cart">Quay về giỏ hàng</a>
+                        <a checkout-id="${checkout.getId()}" id="returnToCart" href="/cart">Quay lại và thanh toán sau</a>
+                        <input type="hidden" name="checkoutId" value="${checkout.getId()}">
                         <button type="submit">Đặt hàng</button>
                     </div>
                 </div>

@@ -17,13 +17,14 @@ public class VnpayTest {
     public void testBuildUrl() {
         Vnpay vnpay = new Vnpay();
         
-        String url = vnpay.amount(20000)
-                        .orderType("Thanh toan khoa hoc")
-                        .vnpTxnRef("23554")
-                        .vnpIpAddr("192.168.2.4")
-                        .buildUrl();
-        System.out.println(url);
-        assertTrue(url.length() > 0);
+        String paymentUrl = vnpay.amount(20000 * 100)
+                                .vnpHashSecret("FVISRCWGWYMDGWNCCYMQHSAVDRXYWFWO")
+                                .vnpTmnCode("JIVS78CF")
+                                .vnpIpAddr("192.168.2.4")
+                                .vnpOrderInfo("test")
+                                .buildUrl();
+        System.out.println(paymentUrl);
+        assertTrue(paymentUrl.length() > 0);
     }
     
 }
