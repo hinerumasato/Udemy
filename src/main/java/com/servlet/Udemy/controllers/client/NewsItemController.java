@@ -1,6 +1,8 @@
 package com.servlet.Udemy.controllers.client;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,17 +15,38 @@ import com.servlet.Udemy.page.ClientPage;
 import com.servlet.Udemy.page.Page;
 import com.servlet.Udemy.services.NewsService;
 
-@WebServlet("/news-item")
+@WebServlet("/news/details/*")
 public class NewsItemController extends HttpServlet {
-    private NewsService newsService = new NewsService() ;
+    private NewsService newsService = new NewsService();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Page page = new ClientPage(req, resp, "news-item.jsp", "master.jsp");
-        int itemId = Integer.parseInt(req.getParameter("item-id"));
-        NewsModel newsModel = newsService.findById(itemId);
+        String slug = req.getPathInfo().substring(1);
+        if (slug.isEmpty() || slug.isBlank())
+            resp.sendError(404, "Not found");
+        else {
+            NewsModel newsModel = newsService.findBySlug(slug);
+            if (newsModel != null) {
+                List<NewsModel> news = newsService.findAll();
+                List<NewsModel> specialNews = new ArrayList<NewsModel>();
 
-        page.setObject("title", "Tin tức");
-        page.setObject("item", newsModel);
-        page.render();
+                for (int i = news.size() - 1; i >= 0; i--) {
+                    int count = 0;
+                    if (news.get(i).isSpecialNews()) {
+                        specialNews.add(news.get(i));
+                        count++;
+                    }
+                    if (count == 4)
+                        break;
+                }
+                Page page = new ClientPage(req, resp, "news-item.jsp", "master.jsp");
+                page.setObject("title", newsModel.getTitle());
+                page.setObject("newsItem", newsModel);
+                page.setObject("specialNews", specialNews);
+                page.render();
+            } else {
+                resp.sendError(404, "Not found");
+            }
+        }
     }
 }

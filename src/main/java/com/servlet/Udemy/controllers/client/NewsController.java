@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.servlet.Udemy.constants.Constants;
 import com.servlet.Udemy.models.NewsModel;
 import com.servlet.Udemy.page.ClientPage;
 import com.servlet.Udemy.page.Page;
@@ -32,16 +33,22 @@ public class NewsController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Page page = new ClientPage(req, resp, "news.jsp", "master.jsp");
 
-        List<NewsModel> news = newsService.findAll();
+        NewsService newsServicePagination =(NewsService) newsService.paginate(1, Constants.PAGE_LIMIT);
+        List<NewsModel> newsModel = newsService.findAll();
         List<NewsModel> specialNews = new ArrayList<NewsModel>();
-        for (NewsModel newsModel : news) {
-            if(newsModel.isSpecialNews()){
-                specialNews.add(newsModel);
+        
+        for (int i = newsModel.size() - 1; i >= 0; i--) {
+            int count = 0;
+            if (newsModel.get(i).isSpecialNews()) {
+                specialNews.add(newsModel.get(i));
+                count++;
             }
+            if (count == 4)
+                break;
         }
         page.setObject("title", "Tin tức");
-        page.setObject("list_news", news);
-        page.setObject("special_news", specialNews);
+        page.setObject("listNews", newsModel);
+        page.setObject("specialNews", specialNews);
         page.render();
     }
 }

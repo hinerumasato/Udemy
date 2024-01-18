@@ -27,8 +27,7 @@ public class NewsService implements IService<NewsModel> {
 
     @Override
     public NewsModel findFirst() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findFirst'");
+        return newsDAO.findFirst();
     }
 
     @Override
@@ -56,4 +55,11 @@ public class NewsService implements IService<NewsModel> {
         return newsDAO.paginate(this, page, limit);
     }
 
+    public NewsModel findBySlug(String slug) {
+        return newsDAO.findBySlug(slug);
+    }
+
+    public List<NewsModel> findAllActive(){
+        return newsDAO.findAllActive();
+    }
 }
