@@ -92,11 +92,6 @@
         Demo Purpose Only - May not require to add.
         font-family: "Raleway",sans-serif;
     *********************************************************/
-    
-        @import url('https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800,900');
-    
-    
-    
         html {
           box-sizing: border-box;
         }

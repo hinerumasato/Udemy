@@ -40,6 +40,10 @@ public class CourseService implements IService<CourseModel> {
         return courseDAO.findByCategoryCode(code);
     }
 
+    public List<CourseModel> findAllNewCourse() {
+        return courseDAO.findAllNewCourse();
+    }
+
     public List<CourseModel> findByMap(Map<String, String> conditionMap) {
         return courseDAO.findByMap(conditionMap);
     }

@@ -20,6 +20,7 @@ import org.apache.http.client.fluent.Request;
 
 import com.google.gson.Gson;
 import com.servlet.Udemy.constants.Constants;
+import com.servlet.Udemy.constants.LoginType;
 import com.servlet.Udemy.models.GoogleTokenResponseModel;
 import com.servlet.Udemy.models.GoogleUserModel;
 import com.servlet.Udemy.models.UserModel;
@@ -76,7 +77,8 @@ public class GoogleAuthController extends HttpServlet {
         if(!userService.exists(userModel)) {
             userService.insert(userModel);
         }
-
+        
+        userModel = userService.findByUsernameAndLoginType(userModel.getUsername(), LoginType.GOOGLE);
         HttpSession session = req.getSession();
         session.setAttribute("loginUser", userModel);
         resp.sendRedirect("/home");

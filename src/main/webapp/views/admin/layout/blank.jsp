@@ -6,9 +6,9 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/common/includes.jsp" %>
+
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,28 +44,16 @@
     <!-- JQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
+    <script src="<c:url value='/static/js/templates/template.js?v=${randomNumber}' />"></script>
+
     <title>${title}</title>
 </head>
-
 <body>
-    <%@include file="/views/admin/partials/header.jsp" %>
     <jsp:include page="${contentPage}" />
-    </div>
-    <%@include file="/views/admin/partials/footer.jsp" %>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>
     <script src="<c:url value='/static/js/utils/number.js?v=${randomNumber}' />"></script>
     <script src="<c:url value='/static/js/utils/file.js?v=${randomNumber}' />"></script>
-    <script src="<c:url value='/static/js/templates/template.js?v=${randomNumber}' />"></script>
-
-    <script>
-        tinymce.init({
-            selector: 'textarea',
-            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-        });
-    </script>
 </body>
-
 </html>

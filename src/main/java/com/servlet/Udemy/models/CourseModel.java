@@ -36,4 +36,12 @@ public class CourseModel {
     private String slug;
 
     private List<ThumbnailModel> thumbnails;
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj != null && obj instanceof CourseModel) {
+            CourseModel that = (CourseModel) obj;
+            return this.id == that.id;
+        } else return false;
+    }
 }

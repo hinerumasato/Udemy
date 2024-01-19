@@ -38,9 +38,28 @@
                     <div class="row align-items-center justify-content-between">
                         <div class="col-9">
                             <div class="row align-items-center">
-                                <div class="header-navigation col-3 d-flex align-items-center">
-                                    <i class="fa-solid fa-bars me-3"></i>
-                                    <div>Danh mục</div>
+                                <div class="header-navigation col-3">
+                                    <div class="d-flex align-items-center header-navigation-title">
+                                        <i class="fa-solid fa-bars me-3"></i>
+                                        <span>Danh mục</span>
+                                    </div>
+                                    <ul class="list-unstyled header-navigation-list shadow">
+                                        <li class="header-navigation-item">
+                                            <a href="/home" class="header-navigation-link">Trang chủ</a>
+                                        </li>
+                                        <li class="header-navigation-item">
+                                            <a href="/courses" class="header-navigation-link">Danh sách khoá học</a>
+                                        </li>
+                                        <li class="header-navigation-item">
+                                            <a href="/news" class="header-navigation-link">Tin tức</a>
+                                        </li>
+                                        <li class="header-navigation-item">
+                                            <a href="" class="header-navigation-link">Đánh giá</a>
+                                        </li>
+                                        <li class="header-navigation-item">
+                                            <a href="/about" class="header-navigation-link">Giới thiệu</a>
+                                        </li>
+                                    </ul>
                                 </div>
 
                                 <div class="header-search-group col-9 d-flex align-items-center">

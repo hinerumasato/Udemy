@@ -18,10 +18,6 @@ header {
     background: var(--header-info-color);
 }
 
-.header-main-left {
-    /* border-right: solid 1px #000; */
-}
-
 .input-header {
     border: none;
     outline: none !important;
@@ -119,4 +115,53 @@ header {
 
 .overlay.active {
     display: block;
+}
+
+.header-navigation {
+    position: relative;
+}
+
+.header-navigation-title {
+    cursor: pointer;
+}
+
+.header-navigation-list {
+    visibility: hidden;
+    height: 0;
+    position: absolute;
+    background-color: #F8F9FA;
+    width: 175px;
+    top: 47px;
+    left: -14px;
+}
+
+.header-navigation-list::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 47px;
+    background-color: transparent;
+    top: -30px;
+    height: 30px;
+}
+
+.header-navigation:hover .header-navigation-list {
+    visibility: visible;
+    height: fit-content;
+}
+
+.header-navigation-item {
+    padding: 8px 16px;
+}
+
+.header-navigation-item:not(:last-child) {
+    border-bottom: dashed 1px #ccc;
+}
+
+.header-navigation-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #6C757D;
 }

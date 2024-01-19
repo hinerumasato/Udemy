@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.servlet.Udemy.constants.Constants;
 import com.servlet.Udemy.models.NewsModel;
 import com.servlet.Udemy.page.ClientPage;
 import com.servlet.Udemy.page.Page;
@@ -32,8 +31,6 @@ public class NewsController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Page page = new ClientPage(req, resp, "news.jsp", "master.jsp");
-
-        NewsService newsServicePagination =(NewsService) newsService.paginate(1, Constants.PAGE_LIMIT);
         List<NewsModel> newsModel = newsService.findAll();
         List<NewsModel> specialNews = new ArrayList<NewsModel>();
         

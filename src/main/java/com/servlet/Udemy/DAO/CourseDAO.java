@@ -163,4 +163,11 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
             return null;
     }
 
+    public List<CourseModel> findAllNewCourse() {
+        Map<String, Object> findMap = new HashMap<String, Object>();
+        findMap.put("new_course", 1);
+        findMap.put("is_delete", 0);
+        return findBys(findMap);
+    }
+
 }

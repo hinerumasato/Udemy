@@ -37,7 +37,7 @@
 <div class="home_container_group">
     <div class="container">
         <div class="container-line"></div>
-        <div class="home_container_title d-flex justify-content-between align-items-center">
+        <div class="home_container_title d-lg-flex d-block justify-content-between align-items-center">
             <div class="fs-1 fw-bold text-uppercase">KHOÁ HỌC MỚI NHẤT</div>
 
             <ul class="nav nav-pills gap-3" id="news_course_pills" role="tablist">
@@ -62,7 +62,7 @@
             <div class="tab-pane fade show active" id="pills-new-all" role="tabpanel"
                 aria-labelledby="pills-new-all-tab" tabindex="0">
                 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-2 newest-course-list g-3">
-                    <c:forEach items="${courses}" var="course" varStatus="status">
+                    <c:forEach items="${courses}" var="course" begin="0" end="5" varStatus="status">
                         <div class="col h-100">
                             <div class="course-item">
                                 <a href="/courses/details/${course.getSlug()}">
@@ -108,7 +108,7 @@
                                             class="backside-data d-block d-md-flex justify-content-between align-items-center">
                                             <div class="backside-level">
                                                 <i class="fa-solid fa-chart-line"></i>
-                                                <span>Cơ bản</span>
+                                                <span>${levels.get(status.index).getValue()}</span>
                                             </div>
 
                                             <div class="backside-lesson">
@@ -139,6 +139,10 @@
                             </div>
                         </div>
                     </c:forEach>
+                </div>
+
+                <div class="d-flex justify-content-center mt-5">
+                    <a href="/courses" class="bg-main text-uppercase text-decoration-none px-4 py-2 rounded-2">Xem tất cả</a>
                 </div>
             </div>
             <c:forEach items="${categories}" begin="0" end="2" var="category">
@@ -197,7 +201,7 @@
                 <div class="tab-pane fade show active" id="pills-popular-all" role="tabpanel"
                     aria-labelledby="pills-popular-all-tab" tabindex="0">
                     <div class="row row-cols-lg-4 row-cols-md-2 row-cols-2 pt-5 popular-course-list g-3">
-                        <c:forEach items="${courses}" var="course" varStatus="status">
+                        <c:forEach items="${courses}" begin="0" end="7" var="course" varStatus="status">
                             <div class="col">
                                 <div class="course-item">
                                     <a href="/courses/details/${course.getSlug()}">
@@ -294,7 +298,7 @@
 <div class="home_container_group">
     <div class="container">
         <div class="container-line"></div>
-        <div class="home_container_title d-flex justify-content-between align-items-center">
+        <div class="home_container_title d-lg-flex d-block justify-content-between align-items-center">
             <div class="fs-1 fw-bold text-uppercase">GIẢNG VIÊN TIÊU BIỂU</div>
         </div>
 

@@ -283,7 +283,7 @@ public abstract class AbstractDAO<T> {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
-            stmt = conn.prepareStatement(sql);
+            stmt = conn.prepareStatement(sql + " " + sqlOffset);
             for (int i = 0; i < values.size(); i++) {
                 stmt.setObject(i + 1, values.get(i));
             }
@@ -298,6 +298,7 @@ public abstract class AbstractDAO<T> {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+            sqlOffset = "";
         }
         return models.size() > 0 ? models : null;
     }

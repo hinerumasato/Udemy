@@ -3,6 +3,7 @@ package com.servlet.Udemy.DAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.servlet.Udemy.models.UserModel;
@@ -24,7 +25,8 @@ public class UserDAO extends AbstractDAO<UserModel> {
         String loginType = rs.getString("login_type");
         boolean emailVerified = rs.getBoolean("email_verified");
         String avatar = rs.getString("avatar");
-        UserModel userModel = new UserModel(id, username, password, firstName, lastName, phone, avatar, emailVerified, loginType);
+        String role = rs.getString("role");
+        UserModel userModel = new UserModel(id, username, password, firstName, lastName, phone, avatar, emailVerified, loginType, role);
         return userModel;
     }
 
@@ -40,8 +42,16 @@ public class UserDAO extends AbstractDAO<UserModel> {
         map.put("avatar", model.getAvatar());
         map.put("email_verified", model.isEmailVerified());
         map.put("login_type", model.getLoginType());
+        if(model.getRole() != null)
+            map.put("role", model.getRole());
         return map;
     }
 
-    
+    public UserModel findByUsernameAndLoginType(String username, String loginType) {
+        Map<String, Object> findMap = new HashMap<>();
+        findMap.put("username", username);
+        findMap.put("login_type", loginType);
+        List<UserModel> foundResultList = findBys(findMap);
+        return foundResultList.size() > 0 ? foundResultList.get(0) : null;
+    }    
 }

@@ -20,8 +20,9 @@ public class UserModel {
     private String avatar;
     private boolean emailVerified;
     private String loginType;
+    private String role;
 
-    public UserModel(String username, String password, String firstName, String lastName, String phone, String avatar, boolean emailVerified, String loginType) {
+    public UserModel(String username, String password, String firstName, String lastName, String phone, String avatar, boolean emailVerified, String loginType, String role) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -30,6 +31,7 @@ public class UserModel {
         this.avatar = avatar;
         this.emailVerified = emailVerified;
         this.loginType = loginType;
+        this.role = role;
     }
     
 }

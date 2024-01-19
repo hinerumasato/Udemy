@@ -1,7 +1,6 @@
 package com.servlet.Udemy.controllers.admin;
 
 import java.io.IOException;
-import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -55,7 +54,6 @@ public class AddNewsController extends HttpServlet {
         newsModel.setSlug(slug);
 
         newsService.insert(newsModel);
-        NewsModel news = newsService.findLast();
 
         req.getSession().setAttribute("message", SuccessMessage.ADD_NEW_NEWS_SUCCESS);
         resp.sendRedirect("/admin/news/add-news");

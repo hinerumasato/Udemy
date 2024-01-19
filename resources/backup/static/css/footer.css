@@ -1,6 +1,6 @@
 footer {
     color: #fff;
-    background: #000000;
+    background: #333;
 }
 
 
@@ -10,7 +10,6 @@ p{
 }
 
 .footer-container{
-    display: flex;
     padding: 40px;
     margin-top: 40px;
 }
@@ -105,3 +104,12 @@ p{
     flex: 1;
 }
 
+.payment-img {
+    max-width: 100%;
+}
+
+@media (max-width: 748px) {
+    .footer-right {
+        margin-top: 30px;
+    }
+}

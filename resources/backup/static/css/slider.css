@@ -4,5 +4,13 @@
 
 .slider-services {
     background: var(--main-color);
-    padding: 16px 0;
+    padding: 16px 0;    
+}
+
+.slider-services .container {
+    overflow: hidden;
+}
+
+.service-row {
+    width: 1200px;
 }
