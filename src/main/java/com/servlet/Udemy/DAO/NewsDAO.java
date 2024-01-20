@@ -19,7 +19,7 @@ public class NewsDAO extends AbstractDAO<NewsModel> {
         int id = rs.getInt("id");
         String title = rs.getString("title");
         String author = rs.getString("author");
-        Timestamp createdDate = rs.getTimestamp("created_date");
+        String createdDate = rs.getString("created_date");
         boolean isSpecialNews = rs.getBoolean("special_news");
         String content = rs.getString("content");
         String imgURL = rs.getString("img_url");

@@ -1,7 +1,5 @@
 package com.servlet.Udemy.models;
 
-import java.sql.Timestamp;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +13,7 @@ public class NewsModel {
     private int id;
     private String title;
     private String author;
-    private Timestamp createdDate;
+    private String createdDate;
     private boolean isSpecialNews;
     private String content;
     private String imgURL;

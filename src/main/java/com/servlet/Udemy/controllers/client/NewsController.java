@@ -33,10 +33,9 @@ public class NewsController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Page page = new ClientPage(req, resp, "news.jsp", "master.jsp");
 
-        NewsService newsServicePagination =(NewsService) newsService.paginate(1, Constants.PAGE_LIMIT);
         List<NewsModel> newsModel = newsService.findAll();
         List<NewsModel> specialNews = new ArrayList<NewsModel>();
-        
+
         for (int i = newsModel.size() - 1; i >= 0; i--) {
             int count = 0;
             if (newsModel.get(i).isSpecialNews()) {

@@ -49,6 +49,15 @@
                             <li><a class="dropdown-item" href="/admin/teacher">Danh sách giáo viên</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Tin tức
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/admin/news/add-news">Thêm mới thể loại</a></li>
+                            <li><a class="dropdown-item" href="/admin/news">Danh sách thể loại</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Nhập tên sản phẩm ..." aria-label="Search">
