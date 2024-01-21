@@ -24,10 +24,10 @@
     </div>
 
     <ul class="collapse sidebar-list sidebar-menu-list show" id="collapseMenu">
-        <li>Trang chủ</li>
+        <li><a href="/home">Trang chủ</a></li>
         <li>
             <div class="d-flex justify-content-between align-items-center">
-                <span>Danh sách khoá học</span>
+                <a href="/courses">Danh sách khoá học</a>
                 <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCourses"
                     aria-expanded="false" aria-controls="collapseExample">
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
@@ -39,10 +39,9 @@
                 </c:forEach>
             </ul>
         </li>
-        <li>Khoá học tiêu biểu</li>
-        <li>Tin tức</li>
-        <li>Liên hệ</li>
-        <li>Giới thiệu</li>
+        <li><a href="/news"></a>Tin tức</li>
+        <li><a href="/contact"></a>Đánh giá</li>
+        <li><a href="/about">Giới thiệu</a></li>
     </ul>
 
     <div class="d-flex justify-content-between align-items-center mt-3 fs-6">

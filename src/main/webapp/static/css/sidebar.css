@@ -32,6 +32,11 @@ aside .sidebar-menu-list li {
     border-bottom: 1px dashed #EBEBEB;
 }
 
+aside .sidebar-menu-list li a {
+    color: #92909A;
+    text-decoration: none;
+}
+
 .sidebar-wrapper {
     /* Thiết lập các thuộc tính CSS mặc định cho sidebar */
     transition: transform 0.3s ease;
