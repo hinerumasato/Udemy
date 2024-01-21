@@ -49,7 +49,7 @@ public class AddNewsController extends HttpServlet {
         String fileName = "default.png";
         Part imagePart = req.getPart("image");
 
-        String location = "/static/imgs/teachers";
+        String location = "/static/imgs/news";
 
         if (imagePart != null && imagePart.getSize() > 0 && imagePart.getSubmittedFileName() != null) {
             fileName = imagePart.getSubmittedFileName();

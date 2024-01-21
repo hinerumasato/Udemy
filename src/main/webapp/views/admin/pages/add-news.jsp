@@ -79,3 +79,4 @@
                 </div>
             </form>
         </div>
+        <script src="<c:url value='/static/js/pages/add-news.js' />"></script>
