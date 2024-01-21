@@ -51,6 +51,10 @@ public class UserService implements IService<UserModel> {
         return null;
     }
 
+    public UserModel findByUsernameAndLoginType(String username, String loginType) {
+        return userDAO.findByUsernameAndLoginType(username, loginType);
+    }
+
     @Override
     public void insert(UserModel model) {
         userDAO.insert(model);

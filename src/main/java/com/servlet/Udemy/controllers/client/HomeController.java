@@ -6,7 +6,9 @@ package com.servlet.Udemy.controllers.client;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,6 +47,14 @@ public class HomeController extends HttpServlet{
         List<TeacherModel> teachers = new ArrayList<TeacherModel>();
         List<LevelModel> levels  = new ArrayList<LevelModel>();
         List<CategoryModel> courseCategories = new ArrayList<CategoryModel>();
+
+        List<TeacherModel> allTeachers = teacherService.findAll();
+        Map<TeacherModel, CategoryModel> teacherCategoryMap = new HashMap<>();
+
+        for (TeacherModel teacher : allTeachers) {
+            teacherCategoryMap.put(teacher, categoryService.findById(teacher.getCategoryId()));
+        }
+
         if(courses != null) {
             for (CourseModel course : courses) {
                 levels.add(levelService.findById(course.getLevelId()));
@@ -59,6 +69,8 @@ public class HomeController extends HttpServlet{
         page.setObject("teachers", teachers);
         page.setObject("courseCategories", courseCategories);
         page.setObject("title", "Trang chủ");
+        page.setObject("allTeachers", allTeachers);
+        page.setObject("teacherCategoryMap", teacherCategoryMap);
         
         page.render();
     }

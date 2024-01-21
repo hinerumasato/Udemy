@@ -9,33 +9,33 @@
 <div id="courseDetail" course-id="${course.getId()}" class="mt-5">
     <div class="container">
         <div class="row justify-content-between">
-            <div class="col-7">
+            <div class="col-lg-7 col-12">
                 <h1 class="fw-bold">${course.getName()}</h1>
                 <div class="tag bg-main-light fit px-4 py-2 rounded-4 my-4">
                     ${categoryMap.get(course).getName()}</div>
 
                 <div class="row justify-content-between">
-                    <div class="col-9">
+                    <div class="col-md-9 col-12">
                         <div class="row">
-                            <div class="col-3">
+                            <div class="col-md-3 col-12">
                                 <div class="course-info">
                                     <div class="key">Ngày đăng</div>
                                     <div class="value">26/04/2022</div>
                                 </div>
                             </div>
-                            <div class="col-3">
+                            <div class="col-md-3 col-12">
                                 <div class="course-info">
                                     <div class="key">Level</div>
                                     <div class="value">${levelMap.get(course).getValue()}</div>
                                 </div>
                             </div>
-                            <div class="col-3">
+                            <div class="col-md-3 col-12">
                                 <div class="course-info">
                                     <div class="key">Học viên</div>
                                     <div class="value">Đang cập nhật</div>
                                 </div>
                             </div>
-                            <div class="col-3">
+                            <div class="col-md-3 col-12">
                                 <div class="course-info">
                                     <div class="key">Ngôn ngữ</div>
                                     <div class="value">Tiếng Việt</div>
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-md-3 col-12">
                         <button class="btn-second px-4 text-center w-100 py-3 rounded-4">
                             <i class="d-inline fa-regular fa-heart"></i>
                             <span class="d-inline ms-2 fw-bold">Yêu thích</span>
@@ -81,15 +81,17 @@
                     </div>
 
                     <div class="small-thumbnail-wrapper mt-3">
-                        <c:forEach items="${course.getThumbnails()}" var="thumbnail">
-                            <div class="small-thumbnail">
-                                <img thumbnail-id="${thumbnail.getId()}" src="${thumbnail.getImg()}" alt="">
-                            </div>
-                        </c:forEach>
+                        <div class="inner">
+                            <c:forEach items="${course.getThumbnails()}" var="thumbnail">
+                                <div class="small-thumbnail">
+                                    <img thumbnail-id="${thumbnail.getId()}" src="${thumbnail.getImg()}" alt="">
+                                </div>
+                            </c:forEach>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-lg-4 col-12 course-bottom">
                 <div class="course-price">
                     <h2 class="text-danger fw-bold format-price">${course.getSalePrice()}</h2>
                     <span

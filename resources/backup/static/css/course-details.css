@@ -19,6 +19,10 @@
     text-align: center;
 }
 
+#courseDetail .course-info {
+    padding: 8px 0;
+}
+
 #courseDetail .course-info .value {
     font-weight: bold;
 }
@@ -90,6 +94,10 @@
 }
 
 #courseDetail .small-thumbnail-wrapper {
+    overflow-x: auto;
+}
+
+#courseDetail .small-thumbnail-wrapper .inner {
     display: flex;
     gap: 8px;
 }
@@ -131,3 +139,15 @@
 /* #courseDetail .carousel-item img {
     height: 340px;
 } */
+
+@media (max-width: 992px) {
+    .course-bottom {
+        margin-top: 120px;
+    }
+}
+
+@media (max-width: 500px) {
+    #courseDetail .thumbnails {
+        height: 320px;
+    }
+}

@@ -53,4 +53,8 @@ public class CheckoutService implements IService<CheckoutModel> {
     public IService<CheckoutModel> paginate(int page, int limit) {
         return checkoutDAO.paginate(this, page, limit);
     }
+
+    public List<CheckoutModel> findByCartId(int cartId) {
+        return checkoutDAO.findByCartId(cartId);
+    }
 }

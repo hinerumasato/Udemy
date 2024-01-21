@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.servlet.Udemy.constants.LoginType;
+import com.servlet.Udemy.constants.Role;
 import com.servlet.Udemy.models.UserModel;
 import com.servlet.Udemy.services.UserService;
 import com.servlet.Udemy.utils.StringUtil;
@@ -22,7 +23,7 @@ public class RegisterController extends HttpServlet {
     private UserModel createNewUser(String email, String password, String firstName, String lastName, String phone) {
         //Hash password
         String encryptPassword = StringUtil.encrypt(password);
-        return new UserModel(email, encryptPassword, firstName, lastName, phone, null, false, LoginType.NORMAL);
+        return new UserModel(email, encryptPassword, firstName, lastName, phone, null, false, LoginType.NORMAL, Role.USER);
     }
 
     @Override

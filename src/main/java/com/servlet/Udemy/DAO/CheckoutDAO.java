@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.servlet.Udemy.models.CheckoutModel;
@@ -36,6 +37,10 @@ public class CheckoutDAO extends AbstractDAO<CheckoutModel> {
         map.put("payment_status", model.getPaymentStatus());
         map.put("cart_id", model.getCartId());
         return map;
+    }
+
+    public List<CheckoutModel> findByCartId(int cartId) {
+        return findBy("cart_id", cartId);
     }
     
 }

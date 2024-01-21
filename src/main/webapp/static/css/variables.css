@@ -11,6 +11,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     --header-info-color: #F76758;
     --main-color: #00BC86;
     --secondary-color: #EDFAF1;
+    --semi-black-color: #212B25;
     --third-color: #FFF8F6;
     --price-color: #f76758;
     --home-group-color: #FBB72C;
@@ -30,6 +31,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 .text-main {
     color: var(--main-color) !important;
+}
+
+.text-semi-black {
+    color: var(--semi-black-color) !important;
 }
 
 .text-red {

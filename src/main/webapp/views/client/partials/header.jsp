@@ -38,9 +38,28 @@
                     <div class="row align-items-center justify-content-between">
                         <div class="col-9">
                             <div class="row align-items-center">
-                                <div class="header-navigation col-3 d-flex align-items-center">
-                                    <i class="fa-solid fa-bars me-3"></i>
-                                    <div>Danh mục</div>
+                                <div class="header-navigation col-3">
+                                    <div class="d-flex align-items-center header-navigation-title">
+                                        <i class="fa-solid fa-bars me-3"></i>
+                                        <span>Danh mục</span>
+                                    </div>
+                                    <ul class="list-unstyled header-navigation-list shadow">
+                                        <li class="header-navigation-item">
+                                            <a href="/home" class="header-navigation-link">Trang chủ</a>
+                                        </li>
+                                        <li class="header-navigation-item">
+                                            <a href="/courses" class="header-navigation-link">Danh sách khoá học</a>
+                                        </li>
+                                        <li class="header-navigation-item">
+                                            <a href="/news" class="header-navigation-link">Tin tức</a>
+                                        </li>
+                                        <li class="header-navigation-item">
+                                            <a href="" class="header-navigation-link">Đánh giá</a>
+                                        </li>
+                                        <li class="header-navigation-item">
+                                            <a href="/about" class="header-navigation-link">Giới thiệu</a>
+                                        </li>
+                                    </ul>
                                 </div>
 
                                 <div class="header-search-group col-9 d-flex align-items-center">
@@ -64,7 +83,7 @@
                             <div class="d-flex">
                                 <form action="/auth/logout" method="POST">
                                     <div class="text-center">
-                                        <div>Xin chào ${loginUser.getLastName()}</div>
+                                        <div><a href="/account" class="header-account-link">Xin chào ${loginUser.getLastName()}</a></div>
                                         <button class="logout-btn" type="submit">Đăng xuất</button>
                                     </div>    
                                 </form>
@@ -122,7 +141,7 @@
             <li><a href="/">Trang chủ</a></li>
             <li><a href="/courses">Tất cả khoá học</a></li>
             <li><a href="/news">Tin tức</a></li>
-            <li><a href="#">Giới thiệu</a></li>
+            <li><a href="/about">Giới thiệu</a></li>
             <li><a href="/login">Đăng nhập</a></li>
             <li><a href="/register">Đăng ký</a></li>
         </ul>

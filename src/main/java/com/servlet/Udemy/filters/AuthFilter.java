@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter("/checkout")
+@WebFilter(urlPatterns = {"/checkout", "/account", "/account/*"})
 public class AuthFilter implements Filter {
 
     @Override
@@ -27,8 +27,21 @@ public class AuthFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
         HttpSession session = request.getSession();
-        if(session.getAttribute("loginUser") == null)
-            response.sendRedirect("/home");
+
+        String requestURI = request.getRequestURI();
+        if(session.getAttribute("loginUser") == null) {
+            switch (requestURI) {
+                case "/checkout":
+                    response.sendRedirect("/home");
+                    break;
+                case "/account":
+                    response.sendRedirect("/login");
+                    break;
+                default:
+                    response.sendRedirect("/login");
+                    break;
+            }
+        }
         else chain.doFilter(req, resp);
     }
 

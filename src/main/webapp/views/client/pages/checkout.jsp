@@ -40,25 +40,25 @@
             </div>
             <div class="checkout-info col-12 col-md-5">
                 <div class="checkout-title">
-                    <h4 class="checkout-amount">Đơn hàng (${cartDetails.size()} sản phẩm)</h4>
+                    <h4 class="checkout-amount">Đơn hàng (${checkoutDetails.size()} sản phẩm)</h4>
                 </div>
 
                 <div class="checkout-courses">
-                    <c:forEach items="${cartDetails}" var="cartDetail">
+                    <c:forEach items="${checkoutDetails}" var="checkoutDetail">
                         <div class="row align-items-center">
                             <div class="col-2">
                                 <div class="amount-wrapper">
-                                    <img class="w-100 checkout-cousre-thumbnail" src="${thumbnailMap.get(courseMap.get(cartDetail)).getImg()}" alt="">
-                                    <div class="checkout-course-amount">${cartDetail.getAmount()}</div>
+                                    <img class="w-100 checkout-cousre-thumbnail" src="${thumbnailMap.get(courseMap.get(checkoutDetail)).getImg()}" alt="">
+                                    <div class="checkout-course-amount">${checkoutDetail.getAmount()}</div>
                                 </div>
 
                             </div>
                             <div class="col-7">
-                                <div>${courseMap.get(cartDetail).getName()}</div>
-                                <small class="text-secondary">${levelMap.get(courseMap.get(cartDetail)).getValue()}</small>
+                                <div>${courseMap.get(checkoutDetail).getName()}</div>
+                                <small class="text-secondary">${levelMap.get(courseMap.get(checkoutDetail)).getValue()}</small>
                             </div>
                             <div class="col-3">
-                                <span class="text-secondary checkout-course-price format-price">${courseMap.get(cartDetail).getSalePrice()}</span>
+                                <span class="text-secondary checkout-course-price format-price">${courseMap.get(checkoutDetail).getSalePrice()}</span>
                             </div>
                         </div>
                     </c:forEach>

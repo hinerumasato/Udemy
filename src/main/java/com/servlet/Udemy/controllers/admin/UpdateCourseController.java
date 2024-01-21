@@ -33,8 +33,8 @@ import com.servlet.Udemy.utils.StringUtil;
 
 @WebServlet("/admin/courses/update")
 @MultipartConfig(
-    maxFileSize = 1024 * 1024 * 5,
-    maxRequestSize = 1024 * 1025 * 10
+    maxFileSize = 1024 * 1024 * 500,
+    maxRequestSize = 1024 * 1024 * 500
 )
 public class UpdateCourseController extends HttpServlet {
 
@@ -79,14 +79,15 @@ public class UpdateCourseController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
-        String method = req.getParameter("_method");
-        switch (method) {
-            case "PUT":
-                doPut(req, resp);
-                break;
-            default:
-                break;
-        }
+//        String method = req.getParameter("_method");
+        doPut(req, resp);
+//        switch (method) {
+//            case "PUT":
+//                doPut(req, resp);
+//                break;
+//            default:
+//                break;
+//        }
     }
     
 

@@ -14,16 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.servlet.Udemy.configs.Vnpay;
-import com.servlet.Udemy.models.CartDetailModel;
-import com.servlet.Udemy.models.CartModel;
+import com.servlet.Udemy.models.CheckoutDetailModel;
 import com.servlet.Udemy.models.CheckoutModel;
 import com.servlet.Udemy.models.CourseModel;
 import com.servlet.Udemy.models.LevelModel;
 import com.servlet.Udemy.models.ThumbnailModel;
 import com.servlet.Udemy.page.ClientPage;
 import com.servlet.Udemy.page.Page;
-import com.servlet.Udemy.services.CartDetailService;
-import com.servlet.Udemy.services.CartService;
+import com.servlet.Udemy.services.CheckoutDetailService;
 import com.servlet.Udemy.services.CheckoutService;
 import com.servlet.Udemy.services.CourseService;
 import com.servlet.Udemy.services.LevelService;
@@ -34,8 +32,7 @@ import com.servlet.Udemy.utils.NumberUtil;
 public class CheckoutController extends HttpServlet {
 
     private CheckoutService checkoutService = new CheckoutService();
-    private CartService cartService = new CartService();
-    private CartDetailService cartDetailService = new CartDetailService();
+    private CheckoutDetailService checkoutDetailService = new CheckoutDetailService();
     private CourseService courseService = new CourseService();
     private LevelService levelService = new LevelService();
 
@@ -43,30 +40,26 @@ public class CheckoutController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int checkoutId = Integer.parseInt(req.getParameter("id"));
         CheckoutModel checkoutModel = checkoutService.findById(checkoutId);
-        Map<CheckoutModel, CartModel> cartMap = new HashMap<CheckoutModel, CartModel>();
-        List<CartDetailModel> cartDetails = new ArrayList<CartDetailModel>();
-        Map<CartDetailModel, CourseModel> courseMap = new HashMap<CartDetailModel, CourseModel>();
-        Map<CourseModel, LevelModel> levelMap = new HashMap<CourseModel, LevelModel>();
-        Map<CourseModel, ThumbnailModel> thumbnailMap = new HashMap<CourseModel, ThumbnailModel>();
+        List<CheckoutDetailModel> checkoutDetails = new ArrayList<>();
+        Map<CheckoutDetailModel, CourseModel> courseMap = new HashMap<>();
+        Map<CourseModel, LevelModel> levelMap = new HashMap<>();
+        Map<CourseModel, ThumbnailModel> thumbnailMap = new HashMap<>();
 
-        CartModel cartModel = cartService.findById(checkoutModel.getCartId());
-        cartMap.put(checkoutModel, cartModel);
-        cartDetails = cartDetailService.findByCartId(cartModel.getId());
+        checkoutDetails = checkoutDetailService.findByCheckoutId(checkoutId);
 
         double totalPrice = 0;
-        for (CartDetailModel cartDetail : cartDetails) {
-            CourseModel courseModel = courseService.findById(cartDetail.getCourseId());
-            courseMap.put(cartDetail, courseModel);
+        for (CheckoutDetailModel checkoutDetail : checkoutDetails) {
+            CourseModel courseModel = courseService.findById(checkoutDetail.getCourseId());
+            courseMap.put(checkoutDetail, courseModel);
             levelMap.put(courseModel, levelService.findById(courseModel.getLevelId()));
             thumbnailMap.put(courseModel, courseModel.getThumbnails().get(0));
-            totalPrice += cartDetail.getAmount() * courseModel.getSalePrice();
+            totalPrice += checkoutDetail.getAmount() * courseModel.getSalePrice();
         }
 
         Page page = new ClientPage(req, resp, "checkout.jsp", "blank.jsp");
         page.setObject("title", "Thanh toán đơn hàng");
-        page.setObject("cartDetails", cartDetails);
+        page.setObject("checkoutDetails", checkoutDetails);
         page.setObject("checkout", checkoutModel);
-        page.setObject("cartMap", cartMap);
         page.setObject("courseMap", courseMap);
         page.setObject("levelMap", levelMap);
         page.setObject("thumbnailMap", thumbnailMap);

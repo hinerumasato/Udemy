@@ -27,7 +27,7 @@
 
     <div class="slider-services">
         <div class="container">
-            <div class="service-row row text-white overflow-x-auto">
+            <div class="service-row row text-white">
                 <div class="col-3 flex-grow-0 d-flex gap-3">
                     <img src="<c:url value='/static/imgs/services/service_1.webp' />" alt="" class="service-img">
                     <div class="slider-service-content">

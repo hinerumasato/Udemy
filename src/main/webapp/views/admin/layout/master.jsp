@@ -57,6 +57,7 @@
     </script>
     <script src="<c:url value='/static/js/utils/number.js?v=${randomNumber}' />"></script>
     <script src="<c:url value='/static/js/utils/file.js?v=${randomNumber}' />"></script>
+    <script src="<c:url value='/static/js/templates/template.js?v=${randomNumber}' />"></script>
 
     <script>
         tinymce.init({
