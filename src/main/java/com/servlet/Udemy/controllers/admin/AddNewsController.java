@@ -1,5 +1,6 @@
 package com.servlet.Udemy.controllers.admin;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import com.servlet.Udemy.constants.SuccessMessage;
 import com.servlet.Udemy.models.NewsModel;
@@ -40,17 +42,29 @@ public class AddNewsController extends HttpServlet {
 
         String title = req.getParameter("title");
         String author = req.getParameter("author");
+        String createdDate = req.getParameter("createdDate");
         boolean isSpecialNews = req.getParameter("is_special_news") == null ? false : true;
         String content = req.getParameter("content");
-        String imgURL = req.getParameter("img_url");
+
+        String fileName = "default.png";
+        Part imagePart = req.getPart("image");
+
+        String location = "/static/imgs/news";
+
+        if (imagePart != null && imagePart.getSize() > 0 && imagePart.getSubmittedFileName() != null) {
+            fileName = imagePart.getSubmittedFileName();
+            String realPath = req.getServletContext().getRealPath(location);
+            imagePart.write(realPath + File.separator + fileName);
+        }
 
         NewsModel newsModel = new NewsModel();
         String slug = StringUtil.generateSlug(title);
         newsModel.setTitle(title);
         newsModel.setAuthor(author);
+        newsModel.setCreatedDate(createdDate);
         newsModel.setSpecialNews(isSpecialNews);
         newsModel.setContent(content);
-        newsModel.setImgURL(imgURL);
+        newsModel.setImgURL(location + "/" + fileName);
         newsModel.setSlug(slug);
 
         newsService.insert(newsModel);

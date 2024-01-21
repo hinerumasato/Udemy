@@ -24,7 +24,17 @@
                             <div class="col right-news col-12 col-md-8 py-5">
                                 <div class="right col-12">
                                     <h3>${newsItem.getTitle()}</h3>
-                                    <p>${newsItem.getAuthor()}</p>
+                                    <div class=" d-flex pb-1 pt-1 ">
+                                        <div class="d-flex nav-item">
+                                            <i class="fa-regular fa-user" style="color: #11ee48;"></i>
+                                            <p class="fw-bold ms-1">${newsItem.getAuthor()}</p>
+                                        </div>
+                                        <div class="d-flex nav-item">
+                                            <i class="fa-regular fa-calendar-days" style="color: #11ee48;"></i>
+                                            
+                                            <p class="fw-bold ms-1">${newsItem.getCreatedDate()}</p>
+                                        </div>
+                                    </div>
                                     <p>${newsItem.getContent()}</p>
                                 </div>
                             </div>

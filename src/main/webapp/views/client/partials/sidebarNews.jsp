@@ -17,16 +17,20 @@
                 <li>
                     <div class="d-flex justify-content-between align-items-center">
                         <span>Danh sách khoá học</span>
-                        <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCourses"
-                            aria-expanded="false" aria-controls="collapseExample">
+                        <button class="btn" type="button" aria-expanded="false">
                             <i class="fa fa-chevron-right" aria-hidden="true"></i>
                         </button>
+                        <ul class="dropdown-menu">
+                            <a class="nav-item" href="#">Kỹ năng ngoại ngữ</a>
+                            <a class="nav-item" href="#">Kỹ năng ngoại ngữ</a>
+                            <a class="nav-item" href="#">Kỹ năng ngoại ngữ</a>
+                            <a class="nav-item" href="#">Kỹ năng ngoại ngữ</a>
+                            <a class="nav-item" href="#">Kỹ năng ngoại ngữ</a>
+                            <a class="nav-item" href="#">Kỹ năng ngoại ngữ</a>
+                            <a class="nav-item" href="#">Kỹ năng ngoại ngữ</a>
+                            <a class="nav-item" href="#">Kỹ năng ngoại ngữ</a>
+                        </ul>
                     </div>
-                    <ul class="collapse" id="collapseCourses">
-                        <c:forEach items="${categories}" var="category" varStatus="status">
-                            <li>${category.getName()}</li>
-                        </c:forEach>
-                    </ul>
                 </li>
                 <li>Khoá học tiêu biểu</li>
                 <li>Tin tức</li>
@@ -50,8 +54,6 @@
                             </div>
                         </c:forEach>
                     </div>
-    <script src="<c:url value='/static/js/utils/pagination.js?v=${randomNumber}' />"></script>
-    <script type="module" src="<c:url value='/static/js/partials/sidebar.js?v=${randomNumber}' />"></script>
         </aside>
 
          </html>

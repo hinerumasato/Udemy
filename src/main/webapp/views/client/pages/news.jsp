@@ -37,7 +37,7 @@
                                                 </div>
                                                 <div class="d-flex nav-item">
                                                     <i class="fa-regular fa-calendar-days" style="color: #11ee48;"></i>
-                                                    
+                                                    <fmt:formatDate value="${now}" pattern="dd-MM-yyyy" var="${item.getCreatedDate()}" />
                                                     <p class="fw-bold ms-1">${item.getCreatedDate()}</p>
                                                 </div>
                                             </div>

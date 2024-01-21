@@ -31,9 +31,13 @@ public class NewsController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Page page = new ClientPage(req, resp, "news.jsp", "master.jsp");
+<<<<<<< HEAD
+
+=======
+>>>>>>> 256269dd4f6af623864efe3ff3dca99a8c59b174
         List<NewsModel> newsModel = newsService.findAll();
         List<NewsModel> specialNews = new ArrayList<NewsModel>();
-        
+
         for (int i = newsModel.size() - 1; i >= 0; i--) {
             int count = 0;
             if (newsModel.get(i).isSpecialNews()) {
