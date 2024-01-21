@@ -1,0 +1,24 @@
+/* Tạo màu sắc cho các tiêu đề */
+#about h2, #about h3 {
+  color: #00BC86;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Tạo màu sắc cho các đoạn văn bản */
+#about p {
+  color: #111;
+  font-size: 16px;
+}
+
+/* Tạo màu sắc cho các danh sách */
+#about ul {
+  color: #111;
+  font-size: 16px;
+}
+
+/* Tạo màu sắc cho các liên kết */
+#about a {
+  color: #111;
+  text-decoration: none;
+}

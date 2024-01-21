@@ -1,0 +1,16 @@
+#orders h2 {
+    font-size: 19px;
+}
+
+#orders #accountOrderTable td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 26px 0;
+}
+
+#orders #accountOrderTable th {
+    background-color: var(--header-info-color);
+    text-align: center;
+    vertical-align: middle;
+    color: #fff;
+}
