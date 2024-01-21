@@ -6,6 +6,19 @@ import { COURSE_API_URL, getCourses } from "../services/courseService.js";
 
 (function () {
     const coursePageList = document.querySelector('#coursePageList');
+    const sidebar = document.querySelector('.sidebar-wrapper');
+    const filterButton = document.getElementById('filterButton');
+    const overlay = document.querySelector('.overlay');
+
+    const activeMobileSidebarHandler = function () {
+        filterButton.addEventListener('click', function() {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+            filterButton.classList.toggle('active');
+        });
+    }
+
+    activeMobileSidebarHandler();
 
     const toggleCollapseIcon = function () {
         const collapseButtons = document.querySelectorAll(`button[data-bs-toggle="collapse"]`);
@@ -218,7 +231,10 @@ import { COURSE_API_URL, getCourses } from "../services/courseService.js";
                             time = time.substring(0, time.length - 2) + ')';
                         break;
                 }
-                const url = COURSE_API_URL + `/?level=${level}&price=${price}&time=${time}`;
+                const pathname = window.location.pathname;
+                const pathnameSplit = pathname.split('/');
+                const categoryCode = (pathnameSplit.length == 3) ? pathnameSplit[pathnameSplit.length - 1] : "";
+                const url = COURSE_API_URL + `/?level=${level}&price=${price}&time=${time}&categoryCode=${categoryCode}`;
                 const elements = await getTotalCourses(url);
                 const paginationObj = pagination({
                     selector: '.custom-pagination',
@@ -237,9 +253,12 @@ import { COURSE_API_URL, getCourses } from "../services/courseService.js";
     filterHandler();
 
     const getFirstPagination = async function () {
+        const pathname = window.location.pathname;
+        const pathnameSplit = pathname.split('/');
+        const categoryCode = (pathnameSplit.length == 3) ? pathnameSplit[pathnameSplit.length - 1] : "";
         const paginationObj = pagination({
             selector: '.custom-pagination',
-            elements: await getTotalCourses(COURSE_API_URL),
+            elements: await getTotalCourses(`${COURSE_API_URL}/?categoryCode=${categoryCode}`),
             limit: 6
         });
 

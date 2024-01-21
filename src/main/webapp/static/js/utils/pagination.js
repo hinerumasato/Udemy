@@ -3,9 +3,11 @@ const pagination = function(obj = { selector: '', elements: 0, limit: 0}) {
     const getPages = function() {
         const rawPages = obj.elements / obj.limit;
         const floorPages = Math.floor(rawPages);
-        if(rawPages - floorPages > 0)
-            return floorPages + 1;
-        return floorPages;
+        if(rawPages - floorPages > 0) {
+            const newPages = floorPages + 1;
+            return newPages === 1 ? 0 : newPages;
+        }
+        return floorPages === 1 ? 0 : floorPages;
     }
 
     return {

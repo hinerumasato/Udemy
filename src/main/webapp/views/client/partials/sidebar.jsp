@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="<c:url value='/static/css/sidebar.css?v=${randomNumber}' />">
 </head>
 
-<aside>
+<aside id="sidebar">
     <h5 class="fs-6 text-uppercase fw-bold">Tất cả sản phẩm</h5>
     <div class="d-flex justify-content-between align-items-center mt-3 fs-6">
         <h5 class="fs-6 fw-bold text-uppercase">Menu</h5>
@@ -35,7 +35,7 @@
             </div>
             <ul class="collapse" id="collapseCourses">
                 <c:forEach items="${categories}" var="category" varStatus="status">
-                    <li>${category.getName()}</li>
+                    <li><a href="/courses/${category.getCode()}" class="text-decoration-none" style="color: #92909A;">${category.getName()}</a></li>
                 </c:forEach>
             </ul>
         </li>

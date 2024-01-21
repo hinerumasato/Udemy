@@ -49,8 +49,7 @@ public class CategoryService implements IService<CategoryModel> {
 
     @Override
     public CategoryModel findFirst() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findFirst'");
+        return categoryDAO.findFirst();
     }
 
     @Override
@@ -61,5 +60,9 @@ public class CategoryService implements IService<CategoryModel> {
     @Override
     public List<CategoryModel> findByMap(Map<String, String> findMap) {
         return categoryDAO.findByMap(findMap);
+    }
+
+    public CategoryModel findByCode(String code) {
+        return categoryDAO.findByCode(code);
     }
 }
