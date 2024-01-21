@@ -52,7 +52,7 @@ aside .sidebar-menu-list li a {
     opacity: 0;
     transition: all .3s;
     background-color: transparent;
-    z-index: 2;
+    z-index: 3;
 }
 
 .overlay.active {
@@ -95,7 +95,7 @@ aside .sidebar-menu-list li a {
         overflow-x: hidden;
         overflow-y: auto;
         background-color: #fff;
-        z-index: 3;
+        z-index: 4;
         padding: 25px;
     }
 
@@ -114,7 +114,7 @@ aside .sidebar-menu-list li a {
         position: fixed;
         top: 60%;
         right: 0;
-        z-index: 3;
+        z-index: 4;
         transition: .3s ease;
     }
 

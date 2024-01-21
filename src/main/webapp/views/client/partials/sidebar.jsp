@@ -39,8 +39,8 @@
                 </c:forEach>
             </ul>
         </li>
-        <li><a href="/news"></a>Tin tức</li>
-        <li><a href="/contact"></a>Đánh giá</li>
+        <li><a href="/news">Tin tức</a></li>
+        <li><a href="/review">Đánh giá</a></li>
         <li><a href="/about">Giới thiệu</a></li>
     </ul>
 
