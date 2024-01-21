@@ -165,3 +165,17 @@ header {
     text-decoration: none;
     color: #6C757D;
 }
+
+.header-account-link {
+    text-decoration: none;
+    color: #6C757D;
+    transition: all .3s;
+}
+
+.header-account-link:hover {
+    color: var(--main-color);
+}
+
+.logout-btn {
+    color: #6C757D;
+}

@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(urlPatterns = {"/checkout", "/account", "/account/*"})
-public class AuthFilter implements Filter {
+import com.servlet.Udemy.models.UserModel;
+
+@WebFilter(urlPatterns = {"/login", "/register"})
+public class AccountFilter implements Filter {
 
     @Override
     public void destroy() {
@@ -27,22 +29,13 @@ public class AuthFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
         HttpSession session = request.getSession();
-
-        String requestURI = request.getRequestURI();
-        if(session.getAttribute("loginUser") == null) {
-            switch (requestURI) {
-                case "/checkout":
-                    response.sendRedirect("/home");
-                    break;
-                case "/account":
-                    response.sendRedirect("/login");
-                    break;
-                default:
-                    response.sendRedirect("/login");
-                    break;
-            }
+        if(session.getAttribute("loginUser") != null) {
+            response.sendRedirect("/account");
+        } else {
+            UserModel loginUser = (UserModel) session.getAttribute("loginUser");
+            req.setAttribute("loginUser", loginUser);
+            chain.doFilter(req, resp);
         }
-        else chain.doFilter(req, resp);
     }
 
     @Override

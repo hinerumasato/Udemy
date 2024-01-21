@@ -16,6 +16,7 @@ public class Constants {
     public static final String ADMIN_LAYOUT_PATH = "/views/admin/layout/";
 
     public static final String ENV_FILE = "application.properties";
+    public static final String DEFAULT_DATE_FORMAT_PATTERN = "dd/MM/yyyy";
 
     // Google OAuth Services Constants
     public static final String GOOGLE_AUTH_LINK = "https://accounts.google.com/o/oauth2/auth";

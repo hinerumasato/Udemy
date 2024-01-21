@@ -83,7 +83,7 @@
                             <div class="d-flex">
                                 <form action="/auth/logout" method="POST">
                                     <div class="text-center">
-                                        <div>Xin chào ${loginUser.getLastName()}</div>
+                                        <div><a href="/account" class="header-account-link">Xin chào ${loginUser.getLastName()}</a></div>
                                         <button class="logout-btn" type="submit">Đăng xuất</button>
                                     </div>    
                                 </form>
@@ -141,7 +141,7 @@
             <li><a href="/">Trang chủ</a></li>
             <li><a href="/courses">Tất cả khoá học</a></li>
             <li><a href="/news">Tin tức</a></li>
-            <li><a href="#">Giới thiệu</a></li>
+            <li><a href="/about">Giới thiệu</a></li>
             <li><a href="/login">Đăng nhập</a></li>
             <li><a href="/register">Đăng ký</a></li>
         </ul>

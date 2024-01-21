@@ -8,13 +8,14 @@
 <%@include file="/common/includes.jsp" %>
 
 <div class="container mt-5">
-
+    <h1 class="text-center text-uppercase">Đăng nhập admin</h1>
     <c:if test="${not empty sessionScope.adminLoginMessage}">
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>${sessionScope.adminLoginMessage}</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </c:if>
+
 
     <form method="POST" action="/auth/login-admin">
         <div class="form-floating mb-3">
@@ -28,6 +29,9 @@
         </div>
 
         <!-- Submit button -->
-        <button type="submit" class="btn btn-primary btn-block mb-4 mt-4">Đăng nhập</button>
+        <div class="d-flex justify-content-between align-items-center">
+            <a href="/home">Quay lại trang người dùng</a>
+            <button type="submit" class="btn btn-primary btn-block mb-4 mt-4">Đăng nhập</button>
+        </div>
     </form>
 </div>

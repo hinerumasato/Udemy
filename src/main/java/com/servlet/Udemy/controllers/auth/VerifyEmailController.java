@@ -39,18 +39,23 @@ public class VerifyEmailController extends HttpServlet {
         verifyEmailModel.setRememberToken(StringUtil.encrypt(Integer.toString(loginUser.getId())));
         verifyEmailModel.setUserId(loginUser.getId());
 
-        if(verifyEmailService.findByUserId(loginUser.getId()) == null)
+        boolean isFirstMail = false;
+        if(verifyEmailService.findByUserId(loginUser.getId()) == null) {
             verifyEmailService.insert(verifyEmailModel);
+            isFirstMail = true;
+        }
         else verifyEmailService.update(verifyEmailModel);
 
 
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("APP_URL", props.getProperty("APP_URL"));
-        map.put("rememberToken", verifyEmailModel.getRememberToken());
-
-        Mail mail = new Mail(map);
-
-        String mailAddress = FileUtil.getAppProperties().getProperty("mail.smtp.address");
-        mail.sendMail(mailAddress, loginUser.getUsername(), "Verify Email", "Đây là email xác thực");
+        if(isFirstMail) {
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("APP_URL", props.getProperty("APP_URL"));
+            map.put("rememberToken", verifyEmailModel.getRememberToken());
+    
+            Mail mail = new Mail(map);
+    
+            String mailAddress = FileUtil.getAppProperties().getProperty("mail.smtp.address");
+            mail.sendMail(mailAddress, loginUser.getUsername(), "Verify Email", "Đây là email xác thực");
+        }
     }
 }

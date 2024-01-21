@@ -304,37 +304,15 @@
 
         <div class="home_container_content">
             <div class="row row-cols-4">
-                <div class="col teacher-item">
-                    <div class="teacher_avatar">
-                        <img src="<c:url value='/static/imgs/teachers/teacher_1.webp' />" alt="" class="w-100">
+                <c:forEach items="${allTeachers}" var="teacher" begin="0" end="3">
+                    <div class="col teacher-item">
+                        <div class="teacher_avatar">
+                            <img src="${teacher.getAvatar()}" alt="" class="w-100">
+                        </div>
+                        <b class="teacher-name text-center d-block w-100">${teacher.getName()}</b>
+                        <p class="teacher-sobject text-center w-100">${teacherCategoryMap.get(teacher).getName()}</p>
                     </div>
-                    <b class="teacher-name text-center d-block w-100">Huỳnh Ngọc Thanh</b>
-                    <p class="teacher-sobject text-center w-100">Digital Marketing</p>
-                </div>
-
-                <div class="col teacher-item">
-                    <div class="teacher_avatar">
-                        <img src="<c:url value='/static/imgs/teachers/teacher_2.webp' />" alt="" class="w-100">
-                    </div>
-                    <b class="teacher-name text-center d-block w-100">Hannah Pham</b>
-                    <p class="teacher-sobject text-center w-100">UX/UI Design</p>
-                </div>
-
-                <div class="col teacher-item">
-                    <div class="teacher_avatar">
-                        <img src="<c:url value='/static/imgs/teachers/teacher_3.webp' />" alt="" class="w-100">
-                    </div>
-                    <b class="teacher-name text-center d-block w-100">Trần Trung Anh</b>
-                    <p class="teacher-sobject text-center w-100">Programmer</p>
-                </div>
-
-                <div class="col teacher-item">
-                    <div class="teacher_avatar">
-                        <img src="<c:url value='/static/imgs/teachers/teacher_4.webp' />" alt="" class="w-100">
-                    </div>
-                    <b class="teacher-name text-center d-block w-100">Tuấn Deno</b>
-                    <p class="teacher-sobject text-center w-100">Life Skill</p>
-                </div>
+                </c:forEach>
             </div>
         </div>
 
@@ -373,7 +351,7 @@
                         </li>
                     </ul>
 
-                    <button class="text-white bg-main px-4 py-2 no-border-outline view-all-btn">Xem tất cả</button>
+                    <a class="text-white bg-main px-4 py-2 no-border-outline view-all-btn text-decoration-none" href="/about">Xem tất cả</a>
                 </div>
             </div>
         </div>

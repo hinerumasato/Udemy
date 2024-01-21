@@ -27,7 +27,10 @@ import com.servlet.Udemy.utils.FileUtil;
 import com.servlet.Udemy.utils.StringUtil;
 
 @WebServlet("/admin/courses/add-course")
-@MultipartConfig(maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 10)
+@MultipartConfig(
+    maxFileSize = 1024 * 1024 * 500,
+    maxRequestSize = 1024 * 1024 * 500
+)
 
 public class AddCourseController extends HttpServlet {
 
