@@ -101,7 +101,7 @@ class CourseTemplate extends Template {
                                         </div>
                                     </div>
 
-                                    <h4 class="fw-bold mt-3 text-main">${course.name}</h4>
+                                    <h4 class="fw-bold mt-3 text-main course-backside-title">${course.name}</h4>
                                     <div class="course-backside-description">${course.description}</div>
                                     <div class="backside-data d-block d-md-flex justify-content-between align-items-center">
                                         <div class="backside-level">
@@ -123,15 +123,6 @@ class CourseTemplate extends Template {
                                     <div class="mt-5">
                                         <button class="btn-main-course w-100">Preview về khoá học</button>
                                     </div>
-
-                                    <div class="d-block d-md-flex justify-content-between mt-3">
-                                        <div class="like rounded bg-body-tertiary p-1 rounded-circle">
-                                            <i class="fa-regular fa-heart"></i>
-                                        </div>
-                                        <div class="share rounded bg-body-tertiary p-1 rounded-circle">
-                                            <i class="fa-regular fa-share-from-square"></i>
-                                        </div>
-                                    </div>
                                 </div>
                             </a>
                         </div>
@@ -144,7 +135,7 @@ class CourseTemplate extends Template {
         } else {
             return `
                 <div class="w-100 text-center alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>Chưa có bài viết cho thể loại này!</strong>
+                    <strong>Chưa có khoá học cho thể loại này!</strong>
                 </div>
             `;
         }

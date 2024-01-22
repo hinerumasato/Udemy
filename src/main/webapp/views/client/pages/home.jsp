@@ -42,22 +42,24 @@
         <div class="home_container_title d-lg-flex d-block justify-content-between align-items-center">
             <div class="fs-1 fw-bold text-uppercase">KHOÁ HỌC MỚI NHẤT</div>
 
-            <ul class="nav nav-pills gap-3" id="news_course_pills" role="tablist">
-                <li class="nav-item">
-                    <button class="nav-link active" id="pills-new-home-tab" data-bs-toggle="pill"
-                        data-bs-target="#pills-new-all" type="button" role="tab" aria-controls="pills-new-all"
-                        aria-selected="true">Tất cả</button></li>
-                </li>
-
-                <c:forEach items="${categories}" begin="0" end="2" var="category">
-                    <li class="nav-item" code="${category.getCode()}">
-                        <button class="nav-link" id="pills-new-${category.getCode()}-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-new-${category.getCode()}" type="button" role="tab"
-                            aria-controls="pills-new-${category.getCode()}"
-                            aria-selected="true">${category.getName()}</button></li>
+            <div class="pills-wrapper">
+                <ul class="nav nav-pills gap-3" id="news_course_pills" role="tablist">
+                    <li class="nav-item">
+                        <button class="nav-link active" id="pills-new-home-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-new-all" type="button" role="tab" aria-controls="pills-new-all"
+                            aria-selected="true">Tất cả</button></li>
                     </li>
-                </c:forEach>
-            </ul>
+    
+                    <c:forEach items="${categories}" var="category">
+                        <li class="nav-item" code="${category.getCode()}">
+                            <button class="nav-link" id="pills-new-${category.getCode()}-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-new-${category.getCode()}" type="button" role="tab"
+                                aria-controls="pills-new-${category.getCode()}"
+                                aria-selected="true">${category.getName()}</button></li>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </div>
         </div>
 
         <div class="home_container_content tab-content">
@@ -104,7 +106,7 @@
                                             </div>
                                         </div>
 
-                                        <h4 class="fw-bold mt-3 text-main">${course.getName()}</h4>
+                                        <h4 class="fw-bold mt-3 text-main course-backside-title">${course.getName()}</h4>
                                         <div class="course-backside-description">${course.getDescription()}</div>
                                         <div
                                             class="backside-data d-block d-md-flex justify-content-between align-items-center">
@@ -147,7 +149,7 @@
                     <a href="/courses" class="bg-main text-uppercase text-decoration-none px-4 py-2 rounded-2">Xem tất cả</a>
                 </div>
             </div>
-            <c:forEach items="${categories}" begin="0" end="2" var="category">
+            <c:forEach items="${categories}" var="category">
                 <div code="${category.getCode()}" class="tab-pane fade" id="pills-new-${category.getCode()}"
                     role="tabpanel" aria-labelledby="pills-new-${category.getCode()}-tab" tabindex="0">
                     <div class="spinner-border" role="status" style="display: block; margin: 0 auto;">
@@ -171,22 +173,24 @@
         <div class="home_container_title d-block d-md-flex justify-content-between align-items-center">
             <div class="fs-1 fw-bold text-uppercase">KHOÁ HỌC NỔI BẬT</div>
 
-            <ul class="nav nav-pills gap-3" id="popular_course_pills" role="tablist">
-                <li class="nav-item">
-                    <button class="nav-link active" id="pills-popular-home-tab" data-bs-toggle="pill"
-                        data-bs-target="#pills-popular-all" type="button" role="tab" aria-controls="pills-popular-all"
-                        aria-selected="true">Tất cả</button></li>
-                </li>
-
-                <c:forEach items="${categories}" begin="0" end="2" var="category">
-                    <li class="nav-item" code="${category.getCode()}">
-                        <button class="nav-link" id="pills-popular-${category.getCode()}-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-popular-${category.getCode()}" type="button" role="tab"
-                            aria-controls="pills-popular-${category.getCode()}"
-                            aria-selected="true">${category.getName()}</button></li>
+            <div class="pills-wrapper">
+                <ul class="nav nav-pills gap-3" id="popular_course_pills" role="tablist">
+                    <li class="nav-item">
+                        <button class="nav-link active" id="pills-popular-home-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-popular-all" type="button" role="tab" aria-controls="pills-popular-all"
+                            aria-selected="true">Tất cả</button></li>
                     </li>
-                </c:forEach>
-            </ul>
+    
+                    <c:forEach items="${categories}" var="category">
+                        <li class="nav-item" code="${category.getCode()}">
+                            <button class="nav-link" id="pills-popular-${category.getCode()}-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-popular-${category.getCode()}" type="button" role="tab"
+                                aria-controls="pills-popular-${category.getCode()}"
+                                aria-selected="true">${category.getName()}</button></li>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </div>
         </div>
 
         <div class="home_container_content">
@@ -249,7 +253,7 @@
                                                 </div>
                                             </div>
 
-                                            <h4 class="fw-bold mt-3 text-main">${course.getName()}</h4>
+                                            <h4 class="fw-bold mt-3 text-main course-backside-title">${course.getName()}</h4>
                                             <div class="course-backside-description">${course.getDescription()}</div>
                                             <div
                                                 class="backside-data d-block d-md-flex justify-content-between align-items-center">
@@ -273,14 +277,6 @@
                                                 <button class="btn-main-course w-100">Preview về khoá học</button>
                                             </div>
 
-                                            <div class="d-block d-md-flex justify-content-between mt-3">
-                                                <div class="like rounded bg-body-tertiary p-1 rounded-circle">
-                                                    <i class="fa-regular fa-heart"></i>
-                                                </div>
-                                                <div class="share rounded bg-body-tertiary p-1 rounded-circle">
-                                                    <i class="fa-regular fa-share-from-square"></i>
-                                                </div>
-                                            </div>
                                         </div>
                                     </a>
                                 </div>
@@ -288,7 +284,7 @@
                         </c:forEach>
                     </div>
                 </div>
-                <c:forEach items="${categories}" begin="0" end="2" var="category">
+                <c:forEach items="${categories}" var="category">
                     <div code="${category.getCode()}" class="tab-pane fade" id="pills-popular-${category.getCode()}"
                         role="tabpanel" aria-labelledby="pills-popular-${category.getCode()}-tab" tabindex="0">
                         <div class="mt-5 spinner-border" role="status" style="display: block; margin: 0 auto;">

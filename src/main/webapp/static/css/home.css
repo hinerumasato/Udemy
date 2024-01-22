@@ -47,6 +47,16 @@
     background-color: var(--secondary-color);
 }
 
+.popular_container_group .course-backside-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    margin-bottom: 8px;
+}
+
 .teacher-avatar {
     position: relative;
 }
@@ -105,23 +115,33 @@
     margin-top: 20px;
 }
 
-.popular_container_group .course-backside h4 {
-    font-weight: bold;
-    margin-top: 8px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
+.pills-wrapper {
+    width: 50%;
+    overflow-x: hidden;
 }
 
-.popular_container_group .course-backside p {
-    margin-top: 8px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
+#news_course_pills {
+    flex-wrap: nowrap;
+}
+
+#news_course_pills li {
+    flex: 0 0;
+    flex-basis: content;
+}
+
+#popular_course_pills {
+    flex-wrap: nowrap;
+}
+
+#popular_course_pills li {
+    flex: 0 0;
+    flex-basis: content;
+}
+
+
+@media (max-width: 991px) {
+    .pills-wrapper {
+        width: 100%;
+        overflow-x: auto;
+    }
 }

@@ -72,7 +72,10 @@
                         <div class="col-3">
                             <div class="header-cart">
                                 <a href="/courses" title="Xem tất cả khoá học" class="text-decoration-none text-secondary">Tất cả khoá học</a>
-                                <a href="/cart" title="Xem giỏ hàng"><i class="las la-shopping-cart fs-4 text-main"></i></a>
+                                <a href="/cart" title="Xem giỏ hàng" id="headerCart">
+                                    <i class="las la-shopping-cart fs-4 text-main"></i>
+                                    <div id="headerCartNumber"></div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -128,7 +131,10 @@
                 </div>
                 <div class="col">
                     <div class="header-cart-right">
-                        <a href="/cart" title="Xem giỏ hàng"><i class="las la-shopping-cart fs-4 text-main"></i></a>
+                        <a href="/cart" title="Xem giỏ hàng" id="headerCartMobile">
+                            <i class="las la-shopping-cart fs-4 text-main"></i>
+                            <div id="headerCartNumberMobile"></div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -145,6 +151,11 @@
             <c:choose>
                 <c:when test="${not empty sessionScope.loginUser}">
                     <li><a href="/account">Tài khoản của tôi</a></li>
+                    <li>
+                        <form action="/auth/logout" method="POST">
+                            <button class="logout-btn" type="submit">Đăng xuất</button>
+                        </form>
+                    </li>
                 </c:when>
                 <c:otherwise>
                     <li><a href="/login">Đăng nhập</a></li>
@@ -160,6 +171,8 @@
     (function() {
         const openHeaderAsideBtn = document.querySelector('#openHeaderAsideBtn');
         const closeHeaderAsideBtn = document.querySelector('.close-btn');
+        const headerCartNumber = document.getElementById('headerCartNumber');
+        const headerCartNumberMobile = document.getElementById('headerCartNumberMobile');
 
         openHeaderAsideBtn.onclick = () => {
             const sideMenu = document.querySelector('.side-menu');
@@ -170,5 +183,17 @@
             const sideMenu = document.querySelector('.side-menu');
             sideMenu.classList.remove('active');
         }
+
+        getCartNumber = () => {
+            fetch('/api/v1/cart')
+            .then(response => response.json())
+            .then(data => {
+                const number = data.data;
+                headerCartNumber.innerText = number;
+                headerCartNumberMobile.innerText = number;
+            })
+        }
+
+        getCartNumber();
     })();
 </script>

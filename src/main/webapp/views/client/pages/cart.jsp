@@ -38,22 +38,25 @@
                                             <td class="text-danger fw-bold format-price">${courseMap.get(cartDetail).getSalePrice()}</td>
                                             <td>${cartDetail.getAmount()}</td>
                                             <td class="text-danger fw-bold format-price format-price">${cartDetail.getAmount() * courseMap.get(cartDetail).getSalePrice()}</td>
-                                            <td><button><i class="fa-solid fa-trash"></i></button></td>
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
-                                <tr>
-                                    <td class="right-cell" colspan="6"><span class="me-3">Tổng: <span class="fs-4 format-price text-danger fw-bold">${totalPrice}</span></span></td>
-                                    <input type="hidden" name="totalPrice" value="${totalPrice}">
-                                </tr>
-                            </table>
-    
-                            <div class="checkout-wrapper d-flex justify-content-end w-100 gap-2">
-                                <a href="/courses" class="text-decoration-none bg-black px-4 py-2 border-0 text-uppercase">Tiếp tục mua hàng </a>
-                                <button type="submit" class="bg-main px-4 py-2 border-0 text-uppercase">Tiến hành thanh toán</button>
-                            </div>
+                                            <td>
+                                                <div cart-detail-id="${cartDetail.getId()}" class="cart-detail-delete-btn"><i class="fa-solid fa-trash"></i></div>
+                                            </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                            <tr>
+                                <td class="right-cell" colspan="6"><span class="me-3">Tổng: <span class="fs-4 format-price text-danger fw-bold">${totalPrice}</span></span></td>
+                                <input type="hidden" name="totalPrice" value="${totalPrice}">
+                            </tr>
+                        </table>
+                        
+                        <div class="checkout-wrapper d-flex justify-content-end w-100 gap-2">
+                            <a href="/courses" class="text-decoration-none bg-black px-4 py-2 border-0 text-uppercase">Tiếp tục mua hàng </a>
+                            <button type="submit" class="bg-main px-4 py-2 border-0 text-uppercase">Tiến hành thanh toán</button>
                         </div>
-                    </form>
+                    </div>
+                </form>
+                <form action="/cart/delete" method="POST" id="cartDetailDeleteForm">
                 </c:when>  
                 <c:otherwise>
                     <div class="wrapper d-flex justify-content-center">
@@ -120,4 +123,4 @@
     </c:choose>
 </div>
 
-<script src="<c:url value='/static/js/pages.cart.js?v=${randomNumber}' />"></script>
+<script src="<c:url value='/static/js/pages/cart.js?v=${randomNumber}' />"></script>

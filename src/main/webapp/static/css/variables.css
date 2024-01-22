@@ -240,6 +240,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     color: #888;
 }
 
+.course-backside {
+    height: 100%;
+    overflow: hidden;
+}
+
+.course-backside-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
 .course-backside-description {
     display: -webkit-box;
     -webkit-line-clamp: 3;

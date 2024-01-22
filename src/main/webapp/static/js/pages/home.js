@@ -12,7 +12,7 @@
         const spinner = parent.querySelector('.spinner-border');
         spinner.remove();
     }
-    
+
     async function renderCourseItem(selector, item) {
         const renderBlock = document.querySelector(selector);
         removeSpinner(renderBlock);
@@ -22,7 +22,7 @@
         renderBlock.innerHTML = html;
         price();
     }
-    
+
     newestNavItems.forEach(item => {
         const code = item.getAttribute('code');
         item.onclick = async () => await renderCourseItem(`#newest-course-${code}`, item);
@@ -32,4 +32,5 @@
         const code = item.getAttribute('code');
         item.onclick = async () => await renderCourseItem(`#popular-course-${code}`, item);
     })
+
 })();

@@ -24,6 +24,18 @@
         setActiveClass(smallThumbnails, index);
     };
 
+    const updateHeaderCartNumber = async () => {
+        const response = await fetch('/api/v1/cart')
+        const json = await response.json();
+        const number = json.data;
+
+        const headerCartNumber = document.getElementById('headerCartNumber');
+        const headerCartNumberMobile = document.getElementById('headerCartNumberMobile');
+
+        headerCartNumber.innerText = number;
+        headerCartNumberMobile.innerText = number;
+    }
+
     const handleAddToCartClick = async () => {
         const getLoginUserResponse = await fetch('/api/v1/user-data');
         const getLoginJson = await getLoginUserResponse.json();
@@ -44,6 +56,7 @@
 
             const addToCartJson = await addToCartResponse.json();
             if(addToCartJson.statusCode === 200) {
+                await updateHeaderCartNumber();
                 const toast = new Toast("Thêm vào giỏ hàng thành công", 'success');
                 toast.show();
             }
