@@ -40,7 +40,7 @@
     display: block;
     text-align: center;
 }
-.left-news .content{
+.left-news .title{
     float: left;
     width: calc(100% - 80px);
     padding-left: 24px;
@@ -93,7 +93,7 @@
 }
 
 .right-news .content-news{
-    padding: 20px;
+    padding-top: 16px;
     float: left;
     width: calc(100% - 300px);
     padding-left: 30px;
@@ -109,6 +109,10 @@
         flex-direction: column;
         width: 100%;
     }
+    .right-news .thumbnail{
+        width: 100%;
+        text-align: center;
+    }
     .right-news .img-news{
         width: 124%;
     }
@@ -119,10 +123,29 @@
 /* tablet */
 @media screen and (min-width: 932px) and (max-width: 1023px) {
     .left-news{
-        display: none;
+        display: none;  
     }
     .right{
         width: 100%;
     }
 }
 
+
+i.down {
+    display: none;
+}
+
+i.down.show {
+    display: block;
+}
+
+i.right.clear {
+    display: none;
+}
+
+.menu {
+    display: none;
+}
+.menu.open {
+    display: block;
+}

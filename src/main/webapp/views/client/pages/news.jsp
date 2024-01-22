@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col left-news col-12 d-none col-md-4 d-md-block">
                     <div class="left">
-                        <%@include file="/views/client/partials/sidebarNews.jsp" %>
+                        <%@include file="/views/client/partials/sidebar-news.jsp" %>
                     </div>
                 </div> 
                 <div class="col right-news col-12 col-md-8 py-5">
