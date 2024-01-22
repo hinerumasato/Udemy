@@ -55,7 +55,7 @@
                                             <div class="course-item-info-category">
                                                 ${categoryMap.get(course.getCategoryId()).getName()}
                                             </div>
-                                            <div class="course-item-info-prices d-flex gap-2 align-items-center">
+                                            <div class="course-item-info-prices d-block d-md-flex gap-2 align-items-center">
                                                 <div class="format-price course-item-info-prices-new-price">
                                                     ${course.getSalePrice()}
                                                 </div>

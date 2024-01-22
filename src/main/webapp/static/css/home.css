@@ -43,10 +43,6 @@
     box-shadow: var(--regular-shadow);
 }
 
-.popular_container_group .course-item {
-    height: 390px !important;
-}
-
 .popular_container_group {
     background-color: var(--secondary-color);
 }

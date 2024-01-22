@@ -142,8 +142,16 @@
             <li><a href="/courses">Tất cả khoá học</a></li>
             <li><a href="/news">Tin tức</a></li>
             <li><a href="/about">Giới thiệu</a></li>
-            <li><a href="/login">Đăng nhập</a></li>
-            <li><a href="/register">Đăng ký</a></li>
+            <c:choose>
+                <c:when test="${not empty sessionScope.loginUser}">
+                    <li><a href="/account">Tài khoản của tôi</a></li>
+                </c:when>
+                <c:otherwise>
+                    <li><a href="/login">Đăng nhập</a></li>
+                    <li><a href="/register">Đăng ký</a></li>
+                </c:otherwise>
+            </c:choose>
+            
         </ul>
     </aside>
 </header>

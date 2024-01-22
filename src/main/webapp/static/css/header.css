@@ -63,7 +63,7 @@ header {
     left: -250px;
     width: 250px;
     height: 100%;
-    background: #333;
+    background: #2F4858;
     padding-top: 50px;
     transition: left 0.3s ease;
 }
@@ -86,7 +86,7 @@ header {
 }
 
 .side-menu li {
-    border-bottom: 1px solid #555;
+    border-bottom: 1px dashed #D5F4FF;
 }
 
 .side-menu a {

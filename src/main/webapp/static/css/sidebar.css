@@ -97,10 +97,6 @@ aside .sidebar-menu-list li a {
         background-color: #fff;
         z-index: 4;
         padding: 25px;
-    }
-
-    .sidebar-wrapper {
-        /* Ẩn sidebar khi độ rộng màn hình dưới 768px */
         transform: translateX(100%);
     }
 

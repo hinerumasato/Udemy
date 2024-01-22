@@ -1,4 +1,3 @@
-import { API_URL } from "../constants/api.js";
 const FIELD = 'teachers';
 
 export const getByTeacherId = async id => {
