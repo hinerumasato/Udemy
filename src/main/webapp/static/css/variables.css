@@ -133,7 +133,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 .course-item {
-    height: 450px;
+    height: fit-content;
     background-color: #FFF !important;
     border-radius: 8px;
     padding: 16px 16px 20px;
@@ -183,7 +183,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     font-weight: bold;
     margin-top: 8px;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -238,6 +238,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 .backside-data i {
     color: #888;
+}
+
+.course-backside {
+    height: 100%;
+    overflow: hidden;
+}
+
+.course-backside-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
 }
 
 .course-backside-description {

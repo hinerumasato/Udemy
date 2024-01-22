@@ -1,4 +1,3 @@
-import { API_URL } from "../constants/api.js";
 const FIELD = 'levels';
 
 export const getById = async (id) => {

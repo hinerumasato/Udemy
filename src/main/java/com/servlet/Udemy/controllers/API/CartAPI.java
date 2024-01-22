@@ -32,6 +32,33 @@ public class CartAPI extends HttpServlet {
     private CartDetailService cartDetailService = new CartDetailService();
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("application/json");
+
+        PrintWriter out = resp.getWriter();
+        ResponseModel responseModel = new ResponseModel();
+
+        HttpSession session = req.getSession();
+        UserModel loginUser = (UserModel) session.getAttribute("loginUser");
+
+        if(loginUser == null) {
+            out.println(responseModel.response(200, "OK", 0));
+        } 
+        else {
+            CartModel cartModel = cartService.findByUserId(loginUser.getId());
+            if(cartModel == null) {
+                out.println(responseModel.response(200, "OK", 0));
+            } 
+            else {
+                int size = cartDetailService.findByCartId(cartModel.getId()) == null ? 0 : cartDetailService.findByCartId(cartModel.getId()).size();
+                out.println(responseModel.response(200, "OK", size));
+            }
+        }
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");

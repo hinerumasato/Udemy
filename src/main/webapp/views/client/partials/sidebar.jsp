@@ -105,5 +105,5 @@
     </ul>
 
     <script src="<c:url value='/static/js/utils/pagination.js?v=${randomNumber}' />"></script>
-    <script type="module" src="<c:url value='/static/js/partials/sidebar.js?v=${randomNumber}' />"></script>
+    <script src="<c:url value='/static/js/partials/sidebar.js?v=${randomNumber}' />"></script>
 </aside>
