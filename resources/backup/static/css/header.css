@@ -11,7 +11,7 @@ header {
     position: sticky;
     left: 0;
     top: -56px;
-    z-index: 9999;
+    z-index: 2;
 }
 
 .header-info {
@@ -63,7 +63,7 @@ header {
     left: -250px;
     width: 250px;
     height: 100%;
-    background: #333;
+    background: #2F4858;
     padding-top: 50px;
     transition: left 0.3s ease;
 }
@@ -86,10 +86,10 @@ header {
 }
 
 .side-menu li {
-    border-bottom: 1px solid #555;
+    border-bottom: 1px dashed #D5F4FF;
 }
 
-.side-menu a {
+.side-menu a, .side-menu button {
     display: block;
     padding: 15px;
     color: white;
@@ -130,7 +130,7 @@ header {
     height: 0;
     position: absolute;
     background-color: #F8F9FA;
-    width: 175px;
+    width: 200px;
     top: 47px;
     left: -14px;
 }
@@ -151,11 +151,11 @@ header {
 }
 
 .header-navigation-item {
-    padding: 8px 16px;
+    padding: 16px;
 }
 
-.header-navigation-item:not(:last-child) {
-    border-bottom: dashed 1px #ccc;
+.header-navigation-item:hover .header-navigation-link {
+    color: var(--header-info-color);
 }
 
 .header-navigation-link {
@@ -164,4 +164,35 @@ header {
     height: 100%;
     text-decoration: none;
     color: #6C757D;
+}
+
+.header-account-link {
+    text-decoration: none;
+    color: #6C757D;
+    transition: all .3s;
+}
+
+.header-account-link:hover {
+    color: var(--main-color);
+}
+
+.logout-btn {
+    color: #6C757D;
+}
+
+#headerCart, #headerCartMobile {
+    position: relative;
+}
+
+#headerCartNumber, #headerCartNumberMobile {
+    position: absolute;
+    top: -8px;
+    right: -7px;
+    width: 15px;
+    height: 15px;
+    background-color: var(--main-color);
+    color: #fff;
+    font-size: 11px;
+    text-align: center;
+    border-radius: 50%;
 }

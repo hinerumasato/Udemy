@@ -9,3 +9,7 @@
     border: none;
     outline: none !important;
 }
+
+#cart .cart-detail-delete-btn {
+    cursor: pointer;
+}

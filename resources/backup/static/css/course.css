@@ -1,5 +1,14 @@
 .course_container .course-item {
-    height: 400px;
+    height: fit-content;
+}
+
+.course_container .course-item-info-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
 }
 
 .course_container .course-item img {
@@ -37,4 +46,14 @@
 
 .course_container .course-backside .course-backside-description {
     height: 63px;
+}
+
+#filterButton {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    #filterButton {
+        display: block;
+    }
 }

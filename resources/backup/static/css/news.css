@@ -1,9 +1,11 @@
 .content{
     width: 100%;
+    padding-top: 20px;
 }
 .content a{
     text-decoration: none;
     color: black;
+    
 }
 .content p{
     font-size: 15px;
@@ -100,7 +102,19 @@
 }
 /* moblie */
 @media screen and (max-width: 931px){
-    
+    .right-news{
+        width: 100%;
+    }
+    .newswp {
+        flex-direction: column;
+        width: 100%;
+    }
+    .right-news .img-news{
+        width: 124%;
+    }
+    .right-news .content-news{
+        width: 100%;
+    }
 }
 /* tablet */
 @media screen and (min-width: 932px) and (max-width: 1023px) {

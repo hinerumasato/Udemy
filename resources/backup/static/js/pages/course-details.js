@@ -4,6 +4,14 @@
     const indicatorBtns = document.querySelectorAll('.indicator-btn');
     const carouselItems = document.querySelectorAll('#carouselCourseThumbnail .carousel-item')
     const addToCartBtn = document.getElementById('addToCartBtn');
+    const amountInput = document.querySelector('input[name="amount"]');
+    const increaseAmountBtn = document.querySelector('.increase-btn');
+    const decreaseAmountBtn = document.querySelector('.decrease-btn');
+
+    const amountInputValue = {
+        oldValue: amountInput.value,
+        newValue: 1,
+    }
 
     const setActiveClass = (elements, targetIndex) => {
         elements.forEach((element, index) => {
@@ -15,6 +23,18 @@
         indicatorBtns[index].click();
         setActiveClass(smallThumbnails, index);
     };
+
+    const updateHeaderCartNumber = async () => {
+        const response = await fetch('/api/v1/cart')
+        const json = await response.json();
+        const number = json.data;
+
+        const headerCartNumber = document.getElementById('headerCartNumber');
+        const headerCartNumberMobile = document.getElementById('headerCartNumberMobile');
+
+        headerCartNumber.innerText = number;
+        headerCartNumberMobile.innerText = number;
+    }
 
     const handleAddToCartClick = async () => {
         const getLoginUserResponse = await fetch('/api/v1/user-data');
@@ -36,10 +56,74 @@
 
             const addToCartJson = await addToCartResponse.json();
             if(addToCartJson.statusCode === 200) {
+                await updateHeaderCartNumber();
                 const toast = new Toast("Thêm vào giỏ hàng thành công", 'success');
                 toast.show();
             }
         }
+    }
+
+    const changeAction = {
+        INCREASE: 'INCREASE',
+        DECREASE: 'DECREASE',
+    }
+
+    /**
+     * 
+     * @param {String} type 
+     * @param {HTMLInputElement} amountInput 
+     */
+    const handleChangeAmountClick = (type, amountInput) => {
+        let newValue = 0;
+        switch (type) {
+            case changeAction.INCREASE:
+                newValue = parseInt(amountInput.value) + 1;
+                amountInput.value = newValue;
+                amountInputValue.oldValue = newValue;
+                break;
+            case changeAction.DECREASE:
+                newValue = parseInt(amountInput.value) - 1;
+                if(newValue < 1)
+                    newValue = 1;
+                amountInput.value = newValue;
+                amountInputValue.oldValue = newValue;
+                break;
+            default:
+                break;
+        }
+    }
+
+    const isValidNumber = inputString => {
+        // Sử dụng biểu thức chính quy để kiểm tra xem chuỗi có chứa ký tự khác ngoài số hay không
+        var regex = /^\d+$/; // Biểu thức chính quy này kiểm tra xem toàn bộ chuỗi có phải là số không
+        return regex.test(inputString);
+    }
+    
+
+    /**
+     * 
+     * @param {Event} e 
+     * @param {Object} amountInputValue
+     */
+    const handleAmountInputChange = (e, amountInputValue) => {
+        amountInputValue.newValue = e.target.value;
+        if(!isValidNumber(amountInputValue.newValue))
+            e.target.value = amountInputValue.oldValue;
+        else {
+            amountInputValue.oldValue = amountInputValue.newValue;
+        }
+    }
+
+    amountInput.oninput = e => {
+        handleAmountInputChange(e, amountInputValue);
+    }
+
+    increaseAmountBtn.onclick = () => {
+        handleChangeAmountClick(changeAction.INCREASE, amountInput);
+    }
+
+    decreaseAmountBtn.onclick = () => {
+        handleChangeAmountClick(changeAction.DECREASE, amountInput);
     }
 
     const init = () => {
