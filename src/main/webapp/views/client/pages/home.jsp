@@ -21,10 +21,12 @@
             <div class="row row-cols-4 g-3">
                 <c:forEach items="${categories}" var="category">
                     <div class="col">
-                        <div class="inner">
-                            <img width="40" height="40" src="<c:url value=" ${category.getIcon()}" />" alt="">
-                            <span>${category.getName()}</span>
-                        </div>
+                        <a href="/courses/${category.getCode()}" class="text-decoration-none text-black">
+                            <div class="inner">
+                                <img width="40" height="40" src="<c:url value=" ${category.getIcon()}" />" alt="">
+                                <span>${category.getName()}</span>
+                            </div>
+                        </a>
                     </div>
                 </c:forEach>
 

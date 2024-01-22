@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.servlet.Udemy.constants.Constants;
+import com.servlet.Udemy.models.CategoryModel;
 import com.servlet.Udemy.models.CourseModel;
 import com.servlet.Udemy.models.ResponseModel;
+import com.servlet.Udemy.services.CategoryService;
 import com.servlet.Udemy.services.CourseService;
 import com.servlet.Udemy.utils.NumberUtil;
 
@@ -21,6 +23,7 @@ import com.servlet.Udemy.utils.NumberUtil;
 public class CourseAPI extends HttpServlet {
 
     private CourseService courseService = new CourseService();
+    private CategoryService categoryService = new CategoryService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,6 +36,7 @@ public class CourseAPI extends HttpServlet {
             String priceStr = req.getParameter("price");
             // String timeStr = req.getParameter("time");
             String pageStr = req.getParameter("page");
+            String categoryCode = req.getParameter("categoryCode");
 
             Map<String, String> findMap = new HashMap<String, String>();
 
@@ -43,6 +47,12 @@ public class CourseAPI extends HttpServlet {
             if (priceStr != null && !priceStr.equals("")) {
                 priceStr = priceStr.replaceAll("\\?", "sale_price");
                 findMap.put("sale_price", priceStr);
+            }
+
+            if(categoryCode != null && !categoryCode.isEmpty()) {
+                CategoryModel category = categoryService.findByCode(categoryCode);
+                if(category != null)
+                    findMap.put("category_id", "category_id = " + Integer.toString(category.getId()));
             }
             // if(!timeStr.equals("")) {
             // timeStr = timeStr.replaceAll("\\?", "time");

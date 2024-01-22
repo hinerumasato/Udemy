@@ -38,3 +38,13 @@
 .course_container .course-backside .course-backside-description {
     height: 63px;
 }
+
+#filterButton {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    #filterButton {
+        display: block;
+    }
+}

@@ -11,7 +11,7 @@ header {
     position: sticky;
     left: 0;
     top: -56px;
-    z-index: 9999;
+    z-index: 2;
 }
 
 .header-info {
@@ -130,7 +130,7 @@ header {
     height: 0;
     position: absolute;
     background-color: #F8F9FA;
-    width: 175px;
+    width: 200px;
     top: 47px;
     left: -14px;
 }
@@ -151,11 +151,11 @@ header {
 }
 
 .header-navigation-item {
-    padding: 8px 16px;
+    padding: 16px;
 }
 
-.header-navigation-item:not(:last-child) {
-    border-bottom: dashed 1px #ccc;
+.header-navigation-item:hover .header-navigation-link {
+    color: var(--header-info-color);
 }
 
 .header-navigation-link {

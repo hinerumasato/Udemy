@@ -87,4 +87,8 @@ public class CourseService implements IService<CourseModel> {
     public CourseModel findBySlug(String slug) {
         return courseDAO.findBySlug(slug);
     }
+
+    public List<CourseModel> findByCategoryId(int categoryId) {
+        return courseDAO.findByCategoryId(categoryId);
+    }
 }

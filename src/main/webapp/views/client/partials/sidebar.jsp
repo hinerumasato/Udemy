@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="<c:url value='/static/css/sidebar.css?v=${randomNumber}' />">
 </head>
 
-<aside>
+<aside id="sidebar">
     <h5 class="fs-6 text-uppercase fw-bold">Tất cả sản phẩm</h5>
     <div class="d-flex justify-content-between align-items-center mt-3 fs-6">
         <h5 class="fs-6 fw-bold text-uppercase">Menu</h5>
@@ -24,10 +24,10 @@
     </div>
 
     <ul class="collapse sidebar-list sidebar-menu-list show" id="collapseMenu">
-        <li>Trang chủ</li>
+        <li><a href="/home">Trang chủ</a></li>
         <li>
             <div class="d-flex justify-content-between align-items-center">
-                <span>Danh sách khoá học</span>
+                <a href="/courses">Danh sách khoá học</a>
                 <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCourses"
                     aria-expanded="false" aria-controls="collapseExample">
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
@@ -35,14 +35,13 @@
             </div>
             <ul class="collapse" id="collapseCourses">
                 <c:forEach items="${categories}" var="category" varStatus="status">
-                    <li>${category.getName()}</li>
+                    <li><a href="/courses/${category.getCode()}" class="text-decoration-none" style="color: #92909A;">${category.getName()}</a></li>
                 </c:forEach>
             </ul>
         </li>
-        <li>Khoá học tiêu biểu</li>
-        <li>Tin tức</li>
-        <li>Liên hệ</li>
-        <li>Giới thiệu</li>
+        <li><a href="/news">Tin tức</a></li>
+        <li><a href="/review">Đánh giá</a></li>
+        <li><a href="/about">Giới thiệu</a></li>
     </ul>
 
     <div class="d-flex justify-content-between align-items-center mt-3 fs-6">

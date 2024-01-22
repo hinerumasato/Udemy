@@ -8,11 +8,7 @@
 <%@include file="/common/includes.jsp" %>
 
 <div class="container mt-5">
-<<<<<<< HEAD
-
-=======
     <h1 class="text-center text-uppercase">Đăng nhập admin</h1>
->>>>>>> 256269dd4f6af623864efe3ff3dca99a8c59b174
     <c:if test="${not empty sessionScope.adminLoginMessage}">
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>${sessionScope.adminLoginMessage}</strong>
@@ -20,10 +16,6 @@
         </div>
     </c:if>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 256269dd4f6af623864efe3ff3dca99a8c59b174
     <form method="POST" action="/auth/login-admin">
         <div class="form-floating mb-3">
             <input type="email" class="form-control" id="adminEmail" name="adminEmail" placeholder="name@example.com" required>
@@ -36,13 +28,9 @@
         </div>
 
         <!-- Submit button -->
-<<<<<<< HEAD
-        <button type="submit" class="btn btn-primary btn-block mb-4 mt-4">Đăng nhập</button>
-=======
         <div class="d-flex justify-content-between align-items-center">
             <a href="/home">Quay lại trang người dùng</a>
             <button type="submit" class="btn btn-primary btn-block mb-4 mt-4">Đăng nhập</button>
         </div>
->>>>>>> 256269dd4f6af623864efe3ff3dca99a8c59b174
     </form>
 </div>
