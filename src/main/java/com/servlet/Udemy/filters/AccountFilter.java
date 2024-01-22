@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.servlet.Udemy.models.UserModel;
 
-@WebFilter(urlPatterns = {"/login", "/register"})
+@WebFilter(urlPatterns = {"/login", "/register", "/reset-password", "/reset-password/*"})
 public class AccountFilter implements Filter {
 
     @Override

@@ -52,10 +52,10 @@ public class VerifyEmailController extends HttpServlet {
             map.put("APP_URL", props.getProperty("APP_URL"));
             map.put("rememberToken", verifyEmailModel.getRememberToken());
     
-            Mail mail = new Mail(map);
+            Mail mail = new Mail("verify-mail.jsp", map);
     
             String mailAddress = FileUtil.getAppProperties().getProperty("mail.smtp.address");
-            mail.sendMail(mailAddress, loginUser.getUsername(), "Verify Email", "Đây là email xác thực");
+            mail.sendMail(mailAddress, loginUser.getUsername(), "Xác thực Email", "Xin vui lòng đọc và xác thực email trong nội dung");
         }
     }
 }

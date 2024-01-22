@@ -44,7 +44,7 @@
             khi nhận được email, hãy làm theo liên kết được cung cấp để hoàn tất quá trình đăng ký của bạn.
         </p>
 
-        <form action="/verify/email/resend">
+        <form action="/verify/email/resend" method="POST">
             <p class="border-top w-100 py-2">
                 Bạn không nhận được email? <button type="submit" class="fw-bold text-primary text-decoration-underline border-0 bg-white">Click vào đây để gửi lại email xác thực</button>
             </p>

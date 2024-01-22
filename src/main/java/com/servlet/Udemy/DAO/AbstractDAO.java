@@ -227,10 +227,13 @@ public abstract class AbstractDAO<T> {
         }
     }
 
-    public void delete(String sql) {
+    public void delete(String sql, Object ... args) {
         createConnection();
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
+            for(int i = 0; i < args.length; i++) {
+                stmt.setObject(i + 1, args[i]);
+            }
             stmt.executeUpdate();
             close(stmt, null);
         } catch (SQLException e) {

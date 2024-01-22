@@ -24,6 +24,13 @@
             </div>
         </c:if>
 
+        <c:if test="${not empty sessionScope.resetPasswordSuccess}">
+            <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                <strong>${sessionScope.resetPasswordSuccess}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </c:if>
+
         <div class="form-group mt-3">
             <label for="loginEmail" class="fw-bold">Email *</label>
             <input type="email" name="email" id="loginEmail" placeholder="example@gmail.com" required>
@@ -37,7 +44,7 @@
         <button type="submit" class="d-block w-100 btn-main-auth">Đăng nhập</button>
 
         <p>Bạn chưa có tài khoản? <a href="/register" class="text-danger">Đăng ký tại đây</a></p>
-        <p>Bạn quên mật khẩu? <a href="" class="text-danger text-decoration-none">Lấy lại tại đây</a></p>
+        <p>Bạn quên mật khẩu? <a href="/reset-password" class="text-danger text-decoration-none">Lấy lại tại đây</a></p>
 
         <div class="mt-5 auth-services">
             <div class="mb-3">Hoặc đăng nhập với</div>

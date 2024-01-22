@@ -38,6 +38,10 @@ public class AllFilter implements Filter {
         return request.getRequestURI().contains("/verify/email/process");
     }
 
+    private boolean isResendEmailUrl() {
+        return request.getRequestURI().contains("/verify/email/resend");
+    }
+
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
 
@@ -58,6 +62,11 @@ public class AllFilter implements Filter {
         }
 
         if (isVerifyProcessUrl()) {
+            chain.doFilter(req, resp);
+            return;
+        }
+
+        if(isResendEmailUrl()) {
             chain.doFilter(req, resp);
             return;
         }

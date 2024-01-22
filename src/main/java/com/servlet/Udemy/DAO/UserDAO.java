@@ -52,6 +52,8 @@ public class UserDAO extends AbstractDAO<UserModel> {
         findMap.put("username", username);
         findMap.put("login_type", loginType);
         List<UserModel> foundResultList = findBys(findMap);
+        if(foundResultList == null)
+            return null;
         return foundResultList.size() > 0 ? foundResultList.get(0) : null;
     }    
 }

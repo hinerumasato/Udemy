@@ -26,6 +26,7 @@ public class LoginPageController extends HttpServlet {
         page.render();
         session.removeAttribute("loginError");
         session.removeAttribute("registerSuccessfully");
+        session.removeAttribute("resetPasswordSuccess");
     }
     
 }
