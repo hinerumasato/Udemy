@@ -22,9 +22,18 @@
                             <i class="fa fa-chevron-down down" aria-hidden="true"></i>
                     </div>
                     <ul class="menu">
-                        <li><a class="nav-item" href="#">Kỹ năng ngoại ngữ</a></li>
-                        <li><a class="nav-item" href="#">Kỹ năng ngoại ngữ</a></li>
-                        <li><a class="nav-item" href="#">Kỹ năng ngoại ngữ</a></li>
+                        <li><a class="nav-item" href="/courses/language">Kỹ năng ngoại ngữ</a></li>
+                        <li><a class="nav-item" href="/courses/self-development">Phát triển bản thân</a></li>
+                        <li><a class="nav-item" href="/courses/sales">Sales, bán hàng</a></li>
+                        <li><a class="nav-item" href="/courses/life">Phong cách sống</a></li>
+                        <li><a class="nav-item" href="/courses/graphics">Thiết kế đồ họa</a></li>
+                        <li><a class="nav-item" href="/courses/computer">Tin học văn phòng</a></li>
+                        <li><a class="nav-item" href="/courses/it">Công nghệ thông tin</a></li>
+                        <li><a class="nav-item" href="/courses/camera">Nhiếp ảnh, quay phim</a></li>
+                        <li><a class="nav-item" href="/courses/marketing">Marketing</a></li>
+                        <li><a class="nav-item" href="/courses/startup">Kinh doan khởi nghiệp</a></li>
+                        <li><a class="nav-item" href="/courses/health">Sức khỏe, giới tính</a></li>
+                        <li><a class="nav-item" href="/courses/family">Gia đình</a></li>
                     </ul>
                 </li>
                 <li>Khoá học tiêu biểu</li>
