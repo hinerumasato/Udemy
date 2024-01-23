@@ -1,7 +1,9 @@
 package com.servlet.Udemy.controllers.admin;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,26 +15,33 @@ import javax.servlet.http.HttpSession;
 import com.servlet.Udemy.constants.ErrorMessage;
 import com.servlet.Udemy.constants.SuccessMessage;
 import com.servlet.Udemy.models.CategoryModel;
+import com.servlet.Udemy.models.TeacherModel;
 import com.servlet.Udemy.page.AdminPage;
 import com.servlet.Udemy.page.Page;
 import com.servlet.Udemy.services.CategoryService;
+import com.servlet.Udemy.services.TeacherService;
 
-@WebServlet("/admin/categories")
-public class CategoryController extends HttpServlet {
+@WebServlet("/admin/teachers")
+public class TeacherController extends HttpServlet {
 
+    private TeacherService teacherService = new TeacherService();
     private CategoryService categoryService = new CategoryService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        List<CategoryModel> categories = categoryService.findAll();
-
-        Page page = new AdminPage(req, resp, "categories.jsp", "master.jsp");
-        page.setObject("title", "Danh sách thể loại");
-        page.setObject("categories", categories);
+        Page page = new AdminPage(req, resp, "teachers.jsp", "master.jsp");
+        List<TeacherModel> teachers = teacherService.findAll();
+        Map<TeacherModel, CategoryModel> categoryMap = new HashMap<>();
+        for (TeacherModel teacher : teachers) {
+            categoryMap.put(teacher, categoryService.findById(teacher.getCategoryId()));
+        }
+        page.setObject("title", "Danh sách giáo viên");
+        page.setObject("teachers", teachers);
+        page.setObject("categoryMap", categoryMap);
         page.render();
 
-        session.removeAttribute("updateCategoryMessage");
+        session.removeAttribute("updateTeacherMessage");
         session.removeAttribute("alertType");
     }
 
@@ -54,17 +63,16 @@ public class CategoryController extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         HttpSession session = req.getSession();
 
-        int categoryId = Integer.parseInt(req.getParameter("category-id"));
-        boolean isDelete = categoryService.delete(categoryId);
+        int teacherId = Integer.parseInt(req.getParameter("teacher-id"));
+        boolean isDelete = teacherService.delete(teacherId);
         if(isDelete) {
-            session.setAttribute("updateCategoryMessage", SuccessMessage.DELETE_CATEGORY_SUCCESS);
+            session.setAttribute("updateTeacherMessage", SuccessMessage.DELETE_TEACHER_SUCCESS);
             session.setAttribute("alertType", "success");
         }
         else {
-            session.setAttribute("updateCategoryMessage", ErrorMessage.DELETE_CATEGORY_ERROR);
+            session.setAttribute("updateTeacherMessage", ErrorMessage.DELETE_TEAHCER_ERROR);
             session.setAttribute("alertType", "danger");
         }
-
-        resp.sendRedirect("/admin/categories");
+        resp.sendRedirect("/admin/teachers");
     }
 }

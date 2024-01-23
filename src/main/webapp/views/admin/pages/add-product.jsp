@@ -13,7 +13,7 @@
 
 <div class="container py-5 pe-3">
 
-    <form action="" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form id="addCourseForm" action="" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
         <h2 class="fw-bold">Thêm khoá học mới</h2>
         <p class="text-secondary-emphasis">Khoá học bạn đăng sẽ được đưa lên trang giao diện người dùng</p>
 
@@ -74,7 +74,7 @@
                         <h4 class="fw-bold">Bạn đã hoàn thành?</h4>
                         <div class="d-flex gap-2">
                             <button class="btn btn-outline-secondary">Huỷ</button>
-                            <button type="submit" class="btn btn-primary">Đăng khoá học</button>
+                            <button type="submit" class="btn btn-primary" id="addCourseBtn">Đăng khoá học</button>
                         </div>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                         <h6 class="fw-bold">Khoá học</h6>
                         <a href="/admin/categories/add-category" class="text-decoration-none">Thêm khoá học</a>
                     </div>
-                    <select name="category_id" id="" class="form-select">
+                    <select name="category_id" id="categorySelect" class="form-select">
                         <c:forEach items="${categories}" var="category">
                             <option value="${category.getId()}">${category.getName()}</option>
                         </c:forEach>
@@ -108,9 +108,9 @@
                         <a href="#" class="text-decoration-none">Thêm giáo viên</a>
                     </div>
 
-                    <select name="teacher_id" id="" class="form-select">
+                    <select name="teacher_id" id="teacherSelect" class="form-select">
                         <c:forEach items="${teachers}" var="teacher">
-                            <option value="${teacher.getId()}">${teacher.getName()}</option>
+                            <option value="${teacher.getId()}" category-id="${teacher.getCategoryId()}">${teacher.getName()}</option>
                         </c:forEach>
                     </select>
 

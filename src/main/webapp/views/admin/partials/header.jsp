@@ -45,8 +45,8 @@
                             Giáo viên
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/admin/teacher/add-teacher">Thêm mới giáo viên</a></li>
-                            <li><a class="dropdown-item" href="/admin/teacher">Danh sách giáo viên</a></li>
+                            <li><a class="dropdown-item" href="/admin/teachers/add-teacher">Thêm mới giáo viên</a></li>
+                            <li><a class="dropdown-item" href="/admin/teachers">Danh sách giáo viên</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
