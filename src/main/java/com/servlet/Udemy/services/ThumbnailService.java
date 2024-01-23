@@ -32,18 +32,18 @@ public class ThumbnailService implements IService<ThumbnailModel> {
     }
 
     @Override
-    public void insert(ThumbnailModel model) {
-        thumbnailDAO.insert(model);
+    public boolean insert(ThumbnailModel model) {
+        return thumbnailDAO.insert(model);
     }
 
     @Override
-    public void update(ThumbnailModel model) {
-        thumbnailDAO.update(model);
+    public boolean update(ThumbnailModel model) {
+        return thumbnailDAO.update(model);
     }
 
     @Override
-    public void delete(int id) {
-        thumbnailDAO.delete(id);
+    public boolean delete(int id) {
+        return thumbnailDAO.delete(id);
     }
 
     @Override

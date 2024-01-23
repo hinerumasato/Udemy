@@ -19,7 +19,7 @@ import com.servlet.Udemy.page.Page;
 import com.servlet.Udemy.services.CategoryService;
 import com.servlet.Udemy.utils.StringUtil;
 
-@WebServlet("/admin/category/add-category")
+@WebServlet("/admin/categories/add-category")
 @MultipartConfig(maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 10)
 public class AddCategoryController extends HttpServlet {
 
@@ -60,6 +60,6 @@ public class AddCategoryController extends HttpServlet {
         categoryService.insert(categoryModel);
 
         session.setAttribute("message", SuccessMessage.ADD_NEW_CATEGORY_SUCCESS);
-        resp.sendRedirect("/admin/category/add-category");
+        resp.sendRedirect("/admin/categories/add-category");
     }
 }

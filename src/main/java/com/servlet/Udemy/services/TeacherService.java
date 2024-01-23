@@ -32,18 +32,18 @@ public class TeacherService implements IService<TeacherModel> {
     }
 
     @Override
-    public void insert(TeacherModel model) {
-        teacherDAO.insert(model);
+    public boolean insert(TeacherModel model) {
+        return teacherDAO.insert(model);
     }
 
     @Override
-    public void update(TeacherModel model) {
-        teacherDAO.update(model);
+    public boolean update(TeacherModel model) {
+        return teacherDAO.update(model);
     }
 
     @Override
-    public void delete(int id) {
-        teacherDAO.delete(id);
+    public boolean delete(int id) {
+        return teacherDAO.delete(id);
     }
 
     @Override

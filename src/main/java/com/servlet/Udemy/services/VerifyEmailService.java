@@ -32,18 +32,18 @@ public class VerifyEmailService implements IService<VerifyEmailModel> {
     }
 
     @Override
-    public void insert(VerifyEmailModel model) {
-        verifyEmailDAO.insert(model);
+    public boolean insert(VerifyEmailModel model) {
+        return verifyEmailDAO.insert(model);
     }
 
     @Override
-    public void update(VerifyEmailModel model) {
-        verifyEmailDAO.update(model);
+    public boolean update(VerifyEmailModel model) {
+        return verifyEmailDAO.update(model);
     }
 
     @Override
-    public void delete(int id) {
-        verifyEmailDAO.delete(id);
+    public boolean delete(int id) {
+        return verifyEmailDAO.delete(id);
     }
 
     public VerifyEmailModel findByUserId(int userId) {

@@ -19,10 +19,10 @@ import com.servlet.Udemy.page.Page;
 import com.servlet.Udemy.services.CategoryService;
 import com.servlet.Udemy.services.TeacherService;
 
-@WebServlet("/admin/teacher/add-teacher")
+@WebServlet("/admin/teachers/add-teacher")
 @MultipartConfig(
-    maxFileSize = 1024 * 1024 * 5,
-    maxRequestSize = 1024 * 1024 * 10
+    maxFileSize = 1024 * 1024 * 500,
+    maxRequestSize = 1024 * 1024 * 500
 )
 public class AddTeacherController extends HttpServlet {
 
@@ -69,6 +69,6 @@ public class AddTeacherController extends HttpServlet {
         teacherService.insert(teacherModel);
 
         session.setAttribute("message", SuccessMessage.ADD_NEW_TEACHER_SUCCESS);
-        resp.sendRedirect("/admin/teacher/add-teacher");
+        resp.sendRedirect("/admin/teachers/add-teacher");
     }
 }

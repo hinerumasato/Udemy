@@ -28,18 +28,18 @@ public class CategoryService implements IService<CategoryModel> {
     }
 
     @Override
-    public void insert(CategoryModel model) {
-        categoryDAO.insert(model);
+    public boolean insert(CategoryModel model) {
+        return categoryDAO.insert(model);
     }
 
     @Override
-    public void update(CategoryModel model) {
-        categoryDAO.update(model);
+    public boolean update(CategoryModel model) {
+        return categoryDAO.update(model);
     }
 
     @Override
-    public void delete(int id) {
-        categoryDAO.delete(id);
+    public boolean delete(int id) {
+        return categoryDAO.delete(id);
     }
 
     @Override

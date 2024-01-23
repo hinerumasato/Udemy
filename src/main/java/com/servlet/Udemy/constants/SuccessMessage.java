@@ -9,6 +9,9 @@ public class SuccessMessage extends Message {
     public static final String ADD_NEW_NEWS_SUCCESS = "Thêm tin tức mới thành công";
     public static final String CHANGE_PASSWORD_SUCCESS = "Đổi mật khẩu mới thành công";
     public static final String RESET_PASSWORD_SUCCESS = "Chúng tôi đã gửi cho bạn một email, vui lòng kiểm tra email của bạn";
+    public static final String DELETE_CATEGORY_SUCCESS = "Xoá thể loại thành công";
+    public static final String UPDATE_CATEGORY_SUCCESS = "Cập nhật thể loại thành công";
+    public static final String DELETE_TEACHER_SUCCESS = "Xoá giáo viên thành công";
     
     //API
     public static final String FIND_TEACHER_SUCCESS = "Tìm kiếm giáo viên thành công";

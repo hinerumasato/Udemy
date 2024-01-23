@@ -123,11 +123,12 @@ public abstract class AbstractDAO<T> {
         return model;
     }
 
-    public void insert(T model) {
+    public boolean insert(T model) {
         createConnection();
         String sql = "INSERT INTO " + getTable() + " (";
         Map<String, Object> values = getValuesFromModel(model);
         List<String> columns = new ArrayList<String>();
+        boolean result;
 
         for (String column : values.keySet()) {
             if (!column.equals("id")) {
@@ -150,21 +151,26 @@ public abstract class AbstractDAO<T> {
                 stmt.setObject(i + 1, values.get(columns.get(i)));
             }
             stmt.executeUpdate();
+            result = true;
         } catch (SQLException e) {
             e.printStackTrace();
+            result = false;
         } finally {
             try {
                 close(stmt, null);
             } catch (SQLException e) {
                 e.printStackTrace();
+                result = false;
             }
         }
+        return result;
     }
 
-    public void update(T model) {
+    public boolean update(T model) {
         createConnection();
         Map<String, Object> values = getValuesFromModel(model);
         List<String> columns = new ArrayList<String>();
+        boolean result;
         String sql = "UPDATE " + getTable() + " SET ";
         for (String column : values.keySet()) {
             if (!column.equals("id")) {
@@ -183,15 +189,19 @@ public abstract class AbstractDAO<T> {
 
             stmt.setObject(values.size(), values.get("id"));
             stmt.executeUpdate();
+            result = true;
         } catch (SQLException e) {
             e.printStackTrace();
+            result = false;
         } finally {
             try {
                 close(stmt, null);
             } catch (SQLException e) {
                 e.printStackTrace();
+                result = false;
             }
         }
+        return result;
     }
 
     public void update(String sql, Object... objects) {
@@ -214,17 +224,29 @@ public abstract class AbstractDAO<T> {
         }
     }
 
-    public void delete(int id) {
+    public boolean delete(int id) {
         createConnection();
+        boolean result;
         String sql = "DELETE FROM " + getTable() + " WHERE ID = ?";
+        PreparedStatement stmt = null;
         try {
-            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt = conn.prepareStatement(sql);
             stmt.setObject(1, id);
             stmt.executeUpdate();
             close(stmt, null);
+            result = true;
         } catch (SQLException e) {
             e.printStackTrace();
+            result = false;
+        } finally {
+            try {
+                close(stmt, null);
+            } catch(SQLException e) {
+                e.printStackTrace();
+                result = false;
+            } 
         }
+        return result;
     }
 
     public void delete(String sql, Object ... args) {

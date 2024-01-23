@@ -1,5 +1,7 @@
 (function() {
     const fileInput = document.getElementById('thumbnailFile');
+    const categorySelect = document.getElementById('categorySelect');
+    const teacherSelect = document.getElementById('teacherSelect');
     let oldFiles = null;
     const readFile = file => {
         return new Promise(resolve => {
@@ -81,6 +83,23 @@
             }
         })
     }
+
+    const handleCategorySelectChange = categoryId => {
+        alert(123);
+        const options = teacherSelect.querySelectorAll('option');
+        options.forEach(option => {
+            const teacherCategoryId = parseInt(option.getAttribute('category-id'));
+            if(categoryId !== teacherCategoryId)
+                option.classList.add('d-none');
+            else option.classList.add('d-block');
+        });
+    }
+
+    categorySelect.onchange = () => {
+        handleCategorySelectChange(categorySelect.value);
+    }
+
+    handleCategorySelectChange(1);
 
     removeThumbnailImgListener();
 })();

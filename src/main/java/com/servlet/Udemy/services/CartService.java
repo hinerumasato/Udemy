@@ -36,18 +36,18 @@ public class CartService implements IService<CartModel> {
     }
 
     @Override
-    public void insert(CartModel model) {
-        cartDAO.insert(model);
+    public boolean insert(CartModel model) {
+        return cartDAO.insert(model);
     }
 
     @Override
-    public void update(CartModel model) {
-        cartDAO.update(model);
+    public boolean update(CartModel model) {
+        return cartDAO.update(model);
     }
 
     @Override
-    public void delete(int id) {
-        cartDAO.delete(id);
+    public boolean delete(int id) {
+        return cartDAO.delete(id);
     }
 
     @Override

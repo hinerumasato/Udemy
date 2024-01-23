@@ -31,18 +31,18 @@ public class NewsService implements IService<NewsModel> {
     }
 
     @Override
-    public void insert(NewsModel model) {
-        newsDAO.insert(model);
+    public boolean insert(NewsModel model) {
+        return newsDAO.insert(model);
     }
 
     @Override
-    public void update(NewsModel model) {
-        newsDAO.update(model);
+    public boolean update(NewsModel model) {
+        return newsDAO.update(model);
     }
 
     @Override
-    public void delete(int id) {
-        newsDAO.delete(id);
+    public boolean delete(int id) {
+        return newsDAO.delete(id);
     }
 
     @Override
