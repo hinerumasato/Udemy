@@ -70,4 +70,4 @@
     </div>
 </div>
 
-<script src="<c:url value='/static/js/pages/add-teacher.js' />"></script>
+<script src="<c:url value='/static/js/pages/add-teacher.js?v=${randomNumber}' />"></script>

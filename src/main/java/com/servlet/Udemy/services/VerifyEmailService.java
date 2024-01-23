@@ -27,8 +27,7 @@ public class VerifyEmailService implements IService<VerifyEmailModel> {
 
     @Override
     public VerifyEmailModel findFirst() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findFirst'");
+        return verifyEmailDAO.findFirst();
     }
 
     @Override

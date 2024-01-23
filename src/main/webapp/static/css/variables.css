@@ -329,6 +329,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     vertical-align: middle;
 }
 
+.course-line {
+    height: 5px;
+    width: 8%;
+    background-color: var(--container-line);
+    border-radius: 4px;
+}
+
 @keyframes show {
     to {
         top: 0;

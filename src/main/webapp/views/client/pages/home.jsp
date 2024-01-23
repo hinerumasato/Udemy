@@ -308,13 +308,13 @@
         </div>
 
         <div class="home_container_content">
-            <div class="row row-cols-4">
+            <div class="row row-cols-2 row-cols-md-4">
                 <c:forEach items="${allTeachers}" var="teacher" begin="0" end="3">
                     <div class="col teacher-item">
                         <div class="teacher_avatar">
-                            <img src="${teacher.getAvatar()}" alt="" class="w-100">
+                            <div style="background-image: url('${teacher.getAvatar()}');" class="w-100 rounded-2 teacher_avatar_img"></div>
                         </div>
-                        <b class="teacher-name text-center d-block w-100">${teacher.getName()}</b>
+                        <b class="teacher-name text-center d-block w-100 mt-3">${teacher.getName()}</b>
                         <p class="teacher-sobject text-center w-100">${teacherCategoryMap.get(teacher).getName()}</p>
                     </div>
                 </c:forEach>

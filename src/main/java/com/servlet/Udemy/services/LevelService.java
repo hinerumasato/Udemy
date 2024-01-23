@@ -42,8 +42,7 @@ public class LevelService implements IService<LevelModel> {
 
     @Override
     public LevelModel findFirst() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findFirst'");
+        return levelDAO.findFirst();
     }
 
     @Override
