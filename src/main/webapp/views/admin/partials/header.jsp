@@ -59,11 +59,29 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Nhập tên sản phẩm ..." aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+
+                <div class="d-flex align-items-center gap-3">
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Nhập tên sản phẩm ..." aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+
+                    <ul class="list-unstyled mb-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                ${sessionScope.adminLoginUser.getLastName()}                            
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><button id="adminLogoutBtn" class="dropdown-item">Đăng xuất</button></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>
+
+    <form action="" method="POST" id="adminLogoutForm"></form>
 </header>
+
+<script src="<c:url value='/static/js/pages/admin-header.js?v=${randomNumber}' />"></script>

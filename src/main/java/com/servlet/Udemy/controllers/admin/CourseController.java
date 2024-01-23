@@ -19,6 +19,7 @@ import com.servlet.Udemy.page.Page;
 import com.servlet.Udemy.services.CategoryService;
 import com.servlet.Udemy.services.CourseService;
 import com.servlet.Udemy.services.LevelService;
+import com.servlet.Udemy.utils.NumberUtil;
 
 @WebServlet("/admin/courses")
 public class CourseController extends HttpServlet {
@@ -30,8 +31,16 @@ public class CourseController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Page page = new AdminPage(req, resp, "courses.jsp", "master.jsp");
+        int pageNumber;
+        int limit = 10;
+        if(req.getParameter("page") == null)
+            pageNumber = 1;
+        else pageNumber = Integer.parseInt(req.getParameter("page"));
 
-        List<CourseModel> courses = courseService.findAllActive();
+        List<CourseModel> allCourses = courseService.findAllActive();
+        int totalPages = NumberUtil.getTotalPageFromCollection(allCourses, limit);
+        CourseService courseServicePagination = (CourseService) courseService.paginate(pageNumber, limit);
+        List<CourseModel> courses = courseServicePagination.findAllActive();
         Map<CourseModel, CategoryModel> categoryMap = new HashMap<CourseModel, CategoryModel>();
         Map<CourseModel, LevelModel> levelMap = new HashMap<CourseModel, LevelModel>();
         if(courses != null) {
@@ -45,6 +54,8 @@ public class CourseController extends HttpServlet {
         page.setObject("courses", courses);
         page.setObject("categoryMap", categoryMap);
         page.setObject("levelMap", levelMap);
+        page.setObject("totalPages", totalPages);
+        page.setObject("currentPage", pageNumber);
         page.render();
 
         req.getSession().removeAttribute("updateProductMessage");

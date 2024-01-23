@@ -72,6 +72,23 @@
                             </c:forEach> 
                         </tbody>
                     </table>
+
+                    <div class="clearfix">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <c:forEach begin="1" end="${totalPages}" var="page">
+                                    <c:choose>
+                                        <c:when test="${currentPage eq page}">
+                                            <li class="page-item active"><a class="page-link" href="/admin/courses?page=${page}">${page}</a></li>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <li class="page-item"><a class="page-link" href="/admin/courses?page=${page}">${page}</a></li>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                            </ul>
+                        </nav>   
+                    </div>
                     <!-- <div class="clearfix">
                         <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
                         <ul class="pagination">
@@ -177,8 +194,7 @@
                         </div>
                     </form>
                 </div>
-            </div>
-            
+            </div> 
         </div>
 
         <script src="<c:url value='/static/js/pages/admin-courses.js' />"></script>

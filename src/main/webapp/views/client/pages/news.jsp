@@ -33,15 +33,16 @@
                                             <div class=" d-flex pb-1 pt-1 ">
                                                 <div class="d-flex nav-item">
                                                     <i class="fa-regular fa-user" style="color: #11ee48;"></i>
-                                                    <p class="fw-bold ms-1">${item.getAuthor()}</p>
+                                                    <p class="fw-bold ms-1 mb-0">${item.getAuthor()}</p>
                                                 </div>
                                                 <div class="d-flex nav-item">
                                                     <i class="fa-regular fa-calendar-days" style="color: #11ee48;"></i>
-                                                    <fmt:formatDate value="${now}" pattern="dd-MM-yyyy" var="${item.getCreatedDate()}" />
-                                                    <p class="fw-bold ms-1">${item.getCreatedDate()}</p>
+                                                    <p class="fw-bold ms-1 mb-0">${item.getCreatedDate()}</p>
                                                 </div>
                                             </div>
-                                            <p class="news-item-info-title">${item.getContent()}</p>
+                                            <div class="news-content">
+                                                <p class="news-item-info-title">${item.getContent()}</p>
+                                            </div>
                                         </div>  
                                 </div>
                             </div>

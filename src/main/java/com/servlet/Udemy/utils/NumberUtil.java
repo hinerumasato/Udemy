@@ -5,6 +5,7 @@
 package com.servlet.Udemy.utils;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
@@ -42,5 +43,18 @@ public class NumberUtil {
         if(minus >= 0.5)
             intNum++;
         return intNum;
+    }
+
+    public static int roundIfNotInteger(double doubleNum) {
+        int intNum = (int) doubleNum;
+        double minus = doubleNum - intNum;
+        if(minus > 0)
+            intNum++;
+        return intNum;
+    }
+
+    public static int getTotalPageFromCollection(Collection<? extends Object> collection, int limit) {
+        double pageDouble = collection.size() / (double) limit;
+        return roundIfNotInteger(pageDouble);
     }
 }
