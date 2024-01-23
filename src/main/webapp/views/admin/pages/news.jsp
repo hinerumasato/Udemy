@@ -11,16 +11,6 @@
 </head>
 <main id="adminNews">
     <div class="container mt-5">
-        <c:if test="${not empty sessionScope.updateNewsMessage}">
-            <div class="alert alert-${sessionScope.alertType} alert-dismissible fade show" role="alert">
-                <strong>${sessionScope.updateNewsMessage}</strong>
-                <c:if test="${sessionScope.alertType eq 'danger'}">
-                    Có vẻ như thể loại này vẫn đang trong chương trình giảng dạy, bạn cần xoá khoá học trước
-                </c:if>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        </c:if>
-
         <div class="d-flex justify-content-end">
             <a href="/admin/news/add-news" class="d-inline-block btn btn-primary text-decoration-none">Thêm tin tức mới</a>
         </div>
@@ -48,7 +38,7 @@
                                 </a>
                             </td>
                             <td>
-                                <button class="delete-News-btn text-danger border-0 bg-transparent">
+                                <button class="delete-news-btn text-danger border-0 bg-transparent" news-id="${newsItem.getId()}">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </td>
@@ -85,8 +75,9 @@
     </div>
 
     <form action="" method="POST" id="deleteNewsForm">
-        <input type="hidden" name="News-id">
+        <input type="hidden" name="news-id">
         <input type="hidden" name="_method" value="DELETE">
     </form>
 </main>
+<script src="<c:url value='/static/js/pages/admin-news.js?v=${randomNumber}' />"></script>
 </html>
