@@ -3,6 +3,7 @@ package com.servlet.Udemy.DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -173,5 +174,40 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
     public List<CourseModel> searchByName(String search) {
         search = "%" + search + "%";
         return query("SELECT * FROM " + getTable() + " WHERE name LIKE ?", search);
+    }
+
+    public List<CourseModel> findByIds(List<Integer> ids) {
+        createConnection();
+        String sql = "SELECT * FROM " + getTable() + " WHERE ID IN(";
+        for (int i = 0; i < ids.size(); i++) {
+            sql += "?,";
+        }
+
+        sql = sql.substring(0, sql.length() - 1);
+        sql += ")";
+
+        System.out.println(sql);
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<CourseModel> result = new ArrayList<>();
+        try {
+            stmt = conn.prepareStatement(sql);
+            for(int i = 0; i < ids.size(); i++)
+                stmt.setObject(i + 1, ids.get(i));
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                result.add(mapResultSetToModel(rs));
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                close(stmt, rs);
+            } catch(SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return result.size() > 0 ? result : null;
     }
 }

@@ -156,7 +156,14 @@
                 ${course.getDescription()}
             </p>
         </div>
+
+        <div id="courseHistory" class="mt-5">
+            <div class="course-line"></div>
+            <h2 class="fw-bold fs-1 text-uppercase mt-3">Khoá học đã xem</h2>
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 course-history-wrapper"></div>
+        </div>
     </div>
+
 </div>
 
 <script src="<c:url value='/static/js/pages/course-details.js?v=${randomNumber}' />"></script>
