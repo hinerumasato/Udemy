@@ -126,10 +126,54 @@
         handleChangeAmountClick(changeAction.DECREASE, amountInput);
     }
 
+    const setCourseIdToLocalStorage = () => {
+        const courseId = document.querySelector('#courseDetail').getAttribute('course-id');
+        let storageCourseId = localStorage.getItem('course-id');
+        if(storageCourseId === null)
+            localStorage.setItem('course-id', courseId);
+        else {
+            let courseIds = storageCourseId.split(',');
+            if(courseIds.length < 4) {
+                courseIds = [courseId].concat(courseIds);
+                const courseIdSet = new Set();
+                for(let i = 0; i < courseIds.length; i++)
+                    courseIdSet.add(courseIds[i]);
+                const saveItems = Array.from(courseIdSet).join(',');
+                localStorage.setItem('course-id', saveItems);
+            }
+            else {
+                courseIds = [courseId].concat(courseIds);
+                const courseIdSet = new Set();
+                for(let i = 0; i < courseIds.length; i++)
+                    courseIdSet.add(courseIds[i]);
+                if(courseIdSet.size > 4) {
+                    let newArray = Array.from(courseIdSet);
+                    newArray.pop();
+                    courseIds = newArray;
+                }
+                else courseIds = Array.from(courseIdSet);
+                console.log(courseIds);
+                const saveItems = courseIds.join(',');
+                localStorage.setItem('course-id', saveItems);
+            }
+        }
+    }
+
+    const createCourseHistory = async selector => {
+        const renderBlock = document.querySelector(selector);
+        const courseTemplate = new CourseTemplate();
+        const ids = localStorage.getItem('course-id');
+        const courseHistoryHtml = await courseTemplate.render(`/api/v1/courses/multiple?ids=${ids}`);
+        renderBlock.innerHTML = courseHistoryHtml;
+        price();
+    }
+
     const init = () => {
+        createCourseHistory('#courseHistory .course-history-wrapper');
         firstActive(carouselItems);
         firstActive(smallThumbnails);
         firstActive(indicatorBtns);
+        setCourseIdToLocalStorage();
     }
 
     const firstActive = elements => {

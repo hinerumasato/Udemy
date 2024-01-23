@@ -37,12 +37,11 @@ public class Mail {
     private Map<String, String> map;
 
     public void sendMail(String from, String to, String subject, String text) {
-        Properties properties = FileUtil.getAppProperties();
-        String host = properties.getProperty("mail.smtp.host");
-        String port = properties.getProperty("mail.smtp.port");
-        String username = properties.getProperty("mail.smtp.username");
-        String password = properties.getProperty("mail.smtp.password");
-        String address = properties.getProperty("mail.smtp.address");
+        String host = FileUtil.env("mail.smtp.host");
+        String port = FileUtil.env("mail.smtp.port");
+        String username = FileUtil.env("mail.smtp.username");
+        String password = FileUtil.env("mail.smtp.password");
+        String address = FileUtil.env("mail.smtp.address");
 
         Properties props = new Properties();
         props.setProperty("mail.smtp.host", host);

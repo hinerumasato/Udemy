@@ -77,8 +77,7 @@ public class UserService implements IService<UserModel> {
 
     @Override
     public UserModel findFirst() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findFirst'");
+        return userDAO.findFirst();
     }
 
     @Override

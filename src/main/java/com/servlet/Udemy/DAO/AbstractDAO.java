@@ -27,13 +27,15 @@ public abstract class AbstractDAO<T> {
         this.sqlOffset = "";
     }
 
-    public List<T> query(String sql) {
+    public List<T> query(String sql, Object ... values) {
         createConnection();
         List<T> result = new ArrayList<T>();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
             stmt = conn.prepareStatement(sql + " " + sqlOffset);
+            for(int i = 0; i < values.length; i++)
+                stmt.setObject(i + 1, values[i]);
             rs = stmt.executeQuery();
             while (rs.next()) {
                 T model = mapResultSetToModel(rs);

@@ -91,4 +91,12 @@ public class CourseService implements IService<CourseModel> {
     public List<CourseModel> findByCategoryId(int categoryId) {
         return courseDAO.findByCategoryId(categoryId);
     }
+
+    public List<CourseModel> searchByName(String search) {
+        return courseDAO.searchByName(search);
+    }
+
+    public List<CourseModel> findByIds(List<Integer> ids) {
+        return courseDAO.findByIds(ids);
+    }
 }

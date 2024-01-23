@@ -70,7 +70,7 @@ public class TeacherController extends HttpServlet {
             session.setAttribute("alertType", "success");
         }
         else {
-            session.setAttribute("updateTeacherMessage", ErrorMessage.DELETE_TEAHCER_ERROR);
+            session.setAttribute("updateTeacherMessage", ErrorMessage.DELETE_TEACHER_ERROR);
             session.setAttribute("alertType", "danger");
         }
         resp.sendRedirect("/admin/teachers");

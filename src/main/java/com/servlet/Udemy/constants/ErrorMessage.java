@@ -10,7 +10,8 @@ public class ErrorMessage {
     public static final String RESET_PASSWORD_ERROR = "Không tìm thấy email đăng ký";
     public static final String DELETE_CATEGORY_ERROR = "Xoá thể loại thất bại";
     public static final String UPDATE_CATEGORY_ERROR = "Cập nhật thể loại thất bại";
-    public static final String DELETE_TEAHCER_ERROR = "Xoá giáo viên thất bại";
+    public static final String DELETE_TEACHER_ERROR = "Xoá giáo viên thất bại";
+    public static final String UPDATE_TEACHER_ERROR = "Cập nhật giáo viên thất bại";
 
     //API
     public static final String FIND_TEACHER_ERROR = "Không tìm thấy giáo viên";

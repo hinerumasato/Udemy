@@ -14,8 +14,9 @@ public class SuccessMessage extends Message {
     public static final String DELETE_TEACHER_SUCCESS = "Xoá giáo viên thành công";
     public static final String DELETE_NEWS_SUCCESS = "Xoá tin tức thành công";
     public static final String UPDATE_NEWS_SUCCESS = "Cập nhật tin tức thành công";
-
-    // API
+    public static final String UPDATE_TEACHER_SUCCESS = "Cập nhật giáo viên thành công";
+    
+    //API
     public static final String FIND_TEACHER_SUCCESS = "Tìm kiếm giáo viên thành công";
     public static final String FIND_LOGIN_USER_SUCCESS = "Lấy thông tin đăng nhập thành công";
     public static final String ADD_TO_CART_SUCCESS = "Thêm vào giỏ hàng thành công";
