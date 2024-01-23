@@ -12,6 +12,7 @@ public class SuccessMessage extends Message {
     public static final String DELETE_CATEGORY_SUCCESS = "Xoá thể loại thành công";
     public static final String UPDATE_CATEGORY_SUCCESS = "Cập nhật thể loại thành công";
     public static final String DELETE_TEACHER_SUCCESS = "Xoá giáo viên thành công";
+    public static final String UPDATE_TEACHER_SUCCESS = "Cập nhật giáo viên thành công";
     
     //API
     public static final String FIND_TEACHER_SUCCESS = "Tìm kiếm giáo viên thành công";

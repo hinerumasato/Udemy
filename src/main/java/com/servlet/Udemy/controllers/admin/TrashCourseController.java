@@ -92,10 +92,4 @@ public class TrashCourseController extends HttpServlet {
         // } 
         // else resp.sendError(HttpServletResponse.SC_NOT_FOUND, "Cannot find course");
     }
-
-    @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        super.doDelete(req, resp);
-    }
 }

@@ -63,8 +63,10 @@
                                 </div>
 
                                 <div class="header-search-group col-9 d-flex align-items-center">
-                                    <input class="input-header" type="text" placeholder="Tìm kiếm..." />
-                                    <i class="las la-search text-main d-block h-100 search-icon"></i>
+                                    <form action="/courses/search" method="GET">
+                                        <input class="input-header" type="text" placeholder="Tìm kiếm..." name="search"/>
+                                        <button type="submit" class="border-0 bg-transparent"><i class="las la-search text-main d-block h-100 search-icon"></i></button>
+                                    </form>
                                 </div>
                             </div>    
                         </div>

@@ -27,8 +27,7 @@ public class TeacherService implements IService<TeacherModel> {
 
     @Override
     public TeacherModel findFirst() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findFirst'");
+        return teacherDAO.findFirst();
     }
 
     @Override

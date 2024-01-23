@@ -148,11 +148,11 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
     }
 
     public List<CourseModel> findAllActive() {
-        return query("SELECT * FROM " + getTable() + " WHERE is_delete = 0");
+        return query("SELECT * FROM " + getTable() + " WHERE is_delete = ?", 0);
     }
 
     public List<CourseModel> findAllDeleted() {
-        return query("SELECT * FROM " + getTable() + " WHERE is_delete = 1");
+        return query("SELECT * FROM " + getTable() + " WHERE is_delete = ?", 1);
     }
 
     public CourseModel findBySlug(String slug) {
@@ -170,4 +170,8 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
         return findBys(findMap);
     }
 
+    public List<CourseModel> searchByName(String search) {
+        search = "%" + search + "%";
+        return query("SELECT * FROM " + getTable() + " WHERE name LIKE ?", search);
+    }
 }
