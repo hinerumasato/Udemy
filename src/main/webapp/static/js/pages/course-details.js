@@ -7,6 +7,7 @@
     const amountInput = document.querySelector('input[name="amount"]');
     const increaseAmountBtn = document.querySelector('.increase-btn');
     const decreaseAmountBtn = document.querySelector('.decrease-btn');
+    const courseName = document.getElementById('courseDetailName').innerText;
 
     const amountInputValue = {
         oldValue: amountInput.value,
@@ -170,6 +171,11 @@
 
     const init = () => {
         createCourseHistory('#courseHistory .course-history-wrapper');
+        createBreadcrumb('#courseDetailBreadcrumb', [
+            {name: 'Trang chủ', link: '/home', active: false},
+            {name: 'Tất cả khoá học', link: '/courses', active: false},
+            {name: courseName, link: '/details', active: true},
+        ]);
         firstActive(carouselItems);
         firstActive(smallThumbnails);
         firstActive(indicatorBtns);

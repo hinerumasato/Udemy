@@ -13,7 +13,7 @@
 
 <div class="container py-5 pe-3">
 
-    <form action="" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form id="updateCourseForm" action="" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
         <input type="hidden" name="_method" value="PUT">
         <input type="hidden" name="id" value="${course.getId()}">
         <h2 class="fw-bold">Cập nhật khoá học</h2>
@@ -96,7 +96,7 @@
                         <h6 class="fw-bold">Khoá học</h6>
                         <a href="/admin/categories/add-category" class="text-decoration-none">Cập nhật khoá học</a>
                     </div>
-                    <select name="category_id" id="" class="form-select">
+                    <select name="category_id" id="categorySelect" class="form-select">
                         <c:forEach items="${categories}" var="category">
                             <c:choose>
                                 <c:when test="${category.getId() eq categoryMap.get(course).getId()}">
@@ -106,7 +106,6 @@
                                     <option value="${category.getId()}">${category.getName()}</option>
                                 </c:otherwise>
                             </c:choose>
-                            <option value="${category.getId()}">${category.getName()}</option>
                         </c:forEach>
                     </select>
 
@@ -132,14 +131,14 @@
                         <a href="#" class="text-decoration-none">Thêm giáo viên</a>
                     </div>
 
-                    <select name="teacher_id" id="" class="form-select">
+                    <select name="teacher_id" id="teacherSelect" class="form-select">
                         <c:forEach items="${teachers}" var="teacher">
                             <c:choose>
                                 <c:when test="${teacher.getId() eq teacherMap.get(course).getId()}">
-                                    <option value="${teacher.getId()}" selected>${teacher.getName()}</option>
+                                    <option value="${teacher.getId()}" category-id="${teacher.getCategoryId()}" selected>${teacher.getName()}</option>
                                 </c:when>
                                 <c:otherwise>
-                                    <option value="${teacher.getId()}">${teacher.getName()}</option>
+                                    <option value="${teacher.getId()}" category-id="${teacher.getCategoryId()}">${teacher.getName()}</option>
                                 </c:otherwise>
                             </c:choose>
                         </c:forEach>

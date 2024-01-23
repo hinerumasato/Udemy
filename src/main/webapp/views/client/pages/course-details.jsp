@@ -8,9 +8,12 @@
 </head>
 <div id="courseDetail" course-id="${course.getId()}" class="mt-5">
     <div class="container">
+
+        <div id="courseDetailBreadcrumb" class="my-5"></div>
+
         <div class="row justify-content-between">
             <div class="col-lg-7 col-12">
-                <h1 class="fw-bold">${course.getName()}</h1>
+                <h1 class="fw-bold" id="courseDetailName">${course.getName()}</h1>
                 <div class="tag bg-main-light fit px-4 py-2 rounded-4 my-4">
                     ${categoryMap.get(course).getName()}</div>
 

@@ -47,6 +47,7 @@
     <!-- My Library -->
     <script src="<c:url value='/static/js/constants/api.js?v=${randomNumber}' />"></script>
     <script src="<c:url value='/static/js/templates/template.js?v=${randomNumber}' />"></script>
+    <script src="<c:url value='/static/js/utils/breadcrumb.js?v=${randomNumber}' />"></script>
     <%@include file="/views/client/partials/header.jsp" %>
     <%@include file="/views/client/partials/slider.jsp" %>
     

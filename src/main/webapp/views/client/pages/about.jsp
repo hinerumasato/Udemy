@@ -8,6 +8,9 @@
 
 <div id="about">
 	<div class="container mt-5">
+
+		<div id="aboutBreadcrumb" class="my-5"></div>
+
 		<h2>Giới thiệu về trang web template Udemy</h2>
 		<p>Trang web template Udemy là một trang web mẫu dành cho những ai muốn tạo một trang web giáo dục chuyên
 			nghiệp và hiện đại. Trang web này không phải là một trang web thực sự của Udemy, mà chỉ là một template
@@ -39,3 +42,10 @@
 			hàng đầu, trang web template Udemy sẽ giúp bạn học tập hiệu quả và tiết kiệm chi phí.</p>
 	</div>
 </div>
+
+<script>
+	createBreadcrumb('#aboutBreadcrumb', [
+		{name: 'Trang chủ', link: '/home', active: false},
+		{name: 'Giới thiệu', link: '/courses', active: true},
+	]);
+</script>

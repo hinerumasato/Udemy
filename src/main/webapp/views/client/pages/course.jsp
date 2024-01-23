@@ -15,7 +15,9 @@
 
 <div class="container">
     <div class="mt-5 row row-cols-2 g-3">
-
+        <c:if test="${not empty categoryName}">
+            <input id="categoryName" type="hidden" value="${categoryName}" />
+        </c:if>
         <div class="col">
             <div class="inner">
                 <img src="<c:url value='/static/imgs/banners/banner_course_1.webp' />" alt="" class="w-100">
@@ -26,6 +28,8 @@
                 <img src="<c:url value='/static/imgs/banners/banner_course_2.webp' />" alt="" class="w-100">
             </div>
         </div>
+
+        <div id="courseBreadcrumb" class="my-2"></div>
     </div>
 
     <button id="filterButton" class="bg-main border-0 py-1 px-2"><i class="fa-solid fa-filter"></i></button>
@@ -131,3 +135,20 @@
         </div>
     </div>
 </div>
+
+<script>
+    if(window.location.pathname === '/courses') {
+        createBreadcrumb('#courseBreadcrumb', [
+            {name: 'Trang chủ', link: '/home', active: false},
+            {name: 'Tất cả khoá học', link: '/courses', active: true},
+        ]);
+    } else {
+        const categoryInput = document.getElementById('categoryName');
+        const categoryName = categoryInput.value;
+        createBreadcrumb('#courseBreadcrumb', [
+            {name: 'Trang chủ', link: '/home', active: false},
+            {name: 'Tất cả khoá học', link: '/courses', active: false},
+            {name: categoryName, link: '/courses', active: true},
+        ]);
+    }
+</script>

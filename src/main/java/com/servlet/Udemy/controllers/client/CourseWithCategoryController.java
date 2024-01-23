@@ -84,6 +84,7 @@ public class CourseWithCategoryController extends HttpServlet {
         page.setObject("teacherMap", teacherIDToModelMap);
         page.setObject("priceMap", priceMap);
         page.setObject("priceValueMap", priceValueMap);
+        page.setObject("categoryName", category.getName());
         page.render();
 
         

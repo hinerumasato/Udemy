@@ -336,6 +336,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     border-radius: 4px;
 }
 
+.breadcrumb .breadcrumb-item a {
+    text-decoration: none;
+    color: var(--main-color) !important;
+}
+
+.breadcrumb .breadcrumb-item:hover a {
+    color: #111 !important;
+    font-weight: bold;
+}
+
+.breadcrumb .breadcrumb-item.active {
+    color: #111 !important;
+    font-weight: bold;
+}
+
 @keyframes show {
     to {
         top: 0;

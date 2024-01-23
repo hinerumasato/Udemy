@@ -1,8 +1,4 @@
-class Template {
-    
-}
-
-class CourseTemplate extends Template {
+class CourseTemplate {
 
     async getByCategoryId(categoryId) {
         const FIELD = 'categories';
@@ -142,7 +138,7 @@ class CourseTemplate extends Template {
     }
 }
 
-class LoginDialogTemplate extends Template {
+class LoginDialogTemplate {
     /**
      * @returns {String} html
      */
@@ -153,6 +149,52 @@ class LoginDialogTemplate extends Template {
 
             <label for="#adminPassword">Password: </label>
             <input type="password" id="adminPassword" name="adminPassword">
+        `
+    }
+}
+
+class BreadcrumbTemplate {
+    /**
+     * 
+     * @param {Array<Object>} options
+     * example: [
+     *      {name: 'Home', link: '/home', active: false}, 
+     *      {name: 'Data', link: '/data', active: true}
+     * ]
+     */
+    constructor(options) {
+        this.options = options;
+    }
+
+    /**
+     * @returns {String} html li element
+     */
+    buildItems() {
+        return this.options.reduce((acc, curr) => {
+            const name = curr.name;
+            const link = curr.link;
+            const active = curr.active;
+
+            let result = '';
+            if(active) 
+                result = /*html*/`
+                    <li class="breadcrumb-item active" aria-current="page">${name}</li>
+                `
+            else result = /*html*/`
+                <li class="breadcrumb-item"><a href="${link}">${name}</a></li>
+            `
+            return acc + result;
+        }, '')
+    }
+
+    render() {
+        const liHtmls = this.buildItems();
+        return /*html*/ `
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    ${liHtmls}
+                </ol>
+            </nav>
         `
     }
 }
