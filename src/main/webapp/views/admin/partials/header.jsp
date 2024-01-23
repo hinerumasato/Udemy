@@ -54,8 +54,8 @@
                             Tin tức
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/admin/news/add-news">Thêm mới thể loại</a></li>
-                            <li><a class="dropdown-item" href="/admin/news">Danh sách thể loại</a></li>
+                            <li><a class="dropdown-item" href="/admin/news/add-news">Thêm mới tin tức</a></li>
+                            <li><a class="dropdown-item" href="/admin/news">Danh sách tin tức</a></li>
                         </ul>
                     </li>
                 </ul>
