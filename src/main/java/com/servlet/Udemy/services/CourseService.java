@@ -28,8 +28,8 @@ public class CourseService implements IService<CourseModel> {
     }
 
     @Override
-    public void insert(CourseModel model) {
-        courseDAO.insert(model);
+    public boolean insert(CourseModel model) {
+        return courseDAO.insert(model);
     }
 
     public CourseModel findLast() {
@@ -49,13 +49,13 @@ public class CourseService implements IService<CourseModel> {
     }
 
     @Override
-    public void update(CourseModel model) {
-        courseDAO.update(model);
+    public boolean update(CourseModel model) {
+        return courseDAO.update(model);
     }
 
     @Override
-    public void delete(int id) {
-        courseDAO.delete(id);
+    public boolean delete(int id) {
+        return courseDAO.delete(id);
     }
 
     @Override

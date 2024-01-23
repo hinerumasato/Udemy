@@ -21,18 +21,18 @@ public class LevelService implements IService<LevelModel> {
     }
 
     @Override
-    public void insert(LevelModel model) {
-        levelDAO.insert(model);
+    public boolean insert(LevelModel model) {
+        return levelDAO.insert(model);
     }
 
     @Override
-    public void update(LevelModel model) {
-        levelDAO.update(model);
+    public boolean update(LevelModel model) {
+        return levelDAO.update(model);
     }
 
     @Override
-    public void delete(int id) {
-        levelDAO.delete(id);
+    public boolean delete(int id) {
+        return levelDAO.delete(id);
     }
 
     @Override

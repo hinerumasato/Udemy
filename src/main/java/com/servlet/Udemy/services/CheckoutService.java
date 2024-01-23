@@ -35,18 +35,18 @@ public class CheckoutService implements IService<CheckoutModel> {
     }
 
     @Override
-    public void insert(CheckoutModel model) {
-        checkoutDAO.insert(model);
+    public boolean insert(CheckoutModel model) {
+        return checkoutDAO.insert(model);
     }
 
     @Override
-    public void update(CheckoutModel model) {
-        checkoutDAO.update(model);
+    public boolean update(CheckoutModel model) {
+        return checkoutDAO.update(model);
     }
 
     @Override
-    public void delete(int id) {
-        checkoutDAO.delete(id);
+    public boolean delete(int id) {
+        return checkoutDAO.delete(id);
     }
 
     @Override

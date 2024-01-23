@@ -36,18 +36,18 @@ public class CheckoutDetailService implements IService<CheckoutDetailModel> {
     }
 
     @Override
-    public void insert(CheckoutDetailModel model) {
-        checkoutDetailDAO.insert(model);
+    public boolean insert(CheckoutDetailModel model) {
+        return checkoutDetailDAO.insert(model);
     }
 
     @Override
-    public void update(CheckoutDetailModel model) {
-        checkoutDetailDAO.update(model);
+    public boolean update(CheckoutDetailModel model) {
+        return checkoutDetailDAO.update(model);
     }
 
     @Override
-    public void delete(int id) {
-        checkoutDetailDAO.delete(id);
+    public boolean delete(int id) {
+        return checkoutDetailDAO.delete(id);
     }
 
     @Override

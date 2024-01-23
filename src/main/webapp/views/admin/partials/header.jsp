@@ -36,8 +36,8 @@
                             Thể loại
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/admin/category/add-category">Thêm mới thể loại</a></li>
-                            <li><a class="dropdown-item" href="/admin/category">Danh sách thể loại</a></li>
+                            <li><a class="dropdown-item" href="/admin/categories/add-category">Thêm mới thể loại</a></li>
+                            <li><a class="dropdown-item" href="/admin/categories">Danh sách thể loại</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">

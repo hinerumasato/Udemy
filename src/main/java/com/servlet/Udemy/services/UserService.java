@@ -56,18 +56,18 @@ public class UserService implements IService<UserModel> {
     }
 
     @Override
-    public void insert(UserModel model) {
-        userDAO.insert(model);
+    public boolean insert(UserModel model) {
+        return userDAO.insert(model);
     }
 
     @Override
-    public void update(UserModel model) {
-        userDAO.update(model);
+    public boolean update(UserModel model) {
+        return userDAO.update(model);
     }
 
     @Override
-    public void delete(int id) {
-        userDAO.delete(id);
+    public boolean delete(int id) {
+        return userDAO.delete(id);
     }
 
     @Override

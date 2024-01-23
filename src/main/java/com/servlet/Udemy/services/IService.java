@@ -9,8 +9,8 @@ public interface IService<T> {
     public T findLast();
     public T findFirst();
     public List<T> findByMap(Map<String, String> findMap);
-    public void insert(T model);
-    public void update(T model);
-    public void delete(int id);
+    public boolean insert(T model);
+    public boolean update(T model);
+    public boolean delete(int id);
     public IService<T> paginate(int page, int limit);
 }

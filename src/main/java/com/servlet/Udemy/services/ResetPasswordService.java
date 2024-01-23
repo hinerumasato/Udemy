@@ -36,18 +36,18 @@ public class ResetPasswordService implements IService<ResetPasswordModel> {
     }
 
     @Override
-    public void insert(ResetPasswordModel model) {
-        resetPasswordDAO.insert(model);
+    public boolean insert(ResetPasswordModel model) {
+        return resetPasswordDAO.insert(model);
     }
 
     @Override
-    public void update(ResetPasswordModel model) {
-        resetPasswordDAO.update(model);
+    public boolean update(ResetPasswordModel model) {
+        return resetPasswordDAO.update(model);
     }
 
     @Override
-    public void delete(int id) {
-        resetPasswordDAO.delete(id);
+    public boolean delete(int id) {
+        return resetPasswordDAO.delete(id);
     }
 
     @Override

@@ -94,7 +94,7 @@
                     <h4>Lựa chọn</h4>
                     <div class="d-flex justify-content-between align-items-center">
                         <h6 class="fw-bold">Khoá học</h6>
-                        <a href="/admin/category/add-category" class="text-decoration-none">Cập nhật khoá học</a>
+                        <a href="/admin/categories/add-category" class="text-decoration-none">Cập nhật khoá học</a>
                     </div>
                     <select name="category_id" id="" class="form-select">
                         <c:forEach items="${categories}" var="category">
