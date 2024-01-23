@@ -146,10 +146,14 @@
                 const courseIdSet = new Set();
                 for(let i = 0; i < courseIds.length; i++)
                     courseIdSet.add(courseIds[i]);
-                if(courseIdSet.size == 4)
-                    courseIds = Array.from(courseIdSet).pop();
+                if(courseIdSet.size > 4) {
+                    let newArray = Array.from(courseIdSet);
+                    newArray.pop();
+                    courseIds = newArray;
+                }
                 else courseIds = Array.from(courseIdSet);
-                const saveItems = courseIds.join('');
+                console.log(courseIds);
+                const saveItems = courseIds.join(',');
                 localStorage.setItem('course-id', saveItems);
             }
         }
