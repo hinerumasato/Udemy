@@ -33,7 +33,7 @@
                             <td>${newsItem.getAuthor()}</td>
                             <td>${newsItem.getCreatedDate()}</td>
                             <td>
-                                <a href="#" class="text-warning text-decoration-none">
+                                <a href="/admin/news/update?id=${newsItem.getId()}" class="text-warning text-decoration-none">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
                             </td>

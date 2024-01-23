@@ -2,6 +2,8 @@
     const fileInput = document.getElementById('thumbnailFile');
     const categorySelect = document.getElementById('categorySelect');
     const teacherSelect = document.getElementById('teacherSelect');
+    const addCourseForm = document.getElementById('addCourseForm');
+
     let oldFiles = null;
     const readFile = file => {
         return new Promise(resolve => {
@@ -75,23 +77,46 @@
                     dataTransfer.items.add(file);
                     return dataTransfer;
                 }, new DataTransfer());
-
+                
                 fileInput.files = dt.files;
-
+                
                 const col = btn.parentNode.parentNode;
                 col.remove();
             }
         })
     }
 
+    removeThumbnailImgListener();
+
     const handleCategorySelectChange = categoryId => {
-        alert(123);
+        categoryId = parseInt(categoryId);
         const options = teacherSelect.querySelectorAll('option');
-        options.forEach(option => {
+        let first = 0;
+        let count = 0;
+        options.forEach((option, index) => {
             const teacherCategoryId = parseInt(option.getAttribute('category-id'));
-            if(categoryId !== teacherCategoryId)
+            if(categoryId !== teacherCategoryId) {
                 option.classList.add('d-none');
-            else option.classList.add('d-block');
+                option.classList.remove('d-block');
+                count++;
+            }
+            else {
+                first++;
+                option.classList.add('d-block');
+                option.classList.remove('d-none');
+                if(first === 1)
+                    teacherSelect.selectedIndex = index;
+            }
+
+            if(count === options.length) {
+                teacherSelect.classList.add('d-none');
+                teacherSelect.classList.remove('d-block');
+                const toast = new Toast('Chưa có giáo viên cho môn học này', 'danger');
+                toast.show();
+            } else {
+                teacherSelect.classList.add('d-block');
+                teacherSelect.classList.remove('d-none');
+            }
         });
     }
 
@@ -101,5 +126,45 @@
 
     handleCategorySelectChange(1);
 
-    removeThumbnailImgListener();
+    const canSubmit = () => {
+        const oldPrice = document.querySelector('input[name="old_price"]');
+        const salePrice = document.querySelector('input[name="sale_price"');
+        const nameInput = document.querySelector('input[name="name"]');
+
+        const oldPriceValue = parseFloat(oldPrice.value);
+        const salePriceValue = parseFloat(salePrice.value);
+
+        if(!oldPrice.value || !salePrice.value || !nameInput.value) {
+            const toast = new Toast('Chưa nhập đủ thông tin', 'warning');
+            toast.show();
+            return false;
+        }
+
+        if(fileInput.files.length === 0) {
+            const toast = new Toast('Chưa Upload thumbnail', 'warning');
+            toast.show();
+            return false;
+        }
+
+        if(oldPriceValue <= salePriceValue) {
+            const toast = new Toast('Giá khuyễn mãi không được lớn hơn giá gốc', 'danger');
+            toast.show();
+            return false;
+        }
+
+        if(teacherSelect.classList.contains('d-none')) {
+            const toast = new Toast('Không có giáo viên nào dạy thể loại này nên không được phép đăng bài', 'danger');
+            toast.show();
+            return false;
+        }
+
+        return true;
+    }
+
+    addCourseForm.onsubmit = e => {
+        e.preventDefault();
+        if(canSubmit())
+            addCourseForm.submit();
+    }
+
 })();
