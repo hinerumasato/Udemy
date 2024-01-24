@@ -10,6 +10,9 @@
             <body>
                 <div class="container">
                     <div class="content">
+                        <div id="newsItemBreadcrumb">
+
+                        </div>
                         <div class="row">
                             <div class="col left-news col-12 d-none col-md-4 d-md-block">
                                 <div class="left">
@@ -37,4 +40,4 @@
                     </div>
                 </div>
             </body>
-            <script src="<c:url value='/static/js/pages/news-details.js?v=${randomNumber}' />"></script>
+            <script src="<c:url value='/static/js/pages/news-detail.js?v=${randomNumber}' />"></script>
