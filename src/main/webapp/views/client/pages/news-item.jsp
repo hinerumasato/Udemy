@@ -2,11 +2,6 @@
 
     <%@page contentType="text/html" pageEncoding="UTF-8" %>
         <%@include file="/common/includes.jsp" %>
-<<<<<<< HEAD
-            <!DOCTYPE html>
-            <html>
-=======
->>>>>>> 833a38c17fc5326724b9710189070b2e63ebe02e
 
             <head>
                 <link rel="stylesheet" href="<c:url value=" /static/css/news.css?v=${randomNumber}" />">
@@ -15,6 +10,9 @@
             <body>
                 <div class="container">
                     <div class="content">
+                        <div id="newsItemBreadcrumb">
+
+                        </div>
                         <div class="row">
                             <div class="col left-news col-12 d-none col-md-4 d-md-block">
                                 <div class="left">
@@ -42,10 +40,4 @@
                     </div>
                 </div>
             </body>
-<<<<<<< HEAD
-            <script src="<c:url value='/static/js/pages/news-details.js?v=${randomNumber}' />"></script>
-
-            </html>
-=======
-            <script src="<c:url value='/static/js/pages/news-details.js?v=${randomNumber}' />"></script>
->>>>>>> 833a38c17fc5326724b9710189070b2e63ebe02e
+            <script src="<c:url value='/static/js/pages/news-detail.js?v=${randomNumber}' />"></script>
