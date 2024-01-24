@@ -197,4 +197,54 @@ class BreadcrumbTemplate {
             </nav>
         `
     }
+<<<<<<< HEAD
+=======
+}
+
+class ReviewTemplate {
+    constructor(rateAmount, content, userData) {
+        this.rateAmount = rateAmount;
+        this.content = content;
+        this.userData = userData;
+    }
+
+    buildStarItems() {
+        let result = '';
+        for(let i = 1; i < this.rateAmount; i++)
+            result += '<i class="fas fa-star"></i>';
+        for(let i = this.rateAmount + 1; i < 5; i++)
+            result += '<i class="far fa-star"></i>'
+        return result;
+    }
+
+    render() {
+        return /*html*/`
+            <div class="testimonial-box">
+                <!--top------------------------->
+                <div class="box-top">
+                    <!--profile----->
+                    <div class="profile">
+                        <!--img---->
+                        <div class="profile-img">
+                            <img src="https://cdn3.iconfinder.com/data/icons/web-design-and-development-2-6/512/87-1024.png" />
+                        </div>
+                        <!--name-and-username-->
+                        <div class="name-user">
+                            <strong>${this.userData.lastName}</strong>
+                            <span>${this.userData.username}</span>
+                        </div>
+                    </div>
+                    <!--reviews------>
+                    <div class="reviews">
+                        ${this.buildStarItems()}             
+                    </div>
+                </div>
+                <!--Comments---------------------------------------->
+                <div class="client-comment">
+                    <p>${this.content}</p>
+                </div>
+            </div>  
+        `;
+    }
+>>>>>>> 3f3b92a2bf83c1e29c10d74feac2eb5f94ee61aa
 }

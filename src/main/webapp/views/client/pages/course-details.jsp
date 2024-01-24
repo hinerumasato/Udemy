@@ -97,32 +97,32 @@
             <div class="col-lg-4 col-12 course-bottom">
                 <div class="course-price">
                     <h2 class="text-danger fw-bold format-price">${course.getSalePrice()}</h2>
-                    <span
-                        class="text-decoration-line-through text-secondary format-price">${course.getPrice()}</span>
+                    <span class="text-decoration-line-through text-secondary format-price">${course.getPrice()}</span>
                 </div>
 
                 <div class="mt-3">
                     <span class="fw-bold">Cấp độ</span>
                     <div class="course-level mt-2 bg-main fit px-3 py-1 rounded-3">
-                        ${levelMap.get(course).getValue()}</div>
+                        ${levelMap.get(course).getValue()}
+                    </div>
                 </div>
-
+                
                 <form action="" method="POST" id="buyImmediatelyForm">
                     <div class="mt-3">
                         <span>Số lượng:</span>
                         <div class="course-detail-amount mt-3">
-                            <button class="decrease-btn">-</button>
+                            <div class="decrease-btn btn">-</div>
                             <input type="text" value="1" name="amount">
-                            <button class="increase-btn">+</button>
+                            <div class="increase-btn btn">+</div>
                         </div>
                     </div>
     
                     <div class="mt-3">
                         <div class="buy-btn-group">
-                            <div id="addToCartBtn" type="submit" class="w-100 add-to-cart-btn btn-main rounded-4 px-4 py-3">Thêm vào giỏ hàng</div>
+                            <div id="addToCartBtn" class="w-100 add-to-cart-btn btn-main rounded-4 px-4 py-3">Thêm vào giỏ hàng</div>
                                 <input type="hidden" name="courseId" value="${course.getId()}">
                                 <input type="hidden" name="totalAmount" value="${course.getPrice()}">
-                                <button type="submit" id="buyImmediatelyBtn" class="buy-immediately-btn btn-main-outline mt-3 rounded-4 px-4 py-3 w-100">Mua ngay</button>
+                                <button id="buyImmediatelyBtn" class="buy-immediately-btn btn-main-outline mt-3 rounded-4 px-4 py-3 w-100">Mua ngay</button>
                         </div>
                     </div>
                 </form>

@@ -93,10 +93,6 @@ public class StringUtil {
         return input;
     }
 
-    public static boolean isStaticUrl(String url) {
-        return url.contains("/static");
-    }
-
     public static String replaceHTMLKeys(String htmlContent, Map<String, String> map) {
         for (Map.Entry<String, String> entry : map.entrySet()) {
             String key = "${" + entry.getKey() + "}";

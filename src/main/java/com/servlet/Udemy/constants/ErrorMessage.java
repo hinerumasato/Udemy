@@ -19,5 +19,6 @@ public class ErrorMessage {
     public static final String DELETE_LOVE_COURSE_ERROR = "Xoá khoá học yêu thích thất bại";
     public static final String ADD_LOVE_COURSE_ERROR = "Thêm khoá học yêu thích thất bại";
     public static final String FIND_COURSE_LOVE_ERROR = "Tìm kiếm khoá học yêu thích thất bại";
+    public static final String ADD_REVIEW_ERROR = "Thêm đánh giá thất bại";
     
 }

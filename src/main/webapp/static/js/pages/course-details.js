@@ -9,6 +9,7 @@
     const decreaseAmountBtn = document.querySelector('.decrease-btn');
     const courseName = document.getElementById('courseDetailName').innerText;
     const buyImmediatelyForm = document.getElementById('buyImmediatelyForm');
+    const buyImmediatelyBtn = document.getElementById('buyImmediatelyBtn');
     const toggleLoveCourseBtn = document.getElementById('toggleLoveCourseBtn');
 
     const amountInputValue = {
@@ -271,6 +272,7 @@
 
     addToCartBtn.onclick = async () => await handleAddToCartClick();
     toggleLoveCourseBtn.onclick = async () => await handleToggleLoveCourse();
+    // buyImmediatelyBtn.onclick = () => buyImmediatelyForm.submit();
     buyImmediatelyForm.onsubmit = async e =>  {
         e.preventDefault();
         const canSubmit = await canSubmitBuyImmadiately();
