@@ -33,15 +33,16 @@ public class NewsController extends HttpServlet {
         Page page = new ClientPage(req, resp, "news.jsp", "master.jsp");
         List<NewsModel> newsModel = newsService.findAll();
         List<NewsModel> specialNews = new ArrayList<NewsModel>();
-
-        for (int i = newsModel.size() - 1; i >= 0; i--) {
-            int count = 0;
-            if (newsModel.get(i).isSpecialNews()) {
-                specialNews.add(newsModel.get(i));
-                count++;
+        if (newsModel != null) {
+            for (int i = newsModel.size() - 1; i >= 0; i--) {
+                int count = 0;
+                if (newsModel.get(i).isSpecialNews()) {
+                    specialNews.add(newsModel.get(i));
+                    count++;
+                }
+                if (count == 4)
+                    break;
             }
-            if (count == 4)
-                break;
         }
         page.setObject("title", "Tin tức");
         page.setObject("listNews", newsModel);

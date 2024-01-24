@@ -22,7 +22,7 @@
                             <i class="fa fa-chevron-down down" aria-hidden="true"></i>
                     </div>
                     <ul class="menu">
-                        <li><a class="nav-item" href="/courses/language">Kỹ năng ngoại ngữ</a></li>
+                        <li><a class="nav-item" href="/courses/ky-nang-ngoai-ngu">Kỹ năng ngoại ngữ</a></li>
                         <li><a class="nav-item" href="/courses/self-development">Phát triển bản thân</a></li>
                         <li><a class="nav-item" href="/courses/sales">Sales, bán hàng</a></li>
                         <li><a class="nav-item" href="/courses/life">Phong cách sống</a></li>
