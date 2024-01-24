@@ -24,4 +24,5 @@ public class SuccessMessage extends Message {
     public static final String DELETE_LOVE_COURSE_SUCCESS = "Xoá khoá học yêu thích thành công";
     public static final String ADD_LOVE_COURSE_SUCCESS = "Thêm khoá học yêu thích thành công";
     public static final String FIND_COURSE_LOVE_SUCCESS = "Tìm kiếm khoá học yêu thích thành công";
+    public static final String ADD_REVIEW_SUCCESS = "Thêm đánh giá thành công";
 }

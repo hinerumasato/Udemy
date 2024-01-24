@@ -11,16 +11,20 @@ class Toast {
         let result = '';
         switch (this.type) {
             case 'success':
-                result = 'linear-gradient(to right, #38a169, #4caf50)';
+                // result = 'linear-gradient(to right, #38a169, #4caf50)';
+                result = '#4caf50';
                 break;
             case 'danger':
-                result = 'linear-gradient(to right, rgb(220 38 38), rgb(153 27 27))';
+                // result = 'linear-gradient(to right, rgb(220 38 38), rgb(153 27 27))';
+                result = '#ef5350';
                 break;
             case 'info':
-                result = 'linear-gradient(to right, #1a202c, #4299e1)';
+                // result = 'linear-gradient(to right, #1a202c, #4299e1)';
+                result = '#03a9f4';
                 break;
             case 'warning':
-                result = 'linear-gradient(to right, #c05621, #f6e05e)';
+                // result = 'linear-gradient(to right, #c05621, #f6e05e)';
+                result = '#ff9800';
                 break;
             default:
                 result = 'linear-gradient(to right, #3498db, #2ecc71)'

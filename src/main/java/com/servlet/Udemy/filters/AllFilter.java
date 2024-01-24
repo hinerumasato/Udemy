@@ -15,9 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.servlet.Udemy.context.AppContext;
 import com.servlet.Udemy.models.UserModel;
-import com.servlet.Udemy.utils.FileUtil;
 import com.servlet.Udemy.utils.NumberUtil;
-import com.servlet.Udemy.utils.StringUtil;
 
 @WebFilter(urlPatterns = "*")
 public class AllFilter implements Filter {
@@ -42,6 +40,10 @@ public class AllFilter implements Filter {
         return request.getRequestURI().contains("/verify/email/resend");
     }
 
+    private boolean isStaticUrl() {
+        return request.getRequestURI().contains("/static");
+    }
+
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
 
@@ -54,9 +56,7 @@ public class AllFilter implements Filter {
         appContext.setAppRealPath(req.getServletContext().getRealPath("/"));
         req.setAttribute("randomNumber", NumberUtil.random());
 
-        String url = FileUtil.getAppProperties().getProperty("APP_URL") + request.getRequestURI();
-
-        if (StringUtil.isStaticUrl(url)) {
+        if (isStaticUrl()) {
             chain.doFilter(req, resp);
             return;
         }
