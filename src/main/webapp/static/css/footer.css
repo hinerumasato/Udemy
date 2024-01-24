@@ -1,0 +1,115 @@
+footer {
+    color: #fff;
+    background: #333;
+}
+
+
+p{
+    font-size: 14px;
+    font-family: "Nunito",serif;
+}
+
+.footer-container{
+    padding: 40px;
+    margin-top: 40px;
+}
+
+.footer-left{
+    margin-right: 20px;
+    flex: 1;
+}
+
+.footer-right{
+    flex: 2;
+}
+
+.logo-footer-img{
+    margin-bottom: 20px;
+}
+.icon-footer{
+    margin-bottom: 10px;
+    display: flex;
+}
+.icon{
+    width: 36px;
+    height: 36px;
+    display: flex;
+    background: #00bc86;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+.group-form {
+    display: flex;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.contact {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.contact > p {
+    margin: 0;
+}
+
+.footer-email-input {
+    border-radius: 10px;
+    width: 320px;
+    padding: 14px 20px;
+    border: 0;
+    outline: none !important;
+}
+
+.footer-email-input:focus {
+    border: 0;
+    outline: none !important;
+}
+
+.send-button {
+    position: absolute;
+    width: 80px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    background-color: #00bc86;
+    font-weight: bold;
+    right: 0;
+    color: #FFF;
+    font-weight: bold;
+    border: none;
+    outline: none !important;
+    transition: all .3s;
+}
+
+.send-button:hover {
+    background-color: #fcc0b9;
+}
+
+.icon-contact{
+    padding-right: 4px;
+}
+
+.top-about-footer-udemy-list{
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.about-footer-udemy-list{
+    font-size: 14px;
+    flex: 1;
+}
+
+.payment-img {
+    max-width: 100%;
+}
+
+@media (max-width: 748px) {
+    .footer-right {
+        margin-top: 30px;
+    }
+}

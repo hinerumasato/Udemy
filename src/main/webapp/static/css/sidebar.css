@@ -1,0 +1,120 @@
+aside ul {
+    list-style: none;
+    padding: 0;
+}
+
+aside ul li {
+    padding: 8px 0;
+    border-bottom: none;
+    color: #898989;
+}
+
+aside ul li ul {
+    position: relative;
+    top: 9px;
+    padding-left: 32px;
+}
+
+aside h5 {
+    margin-bottom: 0;
+}
+
+aside i.fa {
+    transition: all .3s;
+    font-size: 10px;
+}
+
+aside i.fa.rotate90 {
+    transform: rotate(90deg);
+}
+
+aside .sidebar-menu-list li {
+    border-bottom: 1px dashed #EBEBEB;
+}
+
+aside .sidebar-menu-list li a {
+    color: #92909A;
+    text-decoration: none;
+}
+
+.sidebar-wrapper {
+    /* Thiết lập các thuộc tính CSS mặc định cho sidebar */
+    transition: transform 0.3s ease;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .3s;
+    background-color: transparent;
+    z-index: 3;
+}
+
+.overlay.active {
+    animation: showOverlay .3s ease forwards;
+}
+
+#filterButton {
+    display: none;
+}
+
+@keyframes showOverlay {
+
+    from {
+        visibility: hidden;
+        opacity: 0;
+        background-color: transparent;
+    }
+
+    to {
+        visibility: visible;
+        opacity: 1;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+
+@keyframes moveRight {
+    to {
+        transform: translateX(-256px);
+    }
+}
+
+@media (max-width: 767px) {
+
+    .sidebar-wrapper {
+        width: 256px !important;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background-color: #fff;
+        z-index: 4;
+        padding: 25px;
+        transform: translateX(100%);
+    }
+
+    .sidebar-wrapper.active {
+        /* Hiển thị sidebar khi có lớp 'active' và độ rộng màn hình dưới 768px */
+        transform: translateX(0);
+    }
+    
+    #filterButton {
+        display: block;
+        position: fixed;
+        top: 60%;
+        right: 0;
+        z-index: 4;
+        transition: .3s ease;
+    }
+
+    #filterButton.active {
+        transform: translateX(-256px);
+    }
+}
