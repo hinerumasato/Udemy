@@ -1,6 +1,7 @@
 package com.servlet.Udemy.controllers.client;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,49 +14,54 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.servlet.Udemy.models.CategoryModel;
+import com.servlet.Udemy.models.CourseLoveModel;
 import com.servlet.Udemy.models.CourseModel;
 import com.servlet.Udemy.models.LevelModel;
 import com.servlet.Udemy.models.TeacherModel;
+import com.servlet.Udemy.models.UserModel;
 import com.servlet.Udemy.page.ClientPage;
 import com.servlet.Udemy.page.Page;
 import com.servlet.Udemy.services.CategoryService;
+import com.servlet.Udemy.services.CourseLoveService;
 import com.servlet.Udemy.services.CourseService;
 import com.servlet.Udemy.services.LevelService;
 import com.servlet.Udemy.services.TeacherService;
 
-@WebServlet("/courses/search")
-public class SearchCourseController extends HttpServlet {
+@WebServlet("/courses/love")
+public class CourseLoveController extends HttpServlet {
 
     private CourseService courseService = new CourseService();
     private CategoryService categoryService = new CategoryService();
     private LevelService levelService = new LevelService();
     private TeacherService teacherService = new TeacherService();
+    private CourseLoveService courseLoveService = new CourseLoveService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
-        resp.setCharacterEncoding("UTF-8");
         HttpSession session = req.getSession();
-        
-        String search = req.getParameter("search");
-        List<CourseModel> courses = courseService.searchByName(search);
+        UserModel loginUser = (UserModel) session.getAttribute("loginUser");
+        List<CourseLoveModel> courseLoveModels = courseLoveService.findByUserId(loginUser.getId());
         Map<CourseModel, CategoryModel> categoryMap = new HashMap<>();
         Map<CourseModel, LevelModel> levelMap = new HashMap<>();
         Map<CourseModel, TeacherModel> teacherMap = new HashMap<>();
-
-        if(courses != null) {
-            for (CourseModel course : courses) {
-                categoryMap.put(course, categoryService.findById(course.getCategoryId()));
-                levelMap.put(course, levelService.findById(course.getLevelId()));
-                teacherMap.put(course, teacherService.findById(course.getTeacherId()));
+        List<CourseModel> courses = new ArrayList<>();
+        if(courseLoveModels != null) {
+            for (CourseLoveModel courseLoveModel : courseLoveModels) {
+                CourseModel courseModel = courseService.findById(courseLoveModel.getCourseId());
+                if(courseModel != null) {
+                    courses.add(courseModel);
+                    categoryMap.put(courseModel, categoryService.findById(courseModel.getCategoryId()));
+                    levelMap.put(courseModel, levelService.findById(courseModel.getLevelId()));
+                    teacherMap.put(courseModel, teacherService.findById(courseModel.getTeacherId()));
+                }
             }
         }
 
-        int size = courses == null ? 0 : courses.size();
-        session.setAttribute("courseMaxWidthMessage", "Có " + size + " Kết quả tìm kiếm cho từ khoá: " + search);
+        if(courses == null || courses.size() == 0)
+            session.setAttribute("courseMaxWidthMessage", "Bạn chưa thêm khoá học yêu thích nào");
 
         Page page = new ClientPage(req, resp, "course-max-width.jsp", "master.jsp");
-        page.setObject("title", "Tìm kiếm khoá học");
+        page.setObject("title", "Khoá học yêu thích");
         page.setObject("courses", courses);
         page.setObject("categoryMap", categoryMap);
         page.setObject("levelMap", levelMap);

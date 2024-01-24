@@ -21,4 +21,7 @@ public class SuccessMessage extends Message {
     public static final String FIND_LOGIN_USER_SUCCESS = "Lấy thông tin đăng nhập thành công";
     public static final String ADD_TO_CART_SUCCESS = "Thêm vào giỏ hàng thành công";
     public static final String DELETE_CHECKOUT_SUCCESS = "Xoá đơn hàng thành công";
+    public static final String DELETE_LOVE_COURSE_SUCCESS = "Xoá khoá học yêu thích thành công";
+    public static final String ADD_LOVE_COURSE_SUCCESS = "Thêm khoá học yêu thích thành công";
+    public static final String FIND_COURSE_LOVE_SUCCESS = "Tìm kiếm khoá học yêu thích thành công";
 }

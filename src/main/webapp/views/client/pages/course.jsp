@@ -48,7 +48,7 @@
                                     <a href="/courses/details/${course.getSlug()}">
                                         <div class="course-item-thumbnail">
                                             <img class="w-100" src="<c:url value='${course.getThumbnails().get(0).getImg()}' />"
-                                                 alt="">
+                                                 alt="${course.getName()}">
                                         </div>
                                         <div class="course-item-level ${levelMap.get(course.getLevelId()).getCode()}">
                                             ${levelMap.get(course.getLevelId()).getValue()}</div>
@@ -88,7 +88,7 @@
                                                 class="backside-data d-block d-md-flex justify-content-between align-items-center">
                                                 <div class="backside-level">
                                                     <i class="fa-solid fa-chart-line"></i>
-                                                    <span>Cơ bản</span>
+                                                    <span>${levelMap.get(course.getLevelId()).getValue()}</span>
                                                 </div>
 
                                                 <div class="backside-lesson">

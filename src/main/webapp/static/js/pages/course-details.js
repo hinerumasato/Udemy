@@ -1,4 +1,4 @@
-(function () {
+(async function () {
 
     const smallThumbnails = document.querySelectorAll('.small-thumbnail');
     const indicatorBtns = document.querySelectorAll('.indicator-btn');
@@ -8,6 +8,8 @@
     const increaseAmountBtn = document.querySelector('.increase-btn');
     const decreaseAmountBtn = document.querySelector('.decrease-btn');
     const courseName = document.getElementById('courseDetailName').innerText;
+    const buyImmediatelyForm = document.getElementById('buyImmediatelyForm');
+    const toggleLoveCourseBtn = document.getElementById('toggleLoveCourseBtn');
 
     const amountInputValue = {
         oldValue: amountInput.value,
@@ -42,7 +44,6 @@
         const getLoginJson = await getLoginUserResponse.json();
         if(getLoginJson.statusCode === 404) {
             const toast = new Toast('Vui lòng đăng nhập để có thể thêm vào giỏ hàng', 'danger');
-            console.log(toast.getBackground());
             toast.show();
         } else {
             const amount = document.querySelector('input[name="amount"]').value;
@@ -153,7 +154,6 @@
                     courseIds = newArray;
                 }
                 else courseIds = Array.from(courseIdSet);
-                console.log(courseIds);
                 const saveItems = courseIds.join(',');
                 localStorage.setItem('course-id', saveItems);
             }
@@ -169,7 +169,23 @@
         price();
     }
 
-    const init = () => {
+    const handleActiveToggleLoveCourseBtn = async () => {
+        const loginUserResponse = await fetch('/api/v1/user-data');
+        const getLoginJson = await loginUserResponse.json();
+        if(getLoginJson.statusCode === 200) {
+            const courseId = document.querySelector('#courseDetail').getAttribute('course-id');
+            const response = await fetch(`/api/v1/courses/love?courseId=${courseId}`);
+            const json = await response.json();
+            if(json.statusCode === 200)
+                toggleLoveCourseBtn.classList.add('loved');
+            else if(toggleLoveCourseBtn.classList.contains('loved')) {
+                toggleLoveCourseBtn.classList.remove('loved');
+            }
+                
+        }
+    }
+
+    const init = async () => {
         createCourseHistory('#courseHistory .course-history-wrapper');
         createBreadcrumb('#courseDetailBreadcrumb', [
             {name: 'Trang chủ', link: '/home', active: false},
@@ -180,10 +196,73 @@
         firstActive(smallThumbnails);
         firstActive(indicatorBtns);
         setCourseIdToLocalStorage();
+        await handleActiveToggleLoveCourseBtn();
     }
 
     const firstActive = elements => {
         elements[0].classList.add('active');
+    }
+
+    /**
+     * @return {boolean} true if can submit
+     */
+    const canSubmitBuyImmadiately = async () => {
+        const response = await fetch('/api/v1/user-data');
+        const getLoginJson = await response.json();
+        if(getLoginJson.statusCode === 404) {
+            const toast = new Toast('Vui lòng đăng nhập để có thể thanh toán', 'danger');
+            toast.show();
+            return false;
+        }
+        else return true;
+    }
+
+    const handleToggleLoveCourse = async () => {
+        const loginUserResponse = await fetch('/api/v1/user-data');
+        const getLoginJson = await loginUserResponse.json();
+        if(getLoginJson.statusCode === 404) {
+            const toast = new Toast('Vui lòng đăng nhập để thêm khoá học yêu thích của riêng bạn', 'info');
+            toast.show();
+        } else {
+            const courseId = document.querySelector('#courseDetail').getAttribute('course-id');
+            if(!toggleLoveCourseBtn.classList.contains('loved')) {
+                const formData = new FormData();
+                formData.append('courseId', courseId);
+                const response = await fetch('/api/v1/courses/love', {
+                    method: 'POST',
+                    body: formData
+                })
+        
+                const json = await response.json();
+                const message = json.message;
+                let alertType = '';
+                if(json.statusCode === 404)
+                    alertType = 'danger';
+                else {
+                    alertType = 'info';
+                    toggleLoveCourseBtn.classList.add('loved');
+                }
+    
+                const toast = new Toast(message, alertType);
+                toast.show();
+            } else {
+                const response = await fetch(`/api/v1/courses/love?courseId=${courseId}`, {
+                    method: 'DELETE',
+                });
+                const json = await response.json();
+                const message = json.message;
+                let alertType = '';
+                if(json.statusCode === 404)
+                    alertType = 'danger';
+                else {
+                    alertType = 'info';
+                    toggleLoveCourseBtn.classList.remove('loved');
+                }
+    
+                const toast = new Toast(message, alertType);
+                toast.show();
+            }
+        }
     }
     
     smallThumbnails.forEach((smallThumbnail, index) => {
@@ -191,6 +270,12 @@
     });
 
     addToCartBtn.onclick = async () => await handleAddToCartClick();
-
-    init();
+    toggleLoveCourseBtn.onclick = async () => await handleToggleLoveCourse();
+    buyImmediatelyForm.onsubmit = async e =>  {
+        e.preventDefault();
+        const canSubmit = await canSubmitBuyImmadiately();
+        if(canSubmit)
+            buyImmediatelyForm.submit();
+    }
+    await init();
 })();

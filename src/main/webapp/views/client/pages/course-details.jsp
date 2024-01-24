@@ -47,9 +47,9 @@
                         </div>
                     </div>
                     <div class="col-md-3 col-12">
-                        <button class="btn-second px-4 text-center w-100 py-3 rounded-4">
+                        <button class="btn-second px-4 text-center w-100 py-3 rounded-4 love-btn" id="toggleLoveCourseBtn">
                             <i class="d-inline fa-regular fa-heart"></i>
-                            <span class="d-inline ms-2 fw-bold">Yêu thích</span>
+                            <span class="d-inline ms-2 fw-bold border-0 bg-transparent">Yêu thích</span>
                         </button>
                     </div>
                 </div>
@@ -107,21 +107,25 @@
                         ${levelMap.get(course).getValue()}</div>
                 </div>
 
-                <div class="mt-3">
-                    <span>Số lượng:</span>
-                    <div class="course-detail-amount mt-3">
-                        <button class="decrease-btn">-</button>
-                        <input type="text" value="1" name="amount">
-                        <button class="increase-btn">+</button>
+                <form action="" method="POST" id="buyImmediatelyForm">
+                    <div class="mt-3">
+                        <span>Số lượng:</span>
+                        <div class="course-detail-amount mt-3">
+                            <button class="decrease-btn">-</button>
+                            <input type="text" value="1" name="amount">
+                            <button class="increase-btn">+</button>
+                        </div>
                     </div>
-                </div>
-
-                <div class="mt-3">
-                    <div class="buy-btn-group">
-                        <div id="addToCartBtn" type="submit" class="w-100 add-to-cart-btn btn-main rounded-4 px-4 py-3">Thêm vào giỏ hàng</div>
-                        <div class="buy-immediately-btn btn-main-outline mt-3 rounded-4 px-4 py-3">Mua ngay</div>
+    
+                    <div class="mt-3">
+                        <div class="buy-btn-group">
+                            <div id="addToCartBtn" type="submit" class="w-100 add-to-cart-btn btn-main rounded-4 px-4 py-3">Thêm vào giỏ hàng</div>
+                                <input type="hidden" name="courseId" value="${course.getId()}">
+                                <input type="hidden" name="totalAmount" value="${course.getPrice()}">
+                                <button type="submit" id="buyImmediatelyBtn" class="buy-immediately-btn btn-main-outline mt-3 rounded-4 px-4 py-3 w-100">Mua ngay</button>
+                        </div>
                     </div>
-                </div>
+                </form>
 
                 <div class="mt-5">
                     <h4>Khoá học bao gồm</h4>

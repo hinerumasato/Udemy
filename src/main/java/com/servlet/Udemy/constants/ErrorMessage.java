@@ -16,4 +16,8 @@ public class ErrorMessage {
     //API
     public static final String FIND_TEACHER_ERROR = "Không tìm thấy giáo viên";
     public static final String ADD_TO_CART_NOT_LOGIN_ERROR = "Không thể thêm giỏ hàng khi chưa đăng nhập";
+    public static final String DELETE_LOVE_COURSE_ERROR = "Xoá khoá học yêu thích thất bại";
+    public static final String ADD_LOVE_COURSE_ERROR = "Thêm khoá học yêu thích thất bại";
+    public static final String FIND_COURSE_LOVE_ERROR = "Tìm kiếm khoá học yêu thích thất bại";
+    
 }

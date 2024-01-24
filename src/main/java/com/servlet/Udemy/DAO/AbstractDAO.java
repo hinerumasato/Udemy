@@ -131,17 +131,20 @@ public abstract class AbstractDAO<T> {
         Map<String, Object> values = getValuesFromModel(model);
         List<String> columns = new ArrayList<String>();
         boolean result;
+        boolean isHaveIdField = false;
 
         for (String column : values.keySet()) {
             if (!column.equals("id")) {
                 sql += column + ", ";
                 columns.add(column);
+            } else if(!isHaveIdField) {
+                isHaveIdField = true;
             }
         }
 
         sql = sql.substring(0, sql.length() - 2) + ") values (";
-
-        for (int i = 0; i < values.size() - 1; i++) { // Minus by 1 because id is not a value to insert
+        int size = isHaveIdField ? values.size() - 1 : values.size(); // Minus by 1 because id is not a value to insert
+        for (int i = 0; i < size; i++) { 
             sql += "?, ";
         }
 
@@ -206,24 +209,29 @@ public abstract class AbstractDAO<T> {
         return result;
     }
 
-    public void update(String sql, Object... objects) {
+    public boolean update(String sql, Object... objects) {
         createConnection();
         PreparedStatement stmt = null;
+        boolean result;
         try {
             stmt = conn.prepareStatement(sql);
             for (int i = 0; i < objects.length; i++) {
                 stmt.setObject(i + 1, objects[i]);
             }
             stmt.executeUpdate();
+            result = true;
         } catch (SQLException e) {
             e.printStackTrace();
+            result = false;
         } finally {
             try {
                 close(stmt, null);
             } catch (SQLException e) {
                 e.printStackTrace();
+                result = false;
             }
         }
+        return result;
     }
 
     public boolean delete(int id) {

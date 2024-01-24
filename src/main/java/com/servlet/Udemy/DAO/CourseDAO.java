@@ -186,8 +186,6 @@ public class CourseDAO extends AbstractDAO<CourseModel> {
         sql = sql.substring(0, sql.length() - 1);
         sql += ")";
 
-        System.out.println(sql);
-
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<CourseModel> result = new ArrayList<>();
