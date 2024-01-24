@@ -37,7 +37,7 @@
                 </div>
     
                 <div class="d-md-flex d-block justify-content-end gap-3 mt-5">
-                    <button class="btn btn-sm btn-outline-danger">Huỷ</button>
+                    <a href="/admin/categories" class="text-decoration-none btn-sm btn-outline-danger">Huỷ</a>
                     <button type="submit" class="btn btn-sm btn-primary">Cập nhật</button>
                 </div>
             </div>
