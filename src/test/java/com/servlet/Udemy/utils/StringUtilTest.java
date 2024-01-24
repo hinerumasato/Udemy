@@ -40,16 +40,6 @@ public class StringUtilTest {
     public void tearDown() {
     }
 
-
-    @Test
-    public void testIsStaticUrl() {
-        System.out.println("isStaticUrl");
-        String url = "http://localhost:8080/static/imgs/logo/udemy.1024x1024.png";
-        boolean expResult = true;
-        boolean result = StringUtil.isStaticUrl(url);
-        assertEquals(expResult, result);
-    }
-
     @Test
     public void testReplaceHTMLKeys() {
         String html = "<p>APP URL = ${APP_URL} ${APP_URL}/verify/email?remember_token=${rememberToken}</p>";

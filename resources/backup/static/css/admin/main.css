@@ -1,0 +1,57 @@
+#main .card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+#main .card .icon {
+    width: 60px;
+    height: 60px;
+    float: left;
+    margin: 20px;
+    color: #fff;
+    font-size: 50px;
+}
+
+#main .card .title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#main .card .desc {
+    font-size: 16px;
+}
+
+#main .card .link {
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 8px 16px;
+    color: #111;
+    background-color: #fff;
+    font-weight: bold;
+    margin: 16px 0;
+    border-radius: 16px;
+}
+
+#main .card-01 {
+    background-color: #DCFFB7;
+    color: #2F4858;
+}
+
+#main .card-02 {
+    background-color: #ff686882;
+    color: #764A51;
+}
+
+#main .card-03 {
+    background-color: #FFBB64;
+    color: #2F4858;
+}
+
+#main .card-04 {
+    background-color: #FFEAA7;
+    color: #2F4858;
+}

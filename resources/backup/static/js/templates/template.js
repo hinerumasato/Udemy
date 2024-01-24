@@ -1,8 +1,4 @@
-class Template {
-    
-}
-
-class CourseTemplate extends Template {
+class CourseTemplate {
 
     async getByCategoryId(categoryId) {
         const FIELD = 'categories';
@@ -142,7 +138,7 @@ class CourseTemplate extends Template {
     }
 }
 
-class LoginDialogTemplate extends Template {
+class LoginDialogTemplate {
     /**
      * @returns {String} html
      */
@@ -154,5 +150,98 @@ class LoginDialogTemplate extends Template {
             <label for="#adminPassword">Password: </label>
             <input type="password" id="adminPassword" name="adminPassword">
         `
+    }
+}
+
+class BreadcrumbTemplate {
+    /**
+     * 
+     * @param {Array<Object>} options
+     * example: [
+     *      {name: 'Home', link: '/home', active: false}, 
+     *      {name: 'Data', link: '/data', active: true}
+     * ]
+     */
+    constructor(options) {
+        this.options = options;
+    }
+
+    /**
+     * @returns {String} html li element
+     */
+    buildItems() {
+        return this.options.reduce((acc, curr) => {
+            const name = curr.name;
+            const link = curr.link;
+            const active = curr.active;
+
+            let result = '';
+            if(active) 
+                result = /*html*/`
+                    <li class="breadcrumb-item active" aria-current="page">${name}</li>
+                `
+            else result = /*html*/`
+                <li class="breadcrumb-item"><a href="${link}">${name}</a></li>
+            `
+            return acc + result;
+        }, '')
+    }
+
+    render() {
+        const liHtmls = this.buildItems();
+        return /*html*/ `
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    ${liHtmls}
+                </ol>
+            </nav>
+        `
+    }
+}
+
+class ReviewTemplate {
+    constructor(rateAmount, content, userData) {
+        this.rateAmount = rateAmount;
+        this.content = content;
+        this.userData = userData;
+    }
+
+    buildStarItems() {
+        let result = '';
+        for(let i = 1; i < this.rateAmount; i++)
+            result += '<i class="fas fa-star"></i>';
+        for(let i = this.rateAmount + 1; i < 5; i++)
+            result += '<i class="far fa-star"></i>'
+        return result;
+    }
+
+    render() {
+        return /*html*/`
+            <div class="testimonial-box">
+                <!--top------------------------->
+                <div class="box-top">
+                    <!--profile----->
+                    <div class="profile">
+                        <!--img---->
+                        <div class="profile-img">
+                            <img src="https://cdn3.iconfinder.com/data/icons/web-design-and-development-2-6/512/87-1024.png" />
+                        </div>
+                        <!--name-and-username-->
+                        <div class="name-user">
+                            <strong>${this.userData.lastName}</strong>
+                            <span>${this.userData.username}</span>
+                        </div>
+                    </div>
+                    <!--reviews------>
+                    <div class="reviews">
+                        ${this.buildStarItems()}             
+                    </div>
+                </div>
+                <!--Comments---------------------------------------->
+                <div class="client-comment">
+                    <p>${this.content}</p>
+                </div>
+            </div>  
+        `;
     }
 }

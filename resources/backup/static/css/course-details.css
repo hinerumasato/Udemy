@@ -136,6 +136,11 @@
     margin-top: 110px;
 }
 
+#courseDetail .love-btn.loved {
+    background-color: var(--main-color) !important;
+    color: #fff !important;
+}
+
 /* #courseDetail .carousel-item img {
     height: 340px;
 } */

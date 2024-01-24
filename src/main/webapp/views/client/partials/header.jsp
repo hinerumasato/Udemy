@@ -54,7 +54,7 @@
                                             <a href="/news" class="header-navigation-link">Tin tức</a>
                                         </li>
                                         <li class="header-navigation-item">
-                                            <a href="" class="header-navigation-link">Đánh giá</a>
+                                            <a href="/reviews" class="header-navigation-link">Đánh giá</a>
                                         </li>
                                         <li class="header-navigation-item">
                                             <a href="/about" class="header-navigation-link">Giới thiệu</a>
