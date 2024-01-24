@@ -208,7 +208,7 @@ class ReviewTemplate {
 
     buildStarItems() {
         let result = '';
-        for(let i = 1; i < this.rateAmount; i++)
+        for(let i = 1; i <= this.rateAmount; i++)
             result += '<i class="fas fa-star"></i>';
         for(let i = this.rateAmount + 1; i < 5; i++)
             result += '<i class="far fa-star"></i>'
