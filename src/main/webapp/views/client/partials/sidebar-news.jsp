@@ -9,7 +9,7 @@
 </head>
 
 <aside id="sidebar">
-    <h5 class="fs-6 text-uppercase fw-bold">Tất cả sản phẩm</h5>
+    <h5 class="fs-6 text-uppercase fw-bold pt-2">Danh mục tin tức</h5> 
     <div class="d-flex justify-content-between align-items-center mt-3 fs-6">
         <h5 class="fs-6 fw-bold text-uppercase">Menu</h5>
         <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMenu" aria-expanded="true"
