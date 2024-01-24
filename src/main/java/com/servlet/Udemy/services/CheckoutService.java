@@ -57,4 +57,16 @@ public class CheckoutService implements IService<CheckoutModel> {
     public List<CheckoutModel> findByCartId(int cartId) {
         return checkoutDAO.findByCartId(cartId);
     }
+
+    public List<CheckoutModel> findByDate(String date) {
+        return checkoutDAO.findByDate(date);
+    }
+
+    public List<CheckoutModel> findByDateAndNotPaid(String date) {
+        return checkoutDAO.findByDateAndNotPaid(date);
+    }
+
+    public List<CheckoutModel> findByDateAndPaid(String date) {
+        return checkoutDAO.findByDateAndPaid(date);
+    }
 }

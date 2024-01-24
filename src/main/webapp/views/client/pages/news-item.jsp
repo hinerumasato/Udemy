@@ -2,8 +2,11 @@
 
     <%@page contentType="text/html" pageEncoding="UTF-8" %>
         <%@include file="/common/includes.jsp" %>
+<<<<<<< HEAD
             <!DOCTYPE html>
             <html>
+=======
+>>>>>>> 833a38c17fc5326724b9710189070b2e63ebe02e
 
             <head>
                 <link rel="stylesheet" href="<c:url value=" /static/css/news.css?v=${randomNumber}" />">
@@ -39,6 +42,10 @@
                     </div>
                 </div>
             </body>
+<<<<<<< HEAD
             <script src="<c:url value='/static/js/pages/news-details.js?v=${randomNumber}' />"></script>
 
             </html>
+=======
+            <script src="<c:url value='/static/js/pages/news-details.js?v=${randomNumber}' />"></script>
+>>>>>>> 833a38c17fc5326724b9710189070b2e63ebe02e

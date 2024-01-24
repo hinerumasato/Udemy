@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.servlet.Udemy.constants.PaymentStatus;
 import com.servlet.Udemy.models.CheckoutModel;
 
 public class CheckoutDAO extends AbstractDAO<CheckoutModel> {
@@ -43,4 +44,15 @@ public class CheckoutDAO extends AbstractDAO<CheckoutModel> {
         return findBy("cart_id", cartId);
     }
     
+    public List<CheckoutModel> findByDate(String date) {
+        return query("SELECT * FROM " + getTable() + " WHERE DATE_FORMAT(created_at, '%d/%m/%Y') = ?", date);
+    }
+
+    public List<CheckoutModel> findByDateAndNotPaid(String date) {
+        return query("SELECT * FROM " + getTable() + " WHERE DATE_FORMAT(created_at, '%d/%m/%Y') = ? AND payment_status = ?", date, PaymentStatus.NOT_PAID);
+    }
+
+    public List<CheckoutModel> findByDateAndPaid(String date) {
+        return query("SELECT * FROM " + getTable() + " WHERE DATE_FORMAT(created_at, '%d/%m/%Y') = ? AND payment_status = ?", date, PaymentStatus.PAID);
+    }
 }
