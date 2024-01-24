@@ -26,6 +26,7 @@ import com.servlet.Udemy.page.ClientPage;
 import com.servlet.Udemy.page.Page;
 import com.servlet.Udemy.services.CartService;
 import com.servlet.Udemy.services.CheckoutService;
+import com.servlet.Udemy.utils.NumberUtil;
 
 @WebServlet("/account/orders")
 public class OrderController extends HttpServlet {
@@ -39,8 +40,19 @@ public class OrderController extends HttpServlet {
         UserModel loginUser = (UserModel) session.getAttribute("loginUser");
         CartModel cart = cartService.findByUserId(loginUser.getId());
         List<CheckoutDTO> checkoutDTOs = new ArrayList<CheckoutDTO>();
+        int pageNumber;
+        int limit = 5;
+        int totalPages = 0;
+        if(req.getParameter("page") == null)
+            pageNumber = 1;
+        else {
+            pageNumber = Integer.parseInt(req.getParameter("page"));
+        }
         if(cart != null) {
-            List<CheckoutModel> checkouts = checkoutService.findByCartId(cart.getId());
+            List<CheckoutModel> allCheckouts = checkoutService.findByCartId(cart.getId());
+            totalPages = allCheckouts == null ? 0 : NumberUtil.getTotalPageFromCollection(allCheckouts, limit);
+            CheckoutService checkoutServicePagination = (CheckoutService) checkoutService.paginate(pageNumber, limit);
+            List<CheckoutModel> checkouts = checkoutServicePagination.findByCartId(cart.getId());
             checkoutDTOs = checkouts.stream().map(checkout -> CheckoutMapper.mapToDTO(checkout)).collect(Collectors.toList());
             checkoutDTOs.sort(new Comparator<CheckoutDTO>() {
     
@@ -63,6 +75,8 @@ public class OrderController extends HttpServlet {
         Page page = new ClientPage(req, resp, "orders.jsp", "master.jsp");
         page.setObject("title", "Trang đơn hàng");
         page.setObject("checkouts", checkoutDTOs);
+        page.setObject("totalPages", totalPages);
+        page.setObject("currentPage", pageNumber);
         page.render();
     }
 }

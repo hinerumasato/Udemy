@@ -51,6 +51,23 @@
                                     </c:forEach>
                                 </tbody>
                             </table>
+
+                            <div id="orderPagination">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-end">
+                                        <c:forEach begin="1" end="${totalPages}" var="page">
+                                            <c:choose>
+                                                <c:when test="${currentPage eq page}">
+                                                    <li class="page-item active"><a class="page-link" href="#">${page}</a></li>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <li class="page-item"><a class="page-link" href="/account/orders?page=${page}">${page}</a></li>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
+                                    </ul>
+                                </nav>   
+                            </div>
                         </div>
                     </c:when>
                     <c:otherwise>
