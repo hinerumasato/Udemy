@@ -201,7 +201,7 @@ class BreadcrumbTemplate {
 
 class ReviewTemplate {
     constructor(rateAmount, content, userData) {
-        this.rateAmount = rateAmount;
+        this.rateAmount = parseInt(rateAmount);
         this.content = content;
         this.userData = userData;
     }
