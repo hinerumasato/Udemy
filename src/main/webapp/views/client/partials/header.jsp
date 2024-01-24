@@ -59,6 +59,9 @@
                                         <li class="header-navigation-item">
                                             <a href="/about" class="header-navigation-link">Giới thiệu</a>
                                         </li>
+                                        <li class="header-navigation-item">
+                                            <a href="/courses/love" class="header-navigation-link">Khoá học yêu thích</a>
+                                        </li>
                                     </ul>
                                 </div>
 

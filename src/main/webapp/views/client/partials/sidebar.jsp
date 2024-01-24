@@ -42,6 +42,7 @@
         <li><a href="/news">Tin tức</a></li>
         <li><a href="/review">Đánh giá</a></li>
         <li><a href="/about">Giới thiệu</a></li>
+        <li><a href="/courses/love">Khoá học yêu thích</a></li>
     </ul>
 
     <div class="d-flex justify-content-between align-items-center mt-3 fs-6">

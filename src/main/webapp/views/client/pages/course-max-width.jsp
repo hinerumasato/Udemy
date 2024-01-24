@@ -8,6 +8,9 @@
 <%@include file="/common/includes.jsp" %>
 
 <div class="container mt-5">
+
+    <div id="courseMaxWidthBreadcrumb" class="my-5"></div>
+
     <c:if test="${not empty sessionScope.courseMaxWidthMessage}">
         <div class="alert alert-info alert-dismissible fade show" role="alert">
             <strong>${sessionScope.courseMaxWidthMessage}</strong>
