@@ -42,7 +42,6 @@ public class AddNewsController extends HttpServlet {
 
         String title = req.getParameter("title");
         String author = req.getParameter("author");
-        String createdDate = req.getParameter("createdDate");
         boolean isSpecialNews = req.getParameter("is_special_news") == null ? false : true;
         String content = req.getParameter("content");
 
@@ -61,7 +60,6 @@ public class AddNewsController extends HttpServlet {
         String slug = StringUtil.generateSlug(title);
         newsModel.setTitle(title);
         newsModel.setAuthor(author);
-        newsModel.setCreatedDate(createdDate);
         newsModel.setSpecialNews(isSpecialNews);
         newsModel.setContent(content);
         newsModel.setImgURL(location + "/" + fileName);

@@ -64,10 +64,6 @@
                                 <h6>Tác giả</h6>
                                 <input type="text" class="form-control w-100" name="author" placeholder="Nhập tên tác giả">
                             </div>
-                            <div class="form-group">
-                                <h6>Ngày đăng</h6>
-                                <input type="text" class="form-control w-100" name="createdDate" placeholder="Nhập ngày/tháng/năm">
-                            </div>
                             <div class="d-md-flex d-block justify-content-between mt-3">
                                 <div class="is-new-course d-flex align-items-center gap-1">
                                     <label for="">Tin tức đặc biệt</label>

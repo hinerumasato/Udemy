@@ -26,10 +26,10 @@ public class NewsController extends HttpServlet {
         HttpSession session = req.getSession();
         Page page = new AdminPage(req, resp, "news.jsp", "master.jsp");
 
-        List<NewsModel> news = newsService.findAll();
+        List<NewsModel> newsModels = newsService.findAll();
 
         page.setObject("title", "Tất cả tin tức");
-        page.setObject("news", news);
+        page.setObject("news", newsModels);
         page.render();
 
         session.removeAttribute("updateNewsMessage");

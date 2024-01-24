@@ -80,31 +80,6 @@
         </c:forEach>
     </ul>
 
-    <div class="d-flex justify-content-between align-items-center mt-3 fs-6">
-        <h5 class="fs-6 fw-bold text-uppercase">Thời lượng khoá</h5>
-        <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTime" aria-expanded="true"
-            aria-controls="collapseTime">
-            <i class="fa fa-chevron-right rotate90" aria-hidden="true"></i>
-        </button>
-    </div>
-
-    <ul class="collapse show time_list" id="collapseTime">
-        <%
-            HashMap<Integer, String> timeMap = new HashMap<Integer, String>();
-            timeMap.put(0, "2 giờ");
-            timeMap.put(1, "3 giờ");
-            timeMap.put(2, "4 giờ");
-            timeMap.put(3, "5 giờ");
-        %>
-        <c:set var="timeList" value="<%= new ArrayList(timeMap.values()) %>" />
-        <c:forEach items="${timeList}" var="time">
-            <li class="d-flex align-items-center gap-2">
-                <input field="time" type="checkbox" value="${time}" name="" id="">
-                <span>${time}</span>
-            </li>
-        </c:forEach>
-    </ul>
-
     <script src="<c:url value='/static/js/utils/pagination.js?v=${randomNumber}' />"></script>
     <script src="<c:url value='/static/js/partials/sidebar.js?v=${randomNumber}' />"></script>
 </aside>
