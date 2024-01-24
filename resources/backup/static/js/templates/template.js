@@ -197,22 +197,20 @@ class BreadcrumbTemplate {
             </nav>
         `
     }
-<<<<<<< HEAD
-=======
 }
 
 class ReviewTemplate {
     constructor(rateAmount, content, userData) {
-        this.rateAmount = rateAmount;
+        this.rateAmount = parseInt(rateAmount);
         this.content = content;
         this.userData = userData;
     }
 
     buildStarItems() {
         let result = '';
-        for(let i = 1; i < this.rateAmount; i++)
+        for(let i = 1; i <= this.rateAmount; i++)
             result += '<i class="fas fa-star"></i>';
-        for(let i = this.rateAmount + 1; i < 5; i++)
+        for(let i = this.rateAmount + 1; i <= 5; i++)
             result += '<i class="far fa-star"></i>'
         return result;
     }
@@ -246,5 +244,4 @@ class ReviewTemplate {
             </div>  
         `;
     }
->>>>>>> 3f3b92a2bf83c1e29c10d74feac2eb5f94ee61aa
 }

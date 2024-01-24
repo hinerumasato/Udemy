@@ -85,9 +85,18 @@
 }
 
 .comment-item {
-    width: calc(100% / 3 - 20px);
+    overflow: hidden;
     background-color: #F8F8F8;
     padding: 16px;
+}
+
+.comment-content {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
 }
 
 .review-avatar {
