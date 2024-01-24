@@ -62,10 +62,6 @@
                         <h4>Tác giả</h4>
                         <input name="author" value="${news.getAuthor()}" class="form-control" type="text" placeholder="Nhập tên tác giả">
                     </div>
-                    <div class="form-group">
-                        <h4>Ngày đăng</h4>
-                        <input name="created_date" value="${news.getCreatedDate()}" class="form-control" type="text" placeholder="Nhập tên ngày đăng">
-                    </div>
                     <div class="d-md-flex d-block justify-content-between mt-3">
                         <div class="is-new-course d-flex align-items-center gap-1">
                             <label for="">Tin tức đặc biệt</label>

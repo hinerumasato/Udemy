@@ -2,6 +2,7 @@ package com.servlet.Udemy.DAO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +20,7 @@ public class NewsDAO extends AbstractDAO<NewsModel> {
         int id = rs.getInt("id");
         String title = rs.getString("title");
         String author = rs.getString("author");
-        String createdDate = rs.getString("created_date");
+        Timestamp createdDate = rs.getTimestamp("created_date");
         boolean isSpecialNews = rs.getBoolean("special_news");
         String content = rs.getString("content");
         String imgURL = rs.getString("img_url");
@@ -34,7 +35,6 @@ public class NewsDAO extends AbstractDAO<NewsModel> {
         map.put("id", model.getId());
         map.put("title", model.getTitle());
         map.put("author", model.getAuthor());
-        map.put("created_date", model.getCreatedDate());
         map.put("special_news", model.isSpecialNews());
         map.put("content", model.getContent());
         map.put("img_url", model.getImgURL());

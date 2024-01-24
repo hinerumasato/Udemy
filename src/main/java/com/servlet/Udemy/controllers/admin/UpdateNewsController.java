@@ -50,7 +50,6 @@ public class UpdateNewsController extends HttpServlet {
         int newsId = Integer.parseInt(req.getParameter("id"));
         String newsTitle = req.getParameter("title");
         String newsAuthor = req.getParameter("author");
-        String createdDate = req.getParameter("created_date");
         boolean isSpecialNews = req.getParameter("is_special_news") == null ? false : true;
         String content = req.getParameter("content");
         Part imgPart = req.getPart("image");
@@ -70,7 +69,6 @@ public class UpdateNewsController extends HttpServlet {
 
         newsModel.setTitle(newsTitle);
         newsModel.setAuthor(newsAuthor);
-        newsModel.setCreatedDate(createdDate);
         newsModel.setImgURL("/static/imgs/news/" + uuidFile);
         newsModel.setContent(content);
         newsModel.setSpecialNews(isSpecialNews);

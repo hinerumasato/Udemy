@@ -73,7 +73,7 @@
                     <div class="d-md-flex d-block justify-content-between align-items-center">
                         <h4 class="fw-bold">Bạn đã hoàn thành?</h4>
                         <div class="d-flex gap-2">
-                            <button class="btn btn-outline-secondary">Huỷ</button>
+                            <a href="/admin/courses" class="text-decoration-none btn btn-outline-secondary">Huỷ</a>
                             <button type="submit" class="btn btn-primary" id="addCourseBtn">Đăng khoá học</button>
                         </div>
                     </div>

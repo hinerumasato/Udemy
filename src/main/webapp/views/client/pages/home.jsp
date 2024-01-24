@@ -373,62 +373,31 @@
                     Udemy mong nhận được những góp ý và phản hồi từ các bạn để không ngừng nâng cao chất lượng khóa học
                     trong tương lai
                 </p>
-                <button class="text-white bg-main px-4 py-2 no-border-outline view-all-btn">Xem tất cả</button>
+                <a href="/reviews" class="text-decoration-none text-white bg-main px-4 py-2 no-border-outline view-all-btn">Xem tất cả</a>
             </div>
 
             <div class="home_container_content">
-                <div class="row row-cols-3 justify-content-between">
-                    <div class="col comment-item">
-                        <img src="<c:url value='/static/imgs/rating/star.webp' />" alt="">
-                        <h4 class="text-main">Tuyệt vời!</h4>
-                        <p>
-                            Mình thấy Udemy có rất nhiều khóa học bổ ích. Học viên được nghe trực tiếp sự giảng dạy của
-                            giáo viên, thực hành làm bài tập rất hiệu quả. Giảng viên nhiệt tình và dễ thương. Hi
-                        </p>
-
-                        <div class="d-flex gap-3 align-items-center">
-                            <img class="review-avatar" src="<c:url value='/static/imgs/reviews/review_1.webp' />"
-                                alt="">
-                            <div class="review_wrapper">
-                                <h5 class="review-username">Mr. Trung Dung</h5>
-                                <div class="review-userclass">Học viên lớp UI Design</div>
+                <div class="row row-cols-3">
+                    <c:forEach items="${reviews}" var="review">
+                        <div class="col">
+                            <div class="comment-item">
+                                <img src="<c:url value='/static/imgs/rating/star.webp' />" alt="">
+                                <h4 class="text-main">Tuyệt vời!</h4>
+                                <p class="comment-content">
+                                    ${review.getContent()}
+                                </p>
+        
+                                <div class="d-flex gap-3 align-items-center">
+                                    <img class="review-avatar" src="https://cdn3.iconfinder.com/data/icons/web-design-and-development-2-6/512/87-1024.png"
+                                        alt="">
+                                    <div class="review_wrapper">
+                                        <h5 class="review-username">${userMap.get(review).getLastName()}</h5>
+                                        <div class="review-userclass">${userMap.get(review).getUsername()}</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col comment-item">
-                        <img src="<c:url value='/static/imgs/rating/star.webp' />" alt="">
-                        <h4 class="text-main">Tuyệt vời!</h4>
-                        <p>
-                            Mình thấy Udemy có rất nhiều khóa học bổ ích. Học viên được nghe trực tiếp sự giảng dạy của
-                            giáo viên, thực hành làm bài tập rất hiệu quả. Giảng viên nhiệt tình và dễ thương. Hi
-                        </p>
-
-                        <div class="d-flex gap-3 align-items-center">
-                            <img class="review-avatar" src="<c:url value='/static/imgs/reviews/review_1.webp' />"
-                                alt="">
-                            <div class="review_wrapper">
-                                <h5 class="review-username">Mr. Trung Dung</h5>
-                                <div class="review-userclass">Học viên lớp UI Design</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col comment-item">
-                        <img src="<c:url value='/static/imgs/rating/star.webp' />" alt="">
-                        <h4 class="text-main">Tuyệt vời!</h4>
-                        <p>
-                            Mình thấy Udemy có rất nhiều khóa học bổ ích. Học viên được nghe trực tiếp sự giảng dạy của
-                            giáo viên, thực hành làm bài tập rất hiệu quả. Giảng viên nhiệt tình và dễ thương. Hi
-                        </p>
-
-                        <div class="d-flex gap-3 align-items-center">
-                            <img class="review-avatar" src="<c:url value='/static/imgs/reviews/review_1.webp' />"
-                                alt="">
-                            <div class="review_wrapper">
-                                <h5 class="review-username">Mr. Trung Dung</h5>
-                                <div class="review-userclass">Học viên lớp UI Design</div>
-                            </div>
-                        </div>
-                    </div>
+                    </c:forEach>
                 </div>
             </div>
         </div>

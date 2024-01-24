@@ -33,7 +33,7 @@ CREATE TABLE `cart_details` (
   KEY `course_id` (`course_id`),
   CONSTRAINT `cart_details_ibfk_1` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`id`),
   CONSTRAINT `cart_details_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -262,13 +262,13 @@ CREATE TABLE `news` (
   `id` int NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
   `title` varchar(255) NOT NULL,
   `author` varchar(255) NOT NULL,
-  `created_date` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `created_date` datetime DEFAULT CURRENT_TIMESTAMP,
   `special_news` tinyint NOT NULL,
   `content` text,
   `img_url` varchar(255) DEFAULT NULL,
   `slug` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -277,6 +277,7 @@ CREATE TABLE `news` (
 
 LOCK TABLES `news` WRITE;
 /*!40000 ALTER TABLE `news` DISABLE KEYS */;
+INSERT INTO `news` VALUES (5,'Chuyện đi chơi','Trần Thắng Lợi','2024-01-24 21:31:11',1,'<p>sdfsdfsdfsdf</p>','/static/imgs/news/6f028151-df41-4862-9295-632f9ba47d36.png','chuyen-đi-choi');
 /*!40000 ALTER TABLE `news` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -323,7 +324,7 @@ CREATE TABLE `reviews` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -332,7 +333,7 @@ CREATE TABLE `reviews` (
 
 LOCK TABLES `reviews` WRITE;
 /*!40000 ALTER TABLE `reviews` DISABLE KEYS */;
-INSERT INTO `reviews` VALUES (1,5,'Đây là một trang web hữu ích cho những bạn nào muốn mua khoá học online chất lượng',71,'2024-01-24 17:12:56'),(2,4,'Chất lượng trang web và khoá học thật sự rất ổn dành cho sinh viên và những người tự học, nên thêm nhiều khoá học và giảng viên hơn',76,'2024-01-24 17:42:07');
+INSERT INTO `reviews` VALUES (1,5,'Đây là một trang web hữu ích cho những bạn nào muốn mua khoá học online chất lượng',71,'2024-01-24 17:12:56'),(9,4,'Đây là một trang web tuyệt vời dành cho những người vừa học vừa làm, nếu số lượng giảng viên và khoá học đa dạng hơn chắc chắn sẽ được 5 sao',76,'2024-01-24 19:44:14'),(14,5,'Thật sự rất ổn',77,'2024-01-24 22:34:08');
 /*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -360,7 +361,7 @@ CREATE TABLE `teachers` (
 
 LOCK TABLES `teachers` WRITE;
 /*!40000 ALTER TABLE `teachers` DISABLE KEYS */;
-INSERT INTO `teachers` VALUES (1,'Lê Phi Hùng','/static/imgs/teachers/5a32c71f-745a-4282-85a5-5820f02c11af.png',10),(2,'Huỳnh Ngọc Thanh','/static/imgs/teachers/teacher_1.webp',1),(3,'Nguyễn Quang Duy','/static/imgs/teachers/5ebaf953-d8d1-4898-8acd-2e6b5c941fba.jpg',5),(4,'Hannah Phạm','/static/imgs/teachers/8e558c2b-7d14-4c50-a837-aca1d3c0f2c5.jpg',10);
+INSERT INTO `teachers` VALUES (1,'Lê Phi Hùng','/static/imgs/teachers/75646f84-24ce-4a0c-830a-ea394aaef6c8.png',10),(2,'Huỳnh Ngọc Thanh','/static/imgs/teachers/teacher_1.webp',1),(3,'Nguyễn Quang Duy','/static/imgs/teachers/5ebaf953-d8d1-4898-8acd-2e6b5c941fba.jpg',5),(4,'Hannah Phạm','/static/imgs/teachers/85d3555f-b7e4-4f06-93a2-329db40782db.jpg',10);
 /*!40000 ALTER TABLE `teachers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -412,7 +413,7 @@ CREATE TABLE `users` (
   `email_verified` tinyint NOT NULL DEFAULT '0',
   `role` char(10) NOT NULL DEFAULT 'USER',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -421,7 +422,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (71,'thangloitran406@gmail.com','21ef487d28f42cafb042c7238aeffdeda10097fc99af808d248ddd306b1066e6',NULL,NULL,'Trần','Thắng Lợi','0879603547','normal',NULL,1,'ADMIN'),(72,'thangloitran406@gmail.com',NULL,NULL,NULL,'Trần','Thắng Lợi',NULL,'google','https://lh3.googleusercontent.com/a/ACg8ocLm9Btb9ZOrs-Ol2B2ZUtH7JaTLlaNMPLbIGQhVJJNeqw=s96-c',1,'USER'),(75,'hoanghaivan456@gmail.com','21ef487d28f42cafb042c7238aeffdeda10097fc99af808d248ddd306b1066e6',NULL,NULL,'Hoàng','Hải Vân','0772973324','normal',NULL,1,'USER'),(76,'21130263@st.hcmuaf.edu.vn','21ef487d28f42cafb042c7238aeffdeda10097fc99af808d248ddd306b1066e6',NULL,NULL,'Sinh Viên','Nông Lâm','0382910483','normal',NULL,1,'USER');
+INSERT INTO `users` VALUES (71,'thangloitran406@gmail.com','21ef487d28f42cafb042c7238aeffdeda10097fc99af808d248ddd306b1066e6',NULL,NULL,'Trần','Thắng Lợi','0879603547','normal',NULL,1,'ADMIN'),(72,'thangloitran406@gmail.com',NULL,NULL,NULL,'Trần','Thắng Lợi',NULL,'google','https://lh3.googleusercontent.com/a/ACg8ocLm9Btb9ZOrs-Ol2B2ZUtH7JaTLlaNMPLbIGQhVJJNeqw=s96-c',1,'USER'),(75,'hoanghaivan456@gmail.com','21ef487d28f42cafb042c7238aeffdeda10097fc99af808d248ddd306b1066e6',NULL,NULL,'Hoàng','Hải Vân','0772973324','normal',NULL,1,'USER'),(76,'21130263@st.hcmuaf.edu.vn','21ef487d28f42cafb042c7238aeffdeda10097fc99af808d248ddd306b1066e6',NULL,NULL,'Sinh Viên','Nông Lâm','0382910483','normal',NULL,1,'USER'),(77,'thangloitran0908@gmail.com',NULL,NULL,NULL,'Thang Loi','Tran',NULL,'facebook','https://scontent.fsgn5-10.fna.fbcdn.net/v/t1.30497-1/84628273_176159830277856_972693363922829312_n.jpg?stp=c15.0.50.50a_cp0_dst-jpg_p50x50',1,'USER');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -461,4 +462,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-24 18:43:21
+-- Dump completed on 2024-01-24 23:04:59
