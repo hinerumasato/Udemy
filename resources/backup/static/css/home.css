@@ -138,6 +138,13 @@
     flex-basis: content;
 }
 
+.teacher_avatar .teacher_avatar_img {
+    padding-top: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 
 @media (max-width: 991px) {
     .pills-wrapper {
