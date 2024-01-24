@@ -65,7 +65,7 @@
                                             class="fa-solid fa-window-restore"></i></i></button>
                                 <button course-id="${course.getId()}" type="button" data-bs-toggle="modal"
                                     data-bs-target="#deleteCourseModal"
-                                    class="p-0 bg-transparent border-0"><i
+                                    class="p-0 bg-transparent border-0 hard-delete-btn"><i
                                         class="material-icons text-danger" data-toggle="tooltip"
                                         title="Xoá vĩnh viễn"><i style="font-size: 14px;"
                                             class="fa-solid fa-trash"></i></i></button>
@@ -77,7 +77,7 @@
             <div id="deleteCourseModal" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form id="softDeleteForm" method="POST" action="/admin/courses/delete">
+                        <form id="hardDeleteForm" method="POST" action="/admin/courses/delete">
                             <input type="hidden" name="_method" value="DELETE">
                             <div class="modal-header">						
                                 <h4 class="modal-title">Xoá vĩnh viễn khoá học</h4>

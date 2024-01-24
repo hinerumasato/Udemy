@@ -46,6 +46,10 @@ $(document).ready(function(){
 		sumbitFormHandler(this.getAttribute('course-id'),'#restoreCourseForm');
 	});
 
+	$('.hard-delete-btn').click(function () {
+		sumbitFormHandler(this.getAttribute('course-id'), '#hardDeleteForm');
+	})
+
 	/**
 	 * @returns {Array} array of checked checkbox
 	 */
