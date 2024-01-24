@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="form-group thumbnail-group">
-                    <h4>Ảnh icon</h4>
+                    <h4>Ảnh</h4>
                     <div class="d-flex justify-content-center border border-secondary-subtle">
                         <div class="uploaded d-none">
                             <div class="dismiss-btn d-flex justify-content-end">

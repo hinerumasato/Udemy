@@ -11,6 +11,12 @@
 </head>
 <main id="adminNews">
     <div class="container mt-5">
+        <c:if test="${not empty sessionScope.updateNewsMessage}">
+            <div class="alert alert-${sessionScope.alertType} alert-dismissible fade show" role="alert">
+                <strong>${sessionScope.updateNewsMessage}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </c:if>
         <div class="d-flex justify-content-end">
             <a href="/admin/news/add-news" class="d-inline-block btn btn-primary text-decoration-none">Thêm tin tức mới</a>
         </div>

@@ -197,6 +197,8 @@ class BreadcrumbTemplate {
             </nav>
         `
     }
+<<<<<<< HEAD
+=======
 }
 
 class ReviewTemplate {
@@ -244,4 +246,5 @@ class ReviewTemplate {
             </div>  
         `;
     }
+>>>>>>> 3f3b92a2bf83c1e29c10d74feac2eb5f94ee61aa
 }

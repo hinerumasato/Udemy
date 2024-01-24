@@ -23,7 +23,7 @@
                             </div>
                             <div class="col right-news col-12 col-md-8 py-5">
                                 <div class="right col-12">
-                                    <h3>${newsItem.getTitle()}</h3>
+                                    <h1 class="fw-bold" id="newsDetailTitle">${newsItem.getTitle()}</h1>
                                     <div class=" d-flex pb-1 pt-1 ">
                                         <div class="d-flex nav-item">
                                             <i class="fa-regular fa-user" style="color: #11ee48;"></i>
@@ -42,5 +42,5 @@
                     </div>
                 </div>
             </body>
-
+            <script src="<c:url value='/static/js/pages/news-details.js?v=${randomNumber}' />"></script>
             </html>
