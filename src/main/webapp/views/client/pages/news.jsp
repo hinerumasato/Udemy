@@ -11,6 +11,9 @@
 
             <body>
                 <div class="container">
+                    <div class="mt-5 row row-cols-2 g-3">
+                        <div id="newsBreadcrumb" class="my-2"></div>
+                    </div>
                     <div class="content">
                         <div class="row">
                             <div class="col left-news col-12 d-none col-md-4 d-md-block">
@@ -65,7 +68,21 @@
                         </div>
                     </div>
                 </div>
-                </div>
             </body>
-
+<script>
+    if(window.location.pathname === '/news') {
+        createBreadcrumb('#newsBreadcrumb', [
+            {name: 'Trang chủ', link: '/home', active: false},
+            {name: 'Tin tức', link: '/news', active: true},
+        ]);
+    } else {
+        const newsInput = document.getElementById('categoryName');
+        const newsTitle = newsInput.value;
+        createBreadcrumb('#newsBreadcrumb', [
+            {name: 'Trang chủ', link: '/home', active: false},
+            {name: 'Tin tức', link: '/news', active: false},
+            {name: newsTitle, link: '/news', active: true},
+        ]);
+    }
+</script>
             </html>

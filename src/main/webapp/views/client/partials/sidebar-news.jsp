@@ -13,7 +13,7 @@
         <aside>
             <h5 class="fs-6 text-uppercase fw-bold pt-2">Danh mục tin tức</h5> 
             <ul class="collapse sidebar-list sidebar-menu-list show" style="display: flex; flex-direction: column;" id="collapseMenu">
-                <li>Trang chủ</li>
+                <li><a href="/home">Trang chủ</a></li>
                 <li class="dropdown" style=" display: flex;flex-direction: column;">
                     <div>
                         <span>Danh sách khoá học</span>
@@ -36,10 +36,10 @@
                         <li><a class="nav-item" href="/courses/family">Gia đình</a></li>
                     </ul>
                 </li>
-                <li>Khoá học tiêu biểu</li>
-                <li>Tin tức</li>
-                <li>Liên hệ</li>
-                <li>Giới thiệu</li>
+                <li><a href="/news">Tin tức</a></li>
+                <li><a href="/review">Đánh giá</a></li>
+                <li><a href="/about">Giới thiệu</a></li>
+                <li><a href="/courses/love">Khoá học yêu thích</a></li>
             </ul>
             <h5 class="fs-6 text-uppercase fw-bold">Tin tức nổi bật</h5>
                     <div class="special-news">
