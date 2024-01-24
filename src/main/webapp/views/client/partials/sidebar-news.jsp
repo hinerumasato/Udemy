@@ -39,5 +39,27 @@
         <li><a href="/about">Giới thiệu</a></li>
         <li><a href="/courses/love">Khoá học yêu thích</a></li>
     </ul>
+
+    <h5 class="fs-6 text-uppercase fw-bold">Tin tức nổi bật</h5>
+    <div class="special-news">
+        <c:forEach var="item" items="${specialNews}" > 
+            <div class="piece-special-news row pt-3">
+                <div class="d-flex">
+                    <div class="thumbnail">
+                        <img class="img-news" src="<c:url value='${item.getImgURL()}' />" alt="">
+                    </div>
+                    <div class="title">
+                        <a href="/news/details/${item.getSlug()}">${item.getTitle()}</a>
+                    </div>
+                </div>
+            </div> 
+            <div class="row pt-1">
+                <div class="d-flex">
+                    <div class="thumbnail"></div>
+                    <div class="title"><p class="sidebar-date">${item.getCreatedDate()}</p></div> 
+                </div>
+            </div>
+        </c:forEach>
+    </div>
 </aside>
 <script src="<c:url value='/static/js/partials/sidebar.js?v=${randomNumber}' />"></script>
